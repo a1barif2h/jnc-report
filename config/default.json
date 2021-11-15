@@ -1,0 +1,11 @@
+
+{
+    "backendApi": {
+        "bezaServiceBaseUrl": "http://localhost",
+        "bezaServicePort": "8585",
+        "mayanCertificateUploadPath": "/beza-service/api/v1/private/mayan/upload-document/",
+        "bezaServiceGetFormValuesByApplicationIdPath": "/beza-service/api/v1/private/user-sops/",
+        "analysisRequestServicePath":"/beza-service/api/v1/private/discovery/search-data/",
+        "analysisReportDownloadPdfUrlPath": "query-service/api/v1/private/analysis/report"
+    }
+}

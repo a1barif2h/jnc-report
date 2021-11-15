@@ -1,0 +1,29 @@
+{
+  "name": "docker_web_app",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "First Last <first.last@example.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "convict": "^6.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.16.1",
+    "express-xml-bodyparser": "0.3.0",
+    "flat": "^5.0.2",
+    "git-repo-info": "^2.1.1",
+    "html-pdf": "^3.0.1",
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.14",
+    "pdfkit": "^0.12.1",
+    "template-strings": "^0.0.6",
+    "xml": "1.0.1"
+  },
+  "config": {
+    "unsafe-perm": true
+  }
+}

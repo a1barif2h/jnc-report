@@ -1,0 +1,99 @@
+.vr-card-background {
+    background-image: url('../img/LicensePlate.png');
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position-x: 36%;
+    background-position-y: 0px;
+    background-size: 226px 128px;
+}
+
+.overlay {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.vr-color {
+    color: #F79B3B;
+}
+
+
+.vr-heading-muted-text {
+    color: #DFECDE;
+    position: relative;
+    right: -30%;
+}
+
+.vr-btn-primary {
+    background-color: #4A4DE6;
+    border: none;
+    padding: 0.25rem;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0.25rem;
+    margin-top: 0.25rem;
+}
+
+.vr-owner-detail-color {
+    background-color: #FDEEE9;
+    background-image: url('../img/PersonIcon_medium.svg');
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 100%;
+    background-size: 7.5rem 7.5rem;
+}
+
+.vr-vehicle-detail-color {
+    background-color: #EDF6ED;
+    background-image: url('../img/CarIcon_medium_vr.svg');
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 100%;
+    /*background-size: 10em 10em;*/
+    position: relative;
+    overflow: hidden;
+}
+
+.vr-registration-info-color {
+    background-color: #EDF1FF;
+    background-image: url('../img/CarIconSide.svg');
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 100%;
+    background-size: 7.5rem 7.5rem;
+}
+
+.vr-car-type-img {
+    position: absolute;
+    width: 100%;
+    top: 4rem;
+    right: -40%;
+}
+
+.vr-info {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    height: 100%;
+}
+
+.vr-info .label {
+    font-size: 15px;
+    color: #555;
+}
+
+.vr-info .info {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.vr-info .info-link {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1890FF;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.rnd {
+    border-radius: 10px;
+    overflow: hidden;
+}

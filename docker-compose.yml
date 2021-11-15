@@ -1,0 +1,10 @@
+version: '3.0'
+services:
+  worker:
+    image: dip-report-download-manager
+    ports:
+     - '5010:5010'
+    extra_hosts:
+      es.dip.ntmc.gov.bd: 10.101.17.130
+      redis.dip.ntmc.gov.bd: 10.101.17.140
+    container_name: dip-report-download-manager
