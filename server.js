@@ -10,6 +10,7 @@ const PORT = 5010;
 const HOST = "0.0.0.0";
 const VehicleRegistration = require("./pdf_generators/VehicleRegistration");
 const ProjectClearance = require("./pdf_generators/ProjectClearance");
+const ProjectClearanceService = require('./services/projectClearanceService');
 const { reportType } = require("./constants/reportTypes");
 const config = require("./config/config");
 const { getCurrentFormattedDateTime } = require("./util/dateTimeFormattor");
@@ -51,6 +52,7 @@ app.post(
     let pdfFileName = "vehicle-registration";
 
     if (req.body && req.body.vehicleRegistrationNumber) {
+           
       pdfFileName +=
         "_" +
         req.body.vehicleRegistrationNumber +
@@ -70,36 +72,41 @@ app.post(
   "/certificate-service/api/v1/private/project-clearance/print/pdf",
   async (req, res) => {
     console.log("Printing project-clearance");
-    let pdfFileName = "project-clearance";
+    const projectClearnaceService = new ProjectClearanceService()
+    await projectClearnaceService.generatePdf(req).then(
+      data => res.send({message: 'OK'})      
+    ).catch(
+      err => res.send({message: 'ERR'})
+    );
+    // let pdfFileName = "project-clearance";
 
-    if (req.body && req.body.applicationId) {
-      pdfFileName +=
-        "_" + req.body.applicationId + getCurrentFormattedDateTime() + ".pdf";
-    }
+    // if (req.body && req.body.applicationId) {
+    //   pdfFileName +=
+    //     "_" + req.body.applicationId + getCurrentFormattedDateTime() + ".pdf";
+    // }
+    // axios
+    //   .get(
+    //     config.backendApi.bezaServiceBaseUrl +
+    //       ":" +
+    //       config.backendApi.bezaServicePort +
+    //       config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
+    //       req.body.applicationId
+    //   )
+    //   .then((response) => {
+    //     // console.log(response.data);
+    //     // console.log(response.data.explanation);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
 
-    axios
-      .get(
-        config.backendApi.bezaServiceBaseUrl +
-          ":" +
-          config.backendApi.bezaServicePort +
-          config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
-          req.body.applicationId
-      )
-      .then((response) => {
-        // console.log(response.data);
-        // console.log(response.data.explanation);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // // res.setHeader("Content-disposition", "attachment; filename=" + pdfFileName); //file name should contain nid 10 digit
+    // // res.setHeader("Content-type", "application/pdf");
+    // // res.set("pdfFileName", pdfFileName);
 
-    // res.setHeader("Content-disposition", "attachment; filename=" + pdfFileName); //file name should contain nid 10 digit
-    // res.setHeader("Content-type", "application/pdf");
-    // res.set("pdfFileName", pdfFileName);
-
-    const projectClearance = new ProjectClearance();
-    await projectClearance.generate(res, req.body);
-    res.send({msg: "OK"})
+    // const projectClearance = new ProjectClearance();
+    // await projectClearance.generate(res, req.body);
+    // res.send({msg: "OK"})
   }
 );
 
