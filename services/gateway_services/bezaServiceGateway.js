@@ -56,10 +56,10 @@ const upload = async (buffer, data) => {
 
 };
 
-const saveCertificateInfo = async (certificate, sop) => {
+const saveCertificateInfo = async (certificate, sop, processInstanceId) => {
   let model = {
     url: certificate.url,
-    processInstanceId: sop.processInstanceId,
+    processInstanceId: processInstanceId,
     userSopId: sop.id
   }
 
