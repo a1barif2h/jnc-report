@@ -38,7 +38,7 @@ const generateCertificate = async (req) => {
                         }
                     ).then(
                         async(certificate) => {
-                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById);
+                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId);
                             return response;
                         }
                     );
