@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "canvas": "^2.8.0",
     "convict": "^6.1.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -17,9 +18,11 @@
     "flat": "^5.0.2",
     "git-repo-info": "^2.1.1",
     "html-pdf": "^3.0.1",
+    "jsbarcode": "^3.11.5",
     "moment": "^2.29.1",
     "nodemon": "^2.0.14",
     "pdfkit": "^0.12.1",
+    "qrcode": "^1.4.4",
     "template-strings": "^0.0.6",
     "xml": "1.0.1"
   },

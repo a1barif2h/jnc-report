@@ -1,5 +1,7 @@
 const bezaServiceGateway = require("./gateway_services/bezaServiceGateway");
 const certificateGeneratorFactory = require('../services/certificateGeneratorFactory')
+const JsBarcode = require('jsbarcode')
+const { createCanvas } = require('canvas')
 
 // Server will call this File
 // bezaservicegateway
@@ -24,9 +26,17 @@ const generateCertificate = async (req) => {
     let bufferResponse;
     let certificateDetail;
     let response;
+
     await bezaServiceGateway
                     .getFormValueByApplicationID(req.body.applicationId).then(
                         res=>{
+                            const canvas = createCanvas()
+                            JsBarcode(canvas, res.uuid, {
+                                width: 1,
+                                displayValue: false
+                            })
+                            const barcodeData = canvas.toDataURL('image/png')
+                            res.formValue.barcode = barcodeData
                             userSopById = res;
                             bufferResponse = certificateGeneratorFactory.generate(res);
                             return bufferResponse;
