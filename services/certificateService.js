@@ -1,10 +1,10 @@
 const { response } = require("express");
 const ProjectClearance = require("../pdf_generators/ProjectClearance");
-const certificateGeneratorService = require('../services/certificateGeneratorService');
+const certificateGeneratorService = require('./certificateGeneratorService');
 const config = require("../config/config");
 const axios = require("axios");
 
-class ProjectClearanceService {
+class CertificateService {
   constructor() {}
 
   pdfFileName = "project-clearance";
@@ -54,4 +54,4 @@ class ProjectClearanceService {
   }
 }
 
-module.exports = ProjectClearanceService;
+module.exports = CertificateService;
