@@ -24,9 +24,12 @@ const generateCertificate = async (req) => {
     let bufferResponse;
     let certificateDetail;
     let response;
+    console.log("reqquest body for generating pdf: " + JSON.stringify(req.body));
     await bezaServiceGateway
                     .getFormValueByApplicationID(req.body.applicationId).then(
                         res=>{
+                            console.log("Form value fetched under application ID: " + req.body.applicationId + " form: " + (res == null ? "null" : JSON.stringify(res) ));
+  
                             userSopById = res;
                             bufferResponse = certificateGeneratorFactory.generate(res);
                             return bufferResponse;

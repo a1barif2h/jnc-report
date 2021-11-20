@@ -16,6 +16,7 @@ const generate = async (data) => {
     switch (title) {
         case 'Project Clearance':
             const projectClearance = new ProjectClearance();
+            console.log("Generating pdf for project Clearance")
             generatedPdf = await projectClearance.generate(data);
             break;
         default:
