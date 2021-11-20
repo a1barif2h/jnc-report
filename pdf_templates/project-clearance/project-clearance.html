@@ -46,8 +46,13 @@
         text-align: center;
       }
 
-      .barcode-container img {
+      .barcode-container .barcode {
         width: 180px;
+        height: auto;
+      }
+
+      .barcode-container .qrcode {
+        width: 80px;
         height: auto;
       }
 
@@ -117,8 +122,8 @@
         />
       </div>
       <div class="barcode-container">
-        <!-- <svg id="barcode"></svg> -->
-        <img src="{{barcode}}" alt="" />
+        <img src="{{qrcode}}" alt="" class="qrcode" />
+        <img src="{{barcode}}" alt="" class="barcode" />
       </div>
       <div class="application-date">
         <b>File no: PC-00011765</b>
