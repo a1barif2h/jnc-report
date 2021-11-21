@@ -10,6 +10,8 @@ const getFormValueByApplicationID = async (applicationId) => {
     config.backendApi.bezaServicePort +
     config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
     applicationId;
+  
+  console.log("URL to get from value from user sop: " + formValueUrl);
   let data = await axios
     .get(formValueUrl)
     .then(
@@ -24,7 +26,7 @@ const getFormValueByApplicationID = async (applicationId) => {
       console.log(error);
     });
 
-  // console.log(data);
+  // console.log("Form value fetched under application ID: " + applicationId + " form: " + (data == null ? "null" : JSON.stringify(data) ));
   return data;
 };
 

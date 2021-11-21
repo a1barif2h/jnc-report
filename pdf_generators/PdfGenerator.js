@@ -29,11 +29,7 @@ const generatePdfFromHtml = async function (htmlTemplate, json, options) {
             resolve(buffer);
         });
     });
-
     
-    
-    
-
     return buf;
 
 }
