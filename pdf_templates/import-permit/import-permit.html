@@ -18,6 +18,11 @@
       position: relative;
       z-index: 5;
     }
+    .mainContainer .bar-code {
+      width: 30%;
+      /* overflow: auto; */
+      /* margin-left: 6rem; */
+    }
 
     .mainContainer::before {
       content: "";
@@ -246,7 +251,7 @@
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
           alt="" />
       </div>
-      <div class="header-bar-code">
+      <div class="bar-code">
         {{barcode}}
         <!-- <img src="{{barcode}}" alt="" /> -->
       </div>
