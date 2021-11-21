@@ -299,7 +299,7 @@
               </div>
               <div>
                 <small>Invoice/ Vendor Ref. Dat :</small>
-                <p>{{invoiceVendorRefDate}}}</p>
+                <p>{{invoiceVendorRefDate}}</p>
               </div>
               <div>
                 <small>Invoice/ Vendor Reference No.:</small>
@@ -382,7 +382,7 @@
                 <p>{{dataGrid.0.hsCode}}</p>
               </div>
               <div>
-                <b>{{dataGrid.0.fobValue1}}:</b>
+                <small>{{dataGrid.0.fobValue1}}:</small>
                 <p>{{fobValue}}</p>
               </div>
               <div>
@@ -430,21 +430,24 @@
         </div>
       </div>
       <footer>
-        <div class="second-caution">
-          <p>THIS PERMIT IS VALID FOR 30 (THIRTY) DAYS FROM THE DATE OF ISSUE</p>
+        <div class="first-caution">
+          <p style="font-weight: bolder;">THIS PERMIT IS VALID FOR 30 (THIRTY) DAYS FROM THE DATE OF ISSUE</p>
         </div>
-        <div class="third-caution">
-         <div class="headlines">
-          <b>THIS IS COMPUTER GENERATED PERMIT. SO SIGNATURE IS NOT REQUIRED</b>
-         </div>
-         <div>
-           <ul>
-             <li>The assessment of this consignment including value, HS code and SRO benefits, if any, will be determined by the appropriate Customs
-              Authority as per their r</li>
-             <li>This Import permit is issued as per the declaration of the unit Investor in Economic Zone or the developer of Economic Zone.</li>
-             <li>Bangladesh Economic Zones Authority doesn’t bear any responsibility regarding the veracity of the declaration of the goods.</li>
-           </ul>
-         </div>
+        <div class="second-caution">
+          <div class="headlines">
+            <b style="font-size: 9px; color: #706b12;">THIS IS COMPUTER GENERATED PERMIT. SO SIGNATURE IS NOT REQUIRED</b>
+          </div>
+          <div>
+            <ul>
+              <li>The assessment of this consignment including value, HS code and SRO benefits, if any, will be determined by
+                the appropriate Customs
+                Authority as per their r</li>
+              <li>This Import permit is issued as per the declaration of the unit Investor in Economic Zone or the developer
+                of Economic Zone.</li>
+              <li>Bangladesh Economic Zones Authority doesn’t bear any responsibility regarding the veracity of the
+                declaration of the goods.</li>
+            </ul>
+          </div>
         </div>
       </footer>
     </main>
