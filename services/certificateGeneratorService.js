@@ -1,5 +1,6 @@
 const bezaServiceGateway = require("./gateway_services/bezaServiceGateway");
-const certificateGeneratorFactory = require('../services/certificateGeneratorFactory')
+const certificateGeneratorFactory = require('../services/certificateGeneratorFactory');
+const dateTimeFormattor = require('../util/dateTimeFormattor');
 const JsBarcode = require('jsbarcode')
 var QRCode = require('qrcode')
 const { createCanvas } = require('canvas')
@@ -51,7 +52,9 @@ const generateCertificate = async (req) => {
                             
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));
 
-                            res.formValue.barcode = barcodeData
+                            res.formValue.barcode = barcodeData;
+                            res.formValue.trackingId = res.uuid;
+                            res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(res.createdAt);
                             userSopById = res;
                             bufferResponse = certificateGeneratorFactory.generate(res);
                             return bufferResponse;
