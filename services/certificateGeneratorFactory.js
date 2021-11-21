@@ -1,6 +1,7 @@
 // const ProjectClearance = require("../pdf_generators/ProjectClearance")
 
 const ProjectClearance = require("../pdf_generators/ProjectClearance");
+const ImportPermit = require("../pdf_generators/ImportPermit");
 
 // method() 
 //    switch
