@@ -7,7 +7,7 @@ const config = convict({
         format: ['production', 'staging', 'dev', 'default'],
         default: 'default',
         arg: 'nodeEnv',
-        env: 'NODE_ENV'
+        env: 'NODE_ENV_VAL'
     }
 });
 
