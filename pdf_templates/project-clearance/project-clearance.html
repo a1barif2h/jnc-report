@@ -1,133 +1,210 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="style.css" /> -->
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
 
-      body {
-        border: 1px solid rgb(0, 0, 0);
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Certificate</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      /* border: 1px solid rgb(0, 0, 0);
         width: 210mm;
-        height: 297mm;
-        margin: 3rem auto;
-        padding: 35px;
-        font-size: 13.2px;
-        position: relative;
-        z-index: 5;
-      }
+        height: 297.5mm; */
+      margin: 0rem auto;
+      padding: 30px;
+      font-size: 8px;
+      position: relative;
+      z-index: 5;
+    }
 
-      body::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-image: url("https://media.discordapp.net/attachments/892299770004115466/909682786217123930/logo.png?width=609&height=609");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 600px;
-        width: 100%;
-        height: 100%;
-        opacity: 0.1;
-        z-index: 10;
-      }
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: url("https://media.discordapp.net/attachments/892299770004115466/909682786217123930/logo.png?width=609&height=609");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 450px;
+      width: 100%;
+      height: 110%;
+      opacity: 0.1;
+      z-index: 10;
+    }
 
-      .header-logo img {
-        width: 28%;
-        padding: 1rem 0rem;
-      }
+    .container-page-break {
+      page-break-after: always;
+    }
 
-      .barcode-container {
-        text-align: center;
-      }
+    .secondPageContainer {
+      /* border: 1px solid rgb(0, 0, 0);
+        width: 210mm;
+        height: 297.5mm; */
+      margin: 0rem auto;
+      padding: 30px;
+      font-size: 8px;
+      position: relative;
+      z-index: 5;
+    }
 
-      .barcode-container .barcode {
-        width: 180px;
-        height: auto;
-      }
+    .secondPageContainer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: url("https://media.discordapp.net/attachments/892299770004115466/909682786217123930/logo.png?width=609&height=609");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 450px;
+      width: 100%;
+      height: 80%;
+      opacity: 0.1;
+      z-index: 10;
+    }
 
-      .barcode-container .qrcode {
-        width: 80px;
-        height: auto;
-      }
+    .header-logo img {
+      width: 28%;
+      padding: 1rem 0rem;
+    }
 
-      .application-date {
-        --bs-gutter-x: 1.5rem;
-        --bs-gutter-y: 0;
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: calc(var(--bs-gutter-y) * -1);
-        margin-right: calc(var(--bs-gutter-x) * -0.5);
-        margin-left: calc(var(--bs-gutter-x) * -0.5);
-        justify-content: space-between;
-        margin: 2rem 0rem 1.2rem 0rem;
-      }
+    .application-date {
+      margin: 1.8rem 0rem 1.1rem 0rem;
+      font-weight: bolder;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
 
-      .application-info b {
-        display: block;
-      }
+    }
 
-      .application-info {
-        width: 50%;
-      }
+    .application-info b {
+      display: block;
+    }
 
-      .application-info b {
-        line-height: 1.45;
-      }
+    .application-info {
+      width: 50%;
+      line-height: 2;
+    }
 
-      .application-subject {
-        margin: 1.6rem 0rem;
-      }
+    .application-info b {
+      line-height: 1.6;
+    }
 
-      .application-header {
-        margin-top: 2.5rem;
-      }
+    .application-subject {
+      margin: 1.6rem 0rem;
+    }
 
-      .application-header .dear-ceo {
-        margin: 1rem 0rem;
-      }
+    .application-header {
+      margin-top: 2.5rem;
+    }
 
-      .application-header-text {
-        margin: 0.5rem 0rem;
-        line-height: 1.4;
-      }
+    .application-header .dear-ceo {
+      margin: 1rem 0rem;
+    }
 
-      .application-header-text b {
-        font-size: 13px;
-      }
+    .application-header-text {
+      margin: 0.5rem 0rem;
+      line-height: 1.8;
+    }
 
-      .application-list {
-        line-height: 1.45;
-        padding-left: 22px;
-      }
+    .application-header-text b {
+      font-size: 8px;
+    }
 
-      .application-list li {
-        margin-top: 0.8rem;
-      }
-    </style>
-    <title>Certificate</title>
-  </head>
+    .application-list {
+      line-height: 1.8;
+      padding-left: 22px;
+    }
 
-  <body>
+    .application-list li {
+      margin-top: 0.7rem;
+    }
+
+
+    .application-list p {
+      margin-top: 0.5rem;
+      line-height: 1.74;
+    }
+
+    footer {
+      display: -webkit-box;
+      /* OLD - iOS 6-, Safari 3.1-6 */
+      display: -moz-box;
+      /* OLD - Firefox 19- (buggy but mostly works) */
+      display: -ms-flexbox;
+      /* TWEENER - IE 10 */
+      display: -webkit-flex;
+      /* NEW - Chrome */
+      display: flex;
+      align-items: -webkit-box;
+      align-items: -moz-box;
+      align-items: -ms-flexbox;
+      align-items: -webkit-flex;
+      align-items: center;
+      justify-content: -webkit-box;
+      justify-content: -moz-box;
+      justify-content: -ms-flexbox;
+      justify-content: -webkit-flex;
+      justify-content: space-evenly;
+      width: 100%;
+      margin-top: .55rem;
+    }
+
+    footer .qr-code img {
+      width: 30%;
+      margin-left: 3rem;
+    }
+
+    footer .bar-code {
+      width: 30%;
+      /* overflow: auto; */
+      /* margin-left: 6rem; */
+    }
+
+    footer .signature img {
+      width: 32%;
+      margin-left: 3.5rem;
+    }
+
+    footer .qr-code ol {
+      list-style-type: lower-alpha;
+      margin-left: 1.6rem;
+      line-height: 1.8;
+    }
+
+    footer .signature div {
+      line-height: 1.8;
+    }
+
+    footer .signature .desk-user {
+      font-weight: bold;
+      border-top: 1px solid black;
+      width: 48%;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container container-page-break">
     <header>
       <div class="header-logo">
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
-          alt=""
-        />
-      </div>
-      <div class="barcode-container">
-        <img src="{{qrcode}}" alt="" class="qrcode" />
-        <img src="{{barcode}}" alt="" class="barcode" />
+          alt="" />
       </div>
       <div class="application-date">
-        <b>File no: PC-00011765</b>
-        <b>Date: 27 July, 2021</b>
+        <p>File no: {{trackingId}}</p>
+        <p>Date: {{applicationDate}}</p>
       </div>
       <div class="application-info">
         <b>Managing Director/ CEO</b>
@@ -137,25 +214,23 @@
         <b>Mirsarai, Feni, Chattogram</b>
       </div>
       <div class="application-subject">
-        <b
-          >Subject: Approval for setting up a(n)
-          {{typeOfBusinessIndustryOrServices}} in {{economicZoneName}}</b
-        >
+        <b>Subject: Approval for setting up a(n)
+          {{typeOfBusinessIndustryOrServices}} in {{economicZoneName}}
+        </b>
       </div>
     </header>
     <main>
       <div class="application-header">
         <p class="dear-ceo">Dear MD/ CEO,</p>
         <p class="application-header-text">
-          With reference to your Project Proposal received on 27 July, 2021,
+          With reference to your Project Proposal received on {{applicationDate}},
           this is to inform you that the Authority is pleased to issue this
           clearance subject to approval from competent authorities and
           compliance of all legal requirements of your project for setting up
           a(n)
           <b>
             {{typeOfBusinessIndustryOrServices}} in {{economicZoneName}},
-            Mirsarai, Feni,Chattogram</b
-          >
+            Mirsarai, Feni,Chattogram</b>
           on terms and conditions as indicated below:
         </p>
       </div>
@@ -190,14 +265,152 @@
             of machinery from abroad.
           </li>
           <li>
-            Before procurement of machineries and building-materials from abroad
-            you are required to submit 3 (three) sets of price quotations from
-            reputed machinery suppliers or in case of procurement of machinery
-            from manufacturer, 1 (one) set of price quotation along with
-            catalogues etc. of the machinery for approval of the Authority.
+            Before procurement of machineries and building-materials from
+            abroad you are required to submit 3 (three) sets of price
+            quotations from reputed machinery suppliers or in case of
+            procurement of machinery from manufacturer, 1 (one) set of price
+            quotation along with catalogues etc. of the machinery for approval
+            of the Authority.
           </li>
         </ol>
       </div>
     </main>
+  </div>
+  <div class="secondPageContainer">
+    <header>
+      <div class="header-logo">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
+          alt="" />
+      </div>
+    </header>
+    <main>
+      <div class="application-list">
+        <ol>
+          <p>
+            14. The company will have to:
+            <br />
+            a. maintain the ratio of export and domestic sale within 50:50 of
+            entire product of its factory;
+            <br />
+            b. submit monthly reports to the Authority on the progress of
+            implementation of the project;
+            <br />
+            c. commission the project in the allotted land space within a
+            period of twelve months failing which the Authority may revoke
+            this permission;
+            <br />
+            d. furnish such other data on the project to this Authority and to
+            any other agency as may be required;
+            <br />
+            e. obtain work permits / permission of the Authority prior to
+            entry for any foreign nationals on employment in the project;
+            <br />
+            f. submit to this Authority, the audited Financial Statement for
+            every financial year within 4(four) months from the closure of
+            each financial year of the company;
+
+            <br />
+            g. comply with the provisions of minimum wages of the workers as
+            declared by the government from time to time and the EPZ Workers
+            Welfare Association and Industrial Relations Act, 2010 (Act no-43
+            of 2010) (as amended from time to time by the Authority) in
+            regards to wages, employment, salary, leave, discipline, health,
+            compensation, insurance and other benefits to the employees
+            engaged for work in your enterprise;
+            <br />
+            h. comply with the rules pertaining to environment protection,
+            pollution control and effluent treatment and take necessary safety
+            measures against possible fire hazards;
+            <br />
+            i. comply with all laws, by-laws, rules, regulations, directives
+            of the government and of this Authority which are in force or
+            which may be issued from time to time in future;
+            <br />
+            j. comply with provisions of the “Principles and Procedures
+            Governing Setting up of Industries in EZ”;
+            <br />
+            k. obtain prior approval of the Authority in case the company
+            decides to appoint a Managing Agent or transfer the shares of the
+            company;
+            <br />
+            l. the company shall have to submit actual Investment, export,
+            domestic sales, employment information to the Authority and/ or
+            with other government agency(s) in quarterly basis.
+          </p>
+          <p>
+            15. The construction of the factory building and other civil
+            construction shall have to commence immediately and not later than
+            03 (three) months from the date of issuance of this letter and
+            will have to start commercial production within 01(one) year from
+            the date of signing the land lease agreement. If the company fails
+            to start construction work of factory building within 03(three)
+            months, the land lease agreement may be terminated without
+            issuance of any further notice. The building shall conform to the
+            conditions and specification laid down in Bangladesh Economic
+            Zones (Construction of Building ) Rules , 2017. Prior approval of
+            the building plan has to be obtained from the Authority
+          </p>
+          <p>
+            16. The company shall bear the cost of Services and Regulatory
+            permit fees as prescribed by the Authority from time to time
+          </p>
+          <p>
+            17. No waste/old materials will be allowed to import as raw
+            materials.
+          </p>
+          <p>
+            18. In the event of your failure to set up the unit within the
+            stipulated time or infringement of any rules and regulations or
+            violation of any of the above terms and conditions, the Authority
+            may revoke the permiss
+          </p>
+          <p>19. This permission is not transferable.</p>
+          <p>
+            20. This permission is valid until expiration of the License
+            awarded by Bangladesh Economic Zones Authority to .
+          </p>
+          <p>
+            21. If you agree with the terms and conditions contained in this
+            letter along with those contained in the BEZA Act, Rules,
+            Policies, Guidelines, SROs, Circulars, Office orders etc. you are
+            requested to proceed for signing the land lease agreement with the
+            Developer/ Operator of with intimation to the Authority. Thanking
+            and assuring you of our best cooperation at all times.
+          </p>
+        </ol>
+      </div>
+      <footer>
+        <div class="qr-code">
+          <img
+            src="{{qrcode}}"
+            alt="" />
+          <p style="text-align: center; margin: 0.3rem 0rem">
+            Copy for Information to
+          </p>
+
+          <ol style="width: 150%;">
+            <li>Managing Director,</li>
+            <li>Commissioner, Customer Bond...</li>
+            <li>..............................</li>
+            <li>..............................</li>
+          </ol>
+        </div>
+        <div class="bar-code">
+          
+            {{barcode}}
+        </div>
+        <div class="signature">
+          <h3 style="text-align: center;"> Yours faithfully</h3>
+          <img src="https://signaturely.com/wp-content/uploads/2020/04/unreadable-letters-signaturely.svg" alt="" />
+          <div class="desk-user">Desk User (RD3)</div>
+          <div style="font-weight: bolder; margin-left: 1.8rem;">Technical Support Executive</div>
+          <div style="min-width: 255px; margin-right: 1rem;">
+              Bangladesh Economic Zones Authority (BEZA)
+            </div>
+          </div>
+        </footer>
+      </main>
+    </div>
   </body>
 </html>

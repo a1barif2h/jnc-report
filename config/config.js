@@ -2,12 +2,13 @@ require('dotenv').config();
 const convict = require('convict');
 
 const config = convict({
-  env: {
-    format: ["production", "staging", "dev", "default"],
-    default: "default",
-    arg: "nodeEnv",
-    env: "NODE_ENV_VAL",
-  },
+
+    env: {
+        format: ['production', 'staging', 'dev', 'default'],
+        default: 'default',
+        arg: 'nodeEnv',
+        env: 'NODE_ENV'
+    }
 });
 
 const env = config.get('env');
