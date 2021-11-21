@@ -1,7 +1,7 @@
 const { response } = require("express");
 const fs = require("fs");
 const htmlTemplate = fs.readFileSync(
-  "./pdf_templates/import-permit/import-permit.html",
+  "./pdf_templates/import-permit/import-permit2.html",
   "utf8"
 );
 const pdf = require("./PdfGenerator");
