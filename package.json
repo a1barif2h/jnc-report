@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "canvas": "^2.8.0",
     "convict": "^6.1.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -25,7 +24,8 @@
     "pdfkit": "^0.12.1",
     "qrcode": "^1.4.4",
     "template-strings": "^0.0.6",
-    "xml": "1.0.1"
+    "xml": "1.0.1",
+    "xmldom": "^0.6.0"
   },
   "config": {
     "unsafe-perm": true
