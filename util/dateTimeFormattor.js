@@ -12,6 +12,16 @@ const getCurrentFormattedDateTime = () => {
     }
 }
 
+const getApplicationDate = (createdAt) => {
+    try {
+        const date = new Date(createdAt);
+        return date.getDate() + " " + date.getMonth() + ", " + date.getFullYear();
+    } catch (err) {
+        return "_";
+    }
+}
+
 module.exports = {
-    getCurrentFormattedDateTime
+    getCurrentFormattedDateTime,
+    getApplicationDate
 }
