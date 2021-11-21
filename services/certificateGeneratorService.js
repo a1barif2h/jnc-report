@@ -45,11 +45,13 @@ const generateBarcode = async text => {
     // const barcodeData = canvas.toDataURL('image/png')
     JsBarcode(svgNode, text, {
         xmlDocument: document,
-        width: 1,
+        width: 0.25,
+        height: 25,
         displayValue: false
     });
     
     const barcodeData = xmlSerializer.serializeToString(svgNode);
+    console.log(barcodeData);
     return barcodeData;
 }
 
