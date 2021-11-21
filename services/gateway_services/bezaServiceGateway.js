@@ -26,7 +26,7 @@ const getFormValueByApplicationID = async (applicationId) => {
       console.log(error);
     });
 
-  console.log("Form value fetched under application ID: " + applicationId + " form: " + (data == null ? "null" : JSON.stringify(data) ));
+  // console.log("Form value fetched under application ID: " + applicationId + " form: " + (data == null ? "null" : JSON.stringify(data) ));
   return data;
 };
 
