@@ -3,7 +3,8 @@ const certificateGeneratorFactory = require('../services/certificateGeneratorFac
 const dateTimeFormattor = require('../util/dateTimeFormattor');
 const JsBarcode = require('jsbarcode')
 var QRCode = require('qrcode')
-const { createCanvas } = require('canvas')
+const { createCanvas } = require('canvas');
+const config = require("../config/config");
 
 // Server will call this File
 // bezaservicegateway
@@ -23,6 +24,7 @@ const { createCanvas } = require('canvas')
 //         return bezaservicegateway.saveCertificateInfo
 //     });
 
+
 const generateQR = async text => {
     try {
     return await QRCode.toDataURL(text);
@@ -41,7 +43,7 @@ const generateCertificate = async (req) => {
                     .getFormValueByApplicationID(req.body.applicationId).then(
                        async res=>{
                             const canvas = createCanvas()
-                            const url = 'http://202.181.14.20:7890/auth'
+                            const url = `${config.backendApi.bezaServiceBaseUrl}:${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=asasdfas`
                             JsBarcode(canvas, res.uuid, {
                                 width: 1,
                                 displayValue: false
