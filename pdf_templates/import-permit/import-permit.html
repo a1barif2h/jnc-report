@@ -1,0 +1,467 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Import Permit</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .mainContainer {
+      margin: 0rem auto;
+      padding: 30px;
+      position: relative;
+      z-index: 5;
+    }
+    .mainContainer .bar-code {
+      width: 30%;
+      /* overflow: auto; */
+      /* margin-left: 6rem; */
+    }
+
+    .mainContainer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: url("https://media.discordapp.net/attachments/892299770004115466/909682786217123930/logo.png?width=609&height=609");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 450px;
+      width: 100%;
+      height: 110%;
+      opacity: 0.1;
+      z-index: 10;
+    }
+
+
+    header {
+      display: -webkit-box;
+      /* OLD - iOS 6-, Safari 3.1-6 */
+      display: -moz-box;
+      /* OLD - Firefox 19- (buggy but mostly works) */
+      display: -ms-flexbox;
+      /* TWEENER - IE 10 */
+      display: -webkit-flex;
+      /* NEW - Chrome */
+      display: flex;
+      align-items: -webkit-box;
+      align-items: -moz-box;
+      align-items: -ms-flexbox;
+      align-items: -webkit-flex;
+      align-items: center;
+      justify-content: -webkit-box;
+      justify-content: -moz-box;
+      justify-content: -ms-flexbox;
+      justify-content: -webkit-flex;
+      justify-content: space-between;
+      margin-left: 1rem;
+    }
+
+    header img {
+      width: 44%;
+    }
+
+    .import-permit {
+      height: 1.6rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      background-color: red;
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      margin-top: .5rem;
+      color: white;
+    }
+
+    .import-date {
+      font-size: 7.5px;
+      font-weight: bold;
+      margin: 0.6rem 0rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+
+    .general-information {
+      height: 1.5rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      color: white;
+      background-color: #278000;
+    }
+
+    .border-box {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      border: 1px solid #278000;
+      min-height: 4.2rem;
+    }
+
+    .border-box small {
+      font-size: 6.5px;
+      font-weight: bold;
+    }
+
+    .left {
+      width: 50%;
+      padding: 0.5rem 1.4rem;
+      line-height: 2.5;
+    }
+
+    .left p,
+    .right p {
+      font-size: 6.5px;
+    }
+
+    .left div {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+
+    .right {
+      width: 50%;
+      padding: 0.5rem 1.4rem;
+      line-height: 2.5;
+    }
+
+    .right div {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+
+    .export-material-group {
+      height: 1.5rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      background-color: #353535;
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      margin-top: .5rem;
+      color: white;
+    }
+
+    .export-material-details {
+      height: 1.5rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      background-color: #267e01;
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      margin-top: .5rem;
+      color: white;
+    }
+
+    footer div {
+      margin: 0..5rem 0rem;
+    }
+
+    .first-caution {
+      background: #dfbdcd;
+      padding: 0.45rem 1.2rem;
+      width: 90%;
+      margin: 0 auto;
+      line-height: 1.35;
+      font-weight: 500;
+      text-align: center;
+      font-size: 8px;
+      color: #d02f67;
+      font-weight: 550;
+    }
+
+    .second-caution {
+      background: #dad7b0;
+      padding: 1rem 1.4rem;
+      width: 90%;
+      margin: 1rem auto;
+      line-height: 1.7;
+      font-weight: 500;
+      font-size: 8px;
+      font-weight: 450;
+    }
+
+    .second-caution .headlines {
+      text-align: center;
+    }
+
+    .second-caution ul li {
+      margin-top: .3rem;
+      font-size: 7.4px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mainContainer">
+    <header>
+      <div class="header-logo">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
+          alt="" />
+      </div>
+      <div class="bar-code">
+        {{barcode}}
+        <!-- <img src="{{barcode}}" alt="" /> -->
+      </div>
+
+      <div class="header-qr-code">
+        <img src="{{qrcode}}" alt="" />
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <div class="export-permit">
+          <h3>IMPORT PERMIT</h3>
+        </div>
+        <div class="export-date">
+          <b>File no: EP-00011910</b>
+          <b>Date: 06 Jun 2021</b>
+        </div>
+
+        <div class="general">
+          <div class="general-information">
+            <h3>GENERAL INFORMATION</h3>
+          </div>
+
+          <div class="border-box">
+            <div class="left">
+              <div>
+                <small>Name of the Comapany</small>
+                <p>{{proposedProjectCompanyNameWhichWillCarryOutTheBusiness}}</p>
+              </div>
+              <div>
+                <small>Import Permit Type:</small>
+                <p>{{importPermitType}}</p>
+              </div>
+              <div>
+                <small>Carrier Name:</small>
+                <p></p>
+              </div>
+              <div>
+                <small>Type of Zone :</small>
+                <p>{{typeOfZone}}</p>
+              </div>
+              <div>
+                <small>Undertaking No.:</small>
+                <p>{{commonField_undertakingNo}}</p>
+              </div>
+              <div>
+                <small>Name of the Shipper</small>
+                <p>{{nameOfTheShipper}}</p>
+              </div>
+              <div>
+                <small>Source/ Destination Country:</small>
+                <p>{{Source Country :}}</p>
+              </div>
+              <div>
+                <small>Invoice/ Vendor Ref. Dat :</small>
+                <p>{{invoiceVendorRefDate}}</p>
+              </div>
+              <div>
+                <small>Invoice/ Vendor Reference No.:</small>
+                <p>{{invoiceVendorReferenceNo}}</p>
+              </div>
+              <div>
+                <small>B/L, A/W, T.C No.</small>
+                <p>{{bLNo}}</p>
+              </div>
+            </div>
+            <div class="right">
+              <div>
+                <small>Carrier Type:</small>
+                <p>{{carrierType}}</p>
+              </div>
+              <div>
+                <small>Name of Economice Zone :</small>
+                <p>{{economicZone}}</p>
+              </div>
+              <div>
+                <small>Carrier Passport No :</small>
+                <p></p>
+              </div>
+              <div>
+                <small>Carrier Passport Validity</small>
+                <p></p>
+              </div>
+              <div>
+                <small>Undertaking Date:</small>
+                <p>{{commonField_undertakingDate}}</p>
+              </div>
+              <div>
+                <small>Import From/ Port of Landin :</small>
+                <p>{{importFromPortOfLoading}}</p>
+              </div>
+              <div>
+                <small>Port of Destination</small>
+                <p>{{portOfDestination}}</p>
+              </div>
+              <div>
+                <small>{{dataGrid.0.fobValue1}}:</small>
+                <p>USD {{fobValue}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="export-material">
+          <div class="export-material-group">
+            <h3>Import Material & L/C Information Group</h3>
+          </div>
+          <div class="export-material-details" style="margin-top: .8rem;">
+            <h3>Import Material Details</h3>
+          </div>
+          <div class="border-box">
+            <div class="left">
+              <div>
+                <small>Type of Material :</small>
+                <p>{{dataGrid.0.typeOfMaterial}}</p>
+              </div>
+              <div>
+                <small>Material Description</small>
+                <p>{{dataGrid.0.martialDescription}}</p>
+              </div>
+              <div>
+                <small>Unit of Quantity</small>
+                <p>{{dataGrid.0.unitQuantity}}</p>
+              </div>
+
+
+              <div style="padding-top: 1rem;">
+                <small>Flight No:</small>
+                <p></p>
+              </div>
+
+
+            </div>
+            <div class="right">
+              <div>
+                <small>HS Code: <br> <span style="font-size: 10px;">Phenazone (Antipyrin) And Its
+                    Derivative</span></small>
+                <p>{{dataGrid.0.hsCode}}</p>
+              </div>
+              <div>
+                <small style="font-size: 7.2px;">{{dataGrid.0.fobValue1}}:</small>
+                <p>{{fobValue}}</p>
+              </div>
+              <div>
+                <small>Quantity :</small>
+                <p>{{dataGrid.0.quantity}}</p>
+              </div>
+              <div>
+                <small>Flight Date :</small>
+                <p></p>
+              </div>
+              <div>
+              </div>
+            </div>
+          </div>
+          <div class="export-material-details">
+            <h3>Import Material Details</h3>
+          </div>
+          <div class="border-box">
+            <div class="left">
+              <div>
+                <small>P.O No:</small>
+                <p>{{dataGrid.0.ttNo}}</p>
+              </div>
+              <div>
+                <small>Issuing Bank</small>
+                <p>{{dataGrid.0.issuingBank}}</p>
+              </div>
+              <div>
+                <small>Issue Date:</small>
+                <p>2021-04-07</p>
+              </div>
+            </div>
+            <div class="right">
+              <div>
+                <small>P.O Value</small>
+                <p>{{dataGrid.0.ttValue}}34.288</p>
+              </div>
+              <div>
+                <small>Type :</small>
+                <p>{{dataGrid.0.typeOfLC}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <footer>
+    <div class="first-caution">
+      <p style="font-weight: bolder;">THIS PERMIT IS VALID FOR 30 (THIRTY) DAYS FROM THE DATE OF ISSUE</p>
+    </div>
+    <div class="second-caution">
+      <div class="headlines">
+        <b style="font-size: 9px; color: #706b12;">THIS IS COMPUTER GENERATED PERMIT. SO SIGNATURE IS NOT REQUIRED</b>
+      </div>
+      <div>
+        <ul>
+          <li>The assessment of this consignment including value, HS code and SRO benefits, if any, will be determined
+            by
+            the appropriate Customs
+            Authority as per their r</li>
+          <li>This Import permit is issued as per the declaration of the unit Investor in Economic Zone or the developer
+            of Economic Zone.</li>
+          <li>Bangladesh Economic Zones Authority doesn’t bear any responsibility regarding the veracity of the
+            declaration of the goods.</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  </main>
+  </div>
+</body>
+
+</html>
