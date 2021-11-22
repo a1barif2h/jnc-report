@@ -11,7 +11,7 @@ const materialsDetailsTemplate = fs.readFileSync(
 const pdf = require("./PdfGenerator");
 const options = { format: "A4", orientation: "portrait" };
 
-const materialsDescriptionParser = require("./utils/materialDescriptionParser");
+const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
 class ImportPermit {
   constructor() {}
 
@@ -21,12 +21,14 @@ class ImportPermit {
         body.formValue,
         materialsDetailsTemplate
       );
-    htmlTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+    let htmlImportTemplate = htmlTemplate;
+    htmlImportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
       body.formValue,
-      htmlTemplate
+      htmlImportTemplate
     );
-    htmlTemplate.replaceAll(
-      "{{" + "allMaterialsDetails" + "}}",
+    console.log("matarialDescription:   " + matarialDescription);
+    htmlImportTemplate = htmlImportTemplate.replace(
+      `{{allMaterialsDetails}}`,
       matarialDescription || "-"
     );
     // body.routePermitIssueDate = body.hasOwnProperty("routePermitIssueDate") ? body.routePermitIssueDate : "_";
@@ -34,8 +36,10 @@ class ImportPermit {
     // body.fitnessIssueDate = body.hasOwnProperty("fitnessIssueDate") ? body.fitnessIssueDate : "_";
     // pdf.pdfGenerator(htmlTemplate, body, res, options)
 
+    console.log("==========================================");
+    console.log("main html :   " + htmlImportTemplate);
     const response = await pdf.generatePdfFromHtmlMultipleMaterialDescription(
-      htmlTemplate,
+      htmlImportTemplate,
       options
     );
 

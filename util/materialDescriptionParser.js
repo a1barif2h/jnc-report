@@ -10,19 +10,27 @@ const generateMultipleMaterialsDescription = function (data, materialsTemplate) 
     if (data.length == 0) {
       return "";
     }
-    materialsDescriptionTemplate += parseJasonIntoHtml(data[0], materialsTemplate);
+    const dataGrid=data.dataGrid;
+    let materialsDescriptionTemplate="";
+    materialsDescriptionTemplate += parseJasonIntoHtml(
+      dataGrid[0],
+      materialsTemplate
+    );
     const pageBreak = '<div class="container container-page-break">';
-    for (let i=1;i<data.length;i++) {
-        if(i%2==1){
-            materialsDescriptionTemplate += pageBreak;
-        }
-        materialsDescriptionTemplate += parseJasonIntoHtml(data[i], materialsTemplate);
-        if(i%2==0){
-            materialsDescriptionTemplate += "</div>";
-        }
-    }
-    if (data.length != 0 && data.length%2==0){
+    for (let i = 1; i < dataGrid.length; i++) {
+      if (i % 2 == 1) {
+        materialsDescriptionTemplate += pageBreak;
+      }
+      materialsDescriptionTemplate += parseJasonIntoHtml(
+        dataGrid[i],
+        materialsTemplate
+      );
+      if (i % 2 == 0) {
         materialsDescriptionTemplate += "</div>";
+      }
+    }
+    if (dataGrid.length != 0 && dataGrid.length % 2 == 0) {
+      materialsDescriptionTemplate += "</div>";
     }
 
     return materialsDescriptionTemplate;

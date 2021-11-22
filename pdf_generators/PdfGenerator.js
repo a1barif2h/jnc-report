@@ -40,7 +40,7 @@ const generatePdfFromHtmlMultipleMaterialDescription = async function (htmlTempl
   // const html = htmlTemplate;
 //   const html = templateEngine.replacer(htmlTemplate, json.formValue);
   const buf = await new Promise((resolve, reject) => {
-    pdf.create(html, options).toBuffer(function (err, buffer) {
+    pdf.create(htmlTemplate, options).toBuffer(function (err, buffer) {
       if (err) {
         console.log(err);
         return reject(err);
