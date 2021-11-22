@@ -348,94 +348,13 @@
                 <p>{{portOfDestination}}</p>
               </div>
               <div>
-                <small>{{dataGrid.0.fobValue1}}:</small>
+                <small>FOB Value:</small>
                 <p>USD {{fobValue}}</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="export-material">
-          <div class="export-material-group">
-            <h3>Import Material & L/C Information Group</h3>
-          </div>
-          <div class="export-material-details" style="margin-top: .8rem;">
-            <h3>Import Material Details</h3>
-          </div>
-          <div class="border-box">
-            <div class="left">
-              <div>
-                <small>Type of Material :</small>
-                <p>{{dataGrid.0.typeOfMaterial}}</p>
-              </div>
-              <div>
-                <small>Material Description</small>
-                <p>{{dataGrid.0.martialDescription}}</p>
-              </div>
-              <div>
-                <small>Unit of Quantity</small>
-                <p>{{dataGrid.0.unitQuantity}}</p>
-              </div>
-
-
-              <div style="padding-top: 1rem;">
-                <small>Flight No:</small>
-                <p></p>
-              </div>
-
-
-            </div>
-            <div class="right">
-              <div>
-                <small>HS Code: <br> <span style="font-size: 10px;">Phenazone (Antipyrin) And Its
-                    Derivative</span></small>
-                <p>{{dataGrid.0.hsCode}}</p>
-              </div>
-              <div>
-                <small style="font-size: 7.2px;">{{dataGrid.0.fobValue1}}:</small>
-                <p>{{fobValue}}</p>
-              </div>
-              <div>
-                <small>Quantity :</small>
-                <p>{{dataGrid.0.quantity}}</p>
-              </div>
-              <div>
-                <small>Flight Date :</small>
-                <p></p>
-              </div>
-              <div>
-              </div>
-            </div>
-          </div>
-          <div class="export-material-details">
-            <h3>Import Material Details</h3>
-          </div>
-          <div class="border-box">
-            <div class="left">
-              <div>
-                <small>P.O No:</small>
-                <p>{{dataGrid.0.ttNo}}</p>
-              </div>
-              <div>
-                <small>Issuing Bank</small>
-                <p>{{dataGrid.0.issuingBank}}</p>
-              </div>
-              <div>
-                <small>Issue Date:</small>
-                <p>2021-04-07</p>
-              </div>
-            </div>
-            <div class="right">
-              <div>
-                <small>P.O Value</small>
-                <p>{{dataGrid.0.ttValue}}34.288</p>
-              </div>
-              <div>
-                <small>Type :</small>
-                <p>{{dataGrid.0.typeOfLC}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {{materialsDetails}}
       </div>
   </div>
   <footer>
