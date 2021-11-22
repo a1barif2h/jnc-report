@@ -1,20 +1,22 @@
 // const { response } = require("express");
 
-const parseMaterialDescription = function (materialsDes, template) {
-  for (var key in materialsDes) {
-    template = template.replaceAll("{{" + key + "}}", materialsDes[key] || "-");
+const parseJasonIntoHtml = function (json, template) {
+  for (var key in json) {
+    template = template.replaceAll("{{" + key + "}}", json[key] || "-");
   }
   return template;
 };
 const generateMultipleMaterialsDescription = function (data, materialsTemplate) {
-  
-    materialsDescriptionTemplate += parseMaterialDescription(data[0], materialsTemplate);
+    if (data.length == 0) {
+      return "";
+    }
+    materialsDescriptionTemplate += parseJasonIntoHtml(data[0], materialsTemplate);
     const pageBreak = '<div class="container container-page-break">';
     for (let i=1;i<data.length;i++) {
         if(i%2==1){
             materialsDescriptionTemplate += pageBreak;
         }
-        materialsDescriptionTemplate += parseMaterialDescription(data[i], materialsTemplate);
+        materialsDescriptionTemplate += parseJasonIntoHtml(data[i], materialsTemplate);
         if(i%2==0){
             materialsDescriptionTemplate += "</div>";
         }
@@ -22,6 +24,10 @@ const generateMultipleMaterialsDescription = function (data, materialsTemplate) 
     if (data.length != 0 && data.length%2==0){
         materialsDescriptionTemplate += "</div>";
     }
+
     return materialsDescriptionTemplate;
 };
-module.exports = { parseMaterialDescription };
+module.exports = {
+  parseJasonIntoHtml,
+  generateMultipleMaterialsDescription,
+};
