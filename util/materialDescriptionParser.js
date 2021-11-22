@@ -6,19 +6,22 @@ const parseMaterialDescription = function (materialsDes, template) {
   }
   return template;
 };
-const generateMultipleMaterialsDescription = function (data, htmlTemplate, materialsTemplate) {
+const generateMultipleMaterialsDescription = function (data, materialsTemplate) {
   
-    htmlTemplate += parseMaterialDescription(data[i]);
+    materialsDescriptionTemplate += parseMaterialDescription(data[0], materialsTemplate);
     const pageBreak = '<div class="container container-page-break">';
     for (let i=1;i<data.length;i++) {
         if(i%2==1){
-            htmlTemplate+=pageBreak;
+            materialsDescriptionTemplate += pageBreak;
         }
-        htmlTemplate += parseMaterialDescription(data[i], materialsTemplate);
+        materialsDescriptionTemplate += parseMaterialDescription(data[i], materialsTemplate);
         if(i%2==0){
-            htmlTemplate += "</div>";
+            materialsDescriptionTemplate += "</div>";
         }
     }
-    return htmlTemplate;
+    if (data.length != 0 && data.length%2==0){
+        materialsDescriptionTemplate += "</div>";
+    }
+    return materialsDescriptionTemplate;
 };
 module.exports = { parseMaterialDescription };
