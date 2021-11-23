@@ -12,20 +12,20 @@
       box-sizing: border-box;
     }
 
-    .mainContainer {
-      margin: 0rem auto;
-      padding: 30px;
-      position: relative;
-      z-index: 5;
-    }
     
-    .container .container-page-break {
+    .pageBreak {
         page-break-after: always;
       }
     .mainContainer .bar-code {
       width: 30%;
       /* overflow: auto; */
       /* margin-left: 6rem; */
+    }
+.mainContainer {
+      margin: 0rem auto;
+      padding: 30px;
+      position: relative;
+      z-index: 5;
     }
 
     .mainContainer::before {
@@ -248,7 +248,7 @@
 </head>
 
 <body>
-  <div class="mainContainer">
+  <div class="mainContainer pageBreak">
     <header>
       <div class="header-logo">
         <img
@@ -358,31 +358,13 @@
             </div>
           </div>
         </div>
-        {{allMaterialsDetails}}
+        {{firstMaterialsDetails}}
       </div>
   </div>
-  <footer>
-    <div class="first-caution">
-      <p style="font-weight: bolder;">THIS PERMIT IS VALID FOR 30 (THIRTY) DAYS FROM THE DATE OF ISSUE</p>
-    </div>
-    <div class="second-caution">
-      <div class="headlines">
-        <b style="font-size: 9px; color: #706b12;">THIS IS COMPUTER GENERATED PERMIT. SO SIGNATURE IS NOT REQUIRED</b>
-      </div>
-      <div>
-        <ul>
-          <li>The assessment of this consignment including value, HS code and SRO benefits, if any, will be determined
-            by
-            the appropriate Customs
-            Authority as per their r</li>
-          <li>This Import permit is issued as per the declaration of the unit Investor in Economic Zone or the developer
-            of Economic Zone.</li>
-          <li>Bangladesh Economic Zones Authority doesn’t bear any responsibility regarding the veracity of the
-            declaration of the goods.</li>
-        </ul>
-      </div>
-    </div>
-  </footer>
+  {{remainingMaterialsDetails}}
+  <!-- <div class="mainContainer pageBreak">
+    
+    </div> -->
   </main>
   </div>
 </body>
