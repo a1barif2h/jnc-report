@@ -4,6 +4,10 @@ const htmlTemplate = fs.readFileSync(
   "./pdf_templates/import-permit/import-permit.html",
   "utf8"
 );
+let headerTemplate = fs.readFileSync(
+  "./pdf_templates/import-permit/headerTemplate.html",
+  "utf8"
+);
 const materialsDetailsTemplateInitial = fs.readFileSync(
   "./pdf_templates/import-permit/materialsDetails.html",
   "utf8"
@@ -17,17 +21,26 @@ class ImportPermit {
 
   async generate(body) {
     
+    headerTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+      body.formValue,
+      headerTemplate
+    );
     let htmlImportTemplate = htmlTemplate;
     htmlImportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
       body.formValue,
       htmlImportTemplate
     );
-    
+    htmlImportTemplate = htmlImportTemplate.replace(
+      `{{headerHere}}`,
+      headerTemplate.toString() || "-"
+    );
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
+    
     htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
       body.formValue.dataGrid,
       materialsDetailsTemplate,
-      htmlImportTemplate
+      htmlImportTemplate,
+      headerTemplate
     );
 
     console.log("==========================================");
@@ -35,7 +48,8 @@ class ImportPermit {
     htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
       body.formValue,
       materialsDetailsTemplate,
-      htmlImportTemplate
+      htmlImportTemplate,
+      headerTemplate
     );
     // if (body.formValue.dataGrid.length!=1){
       
