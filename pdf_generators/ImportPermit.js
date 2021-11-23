@@ -37,7 +37,7 @@ class ImportPermit {
     // pdf.pdfGenerator(htmlTemplate, body, res, options)
 
     console.log("==========================================");
-    console.log("main html :   " + htmlImportTemplate);
+    // console.log("main html :   " + htmlImportTemplate);
     const response = await pdf.generatePdfFromHtmlMultipleMaterialDescription(
       htmlImportTemplate,
       options

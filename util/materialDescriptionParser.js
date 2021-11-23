@@ -20,6 +20,7 @@ const generateMultipleMaterialsDescription = function (data, materialsTemplate) 
     for (let i = 1; i < dataGrid.length; i++) {
       if (i % 2 == 1) {
         materialsDescriptionTemplate += pageBreak;
+        console.log("pagebreak added!  "+i);
       }
       materialsDescriptionTemplate += parseJasonIntoHtml(
         dataGrid[i],
@@ -27,10 +28,12 @@ const generateMultipleMaterialsDescription = function (data, materialsTemplate) 
       );
       if (i % 2 == 0) {
         materialsDescriptionTemplate += "</div>";
+        console.log("</div>  added: " + i);
       }
     }
     if (dataGrid.length != 0 && dataGrid.length % 2 == 0) {
       materialsDescriptionTemplate += "</div>";
+        console.log("</div>  added: " + dataGrid.length);
     }
 
     return materialsDescriptionTemplate;
