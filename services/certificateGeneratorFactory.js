@@ -2,6 +2,7 @@
 
 const ProjectClearance = require("../pdf_generators/ProjectClearance");
 const ImportPermit = require("../pdf_generators/ImportPermit");
+const ExportPermit = require("../pdf_generators/ExportPermit");
 
 // method() 
 //    switch
@@ -25,6 +26,10 @@ const generate = async (data) => {
         console.log("Generating pdf for Import Permit  v2");
         generatedPdf = await importPermit.generate(data);
         break;
+      case "Export Permit":
+        const exportPermit = new ExportPermit();
+        console.log("Generating pdf for Export Permit");
+        generatedPdf = await exportPermit.generate(data);
       default:
         break;
     }
