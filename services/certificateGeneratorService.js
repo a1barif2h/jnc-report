@@ -51,7 +51,7 @@ const generateBarcode = async text => {
     });
     
     const barcodeData = xmlSerializer.serializeToString(svgNode);
-    console.log(barcodeData);
+    // console.log(barcodeData);
     return barcodeData;
 }
 
