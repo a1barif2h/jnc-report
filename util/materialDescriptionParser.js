@@ -63,7 +63,56 @@ const generateMultipleMaterialsDescription = function (data, materialsTemplate) 
 
     return materialsDescriptionTemplate;
 };
+const addFirstMaterials=function(dataGrid,materialsDetailsTemplate,htmlImportTemplate){
+  if (dataGrid.length != 1) {
+    materialsDetailsTemplate = materialsDetailsTemplate.replace(
+      `{{footerHere}}`,
+      ""
+    );
+  }
+  else{
+    materialsDetailsTemplate = materialsDetailsTemplate.replace(
+      `{{footerHere}}`,
+      footerTemplate.toString()||"-"
+    );
+  }
+  let firstMaterialsDetails =parseJasonIntoHtml(
+    dataGrid[0],
+    materialsDetailsTemplate
+  );
+  htmlImportTemplate = htmlImportTemplate.replace(
+    `{{firstMaterialsDetails}}`,
+    firstMaterialsDetails || "-"
+  );
+  console.log("matarialDescription:   " + firstMaterialsDetails);
+  return htmlImportTemplate;
+}
+
+const addRemainingMaterials=function(formValue, materialsDetailsTemplate, htmlImportTemplate){
+  
+  if (formValue.dataGrid.length == 1) {
+    htmlImportTemplate = htmlImportTemplate.replace(
+      `{{remainingMaterialsDetails}}`,
+      ""
+    );
+    return htmlImportTemplate;
+  }
+  let remainingMaterialsDetails = generateMultipleMaterialsDescription(
+    formValue,
+    materialsDetailsTemplate
+  );
+    htmlImportTemplate = htmlImportTemplate.replace(
+      `{{remainingMaterialsDetails}}`,
+      remainingMaterialsDetails || "-"
+    );
+
+  console.log("==========================================\n\n\n");
+  console.log("remainingMaterialsDetails:   " + remainingMaterialsDetails);
+  return htmlImportTemplate;
+}
 module.exports = {
   parseJasonIntoHtml,
   generateMultipleMaterialsDescription,
+  addFirstMaterials,
+  addRemainingMaterials,
 };

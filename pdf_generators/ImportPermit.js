@@ -22,45 +22,24 @@ class ImportPermit {
       body.formValue,
       htmlImportTemplate
     );
+    
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
-    if(body.formValue.dataGrid.length!=1){
-      materialsDetailsTemplate = materialsDetailsTemplate.replace(
-        `{{footerHere}}`,
-        ""
-      );
-    }
-    // materialsDetailsTemplate = materialsDetailsTemplateInitial;
-    let firstMaterialsDetails = materialsDescriptionParser.parseJasonIntoHtml(
-      body.formValue.dataGrid[0],
-      materialsDetailsTemplate
+    htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
+      body.formValue.dataGrid,
+      materialsDetailsTemplate,
+      htmlImportTemplate
     );
-    htmlImportTemplate = htmlImportTemplate.replace(
-      `{{firstMaterialsDetails}}`,
-      firstMaterialsDetails || "-"
-    );
-    console.log("matarialDescription:   " + firstMaterialsDetails);
-    
-    materialsDetailsTemplate = materialsDetailsTemplateInitial;
-    let remainingMaterialsDetails =
-      materialsDescriptionParser.generateMultipleMaterialsDescription(
-        body.formValue,
-        materialsDetailsTemplate
-      );
-    htmlImportTemplate = htmlImportTemplate.replace(
-      `{{remainingMaterialsDetails}}`,
-      remainingMaterialsDetails || "-"
-    );
-    
-    console.log("==========================================\n\n\n");
-    console.log("remainingMaterialsDetails:   " + remainingMaterialsDetails);
-    
-    // body.routePermitIssueDate = body.hasOwnProperty("routePermitIssueDate") ? body.routePermitIssueDate : "_";
-    // body.routePermitExpDate = body.hasOwnProperty("routePermitExpDate") ? body.routePermitExpDate : "_";
-    // body.fitnessIssueDate = body.hasOwnProperty("fitnessIssueDate") ? body.fitnessIssueDate : "_";
-    // pdf.pdfGenerator(htmlTemplate, body, res, options)
 
     console.log("==========================================");
-    // console.log("main html :   " + htmlImportTemplate);
+    materialsDetailsTemplate = materialsDetailsTemplateInitial;
+    htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
+      body.formValue,
+      materialsDetailsTemplate,
+      htmlImportTemplate
+    );
+    // if (body.formValue.dataGrid.length!=1){
+      
+    // }
     const response = await pdf.generatePdfFromHtmlMultipleMaterialDescription(
       htmlImportTemplate,
       options
