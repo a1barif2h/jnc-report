@@ -3,6 +3,9 @@
 const ProjectClearance = require("../pdf_generators/ProjectClearance");
 const ImportPermit = require("../pdf_generators/ImportPermit");
 const ExportPermit = require("../pdf_generators/ExportPermit");
+const VisaRecommendation = require("../pdf_generators/VisaRecommendation");
+const VisaAssistance = require("../pdf_generators/VisaAssistance");
+const LandUsePlan = require("../pdf_generators/LandUsePlan");
 
 // method() 
 //    switch
@@ -30,7 +33,19 @@ const generate = async (data) => {
         const exportPermit = new ExportPermit();
         console.log("Generating pdf for Export Permit");
         generatedPdf = await exportPermit.generate(data);
-      default:
+    case "Visa Recommendation":
+        const visaRecommendation = new VisaRecommendation();
+        console.log("Generating pdf for Visa Recommendation");
+        generatedPdf = await visaRecommendation.generate(data);
+    case "Visa Assistance":
+        const visaAssistance = new VisaAssistance();
+        console.log("Generating pdf for Visa Assistance");
+        generatedPdf = await visaAssistance.generate(data);
+    case "Land Use Plan":
+        const landUsePlan = new LandUsePlan();
+        console.log("Generating pdf for Land Use Plan");
+        generatedPdf = await landUsePlan.generate(data);
+    default:
         break;
     }
     return generatedPdf;

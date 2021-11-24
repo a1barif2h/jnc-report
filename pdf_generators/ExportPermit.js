@@ -25,75 +25,47 @@ class ExportPermit {
   constructor() {}
 
   async generate(body) {
-    // body.routePermitIssueDate = body.hasOwnProperty("routePermitIssueDate") ? body.routePermitIssueDate : "_";
-    // body.routePermitExpDate = body.hasOwnProperty("routePermitExpDate") ? body.routePermitExpDate : "_";
-    // body.fitnessIssueDate = body.hasOwnProperty("fitnessIssueDate") ? body.fitnessIssueDate : "_";
-    // pdf.pdfGenerator(htmlTemplate, body, res, options)
+    
     body.formValue.undertakingDate = dateTimeFormattor.getApplicationDate(body.formValue.undertakingDate);
     body.formValue.invoiceVendorRefDate = dateTimeFormattor.getApplicationDate(body.formValue.invoiceVendorRefDate);
     let html = htmlTemplate;
-    let multipageHtml = "";
     body.formValue.dataGrid.forEach((element, index) => {
-      
-      console.log(index);
-      // console.log(element);
       element.issueDate = dateTimeFormattor.getApplicationDate(element.issueDate);
       element.expiryDate = dateTimeFormattor.getApplicationDate(element.expiryDate);
       if(index==0){
-        // body.formValue.firstMaterial = multipageHeader;
         body.formValue.firstMaterial = templateEngine.replacer(materialGroup.toString(), element);
         if(body.formValue.dataGrid.length == 1) {
           body.formValue.firstMaterial += htmlFooter;
         }
-        // console.log(body.formValue.firstMaterial);
       }
       else{
         if(body.formValue.dataGrid.length > 1){
           if(index%2!=0){
-            multipageHtml = "";
             html+="<div class=\"mainContainer pagebreak\">";
-            let materials = multipageHeader;
             body.formValue.nextMaterials = templateEngine.replacer(materialGroup.toString(), element);
-            multipageHtml+=materials;
             if(index==(body.formValue.dataGrid.length-1)){
               html += templateEngine.replacer(multipageHeader.toString(), body.formValue);
               html += htmlFooter;
               html += "</main></div>";
-              // console.log(body.formValue.nextMaterials);
             }
           }
           else{
             if(index!=0){
-              // let materials = multipageHeader;
               body.formValue.nextMaterials += templateEngine.replacer(materialGroup.toString(), element);
-              // multipageHtml+=materials;
               html += templateEngine.replacer(multipageHeader.toString(), body.formValue);
               
               if(index==(body.formValue.dataGrid.length-1)){
-                // html += templateEngine.replacer(multipageHeader.toString(), body.formValue);
-                html += htmlFooter;
-                
+                html += htmlFooter;                
               }
               html += "</main></div>";
-            }
-            
-          }
-          
+            }            
+          }          
         }
         else{
-        }
-        
-      }
-
-      
-      
-      
-    });
-
-    
-    
+        }        
+      }  
+    });  
     html += "</body></html>"
-    // console.log(html);
     const response = await pdf.generatePdfFromHtml(html, body, options);
     return response;
   }
