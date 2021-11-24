@@ -3,6 +3,7 @@
 const ProjectClearance = require("../pdf_generators/ProjectClearance");
 const ImportPermit = require("../pdf_generators/ImportPermit");
 const TradeLicense = require("../pdf_generators/TradeLicense");
+const LocalSalesPermit = require("../pdf_generators/LocalSalesPermit");
 
 // method() 
 //    switch
@@ -31,7 +32,11 @@ const generate = async (data) => {
         console.log("Generating pdf for Trade License");
         generatedPdf = await tradeLicense.generate(data);
         break;
-        
+      case "Local Sales Permit":
+        const localSalesPermit = new LocalSalesPermit();
+        console.log("Generating pdf for local Sales Permit");
+        generatedPdf = await localSalesPermit.generate(data);
+        break;
       default:
         break;
     }
