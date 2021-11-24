@@ -2,6 +2,7 @@
 
 const ProjectClearance = require("../pdf_generators/ProjectClearance");
 const ImportPermit = require("../pdf_generators/ImportPermit");
+const TradeLicense = require("../pdf_generators/TradeLicense");
 
 // method() 
 //    switch
@@ -25,6 +26,12 @@ const generate = async (data) => {
         console.log("Generating pdf for Import Permit  v2");
         generatedPdf = await importPermit.generate(data);
         break;
+      case "Trade License":
+        const tradeLicense = new TradeLicense();
+        console.log("Generating pdf for Trade License");
+        generatedPdf = await tradeLicense.generate(data);
+        break;
+        
       default:
         break;
     }

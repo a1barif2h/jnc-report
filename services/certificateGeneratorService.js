@@ -65,7 +65,9 @@ const generateCertificate = async (req) => {
                     .getFormValueByApplicationID(req.body.applicationId).then(
                        async res=>{
                             const canvas = {}
-                            const url = `${config.backendApi.bezaServiceBaseUrl}:${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=asasdfas`
+                            const url =
+                              `${config.backendApi.bezaServiceBaseUrl}:${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=` +
+                              req.body.applicationId;
                             
                             
                             

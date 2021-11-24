@@ -172,10 +172,12 @@
           <div>
             <p>License No.: TL-00011979</p>
             <p>Previous TL No.:</p>
+            <!-- found no field for these two in the jason -->
           </div>
           <div>
             <p>Date of Issuance: 26 September, 2021</p>
             <p>Valid Till : 2022-09-26 09:46:01</p>
+            <!-- found no field for Issuance date in the jason -->
           </div>
         </div>
         <div class="trade-licence">
@@ -188,8 +190,8 @@
             <b>Name of the Eonomic Zone:</b>
           </div>
           <div>
-            <b>: &nbsp; Aslam Group</b>
-            <b>: &nbsp; Abdul Monem Economic Zone</b>
+            <b>: &nbsp; {{nameOfCompany}}</b>
+            <b>: &nbsp; {{nameOfTheEconomicZone}}</b>
           </div>
         </div>
 
@@ -210,19 +212,20 @@
             <p>Office Address</p>
             <p>Nature of Business</p>
             <p>Date of Expiry</p>
+            <!-- found no field for expiry date in the jason -->
           </div>
           <div>
-            <p>: &nbsp; Mohammadpur, Dhaka</p>
-            <p>: &nbsp; BEZA</p>
-            <p>: &nbsp; Dhaka</p>
-            <p>: &nbsp; Adabor</p>
-            <p>: &nbsp; Hazipara</p>
-            <p>: &nbsp; Md. Alamgir Hossain</p>
-            <p>: &nbsp; Managing Director, Chairman</p>
-            <p>: &nbsp; Bangladeshi</p>
-            <p>: &nbsp; 12345678910</p>
-            <p>: &nbsp; House #43, Road: #64</p>
-            <p>: &nbsp; Industry (Manufacturing)</p>
+            <p>: &nbsp; {{plotNoDagNoIfApplicable}}</p>
+            <p>: &nbsp; {{nameOfMouza}}</p>
+            <p>: &nbsp; {{district}}</p>
+            <p>: &nbsp; {{upazilla}}</p>
+            <p>: &nbsp; {{unionParishad}}</p>
+            <p>: &nbsp; {{nameOfBusiness}}</p>
+            <p>: &nbsp; {{authorizedName}}</p>
+            <p>: &nbsp; {{nationality}}</p>
+            <p>: &nbsp; {{passportNumber}}</p>
+            <p>: &nbsp; {{officeAddress}}</p>
+            <p>: &nbsp; {{nameOfBusiness}}</p>
             <p>: &nbsp; 22-09-26 09:46:01</p>
           </div>
         </div>
@@ -240,7 +243,7 @@
             <img
               width="30%"
               style="margin-left: 0.5rem"
-              src="https://www.mobilefish.com/images/services/qrcode_example_1.png"
+              src="{{qrcode}}"
               alt=""
             />
           </div>
@@ -249,7 +252,7 @@
             <p>
               <img
                 width="50%"
-                src="https://signaturely.com/wp-content/uploads/2020/04/unreadable-letters-signaturely.svg"
+                src="{{signature}}"
                 alt="signature"
               />
             </p>
