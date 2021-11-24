@@ -6,6 +6,8 @@ const ExportPermit = require("../pdf_generators/ExportPermit");
 const VisaRecommendation = require("../pdf_generators/VisaRecommendation");
 const VisaAssistance = require("../pdf_generators/VisaAssistance");
 const LandUsePlan = require("../pdf_generators/LandUsePlan");
+const CommercialOperation = require("../pdf_generators/CommercialOperation");
+const TradeLicenseRenew = require("../pdf_generators/trade-license-renew");
 
 // method() 
 //    switch
@@ -45,6 +47,14 @@ const generate = async (data) => {
         const landUsePlan = new LandUsePlan();
         console.log("Generating pdf for Land Use Plan");
         generatedPdf = await landUsePlan.generate(data);
+    case "Commercial Operation":
+        const commercialOperation = new CommercialOperation();
+        console.log("Generating pdf for Commercial Operation");
+        generatedPdf = await commercialOperation.generate(data);
+    case "Trade License Renew":
+        const tradeLicenseRenew = new TradeLicenseRenew();
+        console.log("Generating pdf for Trade License Renew");
+        generatedPdf = await tradeLicenseRenew.generate(data);
     default:
         break;
     }
