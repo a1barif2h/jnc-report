@@ -17,14 +17,14 @@ const parseJasonIntoHtml = function (json, template) {
   return template;
 };
 const generateMultipleMaterialsDescription = function (
-  data,
+  dataGrid,
   materialsTemplate,
   headerTemplate
 ) {
   // if (data.length == 0) {
   //   return "";
   // }
-  const dataGrid = data.dataGrid;
+  // const dataGrid = data.dataGrid;
   let materialsDescriptionTemplate = "";
   // materialsDescriptionTemplate += parseJasonIntoHtml(
   //   dataGrid[0],
@@ -53,12 +53,11 @@ const generateMultipleMaterialsDescription = function (
         headerTemplate.toString()
       );
       console.log("pagebreak added!  " + i);
-    }
-    else{
+    } else {
       tempmaterialsTemplate = tempmaterialsTemplate.replace(
         `{{headerHere}}`,
         ""
-      );      
+      );
     }
     materialsDescriptionTemplate += parseJasonIntoHtml(
       dataGrid[i],
@@ -115,12 +114,12 @@ const addFirstMaterials = function (
 };
 
 const addRemainingMaterials = function (
-  formValue,
+  dataGrid,
   materialsDetailsTemplate,
   htmlImportTemplate,
   headerTemplate
 ) {
-  if (formValue.dataGrid.length == 1) {
+  if (dataGrid.length == 1) {
     htmlImportTemplate = htmlImportTemplate.replace(
       `{{remainingMaterialsDetails}}`,
       ""
@@ -128,7 +127,7 @@ const addRemainingMaterials = function (
     return htmlImportTemplate;
   }
   let remainingMaterialsDetails = generateMultipleMaterialsDescription(
-    formValue,
+    dataGrid,
     materialsDetailsTemplate,
     headerTemplate
   );

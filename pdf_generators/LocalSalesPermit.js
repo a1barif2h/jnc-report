@@ -45,7 +45,7 @@ class ImportPermit {
     console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
     htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
-      body.formValue,
+      body.formValue.PurchaseDetailsGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
       headerTemplate
