@@ -22,7 +22,7 @@ const generate = async (data) => {
         console.log("Generating pdf for project Clearance");
         generatedPdf = await projectClearance.generate(data);
         break;
-      case "Import Permit  v2":
+      case "Import Permit":
         const importPermit = new ImportPermit();
         console.log("Generating pdf for Import Permit  v2");
         generatedPdf = await importPermit.generate(data);
