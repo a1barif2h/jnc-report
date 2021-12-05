@@ -1,0 +1,689 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Export Permit</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .mainContainer {
+      margin: 0rem auto;
+      padding: 30px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .mainContainer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: url("https://media.discordapp.net/attachments/892299770004115466/909682786217123930/logo.png?width=609&height=609");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 450px;
+      width: 100%;
+      height: 110%;
+      opacity: 0.1;
+      z-index: 10;
+    }
+
+
+    header {
+      display: -webkit-box;
+      /* OLD - iOS 6-, Safari 3.1-6 */
+      display: -moz-box;
+      /* OLD - Firefox 19- (buggy but mostly works) */
+      display: -ms-flexbox;
+      /* TWEENER - IE 10 */
+      display: -webkit-flex;
+      /* NEW - Chrome */
+      display: flex;
+      align-items: -webkit-box;
+      align-items: -moz-box;
+      align-items: -ms-flexbox;
+      align-items: -webkit-flex;
+      align-items: center;
+      justify-content: -webkit-box;
+      justify-content: -moz-box;
+      justify-content: -ms-flexbox;
+      justify-content: -webkit-flex;
+      justify-content: space-between;
+      margin-left: 1rem;
+    }
+
+    header img {
+      width: 44%;
+    }
+
+    .import-permit {
+      height: 1.6rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      background-color: red;
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      margin-top: .5rem;
+      color: white;
+    }
+
+    .import-date {
+      font-size: 7.5px;
+      font-weight: bold;
+      margin: 0.8rem 0rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+
+    .general-information {
+      height: 1.5rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      color: white;
+      background-color: #278000;
+    }
+
+    .border-box {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      border: 1px solid #278000;
+      min-height: 4.2rem;
+    }
+
+    .border-box small {
+      font-size: 6.5px;
+      font-weight: bold;
+    }
+
+    .left {
+      width: 50%;
+      padding: 0.5rem 1.4rem;
+      line-height: 2.6;
+    }
+
+    .left p,
+    .right p {
+      font-size: 6.5px;
+    }
+
+    .left div {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+
+    .right {
+      width: 50%;
+      padding: 0.5rem 1.4rem;
+      line-height: 2.6;
+    }
+
+    .right div {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+
+    .export-material-group {
+      height: 1.5rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      background-color: #353535;
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      margin-top: .5rem;
+      color: white;
+    }
+
+    .export-material-details {
+      height: 1.5rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      background-color: #267e01;
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      margin-top: .5rem;
+      color: white;
+    }
+
+    footer div {
+      margin: 0.75rem auto;
+      width: 90%;
+    }
+
+    .first-caution {
+      background: #b0e8ec;
+      padding: 0.4rem 1.2rem;
+      line-height: 1.35;
+      font-weight: 500;
+      text-align: center;
+      color: #27829e;
+      font-size: 8.3px;
+    }
+
+    .second-caution {
+      background: #dfbdcd;
+      padding: 0.4rem .5rem;
+      line-height: 1.35;
+      font-weight: 500;
+      text-align: center;
+      color: #d02f67;
+      font-weight: 600;
+      font-size: 9px;
+    }
+
+    .third-caution {
+      background: #dad7b0;
+      padding: 0.5rem 1.2rem;
+      line-height: 1.4;
+      font-weight: 500;
+      text-align: center;
+      color: #d02f67;
+      font-weight: 600;
+      min-height: 2rem;
+      font-size: 9px;
+    }
+
+    .pageBreak {
+      page-break-after: always;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mainContainer pagebreak">
+    <header>
+      <div class="header-logo">
+        <img style="width: 52%; margin-top: .8rem;"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
+          alt="" />
+      </div>
+      <div class="header-bar-code">
+        <img
+          src="https://us.123rf.com/450wm/koblizeek/koblizeek2001/koblizeek200100047/138111817-barcode-vector-icon-bar-code-for-web-app-ui-design-isolated-illustration-.jpg?ver=6"
+          alt="" />
+      </div>
+
+      <div class="header-qr-code">
+        <img
+          src="data:image/png;base64,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"
+          alt="" />
+      </div>
+    </header>
+    <main>
+      <div class="">
+        <div class="import-permit">
+          <h3>EXPORT PERMIT</h3>
+        </div>
+        <div class="import-date">
+          <p>File no: {{trackingId}}</p>
+          <p>Date: {{applicationDate}}</p>
+        </div>
+
+        <div class="general">
+          <div class="general-information">
+            <h3>GENERAL INFORMATION</h3>
+          </div>
+
+          <div class="border-box">
+            <div class="left">
+              <div>
+                <small>Name of the Company</small>
+                <p>{{proposedProjectCompanyNameWhichWillCarryOutTheBusiness}}</p>
+              </div>
+              <div>
+                <small>Export Permit Type:</small>
+                <p>{{exportPermitType}}</p>
+              </div>
+              <div>
+                <small>Carrier Name:</small>
+                <p>{{carrierType}}</p>
+              </div>
+              <div>
+                <small>Economic Zone :</small>
+                <p>{{economicZoneName}}</p>
+              </div>
+              <div>
+                <small>Undertaking No.:</small>
+                <p>CEOL-Export-317</p>
+              </div>
+              <div>
+                <small>Invoice/ Vendor Reference N:</small>
+                <p>{{invoiceVendorReferenceNo}}</p>
+              </div>
+              <div>
+                <small>CM Value:</small>
+                <p>{{bLNo}}</p>
+              </div>
+              <div>
+                <small>Port of Destination:</small>
+                <p>{{portOfDestination}}</p>
+              </div>
+              <div>
+                <small>Destination Country</small>
+                <p>{{destinationCountry}}</p>
+              </div>
+              <div>
+                <small>Consignee Name:</small>
+                <p>{{consigneeName}}</p>
+              </div>
+              <div>
+                <small>Remarks:</small>
+                <p>{{remarks}}</p>
+              </div>
+            </div>
+            <div class="right">
+              <div>
+                <small>Carrier Type:</small>
+                <p>{{carrierType}}</p>
+              </div>
+              <div>
+                <small>Name of Developer:</small>
+                <p>{{nameOfDeveloper}}</p>
+              </div>
+              <div>
+                <small>Carrier Passport No :</small>
+                <p></p>
+              </div>
+              <div>
+                <small>Carrier Pssport Validity</small>
+                <p></p>
+              </div>
+              <div>
+                <small>Undertaking Date:</small>
+                <p>{{undertakingDate}}</p>
+              </div>
+              <div>
+                <small>Invoice/ Vendor Ref. Date :</small>
+                <p>{{invoiceVendorRefDate}}</p>
+              </div>
+              <div>
+                <small>CPT Value :</small>
+                <p>USD 34.19y</p>
+              </div>
+              <div>
+                <small>Place of Load</small>
+                <p>{{exportFromPortOfLoading}}</p>
+              </div>
+              <div>
+                <small>Destination Zone:</small>
+                <p>{{destinationZone}}</p>
+              </div>
+              <div>
+                <small>Consignee Address:</small>
+                <p style="font-size: 6px;">{{consigneeAddress}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        
+        
+      
+      
+
+        <div class="export-material">
+          <div class="export-material-group">
+            <h3>Export Material & L/C Information Group</h3>
+          </div>
+          <div class="export-material-details" style="margin-top: .8rem;">
+            <h3>Export Material Details</h3>
+          </div>
+          <div class="border-box">
+            <div class="left">
+              <div>
+                <small>Product Description:</small>
+                <p>{{dataGrid.0.productDescription}}</p>
+              </div>
+              <div>
+                <small>HS Code: </small>
+                <p>{{dataGrid.0.martialDescription}} </p>
+              </div>
+              <div>
+                <small>Quantity :</small>
+                <p>{{dataGrid.0.quantity}}</p>
+              </div>
+
+            </div>
+            <div class="right">
+              <div>
+                <small>{{dataGrid.0.fobValue1}}:</small>
+                <p>24.188</p>
+              </div>
+              <div>
+                <small>Unit of Quantity :</small>
+                <p>{{dataGrid.0.unitQuantity}}</p>
+              </div>
+              <div>
+              </div>
+            </div>
+          </div>
+          <div class="export-material-details">
+            <h3>TT/ P.O/ SC/ CM/ L/C Information</h3>
+          </div>
+          <div class="border-box">
+            <div class="left">
+              <div>
+                <small>{{dataGrid.0.ttNo}}:</small>
+                <p>0393SMT00034221</p>
+              </div>
+              <div>
+                <small>Issuing Bank</small>
+                <p>{{dataGrid.0.issuingBank}}</p>
+              </div>
+              <div>
+                <small>Type:</small>
+                <p>{{dataGrid.0.type}}</p>
+              </div>
+            </div>
+            <div class="right">
+              <div>
+                <small>{{dataGrid.0.ttValue}}</small>
+                <p>34.288</p>
+              </div>
+              <div>
+                <small>Issue Date:</small>
+                <p>{{dataGrid.0.issueDate}}</p>
+              </div>
+
+              <div>
+                <small>Expire Date:</small>
+                <p>{{dataGrid.0.expiryDate}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+  </div>
+
+
+  </div>
+  <!-- <footer>
+    <div class="first-caution">
+      <p>The goods specified in the invoice(s) are eligible for exemption for the whole of the customs duty, sales tax
+        etc. provided S.R.O. No
+        209-LAW/2015/46/Customs dated July 1, 2015 issued by the Internal Resources Division, Ministry of Finance, Dhaka
+      </p>
+    </div>
+    <div class="second-caution">
+      <p>THIS PERMIT IS VALID FOR 30 (THIRTY) DAYS FROM THE DATE OF ISSUE</p>
+    </div>
+    <div class="third-caution">
+      <p>THIS IS COMPUTER GENERATED PERMIT. SO SIGNATURE IS NOT REQUIRED</p>
+      <small>{{trackingId}}</small>
+    </div>
+  </footer> -->
+  </main>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="mainContainer pagebreak">
+    <header>
+      <div class="header-logo">
+        <img style="width: 52%; margin-top: .8rem;"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
+          alt="" />
+      </div>
+      <div class="header-bar-code">
+        <img
+          src="https://us.123rf.com/450wm/koblizeek/koblizeek2001/koblizeek200100047/138111817-barcode-vector-icon-bar-code-for-web-app-ui-design-isolated-illustration-.jpg?ver=6"
+          alt="" />
+      </div>
+
+      <div class="header-qr-code">
+        <img
+          src="data:image/png;base64,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"
+          alt="" />
+      </div>
+    </header>
+    <main>
+      <div class="export-material">
+        <div class="export-material-group">
+          <h3>Export Material & L/C Information Group</h3>
+        </div>
+        <div class="export-material-details" style="margin-top: .8rem;">
+          <h3>Export Material Details</h3>
+        </div>
+        <div class="border-box">
+          <div class="left">
+            <div>
+              <small>Product Description:</small>
+              <p>{{dataGrid.1.productDescription}}</p>
+            </div>
+            <div>
+              <small>HS Code: </small>
+              <p>{{dataGrid.1.martialDescription}} </p>
+            </div>
+            <div>
+              <small>Quantity :</small>
+              <p>{{dataGrid.1.quantity}}</p>
+            </div>
+
+          </div>
+          <div class="right">
+            <div>
+              <small>{{dataGrid.1.fobValue1}}:</small>
+              <p>24.188</p>
+            </div>
+            <div>
+              <small>Unit of Quantity :</small>
+              <p>{{dataGrid.1.unitQuantity}}</p>
+            </div>
+            <div>
+            </div>
+          </div>
+        </div>
+        <div class="export-material-details">
+          <h3>TT/ P.O/ SC/ CM/ L/C Information</h3>
+        </div>
+        <div class="border-box">
+          <div class="left">
+            <div>
+              <small>{{dataGrid.1.ttNo}}:</small>
+              <p>0393SMT00034221</p>
+            </div>
+            <div>
+              <small>Issuing Bank</small>
+              <p>{{dataGrid.1.issuingBank}}</p>
+            </div>
+            <div>
+              <small>Type:</small>
+              <p>{{dataGrid.1.type}}</p>
+            </div>
+          </div>
+          <div class="right">
+            <div>
+              <small>{{dataGrid.1.ttValue}}</small>
+              <p>34.288</p>
+            </div>
+            <div>
+              <small>Issue Date:</small>
+              <p>{{dataGrid.1.issueDate}}</p>
+            </div>
+
+            <div>
+              <small>Expire Date:</small>
+              <p>{{dataGrid.1.expiryDate}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="export-material">
+        <div class="export-material-group">
+          <h3>Export Material & L/C Information Group</h3>
+        </div>
+        <div class="export-material-details" style="margin-top: .8rem;">
+          <h3>Export Material Details</h3>
+        </div>
+        <div class="border-box">
+          <div class="left">
+            <div>
+              <small>Product Description:</small>
+              <p>{{dataGrid.2.productDescription}}</p>
+            </div>
+            <div>
+              <small>HS Code: </small>
+              <p>{{dataGrid.2.martialDescription}} </p>
+            </div>
+            <div>
+              <small>Quantity :</small>
+              <p>{{dataGrid.2.quantity}}</p>
+            </div>
+
+          </div>
+          <div class="right">
+            <div>
+              <small>{{dataGrid.2.fobValue1}}:</small>
+              <p>24.188</p>
+            </div>
+            <div>
+              <small>Unit of Quantity :</small>
+              <p>{{dataGrid.2.unitQuantity}}</p>
+            </div>
+            <div>
+            </div>
+          </div>
+        </div>
+        <div class="export-material-details">
+          <h3>TT/ P.O/ SC/ CM/ L/C Information</h3>
+        </div>
+        <div class="border-box">
+          <div class="left">
+            <div>
+              <small>{{dataGrid.2.ttNo}}:</small>
+              <p>0393SMT00034221</p>
+            </div>
+            <div>
+              <small>Issuing Bank</small>
+              <p>{{dataGrid.2.issuingBank}}</p>
+            </div>
+            <div>
+              <small>Type:</small>
+              <p>{{dataGrid.2.type}}</p>
+            </div>
+          </div>
+          <div class="right">
+            <div>
+              <small>{{dataGrid.2.ttValue}}</small>
+              <p>34.288</p>
+            </div>
+            <div>
+              <small>Issue Date:</small>
+              <p>{{dataGrid.2.issueDate}}</p>
+            </div>
+
+            <div>
+              <small>Expire Date:</small>
+              <p>{{dataGrid.2.expiryDate}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="first-caution">
+          <p>The goods specified in the invoice(s) are eligible for exemption for the whole of the customs duty, sales tax
+            etc. provided S.R.O. No
+            209-LAW/2015/46/Customs dated July 1, 2015 issued by the Internal Resources Division, Ministry of Finance, Dhaka
+          </p>
+        </div>
+        <div class="second-caution">
+          <p>THIS PERMIT IS VALID FOR 30 (THIRTY) DAYS FROM THE DATE OF ISSUE</p>
+        </div>
+        <div class="third-caution">
+          <p>THIS IS COMPUTER GENERATED PERMIT. SO SIGNATURE IS NOT REQUIRED</p>
+          <small>{{trackingId}}</small>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
