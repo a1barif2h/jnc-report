@@ -66,18 +66,18 @@ const generateCertificate = async (req) => {
                     .getFormValueByApplicationID(req.body.applicationId).then(
                        async res=>{
                             const canvas = {}
-                            
-                            const encryptedUserSopId = cryptr.encrypt(req.body.applicationId);
-                            console.log(
-                              "encryptedUserSopId:  " + encryptedUserSopId
-                            );
-                            console.log(
-                              "decryptedUserSopId:  " +
-                                cryptr.decrypt(encryptedUserSopId)
-                            );
+                            const appId = req.body.applicationId;
+                            // const encryptedUserSopId = cryptr.encrypt(appId);
+                            // console.log(
+                            //   "encryptedUserSopId:  " + encryptedUserSopId
+                            // );
+                            // console.log(
+                            //   "decryptedUserSopId:  " +
+                            //     cryptr.decrypt(encryptedUserSopId)
+                            // );
                             const url =
                               `${config.backendApi.bezaServiceBaseUrl}:${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=` +
-                              encryptedUserSopId;
+                              appId;
                             
                             
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));
