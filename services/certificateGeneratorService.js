@@ -8,8 +8,8 @@ const xmlSerializer = new XMLSerializer();
 const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 const config = require("../config/config");
-const Cryptr = require("cryptr");
-const cryptr = new Cryptr(process.env.SECRET_KEY);
+// const Cryptr = require("cryptr");
+// const cryptr = new Cryptr(process.env.SECRET_KEY);
 // Server will call this File
 // bezaservicegateway
 // method(sopCode)
