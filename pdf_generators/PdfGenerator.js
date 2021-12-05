@@ -34,4 +34,29 @@ const generatePdfFromHtml = async function (htmlTemplate, json, options) {
 
 }
 
-module.exports = {pdfGenerator, generatePdfFromHtml}
+
+
+const generatePdfFromHtmlMultipleMaterialDescription = async function (htmlTemplate, options) {
+  // const html = htmlTemplate;
+//   const html = templateEngine.replacer(htmlTemplate, json.formValue);
+  const buf = await new Promise((resolve, reject) => {
+    pdf.create(htmlTemplate, options).toBuffer(function (err, buffer) {
+      if (err) {
+        console.log(err);
+        return reject(err);
+      }
+
+      resolve(buffer);
+    });
+  });
+
+  return buf;
+};
+
+
+
+module.exports = {
+  pdfGenerator,
+  generatePdfFromHtml,
+  generatePdfFromHtmlMultipleMaterialDescription,
+};

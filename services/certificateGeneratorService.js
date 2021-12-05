@@ -8,7 +8,8 @@ const xmlSerializer = new XMLSerializer();
 const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 const config = require("../config/config");
-
+const Cryptr = require("cryptr");
+const cryptr = new Cryptr(process.env.SECRET_KEY);
 // Server will call this File
 // bezaservicegateway
 // method(sopCode)
@@ -65,8 +66,18 @@ const generateCertificate = async (req) => {
                     .getFormValueByApplicationID(req.body.applicationId).then(
                        async res=>{
                             const canvas = {}
-                            const url = `${config.backendApi.bezaServiceBaseUrl}:${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=asasdfas`
-                            
+                            const appId = req.body.applicationId;
+                            // const encryptedUserSopId = cryptr.encrypt(appId);
+                            // console.log(
+                            //   "encryptedUserSopId:  " + encryptedUserSopId
+                            // );
+                            // console.log(
+                            //   "decryptedUserSopId:  " +
+                            //     cryptr.decrypt(encryptedUserSopId)
+                            // );
+                            const url =
+                              `${config.backendApi.bezaServiceBaseUrl}:${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=` +
+                              appId;
                             
                             
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));

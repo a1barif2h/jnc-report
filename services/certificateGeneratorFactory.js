@@ -2,6 +2,8 @@
 
 const ProjectClearance = require("../pdf_generators/ProjectClearance");
 const ImportPermit = require("../pdf_generators/ImportPermit");
+const TradeLicense = require("../pdf_generators/TradeLicense");
+const LocalSalesPermit = require("../pdf_generators/LocalSalesPermit");
 const ExportPermit = require("../pdf_generators/ExportPermit");
 const VisaRecommendation = require("../pdf_generators/VisaRecommendation");
 const VisaAssistance = require("../pdf_generators/VisaAssistance");
@@ -26,11 +28,22 @@ const generate = async (data) => {
         console.log("Generating pdf for project Clearance");
         generatedPdf = await projectClearance.generate(data);
         break;
-      case "Import Permit  v2":
+      case "Import Permit":
         const importPermit = new ImportPermit();
         console.log("Generating pdf for Import Permit  v2");
         generatedPdf = await importPermit.generate(data);
         break;
+      case "Trade License":
+        const tradeLicense = new TradeLicense();
+        console.log("Generating pdf for Trade License");
+        generatedPdf = await tradeLicense.generate(data);
+        break;
+      case "Local Sales Permit":
+        const localSalesPermit = new LocalSalesPermit();
+        console.log("Generating pdf for local Sales Permit");
+        generatedPdf = await localSalesPermit.generate(data);
+        break;
+      default:
       case "Export Permit":
         const exportPermit = new ExportPermit();
         console.log("Generating pdf for Export Permit");
