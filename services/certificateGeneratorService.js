@@ -82,7 +82,7 @@ const generateCertificate = async (req) => {
                             
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));
 
-                            await generateBarcode(res.uuid).then (barRes => res.formValue.barcode = barcodeData = barRes).catch(err=> console.log(err));
+                            await generateBarcode(res.uuid).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
                             
                             res.formValue.trackingId = res.uuid;
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(res.createdAt);
