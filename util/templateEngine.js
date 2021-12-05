@@ -47,4 +47,19 @@ const replacer = function (template, data) {
     return template
 }
 
-module.exports = {replacer}
+const replaceOne = function (template, data) {
+    const flattenedData = dataProcessor(data);
+
+    const regexp = new RegExp();
+    for (var key in flattenedData) {
+        // console.log("key:",key," || value:",flattenedData[key])
+        //{{spouseName}}
+        //dat[spouseName] = neetu
+        // template= template.replace('{{spouseName}}', ("neetu" || "-"))
+        template = template.replace('{{'+key+'}}', (flattenedData[key] || "-"))
+    }
+
+    return template
+}
+
+module.exports = {replacer, replaceOne}

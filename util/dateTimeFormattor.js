@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 const getCurrentFormattedDateTime = () => {
     try {
         const currentDate = new Date();
@@ -12,10 +14,11 @@ const getCurrentFormattedDateTime = () => {
     }
 }
 
-const getApplicationDate = (createdAt) => {
+const getApplicationDate = (givenDate) => {
     try {
-        const date = new Date(createdAt);
-        return date.getDate() + " " + date.getMonth() + ", " + date.getFullYear();
+        const date = moment(givenDate);
+        // return date.getDate() + " " + date.getMonth() + ", " + date.getFullYear();
+        return date.format('DD MMM, yyyy');
     } catch (err) {
         return "_";
     }
