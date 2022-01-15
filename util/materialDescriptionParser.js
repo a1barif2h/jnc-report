@@ -64,7 +64,7 @@ const generateMultipleMaterialsDescription = function (
       tempmaterialsTemplate
     );
 
-    if (i % 2 == 0) {
+    if (i % 3 == 0) {
       materialsDescriptionTemplate += "</div>";
       console.log("</div>  added: " + i);
     }
