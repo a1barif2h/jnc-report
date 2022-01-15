@@ -45,7 +45,7 @@ const generateMultipleMaterialsDescription = function (
         ""
       );
     }
-    if (i % 2 == 1) {
+    if (i % 3 == 1) {
       materialsDescriptionTemplate += pageBreak;
 
       tempmaterialsTemplate = tempmaterialsTemplate.replace(
