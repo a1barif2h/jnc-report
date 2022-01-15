@@ -45,7 +45,7 @@ const generateMultipleMaterialsDescription = function (
         ""
       );
     }
-    if (i % 2 == 1) {
+    if (i % 3 == 1) {
       materialsDescriptionTemplate += pageBreak;
 
       tempmaterialsTemplate = tempmaterialsTemplate.replace(
@@ -64,7 +64,7 @@ const generateMultipleMaterialsDescription = function (
       tempmaterialsTemplate
     );
 
-    if (i % 2 == 0) {
+    if (i % 3 == 0) {
       materialsDescriptionTemplate += "</div>";
       console.log("</div>  added: " + i);
     }
