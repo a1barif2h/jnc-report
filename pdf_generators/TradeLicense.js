@@ -7,6 +7,9 @@ const htmlTemplate = fs.readFileSync(
 const pdf = require("./PdfGenerator");
 const options = { format: "A4", orientation: "portrait" };
 
+const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
+const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
+
 class TradeLicense {
   constructor() {}
 
@@ -15,6 +18,13 @@ class TradeLicense {
     // body.routePermitExpDate = body.hasOwnProperty("routePermitExpDate") ? body.routePermitExpDate : "_";
     // body.fitnessIssueDate = body.hasOwnProperty("fitnessIssueDate") ? body.fitnessIssueDate : "_";
     // pdf.pdfGenerator(htmlTemplate, body, res, options)
+    body.formValue.backgroundImg = background_image;
+    const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
+    return response;
+  }
+
+  async cancel(body) {
+    body.formValue.backgroundImg = background_cancelled;
     const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
     return response;
   }

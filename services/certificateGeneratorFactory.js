@@ -76,6 +76,71 @@ const generate = async (data) => {
   return generatedPdf;
 };
 
+
+const cancel = async (data) => {
+  let title = data.title;
+  let cancelledCertificate = null;
+  switch (title) {
+    case "Project Clearance":
+      const projectClearance = new ProjectClearance();
+      console.log("Cancelling Certificate for project Clearance");
+      cancelledCertificate = await projectClearance.cancel(data);
+      break;
+    case "Import Permit":
+      const importPermit = new ImportPermit();
+      console.log("Cancelling Certificate for Import Permit");
+      cancelledCertificate = await importPermit.generate(data);
+      break;
+    case "Trade License":
+      const tradeLicense = new TradeLicense();
+      console.log("Cancelling Certificate for Trade License");
+      cancelledCertificate = await tradeLicense.cancel(data);
+      break;
+    case "Local Sales Permit":
+      const localSalesPermit = new LocalSalesPermit();
+      console.log("Cancelling Certificate for local Sales Permit");
+      cancelledCertificate = await localSalesPermit.generate(data);
+      break;
+    case "Export Permit":
+      const exportPermit = new ExportPermit();
+      console.log("Cancelling Certificate for Export Permit");
+      cancelledCertificate = await exportPermit.generate(data);
+      break;
+    case "Visa Recommendation":
+      const visaRecommendation = new VisaRecommendation();
+      console.log("Cancelling Certificate for Visa Recommendation");
+      cancelledCertificate = await visaRecommendation.cancel(data);
+      break;
+    case "Visa Assistance":
+      const visaAssistance = new VisaAssistance();
+      console.log("Cancelling Certificate for Visa Assistance");
+      cancelledCertificate = await visaAssistance.cancel(data);
+      break;
+    case "Land Use Plan":
+      const landUsePlan = new LandUsePlan();
+      console.log("Cancelling Certificate for Land Use Plan");
+      cancelledCertificate = await landUsePlan.cancel(data);
+      break;
+    case "Commercial Operation":
+      const commercialOperation = new CommercialOperation();
+      console.log("Cancelling Certificate for Commercial Operation");
+      cancelledCertificate = await commercialOperation.cancel(data);
+      break;
+    case "Trade License Renew":
+      const tradeLicenseRenew = new TradeLicenseRenew();
+      console.log("Cancelling Certificate for Trade License Renew");
+      cancelledCertificate = await tradeLicenseRenew.cancel(data);
+      break;
+    default:
+      break;
+  }
+  return cancelledCertificate;
+};
+
+
+
+
 module.exports = {
   generate,
+  cancel,
 };

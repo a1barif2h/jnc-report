@@ -104,6 +104,56 @@ const generateCertificate = async (req) => {
     return response;
 }
 
+
+const cancelCertificate = async (req) => {
+    let userSopById;
+    let bufferResponse;
+    let certificateDetail;
+    let response;
+
+    await bezaServiceGateway
+                    .getFormValueByApplicationID(req.body.applicationId).then(
+                       async res=>{
+                            const canvas = {}
+                            const appId = req.body.applicationId;
+                            // const encryptedUserSopId = cryptr.encrypt(appId);
+                            // console.log(
+                            //   "encryptedUserSopId:  " + encryptedUserSopId
+                            // );
+                            // console.log(
+                            //   "decryptedUserSopId:  " +
+                            //     cryptr.decrypt(encryptedUserSopId)
+                            // );
+                            const url =
+                              `${config.backendApi.bezaServiceBaseUrl}:${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=` +
+                              appId;
+                            
+                            
+                            await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));
+
+                            await generateBarcode(res.uuid).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
+                            
+                            res.formValue.trackingId = res.uuid;
+                            res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(res.createdAt);
+                            userSopById = res;
+                            bufferResponse = certificateGeneratorFactory.cancel(res);
+                            return bufferResponse;
+                        }
+                    ).then(
+                        async (buffer) => {
+                            certificateDetail = await bezaServiceGateway.upload(buffer, userSopById);
+                            return certificateDetail;
+                        }
+                    ).then(
+                        async(certificate) => {
+                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId);
+                            return response;
+                        }
+                    );
+    return response;
+}
+
 module.exports = {
-    generateCertificate
+    generateCertificate,
+    cancelCertificate,
 }
