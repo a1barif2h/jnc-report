@@ -44,10 +44,6 @@ class CertificateService {
     return response;
   }
 
-  async cancelCertificate(req) {
-    const response = await certificateGeneratorService.cancelCertificate(req).then(res=>{return res}).catch(err=>{console.log(err)});
-    return response;
-  }
 }
 
 module.exports = CertificateService;

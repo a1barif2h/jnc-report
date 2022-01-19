@@ -62,7 +62,8 @@ const saveCertificateInfo = async (certificate, sop, processInstanceId) => {
   let model = {
     url: certificate.url,
     processInstanceId: processInstanceId,
-    userSopId: sop.id
+    userSopId: sop.id,
+    isValid: true,
   }
 
   const saveCertificateUrl =

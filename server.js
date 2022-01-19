@@ -81,18 +81,7 @@ app.post(
   }
 );
 
-app.post(
-  "/certificate-service/api/v1/private/cancel/pdf",
-  async (req, res) => {
-    console.log("Cancelling certificate");
-    const certificateService = new CertificateService()
-    await certificateService.cancelCertificate(req).then(
-      data => res.send(data)      
-    ).catch(
-      err => res.send({message: 'ERR'})
-    );
-  }
-);
+
 
 console.log(`Download service si running on http://${HOST}:${PORT}`);
 app.listen(PORT, HOST);

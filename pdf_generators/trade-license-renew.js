@@ -44,38 +44,10 @@ class TradeLicenseRenew {
     }
 
     body.formValue.authorizePositionFormatted = authorizePositionFormatted;
-    body.formValue.backgroundImg = background_image;
     const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
     return response;
   }
 
-  async cancel(body) {
-    let authorizePositionFormatted = "";
-    let isOwner = false,
-      isMd = false,
-      isChairman = false;
-    if (body.formValue.authorizePosition.owner) {
-      authorizePositionFormatted += "Owner";
-      isOwner = true;
-    }
-    if (body.formValue.authorizePosition.manningDirector) {
-      if (isOwner) authorizePositionFormatted += ", ";
-      authorizePositionFormatted += "Managing Director";
-      isMd = true;
-    }
-    if (body.formValue.authorizePosition.chairmanInformation) {
-      if (isMd || (!isMd && isOwner)) authorizePositionFormatted += ", ";
-      authorizePositionFormatted += "Chairman";
-    }
-
-    body.formValue.authorizePositionFormatted = authorizePositionFormatted;
-    body.formValue.backgroundImg = background_cancelled;
-    body.formValue.proposedDateOfCo = dateTimeFormattor.getApplicationDate(
-      body.formValue.proposedDateOfCo
-    );
-    const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
-    return response;
-  }
 }
 
 module.exports = TradeLicenseRenew;

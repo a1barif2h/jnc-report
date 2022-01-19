@@ -8,6 +8,9 @@ const xmlSerializer = new XMLSerializer();
 const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 const config = require("../config/config");
+const fs = require("fs");
+const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
+const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
 // const Cryptr = require("cryptr");
 // const cryptr = new Cryptr(process.env.SECRET_KEY);
 // Server will call this File
@@ -84,6 +87,12 @@ const generateCertificate = async (req) => {
 
                             await generateBarcode(res.uuid).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
                             
+                            if(req.body.isCancel){
+                                res.formValue.backgroundImg = background_cancelled;
+                            }
+                            else{
+                                res.formValue.backgroundImg = background_image;
+                            }
                             res.formValue.trackingId = res.uuid;
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(res.createdAt);
                             userSopById = res;
@@ -105,55 +114,8 @@ const generateCertificate = async (req) => {
 }
 
 
-const cancelCertificate = async (req) => {
-    let userSopById;
-    let bufferResponse;
-    let certificateDetail;
-    let response;
 
-    await bezaServiceGateway
-                    .getFormValueByApplicationID(req.body.applicationId).then(
-                       async res=>{
-                            const canvas = {}
-                            const appId = req.body.applicationId;
-                            // const encryptedUserSopId = cryptr.encrypt(appId);
-                            // console.log(
-                            //   "encryptedUserSopId:  " + encryptedUserSopId
-                            // );
-                            // console.log(
-                            //   "decryptedUserSopId:  " +
-                            //     cryptr.decrypt(encryptedUserSopId)
-                            // );
-                            const url =
-                              `${config.backendApi.bezaServiceBaseUrl}:${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=` +
-                              appId;
-                            
-                            
-                            await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));
-
-                            await generateBarcode(res.uuid).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
-                            
-                            res.formValue.trackingId = res.uuid;
-                            res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(res.createdAt);
-                            userSopById = res;
-                            bufferResponse = certificateGeneratorFactory.cancel(res);
-                            return bufferResponse;
-                        }
-                    ).then(
-                        async (buffer) => {
-                            certificateDetail = await bezaServiceGateway.upload(buffer, userSopById);
-                            return certificateDetail;
-                        }
-                    ).then(
-                        async(certificate) => {
-                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId);
-                            return response;
-                        }
-                    );
-    return response;
-}
 
 module.exports = {
     generateCertificate,
-    cancelCertificate,
 }
