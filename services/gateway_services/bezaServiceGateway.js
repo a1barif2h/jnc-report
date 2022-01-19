@@ -63,7 +63,7 @@ const saveCertificateInfo = async (certificate, sop, processInstanceId) => {
     url: certificate.url,
     processInstanceId: processInstanceId,
     userSopId: sop.id,
-    isValid: true,
+    isValid: 1,
   }
 
   const saveCertificateUrl =
