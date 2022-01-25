@@ -87,7 +87,7 @@ const generateCertificate = async (req) => {
 
                             await generateBarcode(res.uuid).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
                             
-                            if(req.body.isCancel){
+                            if(req.body.isRevoke){
                                 res.formValue.backgroundImg = background_cancelled;
                             }
                             else{
@@ -106,7 +106,7 @@ const generateCertificate = async (req) => {
                         }
                     ).then(
                         async(certificate) => {
-                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId);
+                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke);
                             return response;
                         }
                     );
