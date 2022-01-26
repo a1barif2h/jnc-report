@@ -76,6 +76,11 @@ const generate = async (data) => {
   return generatedPdf;
 };
 
+
+
+
+
+
 module.exports = {
   generate,
 };

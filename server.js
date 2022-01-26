@@ -78,37 +78,10 @@ app.post(
     ).catch(
       err => res.send({message: 'ERR'})
     );
-    // let pdfFileName = "project-clearance";
-
-    // if (req.body && req.body.applicationId) {
-    //   pdfFileName +=
-    //     "_" + req.body.applicationId + getCurrentFormattedDateTime() + ".pdf";
-    // }
-    // axios
-    //   .get(
-    //     config.backendApi.bezaServiceBaseUrl +
-    //       ":" +
-    //       config.backendApi.bezaServicePort +
-    //       config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
-    //       req.body.applicationId
-    //   )
-    //   .then((response) => {
-    //     // console.log(response.data);
-    //     // console.log(response.data.explanation);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-    // // res.setHeader("Content-disposition", "attachment; filename=" + pdfFileName); //file name should contain nid 10 digit
-    // // res.setHeader("Content-type", "application/pdf");
-    // // res.set("pdfFileName", pdfFileName);
-
-    // const projectClearance = new ProjectClearance();
-    // await projectClearance.generate(res, req.body);
-    // res.send({msg: "OK"})
   }
 );
+
+
 
 console.log(`Download service si running on http://${HOST}:${PORT}`);
 app.listen(PORT, HOST);

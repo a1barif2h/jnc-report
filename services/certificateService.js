@@ -40,18 +40,10 @@ class CertificateService {
   }
 
   async generatePdf(req) {
-    // const certificateGeneratorService = new CertificateGeneratorService();
     const response = await certificateGeneratorService.generateCertificate(req).then(res=>{return res}).catch(err=>{console.log(err)});
-    
-    // console.log(response);
     return response;
-    // const projectClearance = new CertificateGeneratorService();
-    // let generatedPdf = await projectClearance.generate(res, req.body).then(
-    //   res=>res,
-    //   err=>err
-    // );
-    // return generatedPdf;
   }
+
 }
 
 module.exports = CertificateService;

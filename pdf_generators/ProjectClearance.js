@@ -3,6 +3,8 @@ const fs = require('fs');
 const htmlTemplate = fs.readFileSync('./pdf_templates/project-clearance/project-clearance.html', 'utf8');
 const pdf = require('./PdfGenerator');
 const options = {format: 'A4', "orientation": "portrait"};
+const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
+const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
 
 class ProjectClearance {
     constructor() {
@@ -16,6 +18,7 @@ class ProjectClearance {
         const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
         return response;
     }
+
 }
 
 module.exports = ProjectClearance;

@@ -8,6 +8,9 @@ const xmlSerializer = new XMLSerializer();
 const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 const config = require("../config/config");
+const fs = require("fs");
+const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
+const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
 // const Cryptr = require("cryptr");
 // const cryptr = new Cryptr(process.env.SECRET_KEY);
 // Server will call this File
@@ -84,6 +87,12 @@ const generateCertificate = async (req) => {
 
                             await generateBarcode(res.uuid).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
                             
+                            if(req.body.isRevoke){
+                                res.formValue.backgroundImg = background_cancelled;
+                            }
+                            else{
+                                res.formValue.backgroundImg = background_image;
+                            }
                             res.formValue.trackingId = res.uuid;
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(res.createdAt);
                             userSopById = res;
@@ -97,13 +106,16 @@ const generateCertificate = async (req) => {
                         }
                     ).then(
                         async(certificate) => {
-                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId);
+                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke);
                             return response;
                         }
                     );
     return response;
 }
 
+
+
+
 module.exports = {
-    generateCertificate
+    generateCertificate,
 }

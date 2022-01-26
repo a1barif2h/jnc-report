@@ -5,6 +5,9 @@ const htmlTemplate = fs.readFileSync('./pdf_templates/commercial-operation/comme
 const pdf = require('./PdfGenerator');
 const options = {format: 'A4', "orientation": "portrait"};
 
+const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
+const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
+
 class CommercialOperation {
     constructor() {
     }
@@ -18,6 +21,7 @@ class CommercialOperation {
         const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
         return response;
     }
+
 }
 
 module.exports = CommercialOperation;

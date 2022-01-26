@@ -7,6 +7,9 @@ const htmlTemplate = fs.readFileSync(
 const pdf = require("./PdfGenerator");
 const options = { format: "A4", orientation: "portrait" };
 
+const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
+const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
+
 class TradeLicense {
   constructor() {}
 
@@ -18,6 +21,7 @@ class TradeLicense {
     const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
     return response;
   }
+
 }
 
 module.exports = TradeLicense;
