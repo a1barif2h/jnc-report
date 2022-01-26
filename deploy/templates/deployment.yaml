@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  {{ .Chart.Name }}
+  labels:
+    app:  {{ .Chart.Name }}
+spec:
+  selector:
+    matchLabels:
+      app:  {{ .Chart.Name }}
+  replicas: {{ .Values.variables.replicaCount }}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  {{ .Chart.Name }}
+    spec:
+      containers:
+        - name:  {{ .Chart.Name }}
+          image: "{{ .Values.variables.imageRepository }}:{{ .Values.variables.imageAppVersion  | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.variables.imagePullPolicy }}
+          ports:
+            - containerPort: 80
+          env:
+            - name: APP_ENV
+              value: "{{ .Values.variables.APP_ENV }}"
+            - name: APP_DEBUG
+              value: "{{ .Values.variables.APP_DEBUG }}"
+            - name: APP_URL
+              value: "{{ .Values.variables.APP_URL }}"
+            - name: DB_HOST
+              value: "{{ .Values.variables.DB_HOST }}"
+            - name: DB_PORT
+              value: "{{ .Values.variables.DB_PORT }}"
+            - name: DB_DATABASE
+              value: "{{ .Values.variables.DB_DATABASE }}"
+            - name: DB_USERNAME
+              value: "{{ .Values.variables.DB_USERNAME }}"
+            - name: DB_PASSWORD
+              value: {{ .Values.variables.DB_PASSWORD | default "" | quote }}
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - "sh"
+                  - "-c"
+                  - >
+                    mv /app/.env.example /app/.env;
+                    php artisan key:generate;
+                    sed -i "s/APP_ENV=.*$/APP_ENV=$APP_ENV/g" /app/.env;
+                    sed -i "s/APP_DEBUG=.*$/APP_DEBUG=$APP_DEBUG/g" /app/.env;
+                    sed -i "s/APP_URL=.*$/APP_URL=$APP_URL/g" /app/.env;
+                    sed -i "s/DB_HOST=.*$/DB_HOST=$DB_HOST/g" /app/.env;
+                    sed -i "s/DB_PORT=.*$/DB_PORT=$DB_PORT/g" /app/.env;
+                    sed -i "s/DB_DATABASE=.*$/DB_DATABASE=$DB_DATABASE/g" /app/.env;
+                    sed -i "s/DB_USERNAME=.*$/DB_USERNAME=$DB_USERNAME/g" /app/.env;
+                    sed -i "s/DB_PASSWORD=.*$/DB_PASSWORD=$DB_PASSWORD/g" /app/.env;
+                    chown -R www-data:www-data /app;
+                    cd /app;
+          volumeMounts:
+          - name: "{{ .Chart.Name }}"
+            mountPath: /app/storage
+      volumes:
+      - name: "{{ .Chart.Name }}"
+        persistentVolumeClaim:
+          claimName: "{{ .Chart.Name }}-pv-claim"
+      imagePullSecrets:
+        - name: regcred
