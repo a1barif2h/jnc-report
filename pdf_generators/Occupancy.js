@@ -1,7 +1,7 @@
 const { response } = require("express");
 const fs = require("fs");
-htmlTemplate = fs.readFileSync(
-  "./pdf_templates/occupency/occupency.html",
+const htmlTemplate = fs.readFileSync(
+  "./pdf_templates/occupancy/occupancy.html",
   "utf8"
 );
 const pdf = require('./PdfGenerator');
@@ -10,7 +10,7 @@ const background_image = fs.readFileSync('./pdf_templates/background_image.html'
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
 
 
-class Occupency {
+class Occupancy {
     constructor() {
     }
 
@@ -23,4 +23,4 @@ class Occupency {
         return response;
   }
 }
-module.exports = Occupency;
+module.exports = Occupancy;

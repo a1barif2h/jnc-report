@@ -1,6 +1,6 @@
 const { response } = require("express");
 const fs = require("fs");
-htmlTemplate = fs.readFileSync(
+const htmlTemplate = fs.readFileSync(
   "./pdf_templates/work-permit/work-permit.html",
   "utf8"
 );

@@ -1,20 +1,20 @@
 const { response } = require("express");
 const fs = require("fs");
-htmlTemplate = fs.readFileSync(
+const htmlTemplate = fs.readFileSync(
   "./pdf_templates/sample-export-permit/sample-export-permit.html",
   "utf8"
 );
-headerTemplate = fs.readFileSync(
+let headerTemplate = fs.readFileSync(
   "./pdf_templates/sample-export-permit/sample-export-multipage-header.html",
   "utf8"
 );
 
-materialsDetailsTemplateInitial = fs.readFileSync(
+let materialsDetailsTemplateInitial = fs.readFileSync(
   "./pdf_templates/sample-export-permit/sample-export-material-group.html",
   "utf8"
 );
 
-footerTemplate = fs.readFileSync(
+let footerTemplate = fs.readFileSync(
   "./pdf_templates/sample-export-permit/sample-export-permit-footer.html",
   "utf8"
 );

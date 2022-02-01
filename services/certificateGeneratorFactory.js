@@ -12,7 +12,7 @@ const CommercialOperation = require("../pdf_generators/CommercialOperation");
 const TradeLicenseRenew = require("../pdf_generators/trade-license-renew");
 const SampleExportPermit=require("../pdf_generators/SampleExportPermit");
 const SampleImportPermit=require("../pdf_generators/SampleImportPermit");
-const Occupancy=require("../pdf_generators/Occupency");
+const Occupancy=require("../pdf_generators/Occupancy");
 const WorkPermit=require("../pdf_generators/WorkPermit");
 
 // method()
@@ -87,7 +87,7 @@ const generate = async (data) => {
     case "Occupancy":
       const occupancy = new Occupancy();
       console.log("Generating pdf for Occupancy");
-      generatedPdf = await Occupancy.generate(data);
+      generatedPdf = await occupancy.generate(data);
       break;
     case "Work Permit":
       const workPermit = new WorkPermit();
