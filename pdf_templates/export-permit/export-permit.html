@@ -245,20 +245,7 @@
 
 <body>
   <div class="mainContainer pagebreak">
-    <header>
-      <div class="header-logo">
-        <img style="width: 52%; margin-top: .8rem;"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
-          alt="" />
-      </div>
-      <div class="header-bar-code">
-        {{barcode}}
-      </div>
-
-      <div class="header-qr-code">
-        <img src="{{qrcode}}" alt="" />
-      </div>
-    </header>
+    {{headerHere}}
     <main>
       <div class="">
         <div class="import-permit">
@@ -282,27 +269,27 @@
               </div>
               <div>
                 <small>Export Permit Type:</small>
-                <p>{{exportPermitType}}</p>
+                <p>{{importPermitType}}</p>
               </div>
               <div>
                 <small>Carrier Name:</small>
-                <p>{{carrierType}}</p>
+                <p>{{typeOfCarrier}}</p>
               </div>
               <div>
                 <small>Economic Zone :</small>
-                <p>{{economicZoneName}}</p>
+                <p>{{economicZone}}</p>
               </div>
               <div>
                 <small>Undertaking No.:</small>
-                <p>CEOL-Export-317</p>
+                <p>{{undertakingNo}}</p>
               </div>
               <div>
                 <small>Invoice/ Vendor Reference N:</small>
-                <p>{{invoiceVendorReferenceNo}}</p>
+                <p>{{invoiceVendorRefDate}}</p>
               </div>
               <div>
                 <small>CM Value:</small>
-                <p>{{bLNo}}</p>
+                <p>{{fobValue}}</p>
               </div>
               <div>
                 <small>Port of Destination:</small>
@@ -324,7 +311,7 @@
             <div class="right">
               <div>
                 <small>Carrier Type:</small>
-                <p>{{carrierType}}</p>
+                <p>{{typeOfCarrier}}</p>
               </div>
               <div>
                 <small>Name of Developer:</small>
@@ -352,7 +339,7 @@
               </div>
               <div>
                 <small>Place of Load</small>
-                <p>{{exportFromPortOfLoading}}</p>
+                <p>{{importFromPortOfLoading}}</p>
               </div>
               <div>
                 <small>Destination Zone:</small>
@@ -365,16 +352,10 @@
             </div>
           </div>
         </div>
-
-
         {{firstMaterialsDetails}}
-
-
-
     </main>
   </div>
   {{remainingMaterialsDetails}}
   </div>
 </body>
-
 </html>

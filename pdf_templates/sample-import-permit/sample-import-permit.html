@@ -1,0 +1,353 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAMPLE EXPORT PERMIT</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .mainContainer {
+        margin: 0rem auto;
+        padding: 30px;
+        position: relative;
+        border: 5px solid #278000;
+        z-index: 5;
+      }
+
+      .mainContainer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url("https://media.discordapp.net/attachments/892299770004115466/909682786217123930/logo.png?width=609&height=609");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 450px;
+        width: 100%;
+        height: 110%;
+        opacity: 0.1;
+        z-index: 10;
+      }
+
+      header {
+        display: -webkit-box;
+        /* OLD - iOS 6-, Safari 3.1-6 */
+        display: -moz-box;
+        /* OLD - Firefox 19- (buggy but mostly works) */
+        display: -ms-flexbox;
+        /* TWEENER - IE 10 */
+        display: -webkit-flex;
+        /* NEW - Chrome */
+        display: flex;
+        align-items: -webkit-box;
+        align-items: -moz-box;
+        align-items: -ms-flexbox;
+        align-items: -webkit-flex;
+        align-items: center;
+        justify-content: -webkit-box;
+        justify-content: -moz-box;
+        justify-content: -ms-flexbox;
+        justify-content: -webkit-flex;
+        justify-content: space-between;
+        margin-left: 1rem;
+      }
+
+      header img {
+        width: 44%;
+      }
+
+      .import-permit {
+        height: 1.6rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background-color: red;
+        font-size: 8px;
+        letter-spacing: 0.5px;
+        margin-top: 0.5rem;
+        color: white;
+      }
+
+      .import-date {
+        font-size: 7.5px;
+        font-weight: bold;
+        margin: 0.8rem 0rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .general-information {
+        height: 1.5rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        font-size: 8px;
+        letter-spacing: 0.5px;
+        color: white;
+        background-color: #278000;
+      }
+
+      .border-box {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        border: 1px solid #278000;
+        min-height: 4.2rem;
+      }
+
+      .border-box small {
+        font-size: 6.5px;
+        font-weight: bold;
+      }
+
+      .left {
+        width: 50%;
+        padding: 0.5rem 1.4rem;
+        line-height: 2.6;
+      }
+
+      .left p,
+      .right p {
+        font-size: 6.5px;
+      }
+
+      .left div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .right {
+        width: 50%;
+        padding: 0.5rem 1.4rem;
+        line-height: 2.6;
+      }
+
+      .right div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .export-material-group {
+        height: 2rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background-color: #353535;
+        font-size: 8px;
+        letter-spacing: 0.5px;
+        margin-top: 0.5rem;
+        color: white;
+      }
+
+      .export-material-details {
+        height: 1.5rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background-color: #267e01;
+        font-size: 8px;
+        letter-spacing: 0.5px;
+        margin-top: 0.5rem;
+        color: white;
+      }
+
+      footer div {
+        margin: 1rem auto;
+        width: 100%;
+      }
+
+      .first-caution {
+        background: #b0e8ec;
+        padding: 0.4rem 1.2rem;
+        line-height: 1.35;
+        font-weight: 500;
+        text-align: center;
+        color: #27829e;
+        font-size: 8.3px;
+      }
+
+      .second-caution {
+        background: #dfbdcd;
+        padding: 0.4rem 0.5rem;
+        line-height: 1.35;
+        font-weight: 500;
+        text-align: center;
+        color: #d02f67;
+        font-weight: 600;
+        font-size: 9px;
+      }
+
+      .third-caution {
+        background: #dad7b0;
+        padding: 0.5rem 1.2rem;
+        line-height: 1.4;
+        font-weight: 500;
+        text-align: center;
+        color: #d02f67;
+        font-weight: 600;
+        min-height: 2rem;
+        font-size: 9px;
+      }
+
+      .pageBreak {
+        page-break-after: always;
+      }
+    </style>
+  <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
+
+  <body>
+    <div class="mainContainer pagebreak">
+      {{headerHere}}
+      <main>
+        <div class="">
+          <div class="import-permit">
+            <h3>SAMPLE IMPORT PERMIT</h3>
+          </div>
+          <div class="import-date">
+            <p>File No: SEP-0002267</p>
+            <p>Date: {{applicationDate}}</p>
+          </div>
+
+          <div class="general">
+            <div class="general-information">
+              <h3>BASIC INFORMATION</h3>
+            </div>
+
+            <div class="border-box" style="padding-bottom: 1rem">
+              <div class="left">
+                <div>
+                  <small>Name of the Company</small>
+                  <p>
+                    {{companyName}}
+                  </p>
+                </div>
+                <div>
+                  <small>Carrier Type:</small>
+                  <p>{{carrierType}}</p>
+                </div>
+                <div>
+                  <small>Type of Zone :</small>
+                  <p>SI-20210701</p>
+                </div>
+                <div>
+                  <small>Invoice No.:</small>
+                  <p>{{invoiceNo}}</p>
+                </div>
+                <div>
+                  <small>Seller/Shipper Name :</small>
+                  <p>{{sellerShipperName}}</p>
+                </div>
+                <div>
+                  <small>Passport No.:</small>
+                  <p>{{passport}}</p>
+                </div>
+                <div>
+                  <small>Expire Date</small>
+                  <p>{{invoiceVendorReferenceNo}}</p>
+                </div>
+
+                <div>
+                  <small>Remarks</small>
+                  <p>{{remarks}}</p>
+                </div>
+              </div>
+              <div class="right">
+                <div>
+                  <small>Economic Zone:</small>
+                  <p>{{economicZone}}</p>
+                </div>
+                <div>
+                  <small>Import Permit Type:</small>
+                  <p>{{invoice date}}</p>
+                </div>
+                <div>
+                  <small>Process Charge:</small>
+                  <p>{{processCharge}}</p>
+                </div>
+                <div>
+                  <small>Invoice Date:</small>
+                  <p>{{undertakingDate}}</p>
+                </div>
+                <div>
+                  <small>Invoice/ Vendor Ref. Date :</small>
+                  <p>{{invoiceVendorRefDate}}</p>
+                </div>
+                <div>
+                  <small>Import From /Port of Landin</small>
+                  <p>{{importFromPortOfLoading}}</p>
+                </div>
+                <div>
+                  <small>Seller/Shipper Country:</small>
+                  <p>{{sellerShipperAddressLineOne}}</p>
+                </div>
+                <div>
+                  <small>Name of the Person Carryin</small>
+                  <p>USD 34.19y</p>
+                </div>
+                <div>
+                  <small>Issue Date:</small>
+                  <p>USD 34.19y</p>
+                </div>
+                <div>
+                  <small>Place of issue:</small>
+                  <p>USD 34.19y</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{firstMaterialsDetails}}
+        </div>
+      </main>
+    </div>
+    {{remainingMaterialsDetails}}
+    </div>
+  <script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d58abbb3c6e087d',m:'dO3PSR9F90nMXtgRXXhD9jQ08fpnMIV2hZU7bmXcfL8-1643524428-0-ARLCWgtyhYMVzy+s4tWFXHq6V8B4xKX8/xh1Cva3eaOEhd6DnpaZ6DGTG2gy1JrFWmuzC7hIbyM5DqQy6PHEONnsDlkgedrSPNzDWuFBN/tWBoj8SiC6X2ZwTIXh1e3WxGRW6fWjGRS3NwvsSm3+7E5aoZcZzaLt6Gp/Oz/tF7vj7Bgj5XqUco8UlpkxGqLfRA==',s:[0x83ad26120b,0x60b86451b1],}})();</script>
+</body>
+</html>

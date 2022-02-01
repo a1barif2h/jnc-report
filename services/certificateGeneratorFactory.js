@@ -10,6 +10,10 @@ const VisaAssistance = require("../pdf_generators/VisaAssistance");
 const LandUsePlan = require("../pdf_generators/LandUsePlan");
 const CommercialOperation = require("../pdf_generators/CommercialOperation");
 const TradeLicenseRenew = require("../pdf_generators/trade-license-renew");
+const SampleExportPermit=require("../pdf_generators/SampleExportPermit");
+const SampleImportPermit=require("../pdf_generators/SampleImportPermit");
+const Occupancy=require("../pdf_generators/Occupency");
+const WorkPermit=require("../pdf_generators/WorkPermit");
 
 // method()
 //    switch
@@ -67,8 +71,28 @@ const generate = async (data) => {
       break;
     case "Trade License Renew":
       const tradeLicenseRenew = new TradeLicenseRenew();
-      console.log("Generating pdf for Trade License Renew");
+      console.log("Generating pdf for work permit");
       generatedPdf = await tradeLicenseRenew.generate(data);
+      break;
+    case "Sample Import Permit":
+      const sampleImportPermit = new SampleImportPermit();
+      console.log("Generating pdf for Sample Import Permit");
+      generatedPdf = await sampleImportPermit.generate(data);
+      break;
+    case "Sample Export Permit":
+      const sampleExportPermit = new SampleExportPermit();
+      console.log("Generating pdf for Sample Export Permit");
+      generatedPdf = await sampleExportPermit.generate(data);
+      break;
+    case "Occupancy":
+      const occupancy = new Occupancy();
+      console.log("Generating pdf for Occupancy");
+      generatedPdf = await Occupancy.generate(data);
+      break;
+    case "Work Permit":
+      const workPermit = new WorkPermit();
+      console.log("Generating pdf for Work Permit");
+      generatedPdf = await workPermit.generate(data);
       break;
     default:
       break;
