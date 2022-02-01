@@ -36,6 +36,9 @@ class ExportPermit {
       headerTemplate
     );
     let htmlImportTemplate = htmlTemplate;
+    
+    console.log("ExportTemplate:");
+    console.log(htmlImportTemplate);
     htmlImportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
       body.formValue,
       htmlImportTemplate
@@ -45,8 +48,6 @@ class ExportPermit {
       headerTemplate.toString() || "-"
     );
     
-    console.log("ExportTemplate:");
-    console.log(htmlImportTemplate);
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
     
     htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
