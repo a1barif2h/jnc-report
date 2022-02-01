@@ -44,6 +44,9 @@ class ExportPermit {
       `{{headerHere}}`,
       headerTemplate.toString() || "-"
     );
+    
+    console.log("ExportTemplate:");
+    console.log(htmlImportTemplate);
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
     
     htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
@@ -61,8 +64,6 @@ class ExportPermit {
       htmlImportTemplate,
       headerTemplate
     );
-    console.log("ExportTemplate:");
-    console.log(htmlImportTemplate);
     // if (body.formValue.dataGrid.length!=1){
       
     // }
