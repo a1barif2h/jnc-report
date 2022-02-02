@@ -1,5 +1,5 @@
 var Enum = require('enum');
-const AllSopsIds = new Enum({
+const AllSopsCodes = new Enum({
     'IMPORT_PERMIT': "IMPORT_PERMIT",
     'TRADE_LICENSE': "TRADE_LICENSE",
     'TRADE_LICENSE_RENEW': "TRADE_LICENSE_RENEW",
@@ -19,4 +19,4 @@ const AllSopsIds = new Enum({
     'WORK_PERMIT': "WORK_PERMIT"
 })
 
-module.exports={AllSopsIds};
+module.exports={AllSopsCodes};
