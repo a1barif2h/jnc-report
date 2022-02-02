@@ -14,7 +14,7 @@ const SampleExportPermit=require("../pdf_generators/SampleExportPermit");
 const SampleImportPermit=require("../pdf_generators/SampleImportPermit");
 const Occupancy=require("../pdf_generators/Occupancy");
 const WorkPermit=require("../pdf_generators/WorkPermit");
-const allSopsIds=require("../shared/constants/AllSopsIds");
+const allSopsIds=require("../shared/constants/AllSopsIds").default;
 // method()
 //    switch
 //       case Project Clearance
@@ -23,6 +23,8 @@ const allSopsIds=require("../shared/constants/AllSopsIds");
 const generate = async (data) => {
   let sopId = data.sopId;
   let generatedPdf = null;
+  console.log("sopId:   "+sopId);
+  console.log("allSopsIds.EXPORTPERMIT:   "+allSopsIds.EXPORTPERMIT);
   switch (sopId) {
     case allSopsIds.PROJECTCLEARANCE:
       const projectClearance = new ProjectClearance();
