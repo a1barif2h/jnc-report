@@ -14,17 +14,17 @@ const SampleExportPermit=require("../pdf_generators/SampleExportPermit");
 const SampleImportPermit=require("../pdf_generators/SampleImportPermit");
 const Occupancy=require("../pdf_generators/Occupancy");
 const WorkPermit=require("../pdf_generators/WorkPermit");
-
+const allSopsIds=require("../shared/constants/AllSopsIds")
 // method()
 //    switch
 //       case Project Clearance
 //           return new ProjectClearance();
 
 const generate = async (data) => {
-  let title = data.title;
+  let sopId = data.sopId;
   let generatedPdf = null;
-  switch (title) {
-    case "Project Clearance":
+  switch (sopId) {
+    case allSopsIds.PROJECTCLEARANCE:
       const projectClearance = new ProjectClearance();
       console.log("Generating pdf for project Clearance");
       generatedPdf = await projectClearance.generate(data);
