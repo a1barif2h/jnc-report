@@ -18,4 +18,4 @@ const AllSopsIds = {
     WORKPERMIT: 198
 }
 
-module.exports = {AllSopsIds};
+module.exports= {AllSopsIds};

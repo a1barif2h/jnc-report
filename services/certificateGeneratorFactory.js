@@ -14,7 +14,7 @@ const SampleExportPermit=require("../pdf_generators/SampleExportPermit");
 const SampleImportPermit=require("../pdf_generators/SampleImportPermit");
 const Occupancy=require("../pdf_generators/Occupancy");
 const WorkPermit=require("../pdf_generators/WorkPermit");
-const allSopsIds=require("../shared/constants/AllSopsIds")
+const allSopsIds=require("../shared/constants/AllSopsIds");
 // method()
 //    switch
 //       case Project Clearance
