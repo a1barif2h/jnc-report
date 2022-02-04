@@ -18,10 +18,10 @@ variables:
   servicePort: 80
 
   # target container port
-  serviceTargetPort: 80
+  serviceTargetPort: 5010
 
   # app buil image
-  imageRepository: beza-cert-service
+  imageRepository: devpentabd/beza-cert-service
 
 
   #auto scaling config
