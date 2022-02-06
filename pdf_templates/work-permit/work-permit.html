@@ -1,0 +1,480 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Permit</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .mainContainer {
+        margin: 0rem auto;
+        padding: 30px;
+        position: relative;
+        z-index: 5;
+      }
+
+      .mainContainer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url("https://media.discordapp.net/attachments/892299770004115466/909682786217123930/logo.png?width=609&height=609");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 450px;
+        width: 100%;
+        height: 110%;
+        opacity: 0.1;
+        z-index: 10;
+      }
+
+      header {
+        display: -webkit-flex;
+        display: flex;
+        align-items: -webkit-box;
+        align-items: -moz-box;
+        align-items: -ms-flexbox;
+        align-items: -webkit-flex;
+        align-items: center;
+        justify-content: -webkit-box;
+        justify-content: -moz-box;
+        justify-content: -ms-flexbox;
+        justify-content: -webkit-flex;
+        justify-content: space-between;
+        margin-left: 1.2rem;
+      }
+
+      header img {
+        width: 44%;
+      }
+      header .header-bar-code img {
+        width: 30%;
+      }
+
+      .pageBreak {
+        page-break-after: always;
+      }
+
+      /* start main css content from here  */
+      .container {
+        width: 95%;
+        margin: 0 auto;
+      }
+
+      .container p {
+        font-size: 7px !important;
+      }
+
+      .application-date {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        margin: 0.75rem 0rem;
+        font-weight: bold;
+      }
+
+      .subject {
+        margin: 0.75rem 0rem !important;
+      }
+
+      .subject b {
+        display: block;
+        font-size: 7px;
+        line-height: 1.9;
+      }
+
+      .subject .sub {
+        font-size: 7.5px;
+        margin: 0.4rem 0rem;
+      }
+
+      .application-text p {
+        font-size: 7.5px !important;
+        line-height: 1.8;
+        margin: 0.75rem 0rem;
+      }
+
+      table.GeneratedTable {
+        background-color: #ffffff;
+        border-collapse: collapse;
+        margin: 0 auto !important;
+      }
+
+      table.GeneratedTable td,
+      table.GeneratedTable th {
+        border: 1px solid black;
+      }
+
+      table.GeneratedTable thead {
+        background-color: #ffffff;
+      }
+
+      /* customize table */
+
+      .second-page {
+        margin-top: 2.5rem;
+      }
+
+      .child-td {
+        padding: 0rem !important;
+        border: none !important;
+      }
+
+      .child-td tr {
+        text-align: center;
+      }
+
+      .child-tbody td {
+        padding: 1rem 0rem !important;
+      }
+
+      th {
+        font-size: 6.8px;
+      }
+
+      td {
+        font-size: 6.5px;
+      }
+
+      .first-th {
+        width: 20% !important;
+      }
+
+      .second-th {
+        width: 15% !important;
+      }
+
+      .first-td {
+        text-align: center;
+        line-height: 2;
+      }
+
+      .un-order {
+        margin-top: 1rem !important;
+      }
+
+      .un-order li {
+        font-size: 7px !important;
+        line-height: 1.9 !important;
+        margin-top: 0.4rem;
+      }
+
+      footer ol {
+        margin-top: 0.5rem;
+      }
+
+      footer {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: center;
+        width: 55% !important;
+        margin-top: 2.5rem;
+      }
+
+      footer ol li {
+        font-size: 7px;
+        line-height: 1.5;
+        margin-top: 0.4rem;
+      }
+
+      .signature {
+        text-align: center !important;
+        line-height: 1.5 !important;
+      }
+
+      .signature small {
+        display: block;
+        font-size: 6px !important;
+      }
+
+      .signature img {
+        width: 40% !important;
+        border-bottom: 1px solid black;
+      }
+
+      .signature p {
+        font-size: 7px;
+        font-weight: bold;
+      }
+    </style>
+  <script async="" src="/cdn-cgi/bm/cv/669835187/api.js"></script></head>
+
+  <body>
+    <div class="mainContainer pagebreak">
+      <header>
+        
+        <div class="header-img">
+            <div class="header-logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
+                    alt="" />
+            </div>
+            <div class="header-bar-code">
+                {{barcode}}
+                <!-- <img src="{{barcode}}" alt="" /> -->
+            </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="application-date">
+          <p>File No: {{trackingId}}</p>
+          <p>Date: {{applicationDate}}</p>
+        </div>
+
+        <div class="subject">
+          <b>Managing Director,</b>
+          <b>MEGHNA PVC LIMITED</b>
+          <b>Plot# 19, 20, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31, 33, 34, 35,
+            36, 37,</b>
+          <b>38, 39 (Unit-1), 1,2,3,4,5,6 (Unit-2)</b>
+          <b>{{economicZone}}</b>
+          <b>Sonargaon, Narayanganj</b>
+          <b class="sub">Subject: Work Permit for Foreign National.</b>
+        </div>
+        <div style="margin: 0.75rem 0rem">
+          <p>Dear Sir,</p>
+        </div>
+
+        <div class="application-text">
+          <p>
+            With reference to your applications received on 18 May, 2021 the
+            above subject, this is to inform you that according to the decision
+            of meeting held on 24 May, 2021 the Bangladesh Economic Zone
+            Authority (BEZA) has been pleased to issue work permit for the
+            following foreign national employed in your company / office for the
+            period shown against his name on the terms, conditions and
+            remuneration as shown below :
+          </p>
+        </div>
+
+        <div class="remunaration-box" style="margin-top: 0.75rem">
+          <!-- CSS Code: Place this code in the document's head (between the 'head' tags) -->
+          <style>
+            table.GeneratedTable {
+              width: 100%;
+              background-color: #ffffff;
+              border-collapse: collapse;
+              border-width: 1px;
+              border-color: #000000;
+              border-style: solid;
+              color: #000000;
+            }
+
+            table.GeneratedTable td,
+            table.GeneratedTable th {
+              border-width: 1px;
+              border-color: #000000;
+              border-style: solid;
+              padding: 5px;
+            }
+
+            table.GeneratedTable thead {
+              background-color: #ffffff;
+            }
+          </style>
+
+          <table class="GeneratedTable">
+            <thead>
+              <tr>
+                <th class="first-th">
+                  Name, Designation <br>
+                  Nationality and Passport No
+                </th>
+                <th class="second-th">Period of Work Permit</th>
+                <th class="third-th">Remuneration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="first-td">
+                  {{nameOfTheApplicant}} <br>
+                  {{nameOfThePostEmployedOfDesignation}}
+                  <br>
+                  {{passport}}
+                </td>
+                <td>1 years 0 months 0 days (with effect from: 2021-04-18)</td>
+                <td class="child-td">
+                  <!-- another table inside main table  -->
+
+                  <table class="GeneratedTable">
+                    <thead>
+                      <tr>
+                        <th>Payment</th>
+                        <th>Payable Locally</th>
+                        <th>Payable Abroad</th>
+                      </tr>
+                    </thead>
+                    <tbody class="child-tbody">
+                      <tr>
+                        <td>Monthly</td>
+                        <td>Basic Salary: USD 0</td>
+                        <td>Basic Salary: USD 0</td>
+                      </tr>
+                      <tr>
+                        <td>Monthly</td>
+                        <td>Conveyance: USD 0</td>
+                        <td>Conveyance: USD 0</td>
+                      </tr>
+                      <tr>
+                        <td>Monthly</td>
+                        <td>Overseas Allowance: USD 0</td>
+                        <td>Overseas Allowance: USD 0</td>
+                      </tr>
+                      <tr>
+                        <td>Monthly</td>
+                        <td>House Rent: USD 0</td>
+                        <td>House Rent: USD 0</td>
+                      </tr>
+                      <tr>
+                        <td>Monthly</td>
+                        <td>Medical Allowance: USD 0</td>
+                        <td>Medical Allowance: USD 0</td>
+                      </tr>
+                      <tr>
+                        <td>Monthly</td>
+                        <td>Entertain. Allowance: USD 0</td>
+                        <td>Entertain. Allowance: USD 0</td>
+                      </tr>
+                      <tr>
+                        <td>Monthly</td>
+                        <td>Annual Bonus: USD 0</td>
+                        <td>Annual Bonus: USD 0</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Others: N/A</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Remarks: N/A</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="mainContainer pagebreak">
+      <header>
+        <div class="header-logo">
+          <img style="width: 52%; margin-top: 0.8rem" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&amp;usqp=CAU" alt="">
+        </div>
+        <div class="header-bar-code">
+        {{barcode}}
+        </div>
+    
+        <div class="header-qr-code">
+        <img src="{{qrcode}}" alt="" />
+        </div>
+      </header>
+      <div class="container second-page">
+        <ol class="un-order">
+          <li>
+            The expenditure in this connection would be borne out of foreign
+            exchange remittance received from abroad. This condition in not
+            applicable in case of appointment of foreign nationals in Foreign
+            Bank, insurance, Airlines, Bangladeshi Company etc.
+          </li>
+          <li>
+            If your Company earns profit locally and wants to meet the necessary
+            expenditure of the company in Bangladesh with that profit, they can
+            apply to the Board with proper justification and sufficient
+            supporting documents for exemption of condition-1
+          </li>
+          <li>
+            Appointment of Bangladeshi national as per ratio i.e. One Foreign
+            national : Five Bangladeshi national [1:5] with suitable and
+            appropriate pay structure shall have to be ensured.
+          </li>
+          <li>
+            Income tax payable to the Government shall have to be deducted at
+            source and to be paid as per provisions of Bangladesh Government I.T
+            Ordinance 1984.
+          </li>
+          <li>
+            The Foreign national(s) is / are required to submit Income Tex
+            Certificate/Income Tax Exemption certificate according to the
+            provision of section 107 of Income Tex Ordinance, 1984 before the
+            concerned Income Tax office at the time of leaving Bangladesh as
+            notified in office memorandum File No.Zarabo/Kar-7/A:A:B:/16/2005/38
+            dated 18/03/2002 of the NBR.
+          </li>
+          <li>
+            The date of departure of the expatriate(s) Must be intimated to BEZA
+            within 7(seven) days from the date of expiry of the work permit. The
+            company will also be held responsible for the illegal
+            stay/employment of the foreign national, after expiry of the work
+            permit.
+          </li>
+          <li>
+            Ministry of Home Affairs will issue security clearance of the
+            expatriate after verification.
+          </li>
+          <li>
+            The foreign national shall have to be enlisted with Bangladesh Bank
+            under section 18(A)(in case of branch/liaison/representative office)
+            of the Foreign Exchange Act,1947.
+          </li>
+        </ol>
+
+        <footer>
+          <div>
+            <p style="font-size: 7px; font-weight: bold">
+              Copy for Information to
+            </p>
+
+            <ol style="list-style-type: decimal-leading-zero">
+              <li>
+                Security Services Division, Ministry of Home Affairs, Bangladesh
+                Secretariat, Dhaka
+              </li>
+              <li>
+                Public Security Division, Ministry of Home Affairs, Bangladesh
+                Secretariat, Dhaka
+              </li>
+              <li>Ministry of Foreign Affairs, Segunbagicha, Dhaka</li>
+              <li>
+                Ministry of Immigration and Passport, Sher-e-Bangla Nagar,
+                Agargaon,
+              </li>
+            </ol>
+          </div>
+          <div class="signature">
+            <h6>Yours faithfully</h6>
+            <img src="https://signaturely.com/wp-content/uploads/2020/04/unreadable-letters-signaturely.svg" alt="">
+            <div style="margin-top: 0.35rem; line-height: 2">
+              <p>Md. Moniruzzaman</p>
+              <p>General Manager (Investment Promotion)</p>
+              <small>BEZA Executive Board</small>
+              <small>Bangladesh Economic Zones Authority (BEZA)</small>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  <script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d58adcc585d30e9',m:'QGpzvQKNvlXqG_qG3glzMWcLosDt1j.RE.AzGl7WOV8-1643524512-0-AT3qEpYbY05x/dnhBsRU/p7q2wxNDkq0e+/Ig0CQUm3Xp3lTMEl7Al1ia0SzSO/NdafB42bTD67SqBcvB9rjH0oEw8R0dmgzYAiYlXFIhRWF68UDijfK1bZdzzf5sNLbC5AzTtH6IdR0CrFzArpkH8az4ii+xatGQ0cZ/pmbhJleQjdCk0FzPEEwgcJ+4AUrqQ==',s:[0x9d540402ff,0x9bc64f9841],}})();</script>
+</body>
+</html>

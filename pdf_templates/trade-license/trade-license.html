@@ -138,6 +138,9 @@
         margin-top: 2.5rem;
         width: 40%;
       }
+      header .header-bar-code img {
+        width: 30%;
+      }
 
       .application-ambassador .signature img {
         margin-left: 3.2rem;
@@ -160,23 +163,20 @@
             alt=""
           />
         </div>
-        <div class="header-bar-code">
-          <img
-            src="https://us.123rf.com/450wm/koblizeek/koblizeek2001/koblizeek200100047/138111817-barcode-vector-icon-bar-code-for-web-app-ui-design-isolated-illustration-.jpg?ver=6"
-            alt=""
-          />
-        </div>
+        <!-- <div class="header-bar-code">
+          {{barcode}}
+      </div> -->
       </header>
       <main>
         <div class="application-date">
           <div>
-            <p>License No.: TL-00011979</p>
-            <p>Previous TL No.:</p>
+            <p>License No.: {{trackingId}}</p>
+            <p>Previous TL No.:{{}}</p>
             <!-- found no field for these two in the jason -->
           </div>
           <div>
-            <p>Date of Issuance: 26 September, 2021</p>
-            <p>Valid Till : 2022-09-26 09:46:01</p>
+            <p>Date of Issuance: {{applicationDate}}</p>
+            <p>Valid Till : {{}}</p>
             <!-- found no field for Issuance date in the jason -->
           </div>
         </div>
@@ -226,7 +226,7 @@
             <p>: &nbsp; {{passportNumber}}</p>
             <p>: &nbsp; {{officeAddress}}</p>
             <p>: &nbsp; {{nameOfBusiness}}</p>
-            <p>: &nbsp; 22-09-26 09:46:01</p>
+            <p>: &nbsp; {{expiryDate}}</p>
           </div>
         </div>
 
