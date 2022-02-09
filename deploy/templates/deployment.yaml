@@ -21,6 +21,6 @@ spec:
           image: "{{ .Values.variables.imageRepository }}:{{ .Values.variables.imageAppVersion  | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.variables.imagePullPolicy }}
           ports:
-            - containerPort: 5010
+            - containerPort: {{ .Values.variables.serviceTargetPort}}
       imagePullSecrets:
-        - name: regcred
+        - name: {{ .Values.variables.imagePullSecrets}}

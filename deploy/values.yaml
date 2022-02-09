@@ -1,29 +1,18 @@
-
 variables:
-
-  hostName: beza-cert-service.svc.cluster.oss
-
-  # app version, changing version will auto deploy the app to current version
-
   imageAppVersion: "0.0.1"
-
-  # increase this when you need scale up
   replicaCount: 1
 
+  imageRepository: devpentabd/beza-cert-service
   imagePullPolicy: IfNotPresent
 
-  serviceType: ClusterIP
-
-  # service port, this provide traffic to ingress within this port
+  hostName: beza-cert-service.svc.cluster.oss
+  serviceType: NodePort
   servicePort: 80
-
-  # target container port
+  #servicePort: 443
   serviceTargetPort: 5010
+  nodePort: 30101
 
-  # app buil image
-  imageRepository: devpentabd/beza-cert-service
-
-
+  imagePullSecrets: regcred
   #auto scaling config
   #autoScalingEnabled: 0
 
@@ -34,4 +23,3 @@ variables:
   #autoScalingTargetCPUUtilizationPercentage: 80
 
   #autoScalingTargetMemoryUtilizationPercentage: 80
-
