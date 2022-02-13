@@ -10,65 +10,94 @@ const VisaAssistance = require("../pdf_generators/VisaAssistance");
 const LandUsePlan = require("../pdf_generators/LandUsePlan");
 const CommercialOperation = require("../pdf_generators/CommercialOperation");
 const TradeLicenseRenew = require("../pdf_generators/trade-license-renew");
-
+const SampleExportPermit=require("../pdf_generators/SampleExportPermit");
+const SampleImportPermit=require("../pdf_generators/SampleImportPermit");
+const Occupancy=require("../pdf_generators/Occupancy");
+const WorkPermit=require("../pdf_generators/WorkPermit");
+const allSopsCodes=require("../shared/constants/AllSopsCodes");
 // method()
 //    switch
 //       case Project Clearance
 //           return new ProjectClearance();
 
+
 const generate = async (data) => {
-  let title = data.title;
+  let sopCode = data.sopCode;
   let generatedPdf = null;
-  switch (title) {
-    case "Project Clearance":
+  const AllSopsCodes=allSopsCodes.AllSopsCodes;
+  console.log("sopId:   "+sopCode);
+  console.log("allSopsCodes.EXPORTPERMIT:   "+JSON.stringify(AllSopsCodes));
+  console.log("allSopsCodes.EXPORTPERMIT:   "+AllSopsCodes.EXPORT_PERMIT.value);
+  switch (sopCode) {
+    case AllSopsCodes.PROJECT_CLEARANCE.value:
       const projectClearance = new ProjectClearance();
       console.log("Generating pdf for project Clearance");
       generatedPdf = await projectClearance.generate(data);
       break;
-    case "Import Permit":
+    case AllSopsCodes.IMPORT_PERMIT.value:
       const importPermit = new ImportPermit();
       console.log("Generating pdf for Import Permit");
       generatedPdf = await importPermit.generate(data);
       break;
-    case "Trade License":
+    case AllSopsCodes.TRADE_LICENSE.value:
       const tradeLicense = new TradeLicense();
       console.log("Generating pdf for Trade License");
       generatedPdf = await tradeLicense.generate(data);
       break;
-    case "Local Sales Permit":
+    case AllSopsCodes.LOCAL_SALES_PERMIT.value:
       const localSalesPermit = new LocalSalesPermit();
       console.log("Generating pdf for local Sales Permit");
       generatedPdf = await localSalesPermit.generate(data);
       break;
-    case "Export Permit":
+    case AllSopsCodes.EXPORT_PERMIT.value:
       const exportPermit = new ExportPermit();
       console.log("Generating pdf for Export Permit");
       generatedPdf = await exportPermit.generate(data);
       break;
-    case "Visa Recommendation":
+    case AllSopsCodes.VISA_RECOMMENDATION.value:
       const visaRecommendation = new VisaRecommendation();
       console.log("Generating pdf for Visa Recommendation");
       generatedPdf = await visaRecommendation.generate(data);
       break;
-    case "Visa Assistance":
+    case AllSopsCodes.VISA_ASSISTANCE.value:
       const visaAssistance = new VisaAssistance();
       console.log("Generating pdf for Visa Assistance");
       generatedPdf = await visaAssistance.generate(data);
       break;
-    case "Land Use Plan":
+    case AllSopsCodes.LAND_USE_PLAN.value:
       const landUsePlan = new LandUsePlan();
       console.log("Generating pdf for Land Use Plan");
       generatedPdf = await landUsePlan.generate(data);
       break;
-    case "Commercial Operation":
+    case AllSopsCodes.COMMERCIAL_OPERATION.value:
       const commercialOperation = new CommercialOperation();
       console.log("Generating pdf for Commercial Operation");
       generatedPdf = await commercialOperation.generate(data);
       break;
-    case "Trade License Renew":
+    case AllSopsCodes.TRADE_LICENSE_RENEW.value:
       const tradeLicenseRenew = new TradeLicenseRenew();
-      console.log("Generating pdf for Trade License Renew");
+      console.log("Generating pdf for work permit");
       generatedPdf = await tradeLicenseRenew.generate(data);
+      break;
+    case AllSopsCodes.SAMPLE_IMPORT_PERMIT.value:
+      const sampleImportPermit = new SampleImportPermit();
+      console.log("Generating pdf for Sample Import Permit");
+      generatedPdf = await sampleImportPermit.generate(data);
+      break;
+    case AllSopsCodes.SAMPLE_EXPORT_PERMIT.value:
+      const sampleExportPermit = new SampleExportPermit();
+      console.log("Generating pdf for Sample Export Permit");
+      generatedPdf = await sampleExportPermit.generate(data);
+      break;
+    case AllSopsCodes.OCCUPANCY.value:
+      const occupancy = new Occupancy();
+      console.log("Generating pdf for Occupancy");
+      generatedPdf = await occupancy.generate(data);
+      break;
+    case AllSopsCodes.WORK_PERMIT.value:
+      const workPermit = new WorkPermit();
+      console.log("Generating pdf for Work Permit");
+      generatedPdf = await workPermit.generate(data);
       break;
     default:
       break;

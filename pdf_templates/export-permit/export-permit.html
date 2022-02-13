@@ -61,6 +61,9 @@
     header img {
       width: 44%;
     }
+    header .header-bar-code img {
+        width: 30%;
+      }
 
     .import-permit {
       height: 1.6rem;
@@ -241,24 +244,12 @@
       page-break-after: always;
     }
   </style>
+  <script async="" src="/cdn-cgi/bm/cv/669835187/api.js"></script>
 </head>
 
 <body>
   <div class="mainContainer pagebreak">
-    <header>
-      <div class="header-logo">
-        <img style="width: 52%; margin-top: .8rem;"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
-          alt="" />
-      </div>
-      <div class="header-bar-code">
-        {{barcode}}
-      </div>
-
-      <div class="header-qr-code">
-        <img src="{{qrcode}}" alt="" />
-      </div>
-    </header>
+    {{headerHere}}
     <main>
       <div class="">
         <div class="import-permit">
@@ -282,27 +273,27 @@
               </div>
               <div>
                 <small>Export Permit Type:</small>
-                <p>{{exportPermitType}}</p>
+                <p>{{importPermitType}}</p>
               </div>
               <div>
                 <small>Carrier Name:</small>
-                <p>{{carrierType}}</p>
+                <p>{{typeOfCarrier}}</p>
               </div>
               <div>
                 <small>Economic Zone :</small>
-                <p>{{economicZoneName}}</p>
+                <p>{{economicZone}}</p>
               </div>
               <div>
                 <small>Undertaking No.:</small>
-                <p>CEOL-Export-317</p>
+                <p>{{undertakingNo}}</p>
               </div>
               <div>
                 <small>Invoice/ Vendor Reference N:</small>
-                <p>{{invoiceVendorReferenceNo}}</p>
+                <p>{{invoiceVendorRefDate}}</p>
               </div>
               <div>
                 <small>CM Value:</small>
-                <p>{{bLNo}}</p>
+                <p>{{fobValue}}</p>
               </div>
               <div>
                 <small>Port of Destination:</small>
@@ -324,7 +315,7 @@
             <div class="right">
               <div>
                 <small>Carrier Type:</small>
-                <p>{{carrierType}}</p>
+                <p>{{typeOfCarrier}}</p>
               </div>
               <div>
                 <small>Name of Developer:</small>
@@ -352,7 +343,7 @@
               </div>
               <div>
                 <small>Place of Load</small>
-                <p>{{exportFromPortOfLoading}}</p>
+                <p>{{importFromPortOfLoading}}</p>
               </div>
               <div>
                 <small>Destination Zone:</small>
@@ -365,16 +356,11 @@
             </div>
           </div>
         </div>
-
-
         {{firstMaterialsDetails}}
-
-
-
     </main>
   </div>
   {{remainingMaterialsDetails}}
   </div>
 </body>
-
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d58ac9f0b8339ea',m:'_K7KD7gIpiY9sOPzWJ_jnzsD72WbonLZykT3dR7kkto-1643524464-0-ARwR/byNeKDRb2HYjKEuMRv1tLHmFHjn/+iCC5zipduqhnhm4b5ZBTWhC1B0sITFvS9nPiRiQJUXwFnowQP0OYXgaRrFj3X3j2chM3SdACsEurBU3KXyt0kOtwBL/O4er4BiUxaLCr2a7LCnZ7K/NumyFF2mh7BrI+0sXCHLrAkCh0sIijrAGHAdEbzI9vVkJw==',s:[0x24dd05e6fc,0x83352a82ca],}})();</script>
 </html>

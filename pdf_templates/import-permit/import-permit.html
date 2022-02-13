@@ -70,6 +70,9 @@
     header img {
       width: 44%;
     }
+    header .header-bar-code img {
+        width: 30%;
+      }
 
     .import-permit {
       height: 1.6rem;
@@ -256,8 +259,8 @@
           <h3>IMPORT PERMIT</h3>
         </div>
         <div class="export-date">
-          <b>File no: EP-00011910</b>
-          <b>Date: 06 Jun 2021</b>
+          <p>File no: {{trackingId}}</p>
+          <p>Date: {{applicationDate}}</p>
         </div>
 
         <div class="general">
@@ -269,7 +272,7 @@
             <div class="left">
               <div>
                 <small>Name of the Comapany</small>
-                <p>{{proposedProjectCompanyNameWhichWillCarryOutTheBusiness}}</p>
+                <p>{{applyingFirmOrCompany}}</p>
               </div>
               <div>
                 <small>Import Permit Type:</small>
@@ -293,7 +296,7 @@
               </div>
               <div>
                 <small>Source/ Destination Country:</small>
-                <p>{{Source Country :}}</p>
+                <p>{{sourceCountry}}</p>
               </div>
               <div>
                 <small>Invoice/ Vendor Ref. Dat :</small>
@@ -305,7 +308,7 @@
               </div>
               <div>
                 <small>B/L, A/W, T.C No.</small>
-                <p>{{bLNo}}</p>
+                <p>{{BlNo}}</p>
               </div>
             </div>
             <div class="right">
@@ -319,7 +322,7 @@
               </div>
               <div>
                 <small>Carrier Passport No :</small>
-                <p></p>
+                <p>{{passport}}</p>
               </div>
               <div>
                 <small>Carrier Passport Validity</small>
@@ -327,7 +330,7 @@
               </div>
               <div>
                 <small>Undertaking Date:</small>
-                <p>{{commonField_undertakingDate}}</p>
+                <p>{{undertakingDate}}</p>
               </div>
               <div>
                 <small>Import From/ Port of Landin :</small>

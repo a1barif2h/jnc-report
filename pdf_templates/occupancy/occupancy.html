@@ -1,0 +1,340 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Certificate</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        margin: 0rem auto;
+        padding: 30px;
+        font-size: 8px;
+        position: relative;
+        z-index: 5;
+      }
+
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url("https://media.discordapp.net/attachments/892299770004115466/909682786217123930/logo.png?width=609&height=609");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 450px;
+        width: 100%;
+        height: 110%;
+        opacity: 0.2;
+        z-index: 10;
+      }
+
+      .secondPageContainer {
+        /* border: 1px solid rgb(0, 0, 0);
+        width: 210mm;
+        height: 297.5mm; */
+        margin: 0rem auto;
+     
+        font-size: 8px;
+        position: relative;
+        z-index: 5;
+      }
+      .secondPageContainer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 450px;
+        width: 100%;
+        height: 80%;
+        opacity: 0.1;
+        z-index: 10;
+      }
+
+            .import-permit {
+        height: 1.6rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background-color: red;
+        font-size: 8px;
+        letter-spacing: 0.5px;
+        margin-top: 0.8rem;
+        color: white;
+      }
+
+
+      .header-img{
+         display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+        display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+        display: -ms-flexbox; /* TWEENER - IE 10 */
+        display: -webkit-flex; /* NEW - Chrome */
+        display: flex;
+        align-items: -webkit-box;
+        align-items: -moz-box;
+        align-items: -ms-flexbox;
+        align-items: -webkit-flex;
+        align-items: center;
+        justify-content: -webkit-box;
+        justify-content: -moz-box;
+        justify-content: -ms-flexbox;
+        justify-content: -webkit-flex;
+        justify-content: space-evenly;
+}
+
+      header .header-bar-code img {
+        width: 30%;
+      }
+
+      .application-date {
+        margin: .6rem 0rem;
+        font-weight: bolder;
+        display: -webkit-box;
+         display: -ms-flexbox;
+         display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+
+      }
+
+      .application-info b {
+        display: block;
+      
+      }
+
+      .application-info p {
+          font-size: 6.5px;
+      }
+
+      .application-info {
+        width: 50%;
+        line-height: 2;
+      }
+
+      .application-info b {
+        line-height: 1.6;
+      }
+
+      .application-subject {
+        margin: .5rem 0rem;
+      }
+
+
+      .application-header-text {
+        margin: .4rem 0rem;
+        line-height: 1.5;
+      }
+
+      .application-header-text b {
+        font-size: 8px;
+      }
+
+  
+      .application-list li {
+        margin-top: 0.3rem;
+        line-height: 1.5;
+      }
+
+
+      .application-list p {
+        margin-top: 0.5rem;
+        line-height: 1.74;
+      }
+
+      footer {
+        display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+        display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+        display: -ms-flexbox; /* TWEENER - IE 10 */
+        display: -webkit-flex; /* NEW - Chrome */
+        display: flex;
+        align-items: -webkit-box;
+        align-items: -moz-box;
+        align-items: -ms-flexbox;
+        align-items: -webkit-flex;
+        align-items: center;
+        justify-content: -webkit-box;
+        justify-content: -moz-box;
+        justify-content: -ms-flexbox;
+        justify-content: -webkit-flex;
+        justify-content: space-evenly;
+        width: 100%;
+      }
+
+      footer .qr-code img {
+        width: 30%;
+        margin-left: 3rem;
+      }
+
+      footer .bar-code img {
+        width: 30%;
+        margin-left: 6rem;
+      }
+
+      footer .signature img {
+        width: 32%;
+        margin-left: 3.5rem;
+      }
+
+      footer .qr-code ol {
+        list-style-type: lower-alpha;
+        margin-left: 1.6rem;
+        line-height: 1.8;
+      }
+
+      footer .signature div {
+        line-height: 1.8;
+      }
+
+      footer .signature .desk-user {
+        font-weight: bold;
+        border-top: 1px solid black;
+        width: 48%;
+        margin: 0 auto;
+        
+      }
+
+      .application-list {
+        list-style: none;
+      }
+
+      .terms-condition small {
+        display: block;
+        margin: 6px 10px;
+        font-size: 8px;
+      }
+
+      .building-information {
+        margin-left: 10px;
+      }
+
+    </style>
+  <script async="" src="/cdn-cgi/bm/cv/669835187/api.js"></script></head>
+  <body>
+    <div class="container container-page-break">
+      <header>
+        <div class="header-img">
+            <div class="header-logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
+                    alt="" />
+            </div>
+            <div class="header-bar-code">
+                {{barcode}}
+                <!-- <img src="{{barcode}}" alt="" /> -->
+            </div>
+        </div>
+        <div class="import-permit">
+                <h3>OCCUPANCY</h3>
+            </div>
+            <div class="application-date">
+            <p>Tracking no: {{trackingId}}</p>
+            <p>Date: {{applicationDate}}</p>
+            </div>
+            <div class="application-info">
+            <p>Building Permit No: {{approvalNoOfBuilding}}</p>
+            <p>Approval Building Permit Date: {{approvalNoOfBuildingPermitDate}}</p>
+            <p>Fire License No: 58.03.0000.007.34.001.19(Part-17)-8871/1(8)</p>
+            <p>Approval Fire License Date: 2019-08-22</p>
+            <p>Environmental Certificate No: 21-55555</p>
+            <p>Approval Environmental Certificate Date: 2021-02-25</p>
+            </div>
+            <div class="application-subject">
+            <b>Attention: Sakata Inx (Bangladesh) Private Limited</b>
+            </div>
+    </header>
+      <main>
+          <p class="application-header-text">
+           With reference to the above Permit and Certificate, BEZA-OSS Center of {{economicZone}} Limited conducted the Final
+Inspection on the day of 2021-08-25 12:30:00 and confirmed the building works approved under such Permit and Certificate have been
+completed in accordance with the approved plan and specification and the applied Building Code. Consequently, BEZA-OSS Center issue
+the Certificate here by to Sakata Inx (Bangladesh) Private Limited situated at the Name of {{economicZone}} Limited as
+under:
+          </p>
+        <div class="application-list">
+            <b>1. Terms and conditions for approval:</b>
+            <li>i. The certificate shall be valid only for the following building:</li>
+            <div class="terms-condition">
+              <small> a) Name of Economic Zone : Meghna Industrial Economic Zone Limited</small>
+                <small> b) Plot Number : Plot No. 17, 18 and 19, Meghna Industrial Economic Zone</small>
+             <small> c) Building Information:</small>
+             <div class="building-information">
+               <small>
+                 1) Land Area(sqm): 20241.7
+               </small>
+               <small>
+                 2) Building Area(sqm) : 7940
+               </small>
+               <small>
+                3) Total Floor Area(sqm) : 4930
+               </small>
+               <small>
+                4) Nature of Facility : Industry
+               </small>
+               <small>
+               5) Kind of Construction : permanent
+               </small>
+               <small>
+               6) Major Structure /storey: 1
+               </small>
+               <small>
+               7) Number of Building : {{approvalNoOfBuilding}}
+               </small>
+             </div>
+            </div>
+           <li>ii. In case you make any modification by adding/extending/reducing or in any other form to the approved design or plan of the building
+under this Occupation Certificate, you shall be required to apply for a new Building Permit and Fire License to BEZA-OSS Center.</li>
+           <li>iii. This Occupation Certificate is issued based on the result of Final Inspection for building works on the day of {{requestDateForTimeForInspection}} and
+the issuance of Fire License No. 58.03.0000.007.34.001.19(Part-17)-8871/1(8) issued by the FSCD on the day of 2019-08-22.</li>
+           
+           <li>iv. You shall submit “Fire safety Plan” with other required documents to BEZA-OSS Center within thirty (30) days from the issued date of
+this Occupation Certificate.</li>
+           
+           <li>v. You shall obtain “Approval of Commercial Operation” from the BEZA-OSS Center before commencement of operation of the factory
+under this Occupation Certificate.</li>
+           
+           <li>vi. All future correspondence in terms of this Occupation Certificate shall be addressed to BEZA-OSS Center.</li>
+           
+
+
+        </div>
+      </main>
+    </div>
+    <div class="secondPageContainer">
+
+        <footer>
+          <div class="qr-code">
+            <img src="data:image/png;base64,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" alt="">
+          
+  
+          </div>
+          <div class="bar-code">
+            <img src="https://us.123rf.com/450wm/koblizeek/koblizeek2001/koblizeek200100047/138111817-barcode-vector-icon-bar-code-for-web-app-ui-design-isolated-illustration-.jpg?ver=6" alt="">
+          </div>
+          <div class="signature">
+           <h3 style="text-align: center;"> Yours faithfully</h3>
+            <img src="https://signaturely.com/wp-content/uploads/2020/04/unreadable-letters-signaturely.svg" alt="">
+            <div class="desk-user">Desk User (RD3)</div>
+            <div style="font-weight: bolder; margin-left: 1.8rem;">Technical Support Executive</div>
+            <div style="min-width: 245px; margin: 0 auto;" "="">
+              Bangladesh Economic Zones Authority
+            </div>
+          </div>
+        </footer>
+    </div>
+  <script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d58ac9f0b8339ea',m:'_K7KD7gIpiY9sOPzWJ_jnzsD72WbonLZykT3dR7kkto-1643524464-0-ARwR/byNeKDRb2HYjKEuMRv1tLHmFHjn/+iCC5zipduqhnhm4b5ZBTWhC1B0sITFvS9nPiRiQJUXwFnowQP0OYXgaRrFj3X3j2chM3SdACsEurBU3KXyt0kOtwBL/O4er4BiUxaLCr2a7LCnZ7K/NumyFF2mh7BrI+0sXCHLrAkCh0sIijrAGHAdEbzI9vVkJw==',s:[0x24dd05e6fc,0x83352a82ca],}})();</script>
+
+</body>
+</html>
