@@ -16,7 +16,7 @@ const pdf = require("./PdfGenerator");
 const options = { format: "A4", orientation: "portrait" };
 
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
-class ImportPermit {
+class LocalSalesPermit {
   constructor() {}
 
   async generate(body) {
@@ -62,4 +62,4 @@ class ImportPermit {
   }
 }
 
-module.exports = ImportPermit;
+module.exports = LocalSalesPermit;
