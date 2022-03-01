@@ -70,14 +70,14 @@ const generateCertificate = async (req) => {
                        async res=>{
                             const canvas = {}
                             const appId = req.body.applicationId;
-                            // const encryptedUserSopId = cryptr.encrypt(appId);
-                            // console.log(
-                            //   "encryptedUserSopId:  " + encryptedUserSopId
-                            // );
-                            // console.log(
-                            //   "decryptedUserSopId:  " +
-                            //     cryptr.decrypt(encryptedUserSopId)
-                            // );
+                            const encryptedUserSopId = cryptr.encrypt(appId);
+                            console.log(
+                              "encryptedUserSopId:  " + encryptedUserSopId
+                            );
+                            console.log(
+                              "decryptedUserSopId:  " +
+                                cryptr.decrypt(encryptedUserSopId)
+                            );
                             const url =
                               `${config.backendApi.bezaServiceBaseUrl}:${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=` +
                               appId;
