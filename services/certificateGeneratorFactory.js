@@ -27,7 +27,6 @@ const generate = async (data) => {
   const AllSopsCodes=allSopsCodes.AllSopsCodes;
   console.log("sopId:   "+sopCode);
   console.log("allSopsCodes.EXPORTPERMIT:   "+JSON.stringify(AllSopsCodes));
-  console.log("allSopsCodes.EXPORTPERMIT:   "+AllSopsCodes.EXPORT_PERMIT.value);
   switch (sopCode) {
     case AllSopsCodes.PROJECT_CLEARANCE.value:
       const projectClearance = new ProjectClearance();
