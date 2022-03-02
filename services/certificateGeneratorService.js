@@ -9,6 +9,7 @@ const document = new DOMImplementation().createDocument('http://www.w3.org/1999/
 const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 const config = require("../config/config");
 const fs = require("fs");
+const encryption = require("../util/encryption");
 const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
 // const Cryptr = require("cryptr");
@@ -69,7 +70,8 @@ const generateCertificate = async (req) => {
                     .getFormValueByApplicationID(req.body.applicationId).then(
                        async res=>{
                             const canvas = {}
-                            const appId = req.body.applicationId;
+                            const appId = encryption.encrypt(""+req.body.applicationId); 
+                            // req.body.applicationId;
                             // const encryptedUserSopId = cryptr.encrypt(appId);
                             // console.log(
                             //   "encryptedUserSopId:  " + encryptedUserSopId
