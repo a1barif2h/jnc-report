@@ -80,8 +80,9 @@ const generateCertificate = async (req) => {
                             //   "decryptedUserSopId:  " +
                             //     cryptr.decrypt(encryptedUserSopId)
                             // );
+                            colonOrNot = config.backendApi.bezaServiceFrontEndPort == "" ? "" : ":";
                             const url =
-                              `${config.backendApi.bezaServiceBaseUrl}:${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=` +
+                              `${config.backendApi.bezaServiceBaseUrl}${colonOrNot}${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=` +
                               appId;
                             
                             
