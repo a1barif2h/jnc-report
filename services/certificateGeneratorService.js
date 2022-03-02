@@ -12,8 +12,8 @@ const fs = require("fs");
 const encryption = require("../util/encryption");
 const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
-const Cryptr = require("cryptr");
-const cryptr = new Cryptr(process.env.SECRET_KEY);
+// const Cryptr = require("cryptr");
+// const cryptr = new Cryptr(process.env.SECRET_KEY);
 // Server will call this File
 // bezaservicegateway
 // method(sopCode)
