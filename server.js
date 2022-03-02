@@ -62,7 +62,6 @@ app.post(
     res.setHeader("Content-disposition", "attachment; filename=" + pdfFileName); //file name should contain nid 10 digit
     res.setHeader("Content-type", "application/pdf");
     res.set("pdfFileName", pdfFileName);
-
     const vehicleRegistration = new VehicleRegistration();
     vehicleRegistration.generate(res, req.body);
   }

@@ -87,8 +87,28 @@ const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke
 }
 
 
+const getCommonFileds= async function (investorId){
+    const commonFiledsUrl =
+    config.backendApi.bezaServiceBaseUrl+  ":" +
+    config.backendApi.bezaServicePort+
+    config.backendApi.bezaServiceCommmonFields
+
+    
+   let res = await axios
+   .get(commonFiledsUrl, {
+    params: {
+      userId: investorId
+    }})
+   .then((response) => response.data)
+   .catch((error) => {
+     console.log(error);
+   });
+}
+
+
 module.exports = {
   getFormValueByApplicationID,
   upload,
-  saveCertificateInfo
+  saveCertificateInfo,
+  getCommonFileds
 };

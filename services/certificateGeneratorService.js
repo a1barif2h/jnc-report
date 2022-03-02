@@ -70,8 +70,8 @@ const generateCertificate = async (req) => {
                     .getFormValueByApplicationID(req.body.applicationId).then(
                        async res=>{
                             const canvas = {}
-                            const appId = encryption.encrypt(""+req.body.applicationId); 
-                            // req.body.applicationId;
+                            const appId = encryption.encrypt(""+req.body.applicationId);
+                           // req.body.applicationId;
                             // const encryptedUserSopId = cryptr.encrypt(appId);
                             // console.log(
                             //   "encryptedUserSopId:  " + encryptedUserSopId
@@ -87,7 +87,7 @@ const generateCertificate = async (req) => {
                             
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));
 
-                            await generateBarcode(res.uuid).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
+                            await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
                             
                             if(req.body.isRevoke){
                                 res.formValue.backgroundImg = background_cancelled;
@@ -95,9 +95,16 @@ const generateCertificate = async (req) => {
                             else{
                                 res.formValue.backgroundImg = background_image;
                             }
-                            res.formValue.trackingId = res.uuid;
+                            res.formValue.trackingId = res.trackingId;
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(res.createdAt);
                             userSopById = res;
+                            /**
+                             * merging the common fields
+                             */
+                            const commonFieldValue=bezaServiceGateway.getCommonFileds(req.body.investorId);
+                            let commonFieldValueKeys = Object.keys(commonFieldValue);
+                            commonFieldValueKeys.forEach(key=>res.formValue[key] = commonFieldValueKeys[key])
+
                             bufferResponse = certificateGeneratorFactory.generate(res);
                             return bufferResponse;
                         }
