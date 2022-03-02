@@ -17,8 +17,8 @@ class CertificateService {
   getFormValue(req) {
     let formValueUrl =
       config.backendApi.bezaServiceBaseUrl +
-      ":" +
-      config.backendApi.bezaServicePort +
+      (config.backendApi.bezaServicePort == "" ? "" : (":" +
+      config.backendApi.bezaServicePort)) +
       config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
       req.body.applicationId;
     const data = axios

@@ -1,0 +1,13 @@
+{
+    "backendApi": {
+      "bezaServiceBaseUrl": "http://10.50.60.13",
+      "bezaServicePort": "8585",
+      "bezaServiceFrontEndPort": "",
+      "mayanCertificateUploadPath": "/beza-service/api/v1/private/mayan/upload-document/",
+      "bezaServiceGetFormValuesByApplicationIdPath": "/beza-service/api/v1/private/user-sops/",
+      "bezaServiceGetCertificateInfoPath": "/beza-service/api/v1/private/user-certificate/",
+      "analysisRequestServicePath": "/query-service/api/v1/private/discovery/search-data/",
+      "analysisReportDownloadPdfUrlPath": "query-service/api/v1/private/analysis/report"
+    }
+  }
+  
