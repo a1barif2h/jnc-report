@@ -7,11 +7,11 @@ const axios = require("axios");
 class CertificateService {
   constructor() {}
 
-  pdfFileName = "project-clearance";
+  // pdfFileName = "project-clearance";
 
-  formValue = null;
+  // formValue = null;
 
-  generatedPdf = null;
+  // generatedPdf = null;
   
 
   getFormValue(req) {
