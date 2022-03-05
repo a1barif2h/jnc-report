@@ -163,9 +163,9 @@
             alt=""
           />
         </div>
-        <!-- <div class="header-bar-code">
+        <div class="header-bar-code">
           {{barcode}}
-      </div> -->
+      </div>
       </header>
       <main>
         <div class="application-date">
@@ -176,7 +176,7 @@
           </div>
           <div>
             <p>Date of Issuance: {{applicationDate}}</p>
-            <p>Valid Till : {{}}</p>
+            <p>Valid Till : {{endTime}}</p>
             <!-- found no field for Issuance date in the jason -->
           </div>
         </div>
@@ -191,7 +191,7 @@
           </div>
           <div>
             <b>: &nbsp; {{nameOfCompany}}</b>
-            <b>: &nbsp; {{nameOfTheEconomicZone}}</b>
+            <b>: &nbsp; {{economicZone}}</b>
           </div>
         </div>
 
