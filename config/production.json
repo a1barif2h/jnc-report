@@ -3,6 +3,7 @@
         "bezaServiceBaseUrl": "http://dip-query-service",
         "bezaServicePort": "5005",
         "analysisRequestServicePath":"/query-service/api/v1/private/discovery/search-data/",
+        "bezaServiceCommmonFields": "/beza-service/api/v1/private/sop-common-fields",
         "analysisReportDownloadPdfUrlPath": "query-service/api/v1/private/analysis/report"
     }
 }
