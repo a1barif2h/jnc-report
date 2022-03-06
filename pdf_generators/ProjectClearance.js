@@ -9,7 +9,6 @@ const background_cancelled = fs.readFileSync('./pdf_templates/background_cancell
 class ProjectClearance {
     constructor() {
     }
-
     async generate(body) {
         // body.routePermitIssueDate = body.hasOwnProperty("routePermitIssueDate") ? body.routePermitIssueDate : "_";
         // body.routePermitExpDate = body.hasOwnProperty("routePermitExpDate") ? body.routePermitExpDate : "_";
