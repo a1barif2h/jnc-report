@@ -5,6 +5,12 @@ const pdf = require('./PdfGenerator');
 const options = {format: 'A4', "orientation": "portrait"};
 const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
+const replaceMaterialsInProjectClearance=require('../util/replaceMaterialsInProjectClearance')
+const materialsDesTemplate = fs.readFileSync(
+    "./pdf_templates/project-clearance/project-clearance-materials-description.html",
+    "utf8"
+);
+
 
 class ProjectClearance {
     constructor() {
@@ -20,7 +26,8 @@ class ProjectClearance {
             let exportTotal=body.exportTotal
             localTotal=(localTotal*100)/(localTotal+exportTotal)
             exportTotal=100-localTotal
-            
+            materialsDesTemplate=replaceMaterialsInProjectClearance.replaceAllMaterialsValue(body, materialsDesTemplate)
+            htmlTemplate.replaceAll('{{materialsDescription}}',(materialsDesTemplate||"-"))
             htmlTemplate.replaceAll('{{exportOrientedPercentage}}', (exportTotal || "-"))
             htmlTemplate.replaceAll('{{localOrientedPercentage}}', (localTotal || "-"))
             
