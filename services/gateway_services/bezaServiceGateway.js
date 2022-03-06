@@ -102,7 +102,8 @@ const getCommonFileds= async function (investorId){
    .catch((error) => {
      console.log(error);
    });
-   return res;
+   console.log("res[0].formValue:  "+JSON.stringify(res.userSopCommonFieldDomainModels[0].formValue))
+   return res.userSopCommonFieldDomainModels[0].formValue;
 }
 
 

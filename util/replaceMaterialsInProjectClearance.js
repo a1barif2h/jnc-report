@@ -3,18 +3,20 @@ const fs = require("fs");
 
 
 const templateEngine = require("./templateEngine");
-const replaceAllMaterialsValue=function(formValue, template){
-    var templateMaterials=template;
-    for(i=0;i<formValue.dataGrid1.length;i++){
-        templateMaterials=templateEngine.replacer(templateMaterials,formValue.dataGrid1[i])
-        templateMaterials=templateEngine.replacer(templateMaterials,formValue.dataGrid2[i])
-        templateMaterials=templateEngine.replacer(templateMaterials,formValue.dataGrid3[i])
-        templateMaterials=templateEngine.replacer(templateMaterials,formValue.dataGrid4[i])
-        templateMaterials=templateEngine.replacer(templateMaterials,formValue.dataGrid5[i])
-        templateMaterials=templateEngine.replacer(templateMaterials,formValue.dataGrid6[i])
-        templateMaterials+="\n"
-        templateMaterials+=template
-    }
+const replaceAllMaterialsValue=function(data, template){
+    template=templateEngine.replacer(template,data.formValue)
+    let templateMaterials=template;
+    
+    templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid1[0])
+    templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid2[0])
+    templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid3[0])
+    templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid4[0])
+    templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid5[0])
+    templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid6[0])
+    // for(i=0;i<data.formValue.dataGrid1.length;i++){
+    //     templateMaterials+="\n"
+    //     templateMaterials+=template
+    // }
     return templateMaterials
 }
 

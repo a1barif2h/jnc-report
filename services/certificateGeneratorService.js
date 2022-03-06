@@ -102,18 +102,19 @@ const generateCertificate = async (req) => {
                             /**
                              * merging the common fields
                              */
-                            const commonFieldValue=bezaServiceGateway.getCommonFileds(req.body.investorId);
-                            console.log("commonFieldValue:   "+JSON.stringify(commonFieldValue))
+                            const commonFieldValue=await bezaServiceGateway.getCommonFileds(req.body.investorId);
+                            console.log("\n\n\n\n\n\ncommonFieldValue:   "+JSON.stringify(commonFieldValue))
                             let commonFieldValueKeys = Object.keys(commonFieldValue);
-                            console.log("commonFieldValueKeys:   "+commonFieldValueKeys.toString())
+                            console.log("\n\n\n\n\n\ncommonFieldValueKeys:   "+commonFieldValueKeys.toString())
                             commonFieldValueKeys.forEach(key=>{
-                                console.log("key:     "+!res.formValue.keys.includes(key))
-                                if(!res.formValue.keys.includes(key)){
-                                    res.formValue[key] = commonFieldValue[key]   
+                                console.log("key:     "+key)
+                                if(key=="dataGrid1"){
+                                    console.log("\n\n\n"+commonFieldValue[key].length+"\n\n\n")
                                 }
+                                res.formValue[key] = commonFieldValue[key]   
                             })
 
-                            bufferResponse = certificateGeneratorFactory.generate(res);
+                            bufferResponse = await certificateGeneratorFactory.generate(res);
                             return bufferResponse;
                         }
                     ).then(

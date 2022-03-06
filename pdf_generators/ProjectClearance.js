@@ -1,12 +1,12 @@
 const { response } = require('express');
 const fs = require('fs');
-const htmlTemplate = fs.readFileSync('./pdf_templates/project-clearance/project-clearance.html', 'utf8');
+let htmlTemplate = fs.readFileSync('./pdf_templates/project-clearance/project-clearance.html', 'utf8');
 const pdf = require('./PdfGenerator');
 const options = {format: 'A4', "orientation": "portrait"};
 const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
 const replaceMaterialsInProjectClearance=require('../util/replaceMaterialsInProjectClearance')
-const materialsDesTemplate = fs.readFileSync(
+let materialsDesTemplate = fs.readFileSync(
     "./pdf_templates/project-clearance/project-clearance-materials-description.html",
     "utf8"
 );
@@ -26,10 +26,13 @@ class ProjectClearance {
             let exportTotal=body.exportTotal
             localTotal=(localTotal*100)/(localTotal+exportTotal)
             exportTotal=100-localTotal
+            materialsDesTemplate.replaceAll('{{exportOrientedPercentage}}', (exportTotal || "-"))
+            materialsDesTemplate.replaceAll('{{localOrientedPercentage}}', (localTotal || "-"))
             materialsDesTemplate=replaceMaterialsInProjectClearance.replaceAllMaterialsValue(body, materialsDesTemplate)
-            htmlTemplate.replaceAll('{{materialsDescription}}',(materialsDesTemplate||"-"))
-            htmlTemplate.replaceAll('{{exportOrientedPercentage}}', (exportTotal || "-"))
-            htmlTemplate.replaceAll('{{localOrientedPercentage}}', (localTotal || "-"))
+            
+            console.log("\n\n\n\n\n materialsDesTemplate:\n\n\n\n\n "+materialsDesTemplate)
+            let matKeyVl="materialsDescription"
+            htmlTemplate.replace('{{'+matKeyVl+'}}',(materialsDesTemplate ||"-"))
             
         }catch(exceptionVar){
             console.log(exceptionVar)
