@@ -103,11 +103,14 @@ const generateCertificate = async (req) => {
                              * merging the common fields
                              */
                             const commonFieldValue=bezaServiceGateway.getCommonFileds(req.body.investorId);
+                            console.log("commonFieldValue:   "+JSON.stringify(commonFieldValue))
                             let commonFieldValueKeys = Object.keys(commonFieldValue);
+                            console.log("commonFieldValueKeys:   "+commonFieldValueKeys.toString())
                             commonFieldValueKeys.forEach(key=>{
-                                !res.formValue.keys.includes(key)
-                                ?res.formValue[key] = commonFieldValue[key]
-                                :console.log("not in formvalue")
+                                console.log("key:     "+!res.formValue.keys.includes(key))
+                                if(!res.formValue.keys.includes(key)){
+                                    res.formValue[key] = commonFieldValue[key]   
+                                }
                             })
 
                             bufferResponse = certificateGeneratorFactory.generate(res);
