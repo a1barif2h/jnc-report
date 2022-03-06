@@ -103,11 +103,10 @@ const generateCertificate = async (req) => {
                              * merging the common fields
                              */
                             const commonFieldValue=bezaServiceGateway.getCommonFileds(req.body.investorId);
-                            const userDesignation=dataGrid[0].statusInProposed
                             let commonFieldValueKeys = Object.keys(commonFieldValue);
                             commonFieldValueKeys.forEach(key=>{
                                 !res.formValue.keys.includes(key)
-                                ?res.formValue[key] = commonFieldValueKeys[key]
+                                ?res.formValue[key] = commonFieldValue[key]
                                 :console.log("not in formvalue")
                             })
 
