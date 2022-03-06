@@ -1,6 +1,6 @@
 {
     "backendApi": {
-      "bezaServiceBaseUrl": "http://10.50.60.13",
+      "bezaServiceBaseUrl": "http://beza-service",
       "bezaServicePort": "8585",
       "bezaServiceFrontEndPort": "",
       "mayanCertificateUploadPath": "/beza-service/api/v1/private/mayan/upload-document/",
