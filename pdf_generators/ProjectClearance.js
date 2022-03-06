@@ -22,8 +22,8 @@ class ProjectClearance {
             localTotal=(localTotal*100)/(localTotal+exportTotal)
             exportTotal=100-localTotal
             
-            htmlTemplatereplaceAll('{{exportOrientedPercentage}}', (exportTotal || "-"))
-            htmlTemplatereplaceAll('{{localOrientedPercentage}}', (localTotal || "-"))
+            htmlTemplate.replaceAll('{{exportOrientedPercentage}}', (exportTotal || "-"))
+            htmlTemplate.replaceAll('{{localOrientedPercentage}}', (localTotal || "-"))
             
         }catch(exceptionVar){
             console.log(exceptionVar)
