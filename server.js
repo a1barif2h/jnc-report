@@ -10,7 +10,7 @@ const PORT = 5010;
 const HOST = "0.0.0.0";
 const VehicleRegistration = require("./pdf_generators/VehicleRegistration");
 const ProjectClearance = require("./pdf_generators/ProjectClearance");
-const CertificateService = require('./services/certificateService');
+const CertificateService = require("./services/certificateService");
 const { reportType } = require("./constants/reportTypes");
 const config = require("./config/config");
 const { getCurrentFormattedDateTime } = require("./util/dateTimeFormattor");
@@ -26,6 +26,9 @@ app.use(express.urlencoded({ limit: "50mb" }));
 app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
+  
+
+
   res.send({ msg: "ok" });
 });
 
@@ -52,7 +55,6 @@ app.post(
     let pdfFileName = "vehicle-registration";
 
     if (req.body && req.body.vehicleRegistrationNumber) {
-           
       pdfFileName +=
         "_" +
         req.body.vehicleRegistrationNumber +
@@ -71,16 +73,13 @@ app.post(
   "/certificate-service/api/v1/private/generate/pdf",
   async (req, res) => {
     console.log("Printing pdf");
-    const certificateService = new CertificateService()
-    await certificateService.generatePdf(req).then(
-      data => res.send(data)      
-    ).catch(
-      err => res.send({message: 'ERR'})
-    );
+    const certificateService = new CertificateService();
+    await certificateService
+      .generatePdf(req)
+      .then((data) => res.send(data))
+      .catch((err) => res.send({ message: "ERR" }));
   }
 );
-
-
 
 console.log(`Download service si running on http://${HOST}:${PORT}`);
 app.listen(PORT, HOST);

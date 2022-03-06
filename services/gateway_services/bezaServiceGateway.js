@@ -6,8 +6,8 @@ const FormData = require('form-data');
 const getFormValueByApplicationID = async (applicationId) => {
   let formValueUrl =
     config.backendApi.bezaServiceBaseUrl +
-    ":" +
-    config.backendApi.bezaServicePort +
+    (config.backendApi.bezaServicePort == "" ? "" : (":" +
+      config.backendApi.bezaServicePort)) +
     config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
     applicationId;
   
@@ -33,8 +33,8 @@ const getFormValueByApplicationID = async (applicationId) => {
 const upload = async (buffer, data) => {
   const uploadUrl =
     config.backendApi.bezaServiceBaseUrl +
-    ":" +
-    config.backendApi.bezaServicePort +
+    (config.backendApi.bezaServicePort == "" ? "" : (":" +
+      config.backendApi.bezaServicePort)) +
     config.backendApi.mayanCertificateUploadPath;
 
   let pdfFileName = data.title + "_" + data.id + getCurrentFormattedDateTime() + ".pdf";
@@ -69,8 +69,8 @@ const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke
 
   const saveCertificateUrl =
     config.backendApi.bezaServiceBaseUrl +
-    ":" +
-    config.backendApi.bezaServicePort +
+    (config.backendApi.bezaServicePort == "" ? "" : (":" +
+      config.backendApi.bezaServicePort)) +
     config.backendApi.bezaServiceGetCertificateInfoPath;
 
   
