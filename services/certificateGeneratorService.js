@@ -111,7 +111,7 @@ const generateCertificate = async (req) => {
                                 if(key=="dataGrid1"){
                                     console.log("\n\n\n"+commonFieldValue[key].length+"\n\n\n")
                                 }
-                                if(commonFieldValue[key]!=null){
+                                if(commonFieldValue[key]!=null && !Object.keys(res.formValue).includes(key)){
                                     res.formValue[key] = commonFieldValue[key]
                                 } 
                             })
