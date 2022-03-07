@@ -26,12 +26,12 @@ class ProjectClearance {
             let exportTotal=body.exportTotal
             localTotal=(localTotal*100)/(localTotal+exportTotal)
             exportTotal=100-localTotal
-            materialsDesTemplate.replaceAll('{{exportOrientedPercentage}}', (exportTotal || "-"))
-            materialsDesTemplate.replaceAll('{{localOrientedPercentage}}', (localTotal || "-"))
+            materialsDesTemplate=materialsDesTemplate.replaceAll(`{{exportOrientedPercentage}}`, (""+exportTotal || "-"))
+            materialsDesTemplate=materialsDesTemplate.replaceAll(`{{localOrientedPercentage}}`, (""+localTotal || "-"))
             materialsDesTemplate=replaceMaterialsInProjectClearance.replaceAllMaterialsValue(body, materialsDesTemplate)
             
             console.log("\n\n\n\n\n materialsDesTemplate:\n\n\n\n\n "+materialsDesTemplate)
-            htmlTemplate.replace(`{{materialsDescription}}`,(materialsDesTemplate ||"-"))
+            htmlTemplate=htmlTemplate.replace(`{{materialsDescription}}`,(materialsDesTemplate ||"-"))
             
         }catch(exceptionVar){
             console.log(exceptionVar)
