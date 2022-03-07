@@ -7,16 +7,18 @@ const replaceAllMaterialsValue=function(data, template){
     template=templateEngine.replacer(template,data.formValue)
     let templateMaterials=template;
     
-    templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid1[0])
-    templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid2[0])
-    templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid3[0])
-    templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid4[0])
-    templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid5[0])
-    templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid6[0])
-    // for(i=0;i<data.formValue.dataGrid1.length;i++){
-    //     templateMaterials+="\n"
-    //     templateMaterials+=template
-    // }
+    for(i=0;i<data.formValue.dataGrid1.length;i++){
+    
+        templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid1[i])
+        templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid2[i])
+        templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid3[i])
+        templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid4[i])
+        templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid5[i])
+        templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid6[i])
+        if(i<data.formValue.dataGrid1.length-1){
+            templateMaterials+=template
+        }
+    }
     return templateMaterials
 }
 

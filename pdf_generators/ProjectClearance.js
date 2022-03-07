@@ -31,8 +31,7 @@ class ProjectClearance {
             materialsDesTemplate=replaceMaterialsInProjectClearance.replaceAllMaterialsValue(body, materialsDesTemplate)
             
             console.log("\n\n\n\n\n materialsDesTemplate:\n\n\n\n\n "+materialsDesTemplate)
-            let matKeyVl="materialsDescription"
-            htmlTemplate.replace('{{'+matKeyVl+'}}',(materialsDesTemplate ||"-"))
+            htmlTemplate.replace(`{{materialsDescription}}`,(materialsDesTemplate ||"-"))
             
         }catch(exceptionVar){
             console.log(exceptionVar)
