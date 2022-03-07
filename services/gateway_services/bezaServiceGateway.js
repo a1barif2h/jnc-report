@@ -91,18 +91,19 @@ const getCommonFileds= async function (investorId){
     const commonFiledsUrl =
     config.backendApi.bezaServiceBaseUrl+  ":" +
     config.backendApi.bezaServicePort+
-    config.backendApi.bezaServiceCommmonFields
+    config.backendApi.bezaServiceCommmonFields+
+    investorId
 
+    console.log("commonFiledsUrl:   "+commonFiledsUrl)
     
    let res = await axios
-   .get(commonFiledsUrl, {
-    params: {
-      userId: investorId
-    }})
+   .get(commonFiledsUrl)
    .then((response) => response.data)
    .catch((error) => {
      console.log(error);
    });
+   console.log("res[0].formValue:  "+JSON.stringify(res.userSopCommonFieldDomainModels[0].formValue))
+   return res.userSopCommonFieldDomainModels[0].formValue;
 }
 
 

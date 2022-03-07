@@ -210,7 +210,7 @@
           <p>Date: {{applicationDate}}</p>
         </div>
         <div class="application-info">
-          <b>{{userDesignation}}</b>
+          <b>{{statusproposed2}}</b>
           <b>{{applyingFirmOrCompany}}</b>
           <b>{{economicZone}}, {{ezAdress}}</b>
           <b>{{plotAddress}}</b>
@@ -225,7 +225,7 @@
       </header>
       <main>
         <div class="application-header">
-          <p class="dear-ceo">Dear {{userDesignation}},</p>
+          <p class="dear-ceo">Dear {{statusproposed2}},</p>
           <p class="application-header-text">
             With reference to your Project Proposal received on
             {{applicationDate}}, this is to inform you that the Authority is
@@ -241,43 +241,7 @@
         </div>
         <div class="application-list">
           <ol>
-            <li>Name of the project: <b>{{applyingFirmOrCompany}}</b></li>
-            <li>Products: {{aNameDescriptionOfTheProductS}}</li>
-            <li>Cost of the project: {{dCostOfTheProjectInUs}}</li>
-            <li>Type of Investment: {{exportOrientedPercentage}}% Export Orient<br>{{localOrientedPercentage}}% Local Orient</li>
-            <li>Type of Industry: {{typeOfIndustry}}</li>
-            <li>
-              Annual production capacity: {{aNameDescriptionOfTheProductS}}
-              {{programmeTotal}} {{totalProductionCostPerUnitInUs}}
-            </li>
-            <li>Employment: 150 persons including 0 foreign nationals</li>
-            <li>Status of the Company: {{typeOfOrganization}}</li>
-            <li>Manufacturing Process: {{cManufacturingProcess}}</li>
-            <!-- textField52 is for area -->
-            <li>
-              Area of land/SFB to be allotted: {{textField52}} Square Meters
-              plot in {{plotAddress}}
-            </li>
-            <!-- localTotal4 is for Local Machineries and Equipment -->
-            <li>
-              Machineries and equipments required to be imported for the project
-              valued approximately at {{localTotal4}} only on the terms and conditions acceptable
-              to this Authority.
-            </li>
-            <li>
-              Machineries to be imported for the project (as per list enclosed
-              with the Project Proposal) shall be {{localTotal4}}. Prior
-              approval of the Authority shall be required for the
-              import/shipment of machinery from abroad.
-            </li>
-            <li>
-              Before procurement of machineries and building-materials from
-              abroad you are required to submit 3 (three) sets of price
-              quotations from reputed machinery suppliers or in case of
-              procurement of machinery from manufacturer, 1 (one) set of price
-              quotation along with catalogues etc. of the machinery for approval
-              of the Authority.
-            </li>
+            {{materialsDescription}}
           </ol>
         </div>
       </main>
@@ -395,7 +359,7 @@
             </p>
 
             <ol style="width: 150%">
-              <li>{{userDesignation}},</li>
+              <li>{{statusproposed2}},</li>
               <li>Commissioner, Customer Bond...</li>
               <li>..............................</li>
               <li>..............................</li>
