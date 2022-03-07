@@ -1,7 +1,7 @@
 // const { response } = require("express");
 const { response } = require("express");
 const fs = require("fs");
-const footerTemplate = fs.readFileSync(
+var footerTemplate = fs.readFileSync(
   "./pdf_templates/import-permit/footer.html",
   "utf8"
 );
