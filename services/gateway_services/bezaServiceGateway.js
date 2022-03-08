@@ -39,7 +39,7 @@ const upload = async (buffer, data) => {
 
   let pdfFileName = data.title + "_" + data.id + getCurrentFormattedDateTime() + ".pdf";
   
-
+  console.log("pdfFileName:   "+pdfFileName)
   let form = new FormData();
   form.append("file", buffer, pdfFileName);
   let res = await axios
