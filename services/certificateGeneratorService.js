@@ -102,6 +102,7 @@ const generateCertificate = async (req) => {
                             /**
                              * merging the common fields
                              */
+                            console.log("req.body.investorId:   "+req.body.investorId)
                             const commonFieldValue=await bezaServiceGateway.getCommonFileds(req.body.investorId);
                             console.log("\n\n\n\n\n\ncommonFieldValue:   "+JSON.stringify(commonFieldValue))
                             let commonFieldValueKeys = Object.keys(commonFieldValue);
