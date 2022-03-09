@@ -1,23 +1,6 @@
 const { response } = require("express");
 const fs = require("fs");
-const htmlTemplate = fs.readFileSync(
-  "./pdf_templates/sample-export-permit/sample-export-permit.html",
-  "utf8"
-);
-let headerTemplate = fs.readFileSync(
-  "./pdf_templates/sample-export-permit/sample-export-multipage-header.html",
-  "utf8"
-);
 
-let materialsDetailsTemplateInitial = fs.readFileSync(
-  "./pdf_templates/sample-export-permit/sample-export-material-group.html",
-  "utf8"
-);
-
-let footerTemplate = fs.readFileSync(
-  "./pdf_templates/sample-export-permit/sample-export-permit-footer.html",
-  "utf8"
-);
 
 const pdf = require("./PdfGenerator");
 const options = { format: "A4", orientation: "portrait" };
@@ -30,7 +13,24 @@ class SampleExportPermit {
   constructor() {}
 
   async generate(body) {
+    let htmlTemplate = fs.readFileSync(
+      "./pdf_templates/sample-export-permit/sample-export-permit.html",
+      "utf8"
+    );
+    let headerTemplate = fs.readFileSync(
+      "./pdf_templates/sample-export-permit/sample-export-multipage-header.html",
+      "utf8"
+    );
     
+    let materialsDetailsTemplateInitial = fs.readFileSync(
+      "./pdf_templates/sample-export-permit/sample-export-material-group.html",
+      "utf8"
+    );
+    
+    let footerTemplate = fs.readFileSync(
+      "./pdf_templates/sample-export-permit/sample-export-permit-footer.html",
+      "utf8"
+    );
     headerTemplate = materialsDescriptionParser.parseJasonIntoHtml(
       body.formValue,
       headerTemplate

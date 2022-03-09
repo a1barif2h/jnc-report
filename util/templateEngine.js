@@ -33,8 +33,8 @@ var dataProcessor = require('flat')
 // };
 
 const replacer = function (template, data) {
-    const flattenedData = dataProcessor(data);
-
+    // const flattenedData = dataProcessor(data);
+    const flattenedData = data;
     const regexp = new RegExp();
     for (var key in flattenedData) {
         // console.log("key:",key," || value:",flattenedData[key])
