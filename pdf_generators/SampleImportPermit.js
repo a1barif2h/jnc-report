@@ -1,23 +1,6 @@
 const { response } = require("express");
 const fs = require("fs");
-const htmlTemplate = fs.readFileSync(
-  "./pdf_templates/sample-import-permit/sample-import-permit.html",
-  "utf8"
-);
-let headerTemplate = fs.readFileSync(
-  "./pdf_templates/sample-import-permit/sample-import-permit-header.html",
-  "utf8"
-);
 
-let materialsDetailsTemplateInitial = fs.readFileSync(
-  "./pdf_templates/sample-import-permit/sample-import-permit-material_details.html",
-  "utf8"
-);
-
-let footerTemplate = fs.readFileSync(
-  "./pdf_templates/sample-import-permit/sample-import-permit-footer.html",
-  "utf8"
-);
 
 const pdf = require("./PdfGenerator");
 const options = { format: "A4", orientation: "portrait" };
@@ -30,7 +13,24 @@ class SampleImportPermit {
   constructor() {}
 
   async generate(body) {
+    let htmlTemplate = fs.readFileSync(
+      "./pdf_templates/sample-import-permit/sample-import-permit.html",
+      "utf8"
+    );
+    let headerTemplate = fs.readFileSync(
+      "./pdf_templates/sample-import-permit/sample-import-permit-header.html",
+      "utf8"
+    );
     
+    let materialsDetailsTemplateInitial = fs.readFileSync(
+      "./pdf_templates/sample-import-permit/sample-import-permit-material_details.html",
+      "utf8"
+    );
+    
+    let footerTemplate = fs.readFileSync(
+      "./pdf_templates/sample-import-permit/sample-import-permit-footer.html",
+      "utf8"
+    );
     headerTemplate = materialsDescriptionParser.parseJasonIntoHtml(
       body.formValue,
       headerTemplate
