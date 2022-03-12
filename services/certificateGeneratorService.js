@@ -112,9 +112,9 @@ const generateCertificate = async (req) => {
                                 if(key=="dataGrid1"){
                                     console.log("\n\n\n"+commonFieldValue[key].length+"\n\n\n")
                                 }
-                                if(commonFieldValue[key]!=null && !Object.keys(res.formValue).includes(key)){
+                                if(commonFieldValue[key]!=null && !res.formValue.hasOwnProperty(key)){
                                     res.formValue[key] = commonFieldValue[key]
-                                } 
+                                }
                             })
 
                             bufferResponse = await certificateGeneratorFactory.generate(res);
