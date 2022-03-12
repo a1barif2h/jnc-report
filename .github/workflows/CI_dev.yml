@@ -62,7 +62,7 @@ jobs:
             docker kill beza-cert-service-${{ steps.extract_branch.outputs.branch }}
             docker rm beza-cert-service-${{ steps.extract_branch.outputs.branch }}
             docker pull ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
-            docker run -d --name beza-cert-service-${{ steps.extract_branch.outputs.branch }} -p 3005:3005 ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
+            docker run -d --name beza-cert-service-${{ steps.extract_branch.outputs.branch }} -p 5010:5010 ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
 
 
       - name: Discord notification
