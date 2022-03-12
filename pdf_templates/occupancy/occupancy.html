@@ -244,60 +244,61 @@
             <p>Date: {{applicationDate}}</p>
             </div>
             <div class="application-info">
-            <p>Building Permit No: {{approvalNoOfBuilding}}</p>
+            <p>Building Permit No: {{approvalNoBuildingPermit}}</p>
             <p>Approval Building Permit Date: {{approvalNoOfBuildingPermitDate}}</p>
-            <p>Fire License No: 58.03.0000.007.34.001.19(Part-17)-8871/1(8)</p>
-            <p>Approval Fire License Date: 2019-08-22</p>
-            <p>Environmental Certificate No: 21-55555</p>
-            <p>Approval Environmental Certificate Date: 2021-02-25</p>
-            </div>
+            <p>Fire License No: {{approvalNoOfFireFightingFloorPlanApprovalCertificate}}</p>
+            <p>Approval Fire License Date: {{approvalNoOfFireFightingFloorPlanApprovalCertificateDate}}</p>
+            <p>Environmental Certificate No: {{}}</p>
+            <p>Approval Environmental Certificate Date: {{}}</p>
+              <!-- empty double curly brackets signufy that values are to be set in there using keys -->
+          </div>
             <div class="application-subject">
-            <b>Attention: Sakata Inx (Bangladesh) Private Limited</b>
+            <b>Attention: {{applyingFirmOrCompany}}</b>
             </div>
     </header>
       <main>
           <p class="application-header-text">
            With reference to the above Permit and Certificate, BEZA-OSS Center of {{economicZone}} Limited conducted the Final
-Inspection on the day of 2021-08-25 12:30:00 and confirmed the building works approved under such Permit and Certificate have been
+Inspection on the day of {{requestDateAndTimeForInspection}} and confirmed the building works approved under such Permit and Certificate have been
 completed in accordance with the approved plan and specification and the applied Building Code. Consequently, BEZA-OSS Center issue
-the Certificate here by to Sakata Inx (Bangladesh) Private Limited situated at the Name of {{economicZone}} Limited as
+the Certificate here by to {{applyingFirmOrCompany}} situated at the Name of {{economicZone}} Limited as
 under:
           </p>
         <div class="application-list">
             <b>1. Terms and conditions for approval:</b>
             <li>i. The certificate shall be valid only for the following building:</li>
             <div class="terms-condition">
-              <small> a) Name of Economic Zone : Meghna Industrial Economic Zone Limited</small>
-                <small> b) Plot Number : Plot No. 17, 18 and 19, Meghna Industrial Economic Zone</small>
+              <small> a) Name of Economic Zone : {{economicZone}} Limited</small>
+                <small> b) Plot Number : {{plotAddress}}</small>
              <small> c) Building Information:</small>
              <div class="building-information">
                <small>
-                 1) Land Area(sqm): 20241.7
+                 1) Land Area(sqm): {{}}
                </small>
                <small>
-                 2) Building Area(sqm) : 7940
+                 2) Building Area(sqm) : {{}}
                </small>
                <small>
-                3) Total Floor Area(sqm) : 4930
+                3) Total Floor Area(sqm) : {{}}
                </small>
                <small>
-                4) Nature of Facility : Industry
+                4) Nature of Facility : {{}}
                </small>
                <small>
-               5) Kind of Construction : permanent
+               5) Kind of Construction : {{}}
                </small>
                <small>
-               6) Major Structure /storey: 1
+               6) Major Structure /storey: {{}}
                </small>
                <small>
-               7) Number of Building : {{approvalNoOfBuilding}}
+               7) Number of Building : {{}}
                </small>
              </div>
             </div>
            <li>ii. In case you make any modification by adding/extending/reducing or in any other form to the approved design or plan of the building
 under this Occupation Certificate, you shall be required to apply for a new Building Permit and Fire License to BEZA-OSS Center.</li>
-           <li>iii. This Occupation Certificate is issued based on the result of Final Inspection for building works on the day of {{requestDateForTimeForInspection}} and
-the issuance of Fire License No. 58.03.0000.007.34.001.19(Part-17)-8871/1(8) issued by the FSCD on the day of 2019-08-22.</li>
+           <li>iii. This Occupation Certificate is issued based on the result of Final Inspection for building works on the day of {{requestDateAndTimeForInspection}} and
+the issuance of Fire License No. {{approvalNoOfFireFightingFloorPlanApprovalCertificate}} issued by the FSCD on the day of {{approvalNoOfFireFightingFloorPlanApprovalCertificateDate}}.</li>
            
            <li>iv. You shall submit “Fire safety Plan” with other required documents to BEZA-OSS Center within thirty (30) days from the issued date of
 this Occupation Certificate.</li>
