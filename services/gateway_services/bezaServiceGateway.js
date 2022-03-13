@@ -64,7 +64,8 @@ const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke
     processInstanceId: processInstanceId,
     userSopId: sop.id,
     isValid: 1,
-    isRevoked: isRevoke ? 1 : 0
+    isRevoked: isRevoke ? 1 : 0,
+    documentId: certificate.id
   }
 
   const saveCertificateUrl =
