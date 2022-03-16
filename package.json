@@ -22,7 +22,7 @@
     "html-pdf": "^3.0.1",
     "jsbarcode": "^3.11.5",
     "moment": "^2.29.1",
-    "nodemon": "^2.0.14",
+    "nodemon": "^2.0.15",
     "pdfkit": "^0.12.1",
     "qrcode": "^1.4.4",
     "template-strings": "^0.0.6",
