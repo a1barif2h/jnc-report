@@ -90,8 +90,9 @@ const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke
 
 const getCommonFileds= async function (investorId){
     const commonFiledsUrl =
-    config.backendApi.bezaServiceBaseUrl+  ":" +
-    config.backendApi.bezaServicePort+
+    config.backendApi.bezaServiceBaseUrl +
+    (config.backendApi.bezaServicePort == "" ? "" : (":" +
+      config.backendApi.bezaServicePort))+
     config.backendApi.bezaServiceCommmonFields+
     investorId
 
@@ -107,10 +108,32 @@ const getCommonFileds= async function (investorId){
    return res.userSopCommonFieldDomainModels[0].formValue;
 }
 
+const getUserSignature= async function (investorId){
+  let signatureUrl = config.backendApi.bezaServiceUserSignature;
+  var userSignatureUrl = signatureUrl.replace("{{userId}}",investorId);
+    const bezaServiceUserSignatureUrl =
+    config.backendApi.bezaServiceBaseUrl+
+    (config.backendApi.bezaServicePort == "" ? "" : (":" +
+      config.backendApi.bezaServicePort))+
+    userSignatureUrl
+
+    console.log("userSignatureUrl:   "+bezaServiceUserSignatureUrl)
+    
+   let res = await axios
+   .get(bezaServiceUserSignatureUrl)
+   .then((response) => response.data)
+   .catch((error) => {
+     console.log(error);
+   });
+   console.log("res:  "+JSON.stringify(res))
+   return res.signature;
+}
+
 
 module.exports = {
   getFormValueByApplicationID,
   upload,
   saveCertificateInfo,
-  getCommonFileds
+  getCommonFileds,
+  getUserSignature
 };

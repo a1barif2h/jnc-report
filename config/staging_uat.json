@@ -8,6 +8,7 @@
       "bezaServiceGetCertificateInfoPath": "/beza-service/api/v1/private/user-certificate/",
       "analysisRequestServicePath": "/query-service/api/v1/private/discovery/search-data/",
       "bezaServiceCommmonFields": "/beza-service/api/v1/private/sop-common-fields/",
+      "bezaServiceUserSignature": "/beza-service/api/v1/private/users/{{userId}}/signature",
       "analysisReportDownloadPdfUrlPath": "query-service/api/v1/private/analysis/report"
     }
   }
