@@ -64,6 +64,7 @@ const generateCertificate = async (req) => {
     let userSopById;
     let bufferResponse;
     let certificateDetail;
+    let userSignature;
     let response;
 
     await bezaServiceGateway
@@ -116,6 +117,9 @@ const generateCertificate = async (req) => {
                                     res.formValue[key] = commonFieldValue[key]
                                 }
                             })
+                            const userSignature = await bezaServiceGateway.getUserSignature(req.body.investorId);
+                            // console.log("\n\n\n\n\n\nuserSignature Base64:   "+userSignature.toString());
+                            res.formValue.userSignature = userSignature;
 
                             bufferResponse = await certificateGeneratorFactory.generate(res);
                             return bufferResponse;
