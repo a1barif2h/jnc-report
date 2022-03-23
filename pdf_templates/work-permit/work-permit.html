@@ -239,9 +239,9 @@
         <div class="subject">
           <b>{{nameOfThePostEmployedOfDesignation}}</b>
           <b>{{proposedProjectCompanyNameWhichWillCarryOutTheBusiness}}</b>
-          <b>{{economicZone}}, {{ezAdress}}</b>
+          <b>{{economicZone}}, {{economicZoneAddress}}</b>
           <b>{{plotAddress}}</b>
-          <b>{{ezAdress}}</b>
+          <b>{{economicZoneAddress}}</b>
           <b class="sub">Subject: Work Permit for Foreign National.</b>
         </div>
         <div style="margin: 0.75rem 0rem">
@@ -250,9 +250,9 @@
 
         <div class="application-text">
           <p>
-            With reference to your applications received on {{18 May, 2021}} the
+            With reference to your applications received on {{applicationDate}} the
             above subject, this is to inform you that according to the decision
-            of meeting held on {{24 May, 2021}} the Bangladesh Economic Zone
+            of meeting held on {{applicationDate}} the Bangladesh Economic Zone
             Authority (BEZA) has been pleased to issue work permit for the
             following foreign national employed in your company / office for the
             period shown against his name on the terms, conditions and
@@ -305,7 +305,7 @@
                   <br>
                   {{authorizedPassport}}
                 </td>
-                <td>{{durationInDays}} days (with effect from: {{dateOfIssue}})</td>
+                <td>{{desiredDuration}} days (with effect from: {{issueDate}})</td>
                 <td class="child-td">
                   <!-- another table inside main table  -->
 
@@ -319,39 +319,39 @@
                     </thead>
                     <tbody class="child-tbody">
                       <tr>
-                        <td>Monthly</td>
-                        <td>Basic Salary: USD {{amount}}</td>
-                        <td>Basic Salary: USD {{}}</td>
+                        <td>{{paymentLocally}}</td>
+                        <td>Basic Salary: {{currencyLocally}} {{amountLocally}}</td>
+                        <td>Basic Salary: {{currencyAbroad}} {{amountAbroad}}</td>
                       </tr>
                       <tr>
-                        <td>Monthly</td>
-                        <td>Conveyance: USD {{amount3}}</td>
-                        <td>Conveyance: USD {{}}</td>
+                        <td>{{paymentLocally3}}</td>
+                        <td>Conveyance: {{currencyLocally3}} {{amountLocally3}}</td>
+                        <td>Conveyance: {{currencyAbroad3}} {{amountAbroad3}}</td>
                       </tr>
                       <tr>
-                        <td>Monthly</td>
-                        <td>Overseas Allowance: USD {{amount1}}</td>
-                        <td>Overseas Allowance: USD {{}}</td>
+                        <td>{{paymentLocally1}}</td>
+                        <td>Overseas Allowance: {{currencyLocally1}} {{amountLocally1}}</td>
+                        <td>Overseas Allowance: {{currencyAbroad1}} {{amountAbroad1}}</td>
                       </tr>
                       <tr>
-                        <td>Monthly</td>
-                        <td>House Rent: USD {{amount2}}</td>
-                        <td>House Rent: USD {{}}</td>
+                        <td>{{paymentLocally2}}</td>
+                        <td>House Rent: {{currencyLocally2}} {{amountLocally2}}</td>
+                        <td>House Rent: {{currencyAbroad2}} {{amountAbroad2}}</td>
                       </tr>
                       <tr>
-                        <td>Monthly</td>
-                        <td>Medical Allowance: USD {{amount4}}</td>
-                        <td>Medical Allowance: USD {{}}</td>
+                        <td>{{paymentLocally4}}</td>
+                        <td>Medical Allowance: {{currencyLocally4}} {{amountLocally4}}</td>
+                        <td>Medical Allowance: {{currencyAbroad4}} {{amountAbroad4}}</td>
                       </tr>
                       <tr>
-                        <td>Monthly</td>
-                        <td>Entertain. Allowance: USD {{amount5}}</td>
-                        <td>Entertain. Allowance: USD {{}}</td>
+                        <td>{{paymentLocally5}}</td>
+                        <td>Entertain. Allowance: {{currencyLocally5}} {{amountLocally5}}</td>
+                        <td>Entertain. Allowance: {{currencyAbroad5}} {{amountAbroad5}}</td>
                       </tr>
                       <tr>
-                        <td>Monthly</td>
-                        <td>Annual Bonus: USD {{amount6}}</td>
-                        <td>Annual Bonus: USD {{}}</td>
+                        <td>{{paymentLocally6}}</td>
+                        <td>Annual Bonus: {{currencyLocally6}} {{amountLocally6}}</td>
+                        <td>Annual Bonus: {{currencyAbroad6}} {{amountAbroad6}}</td>
                       </tr>
                     </tbody>
                   </table>
