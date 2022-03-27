@@ -119,7 +119,13 @@ const generateCertificate = async (req) => {
                             })
                             const userSignature = await bezaServiceGateway.getUserSignature(req.body.investorId);
                             // console.log("\n\n\n\n\n\nuserSignature Base64:   "+userSignature.toString());
-                            res.formValue.userSignature = userSignature;
+                            if(userSignature)
+                            {
+                                res.formValue.userSignature = userSignature;
+                            }
+                            else{
+                                res.formValue.userSignature='R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
+                            }
 
                             bufferResponse = await certificateGeneratorFactory.generate(res);
                             return bufferResponse;
