@@ -83,7 +83,7 @@ const generateMultipleMaterialsDescription = function (
 const addFirstMaterials = function (
   dataGrid,
   materialsDetailsTemplate,
-  htmlImportTemplate,
+  htmlExportTemplate,
   headerTemplate
 ) {
   if (dataGrid.length != 1) {
@@ -105,40 +105,40 @@ const addFirstMaterials = function (
     dataGrid[0],
     materialsDetailsTemplate
   );
-  htmlImportTemplate = htmlImportTemplate.replace(
+  htmlExportTemplate = htmlExportTemplate.replace(
     `{{firstMaterialsDetails}}`,
     firstMaterialsDetails || "-"
   );
   console.log("matarialDescription:   " + firstMaterialsDetails);
-  return htmlImportTemplate;
+  return htmlExportTemplate;
 };
 
 const addRemainingMaterials = function (
   dataGrid,
   materialsDetailsTemplate,
-  htmlImportTemplate,
+  htmlExportTemplate,
   headerTemplate
 ) {
   if (dataGrid.length == 1) {
-    htmlImportTemplate = htmlImportTemplate.replace(
+    htmlExportTemplate = htmlExportTemplate.replace(
       `{{remainingMaterialsDetails}}`,
       ""
     );
-    return htmlImportTemplate;
+    return htmlExportTemplate;
   }
   let remainingMaterialsDetails = generateMultipleMaterialsDescription(
     dataGrid,
     materialsDetailsTemplate,
     headerTemplate
   );
-  htmlImportTemplate = htmlImportTemplate.replace(
+  htmlExportTemplate = htmlExportTemplate.replace(
     `{{remainingMaterialsDetails}}`,
     remainingMaterialsDetails || "-"
   );
 
   console.log("==========================================\n\n\n");
   console.log("remainingMaterialsDetails:   " + remainingMaterialsDetails);
-  return htmlImportTemplate;
+  return htmlExportTemplate;
 };
 module.exports = {
   parseJasonIntoHtml,

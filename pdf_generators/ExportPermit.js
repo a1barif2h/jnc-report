@@ -36,41 +36,41 @@ class ExportPermit {
       body.formValue,
       headerTemplate
     );
-    let htmlImportTemplate = htmlTemplate;
+    let htmlExportTemplate = htmlTemplate;
     
     console.log("ExportTemplate:");
-    console.log(htmlImportTemplate);
-    htmlImportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+    console.log(htmlExportTemplate);
+    htmlExportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
       body.formValue,
-      htmlImportTemplate
+      htmlExportTemplate
     );
-    htmlImportTemplate = htmlImportTemplate.replace(
+    htmlExportTemplate = htmlExportTemplate.replace(
       `{{headerHere}}`,
       headerTemplate.toString() || "-"
     );
     
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
     
-    htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
+    htmlExportTemplate = materialsDescriptionParser.addFirstMaterials(
       body.formValue.dataGrid,
       materialsDetailsTemplate,
-      htmlImportTemplate,
+      htmlExportTemplate,
       headerTemplate
     );
 
     console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
-    htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
+    htmlExportTemplate = materialsDescriptionParser.addRemainingMaterials(
       body.formValue.dataGrid,
       materialsDetailsTemplate,
-      htmlImportTemplate,
+      htmlExportTemplate,
       headerTemplate
     );
     // if (body.formValue.dataGrid.length!=1){
       
     // }
     const response = await pdf.generatePdfFromHtmlMultipleMaterialDescription(
-      htmlImportTemplate,
+      htmlExportTemplate,
       options
     );
 
