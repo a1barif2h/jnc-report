@@ -237,10 +237,11 @@
         </div>
 
         <div class="subject">
-          <b>{{nameOfThePostEmployedOfDesignation}}</b>
-          <b>{{proposedProjectCompanyNameWhichWillCarryOutTheBusiness}}</b>
-          <b>{{economicZone}}, {{economicZoneAddress}}</b>
-          <b>{{plotAddress}}</b>
+          <b>{{statusproposed2}}</b>
+          <b>{{proposedProjectCompanyName}}</b>
+          <b></b>
+          <!-- <b>{{economicZone}}, {{economicZoneAddress}}</b>
+          <b>{{plotAddress}}</b> -->
           <b>{{economicZoneAddress}}</b>
           <b class="sub">Subject: Work Permit for Foreign National.</b>
         </div>
@@ -300,12 +301,13 @@
             <tbody>
               <tr>
                 <td class="first-td">
-                  {{nameOfTheApplicant}} <br>
+                  {{nameOfTheForeignNational}} <br>
                   {{nameOfThePostEmployedOfDesignation}}
                   <br>
-                  {{authorizedPassport}}
+                  {{particularsNationality}}<br>
+                  {{passport1}}
                 </td>
-                <td>{{desiredDuration}} days (with effect from: {{issueDate}})</td>
+                <td>{{desiredDuration}} (with effect from: {{issueDate}})</td>
                 <td class="child-td">
                   <!-- another table inside main table  -->
 
@@ -359,12 +361,12 @@
               </tr>
 
               <tr>
-                <td>Others: N/A</td>
+                <td>Others: {{hOtherFringeBenefitsIfAny}}</td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
-                <td>Remarks: N/A</td>
+                <td>Remarks: {{anyParticularComments}}</td>
                 <td></td>
                 <td></td>
               </tr>
