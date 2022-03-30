@@ -17,6 +17,9 @@ class CommercialOperation {
         // body.routePermitExpDate = body.hasOwnProperty("routePermitExpDate") ? body.routePermitExpDate : "_";
         // body.fitnessIssueDate = body.hasOwnProperty("fitnessIssueDate") ? body.fitnessIssueDate : "_";
         // pdf.pdfGenerator(htmlTemplate, body, res, options)
+        var m = new Date();
+        var myDate = m.getUTCDate() + "/" + (m.getUTCMonth()+1) + "/" + m.getUTCFullYear();
+        body.formValue.commercialIssueDate = myDate;
         body.formValue.proposedDateOfCo = dateTimeFormattor.getApplicationDate(body.formValue.proposedDateOfCo);
         const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
         return response;
