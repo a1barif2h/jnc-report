@@ -253,7 +253,7 @@
             <h3>SAMPLE EXPORT PERMIT</h3>
           </div>
           <div class="import-date">
-            <p>File No: SEP-00022679</p>
+            <p>File No: {{trackingId}}</p>
             <p>Date: {{applicationDate}}</p>
           </div>
 
@@ -265,9 +265,9 @@
             <div class="border-box">
               <div class="left">
                 <div>
-                  <small>Name of the Company</small>
+                  <small>Name of the Company:</small>
                   <p>
-                    {{applyingFirmOrCompany}}
+                    {{proposedProjectCompanyName}}
                   </p>
                 </div>
                 <div>
@@ -284,7 +284,7 @@
                 </div>
                 <div>
                   <small>Passport No.:</small>
-                  <p>{{authorizedPassport}}</p>
+                  <p>{{passportNo}}</p>
                 </div>
                 <div>
                   <small>Expire Date</small>
@@ -296,7 +296,7 @@
                 </div>
                 <div>
                   <small>Buyer Address :</small>
-                  <p>{{portOfDestination}}</p>
+                  <p>{{buyerAddress}}</p>
                 </div>
                 <div>
                   <small>Remarks</small>
@@ -313,12 +313,12 @@
                   <p>{{invoiceDate}}</p>
                 </div>
                 <div>
-                  <small>Destination Counter</small>
-                  <p>{{}}</p>
+                  <small>Destination Country</small>
+                  <p>{{destinationCountry}}</p>
                 </div>
                 <div>
                   <small>Name of the Person Carrying</small>
-                  <p>{{}}</p>
+                  <p>{{nameOfCarrier}}</p>
                 </div>
                 <div>
                   <small>Invoice/ Vendor Ref. Date :</small>
@@ -326,7 +326,7 @@
                 </div>
                 <div>
                   <small>Place of Issue :</small>
-                  <p>{{}}</p>
+                  <p>{{conutryName}}</p>
                 </div>
               </div>
             </div>

@@ -25,8 +25,8 @@ class ProjectClearance {
         try{
             
             
-            let localTotal=body.domesticTotal
-            let exportTotal=body.exportTotal
+            let localTotal=body.formValue.domesticTotal
+            let exportTotal=body.formValue.exportTotal
             localTotal=(localTotal*100)/(localTotal+exportTotal)
             exportTotal=100-localTotal
             materialsDesTemplate = materialsDesTemplate.replaceAll(`{{exportOrientedPercentage}}`, (""+exportTotal || "-"))
