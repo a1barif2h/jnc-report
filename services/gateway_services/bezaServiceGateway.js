@@ -115,10 +115,10 @@ const getCommonFileds= async function (investorId){
 const getPaymentVoucherInfo = async ({applicationId}) => {
   const url = config.backendApi.bezaServiceBaseUrl+  ":" +
   config.backendApi.bezaServicePort+ config.backendApi.paymentVoucherInfoPath + applicationId
-
+  
+  // THIS FUNCTION IS RESPONSE TO CONVERT NUMBER TO AMOUNT OF WORD.
   const a = ['','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen '];
   const b = ['', '', 'twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety'];
-
   function inWords (num) {
       if ((num = num.toString()).length > 9) return 'overflow';
       n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
@@ -131,6 +131,7 @@ const getPaymentVoucherInfo = async ({applicationId}) => {
       return str;
   }
 
+  // THIS FUNCTION IS RESPONSE TO MAINTAINED FULL AMOUNT LIKE: 152.36 OR 152
   function amountInWords(num) {
     const capitalized = (words) => words.charAt(0).toUpperCase() + words.slice(1);
     if(String(num).split(".").length > 1) {
@@ -142,17 +143,17 @@ const getPaymentVoucherInfo = async ({applicationId}) => {
     return capitalized(inWords(num) + 'only')
   }
 
-const generateBarcode = async text => {
-    JsBarcode(svgNode, text, {
-        xmlDocument: document,
-        width: 0.75,
-        height: 25,
-        displayValue: false
-    });
-    
-    const barcodeData = xmlSerializer.serializeToString(svgNode);
-    return barcodeData;
-}
+  const generateBarcode = async text => {
+      JsBarcode(svgNode, text, {
+          xmlDocument: document,
+          width: 0.75,
+          height: 25,
+          displayValue: false
+      });
+      
+      const barcodeData = xmlSerializer.serializeToString(svgNode);
+      return barcodeData;
+  }
 
 
   try {
