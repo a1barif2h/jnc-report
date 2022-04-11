@@ -4,6 +4,7 @@ const config = require("../config/config");
 const pdf = require('html-pdf');
 const templateEngine = require('../util/templateEngine');
 const { Readable } = require('stream');
+const FormData = require('form-data');
 
 // const upload = requ
 
@@ -37,11 +38,29 @@ const generatePdfFromHtml = async function (htmlTemplate, json, options) {
 
 }
 
+const generatePdfFromHtmlForPayment = async function (htmlTemplate, data, options) {
+  let html = templateEngine.replacer(htmlTemplate,data);
+  html=templateEngine.replacer(html,data);
+  const buf = await new Promise((resolve, reject) => {
+  
+      pdf.create(html, options).toBuffer(function(err, buffer) {
+          if (err) {
+              console.log(err);
+              return reject(err);
+          }
+
+          resolve(buffer);
+      });
+  });
+  return buf;
+
+}
+
 
 
 const generatePdfFromHtmlMultipleMaterialDescription = async function (htmlTemplate, options) {
   // const html = htmlTemplate;
-//   const html = templateEngine.replacer(htmlTemplate, json.formValue);
+  const html = templateEngine.replacer(htmlTemplate, json.formValue);
   const buf = await new Promise((resolve, reject) => {
     pdf.create(htmlTemplate, options).toBuffer(function (err, buffer) {
       if (err) {
@@ -61,5 +80,6 @@ const generatePdfFromHtmlMultipleMaterialDescription = async function (htmlTempl
 module.exports = {
   pdfGenerator,
   generatePdfFromHtml,
+  generatePdfFromHtmlForPayment,
   generatePdfFromHtmlMultipleMaterialDescription,
 };
