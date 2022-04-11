@@ -27,9 +27,9 @@ const replaceAllMaterialsValue=function(data, template){
         templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid4[i])
         templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid5[i])
         templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid7[i])
-        if(i<data.formValue.dataGrid2.length-1){
-            templateMaterials+=template
-        }
+        // if(i<data.formValue.dataGrid2.length-1){
+        //     templateMaterials+=template
+        // }
     }
     return templateMaterials
 }
