@@ -82,7 +82,7 @@ app.post(
   }
 );
 
-app.post("/payment-voucher/api/v1/private/generate/pdf", async (req, res) => {
+app.post("/beza-certificate/api/v1/private/generate/payment-voucher/pdf", async (req, res) => {
   const paymentVoucherService = new PaymentVoucherService();
   await paymentVoucherService.generatePdf(req.body)
   .then(data => {
