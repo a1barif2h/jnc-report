@@ -228,7 +228,7 @@
       {{headerHere}}
         <div class="container">
           <div class="import-permit">
-            <h3>LOCAL SALES PERMIT</h3>
+            <h3>LOCAL PURCHASE PERMIT</h3>
           </div>
           <div class="import-date">
             <p>File no: {{trackingId}}</p>
@@ -247,29 +247,37 @@
                   <p>{{proposedProjectCompanyName}}</p>
                 </div>
                 <div>
-                  <small>Local Sales Permit Type:</small>
-                  <p>{{localSalesPermitType}}</p>
-                </div>
-                <div>
-                  <small>Economic Zone:</small>
-                  <p>{{economicZone}}</p>
+                  <small>Purchase Permit Type:</small>
+                  <p>{{localPurchasePermitType}}</p>
                 </div>
                 <div>
                   <small>Undertaking No.:</small>
                   <p>{{undertakingNo}}</p>
                 </div>
                 <div>
-                  <small>Invoice/ Vendor Reference N:</small>
-                  <p>{{invoiceVendorRefNo}}</p>
+                  <small>Invoice/ Cash Memo No:</small>
+                  <p>{{invoiceCashMemoNo}}</p>
                 </div>
                 <div>
-                  <small>Buyer Name:</small>
-                  <p>{{buyerName}}</p>
+                  <small>Source Zone:</small>
+                  <p>{{sourceZoneIf}}</p>
+                </div>
+                <div>
+                  <small>Cosignor/Supplier Name:</small>
+                  <p>{{consigneeName}}</p>
+                </div>
+                <div>
+                  <small>Remarks:</small>
+                  <p>{{remarks}}</p>
                 </div>
               </div>
               <div class="right">
                 <div>
-                  <small>Carrier Type:</small>
+                  <small>Name of Zone:</small>
+                  <p>{{economicZone}}</p>
+                </div>
+                <div>
+                  <small>Type of Carrier:</small>
                   <p>{{carrierType}}</p>
                 </div>
           
@@ -277,19 +285,13 @@
                   <small>Undertaking Date:</small>
                   <p>{{undertakingDate}}</p>
                 </div>
-
                 <div>
-                  <small>Type of Zone:</small>
-                  <p>{{typeOfEconomicZoneWhereBusinessToBeSet}}</p>
-                </div>
-
-                <div>
-                  <small>Invoice/ Vendor Ref. Date :</small>
-                  <p>{{invoiceVendorRefDate}}</p>
+                  <small>Invoice/ Cash Memo Date :</small>
+                  <p>{{invoiceDate}}</p>
                 </div>
                 <div>
-                  <small>Buyer Address :</small>
-                  <p>{{buyerAddress}}</p>
+                  <small>Cosignor/Supplier Address :</small>
+                  <p>{{consigneeAddress}}</p>
                 </div>
                 <div>
                   <small>Value:</small>

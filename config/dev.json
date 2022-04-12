@@ -9,6 +9,7 @@
     "bezaServiceCommmonFields": "/beza-service/api/v1/private/sop-common-fields/",
     "bezaServiceUserSignature": "/beza-service/api/v1/private/users/{{userId}}/signature",
     "analysisRequestServicePath": "/query-service/api/v1/private/discovery/search-data/",
-    "analysisReportDownloadPdfUrlPath": "query-service/api/v1/private/analysis/report"
+    "analysisReportDownloadPdfUrlPath": "query-service/api/v1/private/analysis/report",
+    "paymentVoucherInfoPath": "/beza-service/api/v1/private/user-sops/payment-voucher/"
   }
 }

@@ -4,6 +4,7 @@ const ProjectClearance = require("../pdf_generators/ProjectClearance");
 const ImportPermit = require("../pdf_generators/ImportPermit");
 const TradeLicense = require("../pdf_generators/TradeLicense");
 const LocalSalesPermit = require("../pdf_generators/LocalSalesPermit");
+const LocalPurchasePermit = require("../pdf_generators/LocalPurchasePermit");
 const ExportPermit = require("../pdf_generators/ExportPermit");
 const VisaRecommendation = require("../pdf_generators/VisaRecommendation");
 const VisaAssistance = require("../pdf_generators/VisaAssistance");
@@ -47,6 +48,11 @@ const generate = async (data) => {
       const localSalesPermit = new LocalSalesPermit();
       console.log("Generating pdf for local Sales Permit");
       generatedPdf = await localSalesPermit.generate(data);
+      break;
+    case AllSopsCodes.LOCAL_PURCHASE_PERMIT.value:
+      const localPurchasePermit = new LocalPurchasePermit();
+      console.log("Generating pdf for Local Purchase permit");
+      generatedPdf = await localPurchasePermit.generate(data);
       break;
     case AllSopsCodes.EXPORT_PERMIT.value:
       const exportPermit = new ExportPermit();
