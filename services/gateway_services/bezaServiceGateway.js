@@ -2,6 +2,12 @@ const axios = require("axios");
 const config = require("../../config/config");
 const { getCurrentFormattedDateTime } = require("../../util/dateTimeFormattor");
 const FormData = require('form-data');
+const { DOMImplementation, XMLSerializer } = require('xmldom');
+const xmlSerializer = new XMLSerializer();
+const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
+const JsBarcode = require('jsbarcode');
+const amountInWords = require("../../util/amountToWordUtil");
+const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
 const getFormValueByApplicationID = async (applicationId) => {
   let formValueUrl =
@@ -107,10 +113,39 @@ const getCommonFileds= async function (investorId){
    return res.userSopCommonFieldDomainModels[0].formValue;
 }
 
+const getPaymentVoucherInfo = async ({applicationId}) => {
+  const url = config.backendApi.bezaServiceBaseUrl+  ":" +
+  config.backendApi.bezaServicePort+ config.backendApi.paymentVoucherInfoPath + applicationId
+
+  const generateBarcode = async text => {
+      JsBarcode(svgNode, text, {
+          xmlDocument: document,
+          width: 0.75,
+          height: 25,
+          displayValue: false
+      });
+      
+      const barcodeData = xmlSerializer.serializeToString(svgNode);
+      return barcodeData;
+  }
+
+  try {
+    const {data} = await axios.get(url);
+    const totalFees = data?.payAmount + data?.vat + data?.bankCharge + data?.bankVat;
+    data.totalFees = totalFees
+    data.amountInWords = amountInWords(totalFees)
+    await generateBarcode(data.trackingId).then (barRes => data.barcode = barRes).catch(err=> console.log(err));    
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 
 module.exports = {
   getFormValueByApplicationID,
   upload,
   saveCertificateInfo,
-  getCommonFileds
+  getCommonFileds,
+  getPaymentVoucherInfo
 };

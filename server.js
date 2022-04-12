@@ -14,6 +14,7 @@ const CertificateService = require("./services/certificateService");
 const { reportType } = require("./constants/reportTypes");
 const config = require("./config/config");
 const { getCurrentFormattedDateTime } = require("./util/dateTimeFormattor");
+const PaymentVoucherService = require("./services/paymentVoucherService");
 const corsOptions = {
   exposedHeaders: ["pdfFileName", "Content-disposition"],
 };
@@ -80,6 +81,16 @@ app.post(
       .catch((err) => res.send({ message: "ERR" }));
   }
 );
+
+app.post("/beza-certificate/api/v1/private/generate/payment-voucher/pdf", async (req, res) => {
+  const paymentVoucherService = new PaymentVoucherService();
+  await paymentVoucherService.generatePdf(req.body)
+  .then(data => {
+    res.setHeader('content-type', 'application/pdf');
+    res.send(data)
+  })
+  .catch(err => res.send({message: 'ERROR'}))
+})
 
 console.log(`Download service si running on http://${HOST}:${PORT}`);
 app.listen(PORT, HOST);
