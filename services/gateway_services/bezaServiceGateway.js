@@ -116,7 +116,7 @@ const getPaymentVoucherInfo = async ({applicationId}) => {
     const totalFees = data?.payAmount + data?.vat + data?.bankCharge + data?.bankVat;
     data.totalFees = totalFees
     data.amountInWords = amountInWords(totalFees)
-    await generateBarcode(data.trackingId).then (barRes => data.barcode = barRes).catch(err=> console.log(err));    
+    await generateBarcode(data.trackingId || "").then (barRes => data.barcode = barRes).catch(err=> console.log(err));    
     return data;
   } catch (error) {
     console.log(error)

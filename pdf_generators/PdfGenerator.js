@@ -60,7 +60,7 @@ const generatePdfFromHtmlForPayment = async function (htmlTemplate, data, option
 
 const generatePdfFromHtmlMultipleMaterialDescription = async function (htmlTemplate, options) {
   // const html = htmlTemplate;
-  const html = templateEngine.replacer(htmlTemplate, json.formValue);
+  // const html = templateEngine.replacer(htmlTemplate, json.formValue);
   const buf = await new Promise((resolve, reject) => {
     pdf.create(htmlTemplate, options).toBuffer(function (err, buffer) {
       if (err) {
