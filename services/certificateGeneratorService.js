@@ -30,7 +30,6 @@ const generateBarcode = async text => {
     });
     
     const barcodeData = xmlSerializer.serializeToString(svgNode);
-    // console.log(barcodeData);
     return barcodeData;
 }
 
@@ -43,13 +42,12 @@ const generateCertificate = async (req) => {
     await bezaServiceGateway
                     .getFormValueByApplicationID(req.body.applicationId).then(
                        async res=>{
-                            const canvas = {}
                             const appId = encryption.encrypt(""+req.body.applicationId);
+                            
                             colonOrNot = config.backendApi.bezaServiceFrontEndPort == "" ? "" : ":";
                             const url =
                               `${config.backendApi.bezaServiceBaseUrl}${colonOrNot}${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=` +
                               appId;
-                            
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));
 
                             await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
@@ -66,11 +64,8 @@ const generateCertificate = async (req) => {
                             /**
                              * merging the common fields
                              */
-                            console.log("req.body.investorId:   "+req.body.investorId)
                             const commonFieldValue=await bezaServiceGateway.getCommonFileds(req.body.investorId);
-                            console.log("\n\n\n\n\n\ncommonFieldValue:   "+JSON.stringify(commonFieldValue))
                             let commonFieldValueKeys = Object.keys(commonFieldValue);
-                            console.log("\n\n\n\n\n\ncommonFieldValueKeys:   "+commonFieldValueKeys.toString())
                             commonFieldValueKeys.forEach(key=>{
                                 console.log("key:     "+key)
                                 if(key=="dataGrid1"){

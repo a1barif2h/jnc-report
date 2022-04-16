@@ -18,22 +18,12 @@ const getFormValueByApplicationID = async (applicationId) => {
     applicationId;
   
   console.log("URL to get from value from user sop: " + formValueUrl);
-  let data = await axios
-    .get(formValueUrl)
-    .then(
-      (response) => response.data
-      // console.log(response.data);
-      // console.log(response.data.explanation);
-      //     const projectClearance = new ProjectClearance();
-      // let generatedPdf = await projectClearance.generate(respose.data.formValue, req.body);
-      // return generatedPdf;
-    )
-    .catch((error) => {
-      console.log(error);
-    });
-
-  // console.log("Form value fetched under application ID: " + applicationId + " form: " + (data == null ? "null" : JSON.stringify(data) ));
-  return data;
+  try {
+    const {data} = await axios.get(formValueUrl)
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 const upload = async (buffer, data) => {
@@ -44,8 +34,6 @@ const upload = async (buffer, data) => {
     config.backendApi.mayanCertificateUploadPath;
 
   let pdfFileName = data.title + "_" + data.id + getCurrentFormattedDateTime() + ".pdf";
-  
-  console.log("pdfFileName:   "+pdfFileName)
   let form = new FormData();
   form.append("file", buffer, pdfFileName);
   let res = await axios
@@ -58,8 +46,6 @@ const upload = async (buffer, data) => {
     .catch((error) => {
       console.log(error);
     });
-    
-  // console.log(buffer);
   return res;
 
 };
@@ -88,8 +74,6 @@ const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke
     .catch((error) => {
       console.log(error);
     });
-    
-  console.log(res);
   return res;
 }
 
@@ -100,8 +84,6 @@ const getCommonFileds= async function (investorId){
     config.backendApi.bezaServicePort+
     config.backendApi.bezaServiceCommmonFields+
     investorId
-
-    console.log("commonFiledsUrl:   "+commonFiledsUrl)
     
    let res = await axios
    .get(commonFiledsUrl)

@@ -15,9 +15,9 @@ const getCurrentFormattedDateTime = () => {
 }
 
 const getApplicationDate = (givenDate) => {
+    console.log(givenDate, "===check givenDate===")
     try {
         const date = moment(givenDate);
-        // return date.getDate() + " " + date.getMonth() + ", " + date.getFullYear();
         return date.format('DD MMM, yyyy');
     } catch (err) {
         return "_";
