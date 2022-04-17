@@ -4,6 +4,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Merriweather:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <title>Certificate</title>
     <style>
       * {
@@ -17,9 +23,10 @@
         font-size: 8px;
         position: relative;
         z-index: 5;
+        font-family: "EB Garamond", serif;
       }
 
-      .container::before {
+      /* .container::before {
         content: "";
         position: absolute;
         top: 0;
@@ -32,7 +39,7 @@
         height: 100%;
         opacity: 0.1;
         z-index: 10;
-      }
+      } */
 
       header {
         display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
@@ -163,15 +170,10 @@
             alt=""
           />
         </div>
-        <div class="header-bar-code">
-          {{barcode}}
-        </div>
+        <div class="header-bar-code">{{barcode}}</div>
 
         <div class="header-qr-code">
-          <img
-            src="{{qrcode}}"
-            alt=""
-          />
+          <img src="{{qrcode}}" alt="" />
         </div>
       </header>
       <main>
@@ -180,14 +182,15 @@
           <b>Date: {{applicationDate}}</b>
         </div>
         <div class="application-subject">
-          <b
-            >Subject: Request for Issuance of visa
-          </b>
+          <b>Subject: Request for Issuance of visa </b>
         </div>
         <div class="application-header">
           <p class="dear-ceo">Dear Sir,</p>
           <p class="application-header-text">
-            With reference to the above mentioned subject, it is to inform you that {{proposedProjectCompanyName}} is working / willing to work with the Bangladesh Economic Zone Authority. The Company has requested for visa recommendation for the following expatriate:
+            With reference to the above mentioned subject, it is to inform you
+            that {{proposedProjectCompanyName}} is working / willing to work
+            with the Bangladesh Economic Zone Authority. The Company has
+            requested for visa recommendation for the following expatriate:
           </p>
         </div>
 
@@ -255,10 +258,10 @@
       <footer>
         <p>
           The above mentioned foreign national may be advised to approach in
-          Embassy/ High Commission of Bangladesh in {{country4}} with the copy of his
-          appointment letter or other related documents for obtaining Visa. The
-          company shall be responsible for all action of the expatriate during
-          his/ her stay in Bangladesh.
+          Embassy/ High Commission of Bangladesh in {{country4}} with the copy
+          of his appointment letter or other related documents for obtaining
+          Visa. The company shall be responsible for all action of the
+          expatriate during his/ her stay in Bangladesh.
         </p>
       </footer>
     </div>
