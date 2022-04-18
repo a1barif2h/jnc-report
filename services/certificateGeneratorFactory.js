@@ -26,8 +26,8 @@ const generate = async (data) => {
   let sopCode = data.sopCode;
   let generatedPdf = null;
   const AllSopsCodes=allSopsCodes.AllSopsCodes;
-  console.log("sopId:   "+sopCode);
-  console.log("allSopsCodes.EXPORTPERMIT:   "+JSON.stringify(AllSopsCodes));
+  // console.log("sopId:   "+sopCode);
+  // console.log("allSopsCodes.EXPORTPERMIT:   "+JSON.stringify(AllSopsCodes));
   switch (sopCode) {
     case AllSopsCodes.PROJECT_CLEARANCE.value:
       const projectClearance = new ProjectClearance();

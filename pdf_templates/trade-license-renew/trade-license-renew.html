@@ -149,7 +149,7 @@
       .factory {
         margin: 1rem 0rem -0.5rem 0rem;
         font-size: 8px;
-        border-bottom: 1px solid black"
+        border-bottom: 1px solid black;
       }
     </style>
   </head>
@@ -163,15 +163,13 @@
             alt=""
           />
         </div>
-        <div class="header-bar-code">
-          {{barcode}}
-        </div>
+        <div class="header-bar-code">{{barcode}}</div>
       </header>
       <main>
         <div class="application-date">
           <div>
             <p>License No.: {{trackingId}}</p>
-            <p>Date of Issuance: {{applicationDate}}</p>
+            <p>Date of Issuance: {{certificateGenerateDate}}</p>
           </div>
           <div>
             <p>Previous TL No.: {{pleaseGiveYourApprovedTradeLicenseNo}}</p>

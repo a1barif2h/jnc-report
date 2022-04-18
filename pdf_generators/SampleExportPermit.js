@@ -47,22 +47,21 @@ class SampleExportPermit {
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
     
     htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
-      body.formValue.dataGrid,
+      body.formValue.productDetails,
       materialsDetailsTemplate,
       htmlImportTemplate,
       headerTemplate
     );
-
     console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
     htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
-      body.formValue.dataGrid,
+      body.formValue.productDetails,
       materialsDetailsTemplate,
       htmlImportTemplate,
       headerTemplate
     );
     console.log("htmlSampleExportTemplate:");
-    console.log(htmlImportTemplate);
+    // console.log(htmlImportTemplate);
     // if (body.formValue.dataGrid.length!=1){
       
     // }

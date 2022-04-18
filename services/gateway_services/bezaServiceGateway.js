@@ -17,7 +17,7 @@ const getFormValueByApplicationID = async (applicationId) => {
     config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
     applicationId;
   
-  console.log("URL to get from value from user sop: " + formValueUrl);
+  // console.log("URL to get from value from user sop: " + formValueUrl);
   try {
     const {data} = await axios.get(formValueUrl)
     return data;
@@ -91,7 +91,7 @@ const getCommonFileds= async function (investorId){
    .catch((error) => {
      console.log(error);
    });
-   console.log("res[0].formValue:  "+JSON.stringify(res.userSopCommonFieldDomainModels[0].formValue))
+  //  console.log("res[0].formValue:  "+JSON.stringify(res.userSopCommonFieldDomainModels[0].formValue))
    return res.userSopCommonFieldDomainModels[0].formValue;
 }
 

@@ -33,7 +33,7 @@ class ProjectClearance {
             materialsDesTemplate=materialsDesTemplate.replaceAll(`{{localOrientedPercentage}}`, (""+localTotal || "-"))
             materialsDesTemplate=replaceMaterialsInProjectClearance.replaceAllMaterialsValue(body, materialsDesTemplate)
             
-            console.log("\n\n\n\n\n materialsDesTemplate:\n\n\n\n\n "+materialsDesTemplate)
+            // console.log("\n\n\n\n\n materialsDesTemplate:\n\n\n\n\n "+materialsDesTemplate)
             htmlTemplate=htmlTemplate.replace(`{{materialsDescription}}`,(materialsDesTemplate ||"-"))
             
         }catch(exceptionVar){

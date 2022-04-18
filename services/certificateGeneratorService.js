@@ -70,7 +70,7 @@ const generateCertificate = async (req) => {
                             const commonFieldValue=await bezaServiceGateway.getCommonFileds(req.body.investorId);
                             let commonFieldValueKeys = Object.keys(commonFieldValue);
                             commonFieldValueKeys.forEach(key=>{
-                                console.log("key:     "+key)
+                                // console.log("key:     "+key)
                                 if(key=="dataGrid1"){
                                     // console.log("\n\n\n"+commonFieldValue[key].length+"\n\n\n")
                                 }

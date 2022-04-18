@@ -38,8 +38,8 @@ class ExportPermit {
     );
     let htmlExportTemplate = htmlTemplate;
     
-    console.log("ExportTemplate:");
-    console.log(htmlExportTemplate);
+    // console.log("ExportTemplate:");
+    // console.log(htmlExportTemplate);
     htmlExportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
       body.formValue,
       htmlExportTemplate
@@ -52,7 +52,7 @@ class ExportPermit {
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
     
     htmlExportTemplate = materialsDescriptionParser.addFirstMaterials(
-      body.formValue.dataGrid,
+      body.formValue.exportMaterialsInformationGroup,
       materialsDetailsTemplate,
       htmlExportTemplate,
       headerTemplate
@@ -61,7 +61,7 @@ class ExportPermit {
     console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
     htmlExportTemplate = materialsDescriptionParser.addRemainingMaterials(
-      body.formValue.dataGrid,
+      body.formValue.exportMaterialsInformationGroup,
       materialsDetailsTemplate,
       htmlExportTemplate,
       headerTemplate
