@@ -12,6 +12,7 @@ const fs = require("fs");
 const encryption = require("../util/encryption");
 const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
+const moment = require('moment')
 
 const generateQR = async text => {
     try {
@@ -51,12 +52,14 @@ const generateCertificate = async (req) => {
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));
 
                             await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
-                            
+
                             if(req.body.isRevoke){
                                 res.formValue.backgroundImg = background_cancelled;
                             }
                             else{
                                 res.formValue.backgroundImg = background_image;
+                                const certificateGenerateDate =moment(new Date()).format('DD MMM, YYYY')
+                                res.formValue.certificateGenerateDate = certificateGenerateDate;
                             }
                             res.formValue.trackingId = res.trackingId;
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(res.createdAt);

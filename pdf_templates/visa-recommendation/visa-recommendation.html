@@ -17,7 +17,7 @@
   width: 210mm;
   height: 297mm;
   margin: 3rem auto; */
-        padding: 35px;
+        padding: 15px;
         font-size: 8px;
         position: relative;
         z-index: 5;
@@ -164,21 +164,16 @@
             alt=""
           />
         </div>
-        <div class="header-bar-code">
-          {{barcode}}
-        </div>
+        <div class="header-bar-code">{{barcode}}</div>
 
         <div class="header-qr-code">
-          <img
-            src="{{qrcode}}"
-            alt=""
-          />
+          <img src="{{qrcode}}" alt="" />
         </div>
       </header>
       <main>
         <div class="application-date">
           <b>File no: {{trackingId}}</b>
-          <b>Date: {{applicationDate}}</b>
+          <b>Date: {{certificateGenerateDate}}</b>
         </div>
         <!-- <div class="application-subject">
           <b
@@ -186,18 +181,17 @@
           </b>
         </div> -->
         <div>
-          <b
-            >Subject: Request for Issuance of visa
-          </b>
+          <b>Subject: Request for Issuance of visa </b>
         </div>
-        
+
         <div class="application-header">
           <p class="dear-ceo">Dear Sir,</p>
           <p class="application-header-text">
             With reference to the above mentioned subject, it is to inform you
-            that <b>{{applyingFirmOrCompany}}</b> is a commercial or industrial unit
-            registered with the Bangladesh Economic Zone Authority. The Company
-            has requested for visa recommendation for the following expatriate:
+            that <b>{{applyingFirmOrCompany}}</b> is a commercial or industrial
+            unit registered with the Bangladesh Economic Zone Authority. The
+            Company has requested for visa recommendation for the following
+            expatriate:
           </p>
         </div>
 
@@ -210,10 +204,10 @@
             <b>Type of Visa Required</b>
           </div>
           <div>
-            <b>: {{nameOfTheForeignNational}}</b>
-            <b>: {{particularsNationality}}</b>
-            <b>: {{passport1}}</b>
-            <b>: {{statusproposed2}}</b>
+            <b>: {{nameOfTheForeignNational1}}</b>
+            <b>: {{nationality}}</b>
+            <b>: {{passportNo}}</b>
+            <b>: {{incumbentDesignation}}</b>
             <b>: {{typeOfVisaRequiredForTheIncumbentForeignNationals}}</b>
           </div>
         </div>
@@ -267,8 +261,13 @@
       <footer>
         <p>
           The above mentioned foreign national may be advised to approach in
-          Embassy/ High Commission of Bangladesh in <b>{{countryName}}</b> with the copy of his
-          appoinment letter and other related documents for obtaining<b> {{typeOfVisaRequiredForTheIncumbentForeignNationals}}, You are also advised to apply for his/ her work permit to this authority within 2 years after arrival in Bangladesh.</b>
+          Embassy/ High Commission of Bangladesh in <b>{{countryName}}</b> with
+          the copy of his appoinment letter and other related documents for
+          obtaining<b>
+            {{typeOfVisaRequiredForTheIncumbentForeignNationals}}, You are also
+            advised to apply for his/ her work permit to this authority within 2
+            years after arrival in Bangladesh.</b
+          >
           The company shall be responsible for all action of the expatriate
           during his/ her stay in Bangladesh.
         </p>
