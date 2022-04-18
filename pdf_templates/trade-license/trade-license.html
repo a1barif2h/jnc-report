@@ -149,7 +149,7 @@
       .factory {
         margin: 1rem 0rem -0.5rem 0rem;
         font-size: 8px;
-        border-bottom: 1px solid black"
+        border-bottom: 1px solid black;
       }
     </style>
   </head>
@@ -163,9 +163,7 @@
             alt=""
           />
         </div>
-        <div class="header-bar-code">
-          {{barcode}}
-      </div>
+        <div class="header-bar-code">{{barcode}}</div>
       </header>
       <main>
         <div class="application-date">
@@ -175,7 +173,7 @@
             <!-- found no field for these two in the jason -->
           </div>
           <div>
-            <p>Date of Issuance: {{applicationDate}}</p>
+            <p>Date of Issuance: {{certificateGenerateDate}}</p>
             <p>Valid Till : {{endTime}}</p>
             <!-- found no field for Issuance date in the jason -->
           </div>

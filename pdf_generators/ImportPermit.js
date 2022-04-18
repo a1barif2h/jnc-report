@@ -38,7 +38,7 @@ class ImportPermit {
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
     
     htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
-      body.formValue.dataGrid,
+      body.formValue.importMaterialsInformationGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
       headerTemplate
@@ -47,7 +47,7 @@ class ImportPermit {
     console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
     htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
-      body.formValue.dataGrid,
+      body.formValue.importMaterialsInformationGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
       headerTemplate

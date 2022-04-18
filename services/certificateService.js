@@ -21,7 +21,7 @@ class CertificateService {
         console.log(error);
       });
 
-      console.log(data);
+      // console.log(data);
       return data;
   }
 
