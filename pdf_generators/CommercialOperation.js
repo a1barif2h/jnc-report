@@ -12,13 +12,10 @@ class CommercialOperation {
     }
 
     async generate(body) {
-        let htmlTemplate = fs.readFileSync('./pdf_templates/commercial-operation/commercial-operation.html', 'utf8');
-        // body.routePermitIssueDate = body.hasOwnProperty("routePermitIssueDate") ? body.routePermitIssueDate : "_";
-        // body.routePermitExpDate = body.hasOwnProperty("routePermitExpDate") ? body.routePermitExpDate : "_";
-        // body.fitnessIssueDate = body.hasOwnProperty("fitnessIssueDate") ? body.fitnessIssueDate : "_";
-        // pdf.pdfGenerator(htmlTemplate, body, res, options)
-        var m = new Date();
-        var myDate = m.getUTCDate() + "/" + (m.getUTCMonth()+1) + "/" + m.getUTCFullYear();
+        const htmlTemplate = fs.readFileSync('./pdf_templates/commercial-operation/commercial-operation.html', 'utf8');
+        const m = new Date();
+        const myDate = m.getUTCDate() + "/" + (m.getUTCMonth()+1) + "/" + m.getUTCFullYear();
+        // console.log(myDate, "===check myDate===")
         body.formValue.commercialIssueDate = myDate;
         body.formValue.proposedDateOfCo = dateTimeFormattor.getApplicationDate(body.formValue.proposedDateOfCo);
         const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);

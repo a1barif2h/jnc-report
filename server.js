@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
 
 app.get("/info", function (req, res) {
   const gitInfo = getRepoInfo();
-  console.log("checking health...");
+  // console.log("checking health...");
   res.setHeader("Content-Type", "application/json");
   res.send(
     JSON.stringify({
@@ -52,7 +52,7 @@ app.get("/info", function (req, res) {
 app.post(
   "/report-download/api/v1/private/vehicle-registration/print/pdf",
   (req, res) => {
-    console.log("Printing vehicle-registration");
+    // console.log("Printing vehicle-registration");
     let pdfFileName = "vehicle-registration";
 
     if (req.body && req.body.vehicleRegistrationNumber) {
@@ -73,7 +73,7 @@ app.post(
 app.post(
   "/certificate-service/api/v1/private/generate/pdf",
   async (req, res) => {
-    console.log("Printing pdf");
+    // console.log("Printing pdf");
     const certificateService = new CertificateService();
     await certificateService
       .generatePdf(req)

@@ -17,23 +17,13 @@ const getFormValueByApplicationID = async (applicationId) => {
     config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
     applicationId;
   
-  console.log("URL to get from value from user sop: " + formValueUrl);
-  let data = await axios
-    .get(formValueUrl)
-    .then(
-      (response) => response.data
-      // console.log(response.data);
-      // console.log(response.data.explanation);
-      //     const projectClearance = new ProjectClearance();
-      // let generatedPdf = await projectClearance.generate(respose.data.formValue, req.body);
-      // return generatedPdf;
-    )
-    .catch((error) => {
-      console.log(error);
-    });
-
-  // console.log("Form value fetched under application ID: " + applicationId + " form: " + (data == null ? "null" : JSON.stringify(data) ));
-  return data;
+  // console.log("URL to get from value from user sop: " + formValueUrl);
+  try {
+    const {data} = await axios.get(formValueUrl)
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 const upload = async (buffer, data) => {
@@ -44,8 +34,6 @@ const upload = async (buffer, data) => {
     config.backendApi.mayanCertificateUploadPath;
 
   let pdfFileName = data.title + "_" + data.id + getCurrentFormattedDateTime() + ".pdf";
-  
-  console.log("pdfFileName:   "+pdfFileName)
   let form = new FormData();
   form.append("file", buffer, pdfFileName);
   let res = await axios
@@ -58,8 +46,6 @@ const upload = async (buffer, data) => {
     .catch((error) => {
       console.log(error);
     });
-    
-  // console.log(buffer);
   return res;
 
 };
@@ -88,8 +74,6 @@ const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke
     .catch((error) => {
       console.log(error);
     });
-    
-  console.log(res);
   return res;
 }
 
@@ -101,8 +85,6 @@ const getCommonFileds= async function (investorId){
       config.backendApi.bezaServicePort))+
     config.backendApi.bezaServiceCommmonFields+
     investorId
-
-    console.log("commonFiledsUrl:   "+commonFiledsUrl)
     
    let res = await axios
    .get(commonFiledsUrl)
@@ -110,7 +92,7 @@ const getCommonFileds= async function (investorId){
    .catch((error) => {
      console.log(error);
    });
-   console.log("res[0].formValue:  "+JSON.stringify(res.userSopCommonFieldDomainModels[0].formValue))
+  //  console.log("res[0].formValue:  "+JSON.stringify(res.userSopCommonFieldDomainModels[0].formValue))
    return res.userSopCommonFieldDomainModels[0].formValue;
 }
 
@@ -156,7 +138,7 @@ const getPaymentVoucherInfo = async ({applicationId}) => {
     const totalFees = data?.payAmount + data?.vat + data?.bankCharge + data?.bankVat;
     data.totalFees = totalFees
     data.amountInWords = amountInWords(totalFees)
-    await generateBarcode(data.trackingId).then (barRes => data.barcode = barRes).catch(err=> console.log(err));    
+    await generateBarcode(data.trackingId || "").then (barRes => data.barcode = barRes).catch(err=> console.log(err));    
     return data;
   } catch (error) {
     console.log(error)

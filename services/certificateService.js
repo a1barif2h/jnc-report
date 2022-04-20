@@ -6,14 +6,7 @@ const axios = require("axios");
 
 class CertificateService {
   constructor() {}
-
-  // pdfFileName = "project-clearance";
-
-  // formValue = null;
-
-  // generatedPdf = null;
   
-
   getFormValue(req) {
     let formValueUrl =
       config.backendApi.bezaServiceBaseUrl +
@@ -23,19 +16,12 @@ class CertificateService {
       req.body.applicationId;
     const data = axios
       .get(formValueUrl)
-      .then((response) => response.data.formValue
-        // console.log(response.data);
-        // console.log(response.data.explanation);
-    //     const projectClearance = new ProjectClearance();
-    // let generatedPdf = await projectClearance.generate(respose.data.formValue, req.body);
-    // return generatedPdf;
-        
-      )
+      .then((response) => response.data.formValue)
       .catch((error) => {
         console.log(error);
       });
 
-      console.log(data);
+      // console.log(data);
       return data;
   }
 

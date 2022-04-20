@@ -34,7 +34,7 @@ const generateMultipleMaterialsDescription = function (
   for (let i = 1; i < dataGrid.length; i++) {
     let tempmaterialsTemplate = materialsTemplate;
     if (i == dataGrid.length - 1) {
-      console.log("iiiiiiiiiiii:   " + footerTemplate);
+      // console.log("iiiiiiiiiiii:   " + footerTemplate);
       tempmaterialsTemplate = tempmaterialsTemplate.replace(
         `{{footerHere}}`,
         footerTemplate.toString() || "-"
@@ -52,7 +52,7 @@ const generateMultipleMaterialsDescription = function (
         `{{headerHere}}`,
         headerTemplate.toString()
       );
-      console.log("pagebreak added!  " + i);
+      // console.log("pagebreak added!  " + i);
     } else {
       tempmaterialsTemplate = tempmaterialsTemplate.replace(
         `{{headerHere}}`,
@@ -66,7 +66,7 @@ const generateMultipleMaterialsDescription = function (
 
     if (i % 2 == 0) {
       materialsDescriptionTemplate += "</div>";
-      console.log("</div>  added: " + i);
+      // console.log("</div>  added: " + i);
     }
   }
 
@@ -75,7 +75,7 @@ const generateMultipleMaterialsDescription = function (
   // }
   if (dataGrid.length != 0 && dataGrid.length % 2 == 0) {
     materialsDescriptionTemplate += "</div>";
-    console.log("</div>  added: " + dataGrid.length);
+    // console.log("</div>  added: " + dataGrid.length);
   }
 
   return materialsDescriptionTemplate;
@@ -109,7 +109,7 @@ const addFirstMaterials = function (
     `{{firstMaterialsDetails}}`,
     firstMaterialsDetails || "-"
   );
-  console.log("matarialDescription:   " + firstMaterialsDetails);
+  // console.log("matarialDescription:   " + firstMaterialsDetails);
   return htmlExportTemplate;
 };
 
@@ -137,7 +137,7 @@ const addRemainingMaterials = function (
   );
 
   console.log("==========================================\n\n\n");
-  console.log("remainingMaterialsDetails:   " + remainingMaterialsDetails);
+  // console.log("remainingMaterialsDetails:   " + remainingMaterialsDetails);
   return htmlExportTemplate;
 };
 module.exports = {

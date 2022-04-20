@@ -21,7 +21,7 @@ class LandUsePlan {
         // htmlAreaTemplate=addDatagridInfoInLUP.insertAreaInfo(body,htmlAreaTemplate)
         htmlTemplate=htmlTemplate.replace(`{{buildingAreaSqm}}`,body.formValue.dataGrid[0].buildingAreaSqm||"-")
         htmlTemplate=htmlTemplate.replace(`{{totalFloorAreaSqm}}`,body.formValue.dataGrid[0].totalFloorAreaSqm||"-")
-        console.log("body.formValue.dataGrid[0].totalFloorAreaSqm:   "+""+body.formValue.dataGrid[0].totalFloorAreaSqm)
+        // console.log("body.formValue.dataGrid[0].totalFloorAreaSqm:   "+""+body.formValue.dataGrid[0].totalFloorAreaSqm)
         const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
         return response;
     }

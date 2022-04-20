@@ -47,7 +47,7 @@ class SampleImportPermit {
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
     
     htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
-      body.formValue.dataGrid,
+      body.formValue.sampleImportMaterialsInformationGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
       headerTemplate
@@ -56,13 +56,13 @@ class SampleImportPermit {
     console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
     htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
-      body.formValue.dataGrid,
+      body.formValue.sampleImportMaterialsInformationGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
       headerTemplate
     );
     console.log("htmlSampleImportTemplate:");
-    console.log(htmlImportTemplate);
+    // console.log(htmlImportTemplate);
     // if (body.formValue.dataGrid.length!=1){
       
     // }

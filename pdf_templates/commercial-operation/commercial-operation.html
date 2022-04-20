@@ -22,12 +22,12 @@
       .container::before {
         content: "";
         position: absolute;
-        top: 0;
+        top: 60px;
         left: 0;
         background-image: url("{{backgroundImg}}");
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 450px;
+        background-size: 380px;
         width: 100%;
         height: 100%;
         opacity: 0.1;
@@ -136,7 +136,7 @@
         margin-left: 3.2rem;
       }
     </style>
-  <script async="" src="/cdn-cgi/bm/cv/669835187/api.js"></script>
+    <script async="" src="/cdn-cgi/bm/cv/669835187/api.js"></script>
   </head>
   <body>
     <div class="container">
@@ -148,9 +148,7 @@
             alt=""
           />
         </div>
-        <div class="header-bar-code">
-          {{barcode}}
-        </div>
+        <div class="header-bar-code">{{barcode}}</div>
       </header>
       <main>
         <div class="commercial-operation">
@@ -160,13 +158,13 @@
         <div class="tracking-no">
           <div>
             <p>Tracking no: {{trackingId}}</p>
+            <p>Proposed Date : &nbsp; {{proposedDateOfCo}}</p>
             <p>Company Name: {{proposedProjectCompanyName}}</p>
             <p>Economic Zone: {{hiddenEconomicAddress}}</p>
           </div>
           <div>
-            <p>Issue Date : &nbsp; {{commercialIssueDate}}</p>
+            <p>Issue Date : &nbsp; {{certificateGenerateDate}}</p>
             <p>PC No. : &nbsp; {{projectClearanceApprovalNumber}}</p>
-            <p>Proposed Date : &nbsp; {{proposedDateOfCo}}</p>
           </div>
         </div>
 
@@ -175,7 +173,8 @@
 
           <p>
             We are pleased to issue the permission for commercial operation of
-            {{proposedProjectCompanyName}}, Project Clearance no. {{projectClearanceApprovalNumber}} Situated at
+            {{proposedProjectCompanyName}}, Project Clearance no.
+            {{projectClearanceApprovalNumber}} Situated at
             {{hiddenEconomicAddress}} from {{proposedDateOfCo}}
           </p>
         </div>
@@ -189,7 +188,7 @@
               alt=""
             />
           </div>
-          
+
           <div class="signature">
             <p>Yours faithfully</p>
             <p>
@@ -208,6 +207,14 @@
         </div>
       </main>
     </div>
-    <script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d58ac9f0b8339ea',m:'_K7KD7gIpiY9sOPzWJ_jnzsD72WbonLZykT3dR7kkto-1643524464-0-ARwR/byNeKDRb2HYjKEuMRv1tLHmFHjn/+iCC5zipduqhnhm4b5ZBTWhC1B0sITFvS9nPiRiQJUXwFnowQP0OYXgaRrFj3X3j2chM3SdACsEurBU3KXyt0kOtwBL/O4er4BiUxaLCr2a7LCnZ7K/NumyFF2mh7BrI+0sXCHLrAkCh0sIijrAGHAdEbzI9vVkJw==',s:[0x24dd05e6fc,0x83352a82ca],}})();</script>
+    <script type="text/javascript">
+      (function () {
+        window["__CF$cv$params"] = {
+          r: "6d58ac9f0b8339ea",
+          m: "_K7KD7gIpiY9sOPzWJ_jnzsD72WbonLZykT3dR7kkto-1643524464-0-ARwR/byNeKDRb2HYjKEuMRv1tLHmFHjn/+iCC5zipduqhnhm4b5ZBTWhC1B0sITFvS9nPiRiQJUXwFnowQP0OYXgaRrFj3X3j2chM3SdACsEurBU3KXyt0kOtwBL/O4er4BiUxaLCr2a7LCnZ7K/NumyFF2mh7BrI+0sXCHLrAkCh0sIijrAGHAdEbzI9vVkJw==",
+          s: [0x24dd05e6fc, 0x83352a82ca],
+        };
+      })();
+    </script>
   </body>
 </html>

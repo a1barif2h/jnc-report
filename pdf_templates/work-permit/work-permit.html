@@ -1,7 +1,8 @@
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Work Permit</title>
     <style>
       * {
@@ -213,18 +214,20 @@
         font-weight: bold;
       }
     </style>
-  <script async="" src="/cdn-cgi/bm/cv/669835187/api.js"></script></head>
+    <script async="" src="/cdn-cgi/bm/cv/669835187/api.js"></script>
+  </head>
 
   <body>
     <div class="mainContainer pagebreak">
       <header>
-        
         <div class="header-img">
-            <div class="header-logo">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
-                    alt="" />
-            </div>
-            <!-- <div class="header-bar-code">
+          <div class="header-logo">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
+              alt=""
+            />
+          </div>
+          <!-- <div class="header-bar-code">
                 {{barcode}}
             </div> -->
         </div>
@@ -233,7 +236,7 @@
       <div class="container">
         <div class="application-date">
           <p>File No: {{trackingId}}</p>
-          <p>Date: {{applicationDate}}</p>
+          <p>Date: {{certificateGenerateDate}}</p>
         </div>
 
         <div class="subject">
@@ -251,12 +254,12 @@
 
         <div class="application-text">
           <p>
-            With reference to your applications received on {{applicationDate}} the
-            above subject, this is to inform you that according to the decision
-            of meeting held on {{applicationDate}} the Bangladesh Economic Zone
-            Authority (BEZA) has been pleased to issue work permit for the
-            following foreign national employed in your company / office for the
-            period shown against his name on the terms, conditions and
+            With reference to your applications received on {{applicationDate}}
+            the above subject, this is to inform you that according to the
+            decision of meeting held on {{applicationDate}} the Bangladesh
+            Economic Zone Authority (BEZA) has been pleased to issue work permit
+            for the following foreign national employed in your company / office
+            for the period shown against his name on the terms, conditions and
             remuneration as shown below :
           </p>
         </div>
@@ -281,7 +284,7 @@
               border-style: solid;
               padding: 5px;
             }
- 
+
             table.GeneratedTable thead {
               background-color: #ffffff;
             }
@@ -291,7 +294,7 @@
             <thead>
               <tr>
                 <th class="first-th">
-                  Name, Designation <br>
+                  Name, Designation <br />
                   Nationality and Passport No
                 </th>
                 <th class="second-th">Period of Work Permit</th>
@@ -301,10 +304,10 @@
             <tbody>
               <tr>
                 <td class="first-td">
-                  {{nameOfTheForeignNational}} <br>
+                  {{nameOfTheForeignNational}} <br />
                   {{nameOfThePostEmployedOfDesignation}}
-                  <br>
-                  {{particularsNationality}}<br>
+                  <br />
+                  {{particularsNationality}}<br />
                   {{passport1}}
                 </td>
                 <td>{{desiredDuration}} (with effect from: {{issueDate}})</td>
@@ -322,38 +325,72 @@
                     <tbody class="child-tbody">
                       <tr>
                         <td>{{paymentLocally}}</td>
-                        <td>Basic Salary: {{currencyLocally}} {{amountLocally}}</td>
-                        <td>Basic Salary: {{currencyAbroad}} {{amountAbroad}}</td>
+                        <td>
+                          Basic Salary: {{currencyLocally}} {{amountLocally}}
+                        </td>
+                        <td>
+                          Basic Salary: {{currencyAbroad}} {{amountAbroad}}
+                        </td>
                       </tr>
                       <tr>
                         <td>{{paymentLocally3}}</td>
-                        <td>Conveyance: {{currencyLocally3}} {{amountLocally3}}</td>
-                        <td>Conveyance: {{currencyAbroad3}} {{amountAbroad3}}</td>
+                        <td>
+                          Conveyance: {{currencyLocally3}} {{amountLocally3}}
+                        </td>
+                        <td>
+                          Conveyance: {{currencyAbroad3}} {{amountAbroad3}}
+                        </td>
                       </tr>
                       <tr>
                         <td>{{paymentLocally1}}</td>
-                        <td>Overseas Allowance: {{currencyLocally1}} {{amountLocally1}}</td>
-                        <td>Overseas Allowance: {{currencyAbroad1}} {{amountAbroad1}}</td>
+                        <td>
+                          Overseas Allowance: {{currencyLocally1}}
+                          {{amountLocally1}}
+                        </td>
+                        <td>
+                          Overseas Allowance: {{currencyAbroad1}}
+                          {{amountAbroad1}}
+                        </td>
                       </tr>
                       <tr>
                         <td>{{paymentLocally2}}</td>
-                        <td>House Rent: {{currencyLocally2}} {{amountLocally2}}</td>
-                        <td>House Rent: {{currencyAbroad2}} {{amountAbroad2}}</td>
+                        <td>
+                          House Rent: {{currencyLocally2}} {{amountLocally2}}
+                        </td>
+                        <td>
+                          House Rent: {{currencyAbroad2}} {{amountAbroad2}}
+                        </td>
                       </tr>
                       <tr>
                         <td>{{paymentLocally4}}</td>
-                        <td>Medical Allowance: {{currencyLocally4}} {{amountLocally4}}</td>
-                        <td>Medical Allowance: {{currencyAbroad4}} {{amountAbroad4}}</td>
+                        <td>
+                          Medical Allowance: {{currencyLocally4}}
+                          {{amountLocally4}}
+                        </td>
+                        <td>
+                          Medical Allowance: {{currencyAbroad4}}
+                          {{amountAbroad4}}
+                        </td>
                       </tr>
                       <tr>
                         <td>{{paymentLocally5}}</td>
-                        <td>Entertain. Allowance: {{currencyLocally5}} {{amountLocally5}}</td>
-                        <td>Entertain. Allowance: {{currencyAbroad5}} {{amountAbroad5}}</td>
+                        <td>
+                          Entertain. Allowance: {{currencyLocally5}}
+                          {{amountLocally5}}
+                        </td>
+                        <td>
+                          Entertain. Allowance: {{currencyAbroad5}}
+                          {{amountAbroad5}}
+                        </td>
                       </tr>
                       <tr>
                         <td>{{paymentLocally6}}</td>
-                        <td>Annual Bonus: {{currencyLocally6}} {{amountLocally6}}</td>
-                        <td>Annual Bonus: {{currencyAbroad6}} {{amountAbroad6}}</td>
+                        <td>
+                          Annual Bonus: {{currencyLocally6}} {{amountLocally6}}
+                        </td>
+                        <td>
+                          Annual Bonus: {{currencyAbroad6}} {{amountAbroad6}}
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -379,14 +416,16 @@
     <div class="mainContainer pagebreak">
       <header>
         <div class="header-logo">
-          <img style="width: 52%; margin-top: 0.8rem" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&amp;usqp=CAU" alt="">
+          <img
+            style="width: 52%; margin-top: 0.8rem"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&amp;usqp=CAU"
+            alt=""
+          />
         </div>
-        <div class="header-bar-code">
-        {{barcode}}
-        </div>
-    
+        <div class="header-bar-code">{{barcode}}</div>
+
         <div class="header-qr-code">
-        <img src="{{qrcode}}" alt="" />
+          <img src="{{qrcode}}" alt="" />
         </div>
       </header>
       <div class="container second-page">
@@ -463,7 +502,10 @@
           </div>
           <div class="signature">
             <h6>Yours faithfully</h6>
-            <img src="https://signaturely.com/wp-content/uploads/2020/04/unreadable-letters-signaturely.svg" alt="">
+            <img
+              src="https://signaturely.com/wp-content/uploads/2020/04/unreadable-letters-signaturely.svg"
+              alt=""
+            />
             <div style="margin-top: 0.35rem; line-height: 2">
               <p>Md. Moniruzzaman</p>
               <p>General Manager (Investment Promotion)</p>
@@ -474,6 +516,14 @@
         </footer>
       </div>
     </div>
-  <script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d58adcc585d30e9',m:'QGpzvQKNvlXqG_qG3glzMWcLosDt1j.RE.AzGl7WOV8-1643524512-0-AT3qEpYbY05x/dnhBsRU/p7q2wxNDkq0e+/Ig0CQUm3Xp3lTMEl7Al1ia0SzSO/NdafB42bTD67SqBcvB9rjH0oEw8R0dmgzYAiYlXFIhRWF68UDijfK1bZdzzf5sNLbC5AzTtH6IdR0CrFzArpkH8az4ii+xatGQ0cZ/pmbhJleQjdCk0FzPEEwgcJ+4AUrqQ==',s:[0x9d540402ff,0x9bc64f9841],}})();</script>
-</body>
+    <script type="text/javascript">
+      (function () {
+        window["__CF$cv$params"] = {
+          r: "6d58adcc585d30e9",
+          m: "QGpzvQKNvlXqG_qG3glzMWcLosDt1j.RE.AzGl7WOV8-1643524512-0-AT3qEpYbY05x/dnhBsRU/p7q2wxNDkq0e+/Ig0CQUm3Xp3lTMEl7Al1ia0SzSO/NdafB42bTD67SqBcvB9rjH0oEw8R0dmgzYAiYlXFIhRWF68UDijfK1bZdzzf5sNLbC5AzTtH6IdR0CrFzArpkH8az4ii+xatGQ0cZ/pmbhJleQjdCk0FzPEEwgcJ+4AUrqQ==",
+          s: [0x9d540402ff, 0x9bc64f9841],
+        };
+      })();
+    </script>
+  </body>
 </html>

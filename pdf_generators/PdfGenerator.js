@@ -17,9 +17,7 @@ const pdfGenerator = function (htmlTemplate,json,res,options){
 }
 
 const generatePdfFromHtml = async function (htmlTemplate, json, options) {
-    // const html = htmlTemplate;
     let html = templateEngine.replacer(htmlTemplate,json.formValue);
-    //resolving the userdesignation and statusproposed2 issue
     html=html.replaceAll(`{{statusproposed2}}`,`{{userDesignation}}`);
     html=templateEngine.replacer(html,json.formValue);
     const buf = await new Promise((resolve, reject) => {
@@ -60,7 +58,7 @@ const generatePdfFromHtmlForPayment = async function (htmlTemplate, data, option
 
 const generatePdfFromHtmlMultipleMaterialDescription = async function (htmlTemplate, options) {
   // const html = htmlTemplate;
-  const html = templateEngine.replacer(htmlTemplate, json.formValue);
+  // const html = templateEngine.replacer(htmlTemplate, json.formValue);
   const buf = await new Promise((resolve, reject) => {
     pdf.create(htmlTemplate, options).toBuffer(function (err, buffer) {
       if (err) {
