@@ -10,6 +10,7 @@
     "analysisRequestServicePath": "/query-service/api/v1/private/discovery/search-data/",
     "analysisReportDownloadPdfUrlPath": "query-service/api/v1/private/analysis/report",
     "paymentVoucherInfoPath": "/beza-service/api/v1/private/user-sops/payment-voucher/",
-    "certificateInfoPath": "/beza-service/api/v1/private/user-certificate/"
+    "certificateInfoPath": "/beza-service/api/v1/private/user-certificate/",
+    "bezaServiceDeskUserSignature": "/beza-service/api/v1/private/users/signature"
   }
 }
