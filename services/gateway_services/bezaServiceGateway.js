@@ -80,8 +80,9 @@ const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke
 
 const getCommonFileds= async function (investorId){
     const commonFiledsUrl =
-    config.backendApi.bezaServiceBaseUrl+  ":" +
-    config.backendApi.bezaServicePort+
+    config.backendApi.bezaServiceBaseUrl +
+    (config.backendApi.bezaServicePort == "" ? "" : (":" +
+      config.backendApi.bezaServicePort))+
     config.backendApi.bezaServiceCommmonFields+
     investorId
     
@@ -95,6 +96,27 @@ const getCommonFileds= async function (investorId){
    return res.userSopCommonFieldDomainModels[0].formValue;
 }
 
+const getdeskUserSignature= async function (processInstanceId, deskCode){
+  let signatureUrl = config.backendApi.bezaServiceDeskUserSignature;
+  var deskUserSignatureUrl = signatureUrl+"?processInstanceId="+processInstanceId+"&deskCode="+deskCode;
+    const bezaServiceDeskUserSignature =
+    config.backendApi.bezaServiceBaseUrl+
+    (config.backendApi.bezaServicePort == "" ? "" : (":" +
+      config.backendApi.bezaServicePort))+
+    deskUserSignatureUrl
+
+    console.log("deskUserSignatureUrl:   "+bezaServiceDeskUserSignature)
+    
+   let res = await axios
+   .get(bezaServiceDeskUserSignature)
+   .then((response) => response.data)
+   .catch((error) => {
+     console.log(error);
+   });
+   console.log("res:  "+JSON.stringify(res))
+   return res;
+  }
+  
 const getPaymentVoucherInfo = async ({applicationId}) => {
   const url = config.backendApi.bezaServiceBaseUrl+  ":" +
   config.backendApi.bezaServicePort+ config.backendApi.paymentVoucherInfoPath + applicationId
@@ -129,5 +151,6 @@ module.exports = {
   upload,
   saveCertificateInfo,
   getCommonFileds,
-  getPaymentVoucherInfo
-};
+  getdeskUserSignature,
+  getPaymentVoucherInfo,
+}
