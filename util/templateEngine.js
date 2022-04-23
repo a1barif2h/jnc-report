@@ -41,7 +41,7 @@ const replacer = function (template, data) {
         //{{spouseName}}
         //dat[spouseName] = neetu
         // template= template.replace('{{spouseName}}', ("neetu" || "-"))
-        template = template.replaceAll('{{'+key+'}}', (flattenedData[key] || "-"))
+        template = template.replaceAll('{{'+key+'}}', ((flattenedData[key] ||flattenedData[key] === 0 ) ? flattenedData[key] : "-"))
     }
 
     return template
