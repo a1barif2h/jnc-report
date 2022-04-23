@@ -96,9 +96,9 @@ const getCommonFileds= async function (investorId){
    return res.userSopCommonFieldDomainModels[0].formValue;
 }
 
-const getUserSignature= async function (investorId){
+const getUserSignature= async function (processInstanceId, deskCode){
   let signatureUrl = config.backendApi.bezaServiceUserSignature;
-  var userSignatureUrl = signatureUrl.replace("{{userId}}",investorId);
+  var userSignatureUrl = signatureUrl+"?processInstanceId="+processInstanceId+"&deskCode="+deskCode;
     const bezaServiceUserSignatureUrl =
     config.backendApi.bezaServiceBaseUrl+
     (config.backendApi.bezaServicePort == "" ? "" : (":" +
@@ -114,7 +114,7 @@ const getUserSignature= async function (investorId){
      console.log(error);
    });
    console.log("res:  "+JSON.stringify(res))
-   return res.signature;
+   return res;
   }
   
 const getPaymentVoucherInfo = async ({applicationId}) => {

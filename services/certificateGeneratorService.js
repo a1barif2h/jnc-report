@@ -79,9 +79,10 @@ const generateCertificate = async (req) => {
                                     res.formValue[key] = commonFieldValue[key]
                                 }
                             })
-                            const userSignature = await bezaServiceGateway.getUserSignature(req.body.investorId);
+                            const userSignature = await bezaServiceGateway.getUserSignature(req.body.processInstanceId,"RD_3");
                             // console.log("\n\n\n\n\n\nuserSignature Base64:   "+userSignature.toString());
-                            if(userSignature)
+                            res.formValue.userFullName = userSignature.name;
+                            if(userSignature.signature)
                             {
                                 res.formValue.userSignature = userSignature;
                             }
