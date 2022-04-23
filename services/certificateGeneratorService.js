@@ -84,7 +84,7 @@ const generateCertificate = async (req) => {
                             res.formValue.userFullName = deskUserSignature.name;
                             if(deskUserSignature.signature)
                             {
-                                res.formValue.deskUserSignature = deskUserSignature;
+                                res.formValue.deskUserSignature = deskUserSignature.signature;
                             }
                             else{
                                 res.formValue.deskUserSignature='R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
