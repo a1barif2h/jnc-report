@@ -114,7 +114,7 @@ const getUserSignature= async function (processInstanceId, deskCode){
      console.log(error);
    });
    console.log("res:  "+JSON.stringify(res))
-   return res.signature;
+   return res;
   }
   
 const getPaymentVoucherInfo = async ({applicationId}) => {
