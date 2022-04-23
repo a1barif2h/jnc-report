@@ -38,7 +38,7 @@ const generateCertificate = async (req) => {
     let userSopById;
     let bufferResponse;
     let certificateDetail;
-    let userSignature;
+    let deskUserSignature;
     let response;
 
     await bezaServiceGateway
@@ -79,15 +79,15 @@ const generateCertificate = async (req) => {
                                     res.formValue[key] = commonFieldValue[key]
                                 }
                             })
-                            const userSignature = await bezaServiceGateway.getUserSignature(req.body.processInstanceId,"RD_3");
-                            // console.log("\n\n\n\n\n\nuserSignature Base64:   "+userSignature.toString());
-                            res.formValue.userFullName = userSignature.name;
-                            if(userSignature.signature)
+                            const deskUserSignature = await bezaServiceGateway.getdeskUserSignature(req.body.processInstanceId,"RD_3");
+                            // console.log("\n\n\n\n\n\ndeskUserSignature Base64:   "+deskUserSignature.toString());
+                            res.formValue.userFullName = deskUserSignature.name;
+                            if(deskUserSignature.signature)
                             {
-                                res.formValue.userSignature = userSignature;
+                                res.formValue.deskUserSignature = deskUserSignature;
                             }
                             else{
-                                res.formValue.userSignature='R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
+                                res.formValue.deskUserSignature='R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
                             }
 
                             bufferResponse = await certificateGeneratorFactory.generate(res);

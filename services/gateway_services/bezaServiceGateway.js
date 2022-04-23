@@ -96,19 +96,19 @@ const getCommonFileds= async function (investorId){
    return res.userSopCommonFieldDomainModels[0].formValue;
 }
 
-const getUserSignature= async function (processInstanceId, deskCode){
-  let signatureUrl = config.backendApi.bezaServiceUserSignature;
-  var userSignatureUrl = signatureUrl+"?processInstanceId="+processInstanceId+"&deskCode="+deskCode;
-    const bezaServiceUserSignatureUrl =
+const getdeskUserSignature= async function (processInstanceId, deskCode){
+  let signatureUrl = config.backendApi.bezaServiceDeskUserSignature;
+  var deskUserSignatureUrl = signatureUrl+"?processInstanceId="+processInstanceId+"&deskCode="+deskCode;
+    const bezaServiceDeskUserSignature =
     config.backendApi.bezaServiceBaseUrl+
     (config.backendApi.bezaServicePort == "" ? "" : (":" +
       config.backendApi.bezaServicePort))+
-    userSignatureUrl
+    deskUserSignatureUrl
 
-    console.log("userSignatureUrl:   "+bezaServiceUserSignatureUrl)
+    console.log("deskUserSignatureUrl:   "+bezaServiceDeskUserSignature)
     
    let res = await axios
-   .get(bezaServiceUserSignatureUrl)
+   .get(bezaServiceDeskUserSignature)
    .then((response) => response.data)
    .catch((error) => {
      console.log(error);
@@ -151,6 +151,6 @@ module.exports = {
   upload,
   saveCertificateInfo,
   getCommonFileds,
-  getUserSignature,
+  getdeskUserSignature,
   getPaymentVoucherInfo,
 }
