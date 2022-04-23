@@ -145,12 +145,25 @@ const getPaymentVoucherInfo = async ({applicationId}) => {
   }
 }
 
+const getCertificateInfo = async (applicationId) => {
+  const url = config.backendApi.bezaServiceBaseUrl+  ":" +
+  config.backendApi.bezaServicePort+ config.backendApi.certificateInfoPath + applicationId
+
+  try {
+    const {data} = await axios.get(url);
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 
 module.exports = {
   getFormValueByApplicationID,
   upload,
   saveCertificateInfo,
   getCommonFileds,
-  getdeskUserSignature,
   getPaymentVoucherInfo,
-}
+  getCertificateInfo,
+  getdeskUserSignature,
+};

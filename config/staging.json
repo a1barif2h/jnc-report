@@ -9,7 +9,8 @@
     "bezaServiceCommmonFields": "/beza-service/api/v1/private/sop-common-fields/",
     "analysisRequestServicePath": "/query-service/api/v1/private/discovery/search-data/",
     "analysisReportDownloadPdfUrlPath": "query-service/api/v1/private/analysis/report",
-    "bezaServiceDeskUserSignature": "/beza-service/api/v1/private/users/signature",
-    "paymentVoucherInfoPath": "/beza-service/api/v1/private/user-sops/payment-voucher/"
+    "paymentVoucherInfoPath": "/beza-service/api/v1/private/user-sops/payment-voucher/",
+    "certificateInfoPath": "/beza-service/api/v1/private/user-certificate/",
+    "bezaServiceDeskUserSignature": "/beza-service/api/v1/private/users/signature"
   }
 }
