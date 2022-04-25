@@ -142,14 +142,18 @@
         width: 30%;
       }
 
-      .application-ambassador .signature img {
-        margin-left: 3.2rem;
-      }
-
       .factory {
         margin: 1rem 0rem -0.5rem 0rem;
         font-size: 8px;
         border-bottom: 1px solid black;
+      }
+
+      .sig_img {
+        width: 150px;
+      }
+
+      .sig_img img {
+        width: 100%;
       }
     </style>
   </head>
@@ -224,7 +228,7 @@
             <p>: &nbsp; {{passportNumber}}</p>
             <p>: &nbsp; {{officeAddress}}</p>
             <p>: &nbsp; {{typeOfBusinessIndustryOrServices}}</p>
-            <p>: &nbsp; {{endTime}}</p>
+            <p>: &nbsp; {{validTill}}</p>
           </div>
         </div>
 
@@ -247,9 +251,9 @@
           </div>
           <div class="signature">
             <p>Yours faithfully</p>
-            <p>
-              <img src="data:image/png;base64,{{deskUserSignature}}" alt="">
-            </p>
+            <div class="sig_img">
+              <img src="data:image/png;base64,{{deskUserSignature}}" alt="" />
+            </div>
             <p style="font-weight: bolder; border-top: 1px solid black">
               Desk User (RD3)
             </p>
