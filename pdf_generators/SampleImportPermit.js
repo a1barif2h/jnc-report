@@ -17,6 +17,12 @@ class SampleImportPermit {
     body.formValue.invoiceDate = dateTimeFormattor.getFormatDate(body.formValue.invoiceDate);
     body.formValue.issueDate = dateTimeFormattor.getFormatDate(body.formValue.issueDate);
     body.formValue.endTime = dateTimeFormattor.getFormatDate(body.formValue.endTime);
+
+    // HANDLE EXPIRE DATE AND PLACE OF ISSUE
+    if (body.formValue.carrierType !== 'Hand Carry') {
+      body.formValue.endTime = '';
+      body.formValue.hiddenPlaceOfIssue = '';
+    }
     
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/sample-import-permit/sample-import-permit.html",
