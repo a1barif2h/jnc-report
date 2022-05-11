@@ -12,10 +12,6 @@ class ProjectClearance {
     constructor() {
     }
     async generate(body) {
-        // body.routePermitIssueDate = body.hasOwnProperty("routePermitIssueDate") ? body.routePermitIssueDate : "_";
-        // body.routePermitExpDate = body.hasOwnProperty("routePermitExpDate") ? body.routePermitExpDate : "_";
-        // body.fitnessIssueDate = body.hasOwnProperty("fitnessIssueDate") ? body.fitnessIssueDate : "_";
-        // pdf.pdfGenerator(htmlTemplate, body, res, options)
         let htmlTemplate = fs.readFileSync('./pdf_templates/project-clearance/project-clearance.html', 'utf8');
         let materialsDesTemplate = fs.readFileSync(
             "./pdf_templates/project-clearance/project-clearance-materials-description.html",
@@ -23,8 +19,6 @@ class ProjectClearance {
         );
 
         try{
-            
-            
             let localTotal=body.formValue.domesticTotal
             let exportTotal=body.formValue.exportTotal
             localTotal=(localTotal*100)/(localTotal+exportTotal)
@@ -32,8 +26,8 @@ class ProjectClearance {
             materialsDesTemplate = materialsDesTemplate.replaceAll(`{{exportOrientedPercentage}}`, (""+exportTotal || "-"))
             materialsDesTemplate=materialsDesTemplate.replaceAll(`{{localOrientedPercentage}}`, (""+localTotal || "-"))
             materialsDesTemplate=replaceMaterialsInProjectClearance.replaceAllMaterialsValue(body, materialsDesTemplate)
-            
-            // console.log("\n\n\n\n\n materialsDesTemplate:\n\n\n\n\n "+materialsDesTemplate)
+            console.log(body, "==========")
+            console.log("\n\n\n\n\n materialsDesTemplate:\n\n\n\n\n "+materialsDesTemplate)
             htmlTemplate=htmlTemplate.replace(`{{materialsDescription}}`,(materialsDesTemplate ||"-"))
             
         }catch(exceptionVar){

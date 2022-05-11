@@ -15,7 +15,6 @@ const getCurrentFormattedDateTime = () => {
 }
 
 const getApplicationDate = (givenDate) => {
-    console.log(givenDate, "===check givenDate===")
     try {
         const date = moment(givenDate);
         return date.format('DD MMM, yyyy');
@@ -24,7 +23,17 @@ const getApplicationDate = (givenDate) => {
     }
 }
 
+const getFormatDate = (givenDate) => {
+    return moment(givenDate).format('DD MMM, YYYY')
+}
+
+const getValidTillDate = (givenDate) => {
+    return moment(givenDate).add(1, 'y').format('DD MMM, YYYY');
+}
+
 module.exports = {
     getCurrentFormattedDateTime,
-    getApplicationDate
+    getApplicationDate,
+    getFormatDate,
+    getValidTillDate
 }

@@ -56,11 +56,16 @@ const generateCertificate = async (req) => {
 
                             if(req.body.isRevoke){
                                 res.formValue.backgroundImg = background_cancelled;
+                                const certificateInfo = await bezaServiceGateway.getCertificateInfo(req.body.applicationId)
+                                const certificateGenerateDate = dateTimeFormattor.getFormatDate(certificateInfo.createdAt)
+                                res.formValue.certificateGenerateDate = certificateGenerateDate;
+                                res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate);
                             }
                             else{
                                 res.formValue.backgroundImg = background_image;
-                                const certificateGenerateDate =moment(new Date()).format('DD MMM, YYYY')
+                                const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date())
                                 res.formValue.certificateGenerateDate = certificateGenerateDate;
+                                res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate)
                             }
                             res.formValue.trackingId = res.trackingId;
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(res.createdAt);
@@ -81,8 +86,8 @@ const generateCertificate = async (req) => {
                             })
                             const deskUserSignature = await bezaServiceGateway.getdeskUserSignature(req.body.processInstanceId,"RD_3");
                             // console.log("\n\n\n\n\n\ndeskUserSignature Base64:   "+deskUserSignature.toString());
-                            res.formValue.userFullName = deskUserSignature.name;
-                            if(deskUserSignature.signature)
+                            res.formValue.userFullName =  deskUserSignature?.name || '-';
+                            if(deskUserSignature && deskUserSignature.signature)
                             {
                                 res.formValue.deskUserSignature = deskUserSignature.signature;
                             }

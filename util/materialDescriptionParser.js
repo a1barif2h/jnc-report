@@ -12,6 +12,7 @@ var footerTemplate = fs.readFileSync(
 
 const parseJasonIntoHtml = function (json, template) {
   for (var key in json) {
+    // console.log(`json[${key}] = ${json[key]}`)
     template = template.replaceAll("{{" + key + "}}", json[key] || "-");
   }
   return template;
