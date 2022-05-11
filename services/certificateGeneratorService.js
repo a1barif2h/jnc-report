@@ -114,7 +114,6 @@ const generateCertificate = async (req) => {
 
 
 
-
 module.exports = {
     generateCertificate,
 }
