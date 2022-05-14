@@ -52,7 +52,7 @@ class SampleExportPermit {
       htmlImportTemplate,
       headerTemplate
     );
-    console.log("==========================================");
+    // console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
     htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
       body.formValue.productDetails,
@@ -60,7 +60,7 @@ class SampleExportPermit {
       htmlImportTemplate,
       headerTemplate
     );
-    console.log("htmlSampleExportTemplate:");
+    // console.log("htmlSampleExportTemplate:");
     // console.log(htmlImportTemplate);
     // if (body.formValue.dataGrid.length!=1){
       

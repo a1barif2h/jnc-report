@@ -21,7 +21,7 @@ const replaceAllMaterialsValue=function(data, template){
             templateMaterials+=template
         }
     }*/
-    console.log(data.formValue, "==========================TEST")
+    // console.log(data.formValue, "==========================TEST")
     for(i=0;i<data.formValue.dataGrid2.length;i++){
     
         templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid2[i])

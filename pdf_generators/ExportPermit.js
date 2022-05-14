@@ -58,7 +58,7 @@ class ExportPermit {
       headerTemplate
     );
 
-    console.log("==========================================");
+    // console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
     htmlExportTemplate = materialsDescriptionParser.addRemainingMaterials(
       body.formValue.exportMaterialsInformationGroup,
