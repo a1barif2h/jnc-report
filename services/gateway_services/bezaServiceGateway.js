@@ -105,7 +105,7 @@ const getdeskUserSignature= async function (processInstanceId, deskCode){
       config.backendApi.bezaServicePort))+
     deskUserSignatureUrl
 
-    console.log("deskUserSignatureUrl:   "+bezaServiceDeskUserSignature)
+    // console.log("deskUserSignatureUrl:   "+bezaServiceDeskUserSignature)
     
    let res = await axios
    .get(bezaServiceDeskUserSignature)
@@ -113,7 +113,7 @@ const getdeskUserSignature= async function (processInstanceId, deskCode){
    .catch((error) => {
      console.log(error);
    });
-   console.log("res:  "+JSON.stringify(res))
+  //  console.log("res:  "+JSON.stringify(res))
    return res;
   }
   

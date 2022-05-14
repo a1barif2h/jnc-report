@@ -26,7 +26,7 @@ const generate = async (data) => {
   // console.log("allSopsCodes.EXPORTPERMIT:   "+JSON.stringify(AllSopsCodes));
   switch (sopCode) {
     case AllSopsCodes.PROJECT_REGISTRATION.value:
-      console.log("=========this is test for project registration")
+      // console.log("=========this is test for project registration")
       // const projectRegistration = new Project
       const projectRegistration = new ProjectRegistration();
       console.log("Generating pdf for project Clearance");

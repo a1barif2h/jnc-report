@@ -137,7 +137,7 @@ const addRemainingMaterials = function (
     remainingMaterialsDetails || "-"
   );
 
-  console.log("==========================================\n\n\n");
+  // console.log("==========================================\n\n\n");
   // console.log("remainingMaterialsDetails:   " + remainingMaterialsDetails);
   return htmlExportTemplate;
 };
