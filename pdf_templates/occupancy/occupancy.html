@@ -190,6 +190,10 @@
         list-style-type: lower-alpha;
         margin-left: 1.6rem;
         line-height: 1.8;
+      } 
+
+      footer .signature {
+        width: 55%;
       }
 
       footer .signature div {
@@ -199,7 +203,7 @@
       footer .signature .desk-user {
         font-weight: bold;
         border-top: 1px solid black;
-        width: 48%;
+        width: 58%;
         margin: 0 auto;
         
       }
@@ -269,25 +273,25 @@ under:
              <small> c) Building Information:</small>
              <div class="building-information">
                <small>
-                 1) Land Area(sqm): {{}}
+                 1) Land Area(sqm): {{landArea}}
                </small>
                <small>
-                 2) Building Area(sqm) : {{}}
+                 2) Building Area(sqm) : {{buildingArea}}
                </small>
                <small>
-                3) Total Floor Area(sqm) : {{}}
+                3) Total Floor Area(sqm) : {{totalFloorArea}}
                </small>
                <small>
-                4) Nature of Facility : {{}}
+                4) Nature of Facility : {{natureOfFacility}}
                </small>
                <small>
-               5) Kind of Construction : {{}}
+               5) Kind of Construction : {{kindOfConstruction}}
                </small>
                <small>
-               6) Major Structure /storey: {{}}
+               6) Major Structure /storey: {{majorStructure}}
                </small>
                <small>
-               7) Number of Building : {{}}
+               7) Number of Building : {{numberOfBuilding}}
                </small>
              </div>
             </div>
@@ -324,7 +328,7 @@ under this Occupation Certificate.</li>
            <h3 style="text-align: center;"> Yours faithfully</h3>
             <img src="data:image/png;base64,{{deskUserSignature}}" alt="">
             <div class="desk-user">Desk User (RD3)</div>
-            <div style="font-weight: bolder; margin-left: 1.8rem;">Technical Support Executive</div>
+            <div style="font-weight: bolder;">Technical Support Executive</div>
             <div style="min-width: 245px; margin: 0 auto;" "="">
               Bangladesh Economic Zones Authority
             </div>

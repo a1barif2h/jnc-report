@@ -54,6 +54,10 @@ const generateCertificate = async (req) => {
 
                             await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
 
+                            if (res.additionalInfo != null) {
+                                res.formValue = {...res.formValue, ...res.additionalInfo};
+                            }
+
                             if(req.body.isRevoke){
                                 res.formValue.backgroundImg = background_cancelled;
                                 const certificateInfo = await bezaServiceGateway.getCertificateInfo(req.body.applicationId)

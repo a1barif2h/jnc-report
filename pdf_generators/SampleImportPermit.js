@@ -15,8 +15,10 @@ class SampleImportPermit {
   async generate(body) {
     // CHANGE DATE FORMATE
     body.formValue.invoiceDate = dateTimeFormattor.getFormatDate(body.formValue.invoiceDate);
-    body.formValue.issueDate = dateTimeFormattor.getFormatDate(body.formValue.issueDate);
-    body.formValue.endTime = dateTimeFormattor.getFormatDate(body.formValue.endTime);
+    if (body.formValue.issueDate) {
+      body.formValue.issueDate = dateTimeFormattor.getFormatDate(body.formValue.issueDate);
+    }
+    body.formValue.expiredDateBeza = dateTimeFormattor.getFormatDate(body.formValue.expiredDateBeza);
 
     // HANDLE EXPIRE DATE AND PLACE OF ISSUE
     if (body.formValue.carrierType !== 'Hand Carry') {
