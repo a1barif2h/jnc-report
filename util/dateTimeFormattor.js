@@ -24,7 +24,7 @@ const getApplicationDate = (givenDate) => {
 }
 
 const getFormatDate = (givenDate) => {
-    return moment(givenDate).format('DD MMM, YYYY')
+    return moment(givenDate).zone(+6).format('DD MMM, YYYY')
 }
 
 const getValidTillDate = (givenDate) => {
