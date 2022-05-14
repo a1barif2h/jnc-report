@@ -1,0 +1,281 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Certificate</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        /* border: 1px solid rgb(0, 0, 0);
+        width: 210mm;
+        height: 297.5mm; */
+        margin: 0rem auto;
+        padding: 0px 30px;
+        font-size: 8px;
+        position: relative;
+        z-index: 5;
+      }
+
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url("{{backgroundImg}}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 450px;
+        width: 100%;
+        height: 110%;
+        opacity: 0.1;
+        z-index: 10;
+      }
+
+      .container-page-break {
+        page-break-after: always;
+      }
+      .header-container {
+        margin: 1.8rem 0rem 1.1rem 0rem;
+        font-weight: bolder;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .main-logo {
+        width: 33%;
+      }
+      .main-logo img {
+        width: 100%;
+      }
+      .barcode {
+        width: 47%;
+        text-align: center;
+        margin-top: 25px;
+      }
+      .qr-logo {
+        width: 20%;
+      }
+      .qr-logo img {
+        width: 60%;
+      }
+
+      header .header-bar-code img {
+        width: 30%;
+      }
+
+      .application-date {
+        margin: 0rem 0rem 0.5rem 0rem;
+        font-weight: bolder;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .application-info b {
+        display: block;
+      }
+
+      .application-info {
+        width: 50%;
+        line-height: 2;
+      }
+
+      .application-info b {
+        line-height: 1.6;
+      }
+
+      .application-subject {
+        margin: 0.5rem 0rem;
+      }
+
+      .application-header {
+        margin-top: 0.5rem;
+      }
+
+      .application-header .dear-ceo {
+        margin: 1rem 0rem;
+      }
+
+      .application-header-text {
+        margin: 0.5rem 0rem;
+        line-height: 1.8;
+      }
+
+      .application-header-text b {
+        font-size: 8px;
+      }
+
+      .application-list {
+        padding-left: 22px;
+      }
+
+      .application-list li {
+        margin-top: 0.7rem;
+      }
+
+      .application-list p {
+        margin-top: 0.5rem;
+        line-height: 1.74;
+      }
+
+      footer {
+        display: -webkit-box;
+        /* OLD - iOS 6-, Safari 3.1-6 */
+        display: -moz-box;
+        /* OLD - Firefox 19- (buggy but mostly works) */
+        display: -ms-flexbox;
+        /* TWEENER - IE 10 */
+        display: -webkit-flex;
+        /* NEW - Chrome */
+        display: flex;
+        align-items: -webkit-box;
+        align-items: -moz-box;
+        align-items: -ms-flexbox;
+        align-items: -webkit-flex;
+        align-items: center;
+        justify-content: -webkit-box;
+        justify-content: -moz-box;
+        justify-content: -ms-flexbox;
+        justify-content: -webkit-flex;
+        justify-content: space-evenly;
+        width: 100%;
+        margin-top: 0.55rem;
+      }
+
+      footer .qr-code img {
+        width: 30%;
+        margin-left: 3rem;
+      }
+
+      footer .bar-code {
+        width: 30%;
+        /* overflow: auto; */
+        /* margin-left: 6rem; */
+      }
+
+      footer .signature img {
+        width: 32%;
+        margin-left: 6rem;
+      }
+
+      footer .qr-code ol {
+        list-style-type: lower-alpha;
+        margin-left: 1.6rem;
+        line-height: 1.8;
+      }
+
+      footer .signature .desk-user {
+        font-weight: bold;
+        border-top: 1px solid black;
+        width: 41%;
+        margin: 0 auto;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container container-page-break">
+      <header>
+        <div class="header-container">
+          <div class="main-logo">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTsZmdnQ1wl2ijO0NdFmWKJAcVLFxCGa_OWJ3SawyIeKI3H7u00pjIOQXBNhg8MJTiu0&usqp=CAU"
+              alt=""
+            />
+          </div>
+
+          <div class="barcode">{{barcode}}</div>
+          <div class="qr-logo">
+            <img src="{{qrcode}}" alt="" />
+          </div>
+        </div>
+        <div class="application-date">
+          <p>File no: {{trackingId}}</p>
+          <p>This is test pdf for project registration</p>
+          <p>Date: {{certificateGenerateDate}}</p>
+        </div>
+        <div class="application-info">
+          <!-- <b>{{userDesignation}}</b> -->
+          <b>{{statusproposed2}}</b>
+          <!-- <b>{{applyingFirmOrCompany}}</b> -->
+          <b>{{proposedProjectCompanyName}}</b>
+          <!-- <b>{{economicZone}}, {{ezAdress}}</b> -->
+          <b>{{addressLineOne}}</b>
+          <!-- <b>{{plotAddress}}</b>
+          <b>{{ezAdress}}</b> -->
+          <b>{{economicZoneAddress}}</b>
+        </div>
+        <div class="application-subject">
+          <b
+            >Subject: Approval for Registration of a Project to Setup a(n)
+            {{typeOfBusinessIndustryOrServices}} in {{economicZone}}
+          </b>
+        </div>
+      </header>
+      <main>
+        <div class="application-header">
+          <!-- <p class="dear-ceo">Dear {{userDesignation}},</p> -->
+          <p class="dear-ceo">Dear {{statusproposed2}},</p>
+          <p class="application-header-text">
+            With reference to your Application (Project Proposal) received
+            {{applicationDate}}, this is to inform that the Authority is pleased
+            to issue this registration subject to approval from competent
+            authorities and compliance of all legal requirements of the project
+            for setting up
+            <b
+              >{{typeOfBusinessIndustryOrServices}} in {{economicZoneAddress}}
+            </b>
+            on terms and conditions as indicated below:
+          </p>
+        </div>
+        <div class="application-list">
+          <ol>
+            {{materialsDescription}}
+          </ol>
+        </div>
+        <footer>
+          <div class="qr-code">
+            <!-- <img src="{{qrcode}}" alt="" /> -->
+            <p style="text-align: center; margin: 0.3rem 0rem">
+              Copy for Information to
+            </p>
+
+            <ol style="width: 150%">
+              <li>{{statusproposed2}},</li>
+              <li>Commissioner, Customer Bond...</li>
+              <li>..............................</li>
+              <li>..............................</li>
+            </ol>
+          </div>
+          <div class="bar-code"></div>
+          <div class="signature">
+            <h3 style="text-align: center">Yours faithfully</h3>
+            <img src="data:image/png;base64,{{deskUserSignature}}" alt="" />
+            <div class="desk-user">Desk User (RD3)</div>
+            <div style="font-weight: bolder; text-align: center">
+              Technical Support Executive
+            </div>
+            <div style="margin-left: 3.5rem">
+              Bangladesh Economic Zones Authority (BEZA)
+            </div>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

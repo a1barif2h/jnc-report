@@ -16,11 +16,7 @@ const SampleImportPermit=require("../pdf_generators/SampleImportPermit");
 const Occupancy=require("../pdf_generators/Occupancy");
 const WorkPermit=require("../pdf_generators/WorkPermit");
 const allSopsCodes=require("../shared/constants/AllSopsCodes");
-// method()
-//    switch
-//       case Project Clearance
-//           return new ProjectClearance();
-
+const ProjectRegistration = require("../pdf_generators/ProjectRegistration");
 
 const generate = async (data) => {
   let sopCode = data.sopCode;
@@ -29,6 +25,13 @@ const generate = async (data) => {
   // console.log("sopId:   "+sopCode);
   // console.log("allSopsCodes.EXPORTPERMIT:   "+JSON.stringify(AllSopsCodes));
   switch (sopCode) {
+    case AllSopsCodes.PROJECT_REGISTRATION.value:
+      console.log("=========this is test for project registration")
+      // const projectRegistration = new Project
+      const projectRegistration = new ProjectRegistration();
+      console.log("Generating pdf for project Clearance");
+      generatedPdf = await projectRegistration.generate(data);
+      break;
     case AllSopsCodes.PROJECT_CLEARANCE.value:
       const projectClearance = new ProjectClearance();
       console.log("Generating pdf for project Clearance");
