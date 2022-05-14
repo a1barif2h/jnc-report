@@ -15,8 +15,11 @@ class SampleImportPermit {
   async generate(body) {
 
     console.log("================login date==============");
-    console.log(body.formValue.issueDate);
-    console.log(body.formValue.expiredDateBeza);
+    console.log("body.formValue.issueDate",body.formValue.issueDate);
+    console.log("dateTimeFormattor.getFormatDate(body.formValue.issueDate)", dateTimeFormattor.getFormatDate(body.formValue.issueDate));
+    console.log("body.formValue.expiredDateBeza",body.formValue.expiredDateBeza);
+    console.log("dateTimeFormattor.getFormatDate(body.formValue.expiredDateBeza)", dateTimeFormattor.getFormatDate(body.formValue.expiredDateBeza));
+
     console.log("================login date==============");
 
     // return;
