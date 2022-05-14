@@ -18,6 +18,8 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
+RUN cp .env.example .env
+
 RUN npm install
 
 RUN wget -qO- "https://github.com/dustinblackman/phantomized/releases/download/2.1.1a/dockerized-phantomjs.tar.gz" | tar xz -C / \
@@ -29,8 +31,6 @@ RUN wget -qO- "https://github.com/dustinblackman/phantomized/releases/download/2
 
 # Bundle app source
 COPY . .
-
-RUN cp .env.example .env
 
 EXPOSE 5010
 CMD [ "node", "server.js" ]
