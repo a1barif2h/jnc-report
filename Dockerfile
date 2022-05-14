@@ -25,5 +25,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+RUN cp .env.example .env
+
 EXPOSE 5010
 CMD [ "node", "server.js" ]
