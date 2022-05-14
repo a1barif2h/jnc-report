@@ -24,7 +24,7 @@ const getApplicationDate = (givenDate) => {
 }
 
 const getFormatDate = (givenDate) => {
-    return moment(new Date(givenDate)).format('DD MMM, YYYY')
+    return new Date(givenDate).toLocaleString() //moment(new Date(givenDate)).format('DD MMM, YYYY')
 }
 
 const getValidTillDate = (givenDate) => {
