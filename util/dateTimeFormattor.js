@@ -24,7 +24,10 @@ const getApplicationDate = (givenDate) => {
 }
 
 const getFormatDate = (givenDate) => {
-    const gDate = new Date(givenDate).toLocaleString();
+    const gDate = new Date(givenDate).toLocaleString().slice(0,9);
+    console.log("============gDate=========");
+    console.log(gDate);
+    console.log("============gDate=========");
     return  moment(gDate).format('DD MMM, YYYY');
 }
 
