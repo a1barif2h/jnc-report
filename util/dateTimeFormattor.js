@@ -38,7 +38,7 @@ const getFormatDate = (givenDate) => {
     //     return finalDate;
     // }
     // console.log(getParsedDate("2022-05-15T00:00:00+06:00"));
-    return moment(givenDate).format('DD MMM, YYYY') //  getParsedDate(givenDate); //moment(gDate).format('DD MMM, YYYY');
+    return moment(gDate).format('DD MMM, YYYY') //  getParsedDate(givenDate); //moment(gDate).format('DD MMM, YYYY');
 }
 
 const getValidTillDate = (givenDate) => {
