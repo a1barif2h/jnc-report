@@ -24,11 +24,21 @@ const getApplicationDate = (givenDate) => {
 }
 
 const getFormatDate = (givenDate) => {
-    const gDate = new Date(givenDate).toLocaleString().slice(0,9);
-    console.log("============gDate=========");
-    console.log(gDate);
-    console.log("============gDate=========");
-    return  moment(gDate).format('DD MMM, YYYY');
+    // const gDate = new Date(givenDate).toLocaleString().slice(0,9);
+    // console.log("============gDate=========");
+    // console.log(gDate);
+    // console.log("============gDate=========");
+    const strArray=['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+    function getParsedDate(dateString){
+        const date = new Date(dateString);
+        const d = date.getDate();
+        const m = strArray[date.getMonth()];
+        const y = date.getFullYear();
+        const finalDate = '' + (d <= 9 ? '0' + d : d) + ' ' + m + ', ' + y;
+        return finalDate;
+    }
+    console.log(getParsedDate("2022-05-15T00:00:00+06:00"));
+    return  getParsedDate(givenDate); //moment(gDate).format('DD MMM, YYYY');
 }
 
 const getValidTillDate = (givenDate) => {
