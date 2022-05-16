@@ -17,7 +17,7 @@ class SampleImportPermit {
     console.log("================login date==============");
     console.log("body.formValue.issueDate",body.formValue.issueDate);
     console.log("dateTimeFormattor.getFormatDate(body.formValue.issueDate)", dateTimeFormattor.getFormatDate(body.formValue.issueDate));
-    console.log("body.formValue.expiredDateBeza",body.formValue.expiredDate);
+    console.log("body.formValue.expiredDate",body.formValue.expiredDate);
     console.log("dateTimeFormattor.getFormatDate(body.formValue.expiredDate)", dateTimeFormattor.getFormatDate(body.formValue.expiredDate));
 
     console.log("================login date==============");
