@@ -54,7 +54,7 @@ const generateCertificate = async (req) => {
 
                             await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
 
-                            if (res.additionalInfo != null) {
+                            if (res.additionalInfo != null && res.additionalInfo.id != null) {
                                 res.formValue = {...res.formValue, ...res.additionalInfo};
                             }
 
