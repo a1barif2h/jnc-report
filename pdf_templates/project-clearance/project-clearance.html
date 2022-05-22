@@ -211,6 +211,7 @@
         </div>
         <div class="application-info">
           <!-- <b>{{userDesignation}}</b> -->
+          <b>Managing Director</b>
           <b>{{statusproposed2}}</b>
           <!-- <b>{{applyingFirmOrCompany}}</b> -->
           <b>{{proposedProjectCompanyName}}</b>
@@ -222,7 +223,7 @@
         </div>
         <div class="application-subject">
           <b
-            >Subject: Approval for setting up a(n)
+            >Subject: Approval for setting up an
             {{typeOfBusinessIndustryOrServices}} in {{economicZone}}
           </b>
         </div>
@@ -265,8 +266,9 @@
             <p>
               14. The company will have to:
               <br />
-              a. maintain the ratio of export and domestic sale within 50:50 of
-              entire product of its factory;
+              a. maintain the ratio of export and domestic sale within
+              {{hiddenExportValue}}:{{hiddenDomesticValue}} of entire product of
+              its factory;
               <br />
               b. submit monthly reports to the Authority on the progress of
               implementation of the project;
@@ -372,10 +374,7 @@
           <div class="bar-code">{{barcode}}</div>
           <div class="signature">
             <h3 style="text-align: center">Yours faithfully</h3>
-            <img
-            src="data:image/png;base64,{{deskUserSignature}}"
-              alt=""
-            />
+            <img src="data:image/png;base64,{{deskUserSignature}}" alt="" />
             <div class="desk-user">Desk User (RD3)</div>
             <div style="font-weight: bolder; text-align: center">
               Technical Support Executive
