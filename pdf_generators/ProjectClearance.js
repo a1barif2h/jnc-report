@@ -11,10 +11,12 @@ const background_cancelled = fs.readFileSync(
   "utf8"
 );
 const replaceMaterialsInProjectClearance = require("../util/replaceMaterialsInProjectClearance");
+const { logger } = require("../util/helper");
 
 class ProjectClearance {
   constructor() {}
   async generate(body) {
+    logger('project clearance body', body)
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/project-clearance/project-clearance.html",
       "utf8"
