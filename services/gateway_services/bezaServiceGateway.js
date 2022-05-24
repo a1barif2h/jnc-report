@@ -139,7 +139,7 @@ const getPaymentVoucherInfo = async ({applicationId}) => {
     const {data} = await axios.get(url);
     const totalFees = data?.payAmount + data?.vat + data?.bankCharge + data?.bankVat;
     data.totalFees = totalFees
-    data.amountInWords = amountInWords(totalFees)
+    data.amountInWords = amountInWords(totalAmount)
     await generateBarcode(data.trackingId || "").then (barRes => data.barcode = barRes).catch(err=> console.log(err));    
     return data;
   } catch (error) {
