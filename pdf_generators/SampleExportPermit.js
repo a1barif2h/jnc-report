@@ -13,6 +13,12 @@ class SampleExportPermit {
   constructor() {}
 
   async generate(body) {
+
+    body.formValue.expiredDate = dateTimeFormattor.getFormatDate(body.formValue.expiredDate);
+    // HANDLE EXPIRE DATE AND PLACE OF ISSUE
+    if (body.formValue.carrierType !== 'Hand Carry') {
+      body.formValue.expiredDate = '';
+    }
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/sample-export-permit/sample-export-permit.html",
       "utf8"

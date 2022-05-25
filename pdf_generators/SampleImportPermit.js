@@ -14,16 +14,6 @@ class SampleImportPermit {
 
   async generate(body) {
 
-    console.log("================login date==============");
-    console.log("body.formValue.issueDate",body.formValue.issueDate);
-    console.log("dateTimeFormattor.getFormatDate(body.formValue.issueDate)", dateTimeFormattor.getFormatDate(body.formValue.issueDate));
-    console.log("body.formValue.expiredDate",body.formValue.expiredDate);
-    console.log("dateTimeFormattor.getFormatDate(body.formValue.expiredDate)", dateTimeFormattor.getFormatDate(body.formValue.expiredDate));
-
-    console.log("================login date==============");
-
-    // return;
-
     // CHANGE DATE FORMATE
     body.formValue.invoiceDate = dateTimeFormattor.getFormatDate(body.formValue.invoiceDate);
     if (body.formValue.issueDate) {
@@ -35,6 +25,7 @@ class SampleImportPermit {
     // HANDLE EXPIRE DATE AND PLACE OF ISSUE
     if (body.formValue.carrierType !== 'Hand Carry') {
       body.formValue.endTime = '';
+      body.formValue.expiredDate = '';
       body.formValue.hiddenPlaceOfIssue = '';
     }
     
