@@ -12,7 +12,8 @@ const fs = require("fs");
 const encryption = require("../util/encryption");
 const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
-const moment = require('moment')
+const moment = require('moment');
+const { logger } = require("../util/helper");
 
 const generateQR = async text => {
     try {
@@ -72,7 +73,8 @@ const generateCertificate = async (req) => {
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate)
                             }
                             res.formValue.trackingId = res.trackingId;
-                            res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(res.createdAt);
+                            res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(new Date(res.createdAt).toLocaleDateString());
+                            logger('createdAt', new Date(res.createdAt).toLocaleDateString())
                             userSopById = res;
                             /**
                              * merging the common fields
