@@ -19,6 +19,12 @@ class SampleExportPermit {
     if (body.formValue.carrierType !== 'Hand Carry') {
       body.formValue.expiredDate = '';
     }
+    if(body.formValue.issueDate) {
+      body.formValue.issueDate = `<div>
+      <small>Issue date :</small>
+      <p>${body.formValue.issueDate}</p>
+    </div>`
+    }
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/sample-export-permit/sample-export-permit.html",
       "utf8"
