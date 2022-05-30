@@ -7,6 +7,7 @@ const xmlSerializer = new XMLSerializer();
 const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 const JsBarcode = require('jsbarcode');
 const amountInWords = require("../../util/amountToWordUtil");
+const { logger } = require("../../util/helper");
 const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
 const getFormValueByApplicationID = async (applicationId) => {
@@ -137,8 +138,6 @@ const getPaymentVoucherInfo = async ({applicationId}) => {
 
   try {
     const {data} = await axios.get(url);
-    const totalFees = data?.payAmount + data?.vat + data?.bankCharge + data?.bankVat;
-    data.totalFees = totalFees
     data.amountInWords = amountInWords(data?.totalAmount)
     await generateBarcode(data.trackingId || "").then (barRes => data.barcode = barRes).catch(err=> console.log(err));    
     return data;
