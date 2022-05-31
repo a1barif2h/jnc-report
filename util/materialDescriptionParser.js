@@ -110,7 +110,6 @@ const addFirstMaterials = function (
     `{{firstMaterialsDetails}}`,
     firstMaterialsDetails || "-"
   );
-  // console.log("matarialDescription:   " + firstMaterialsDetails);
   return htmlExportTemplate;
 };
 

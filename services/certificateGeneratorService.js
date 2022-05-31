@@ -74,7 +74,6 @@ const generateCertificate = async (req) => {
                             }
                             res.formValue.trackingId = res.trackingId;
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(new Date(res.createdAt).toLocaleDateString());
-                            logger('createdAt', new Date(res.createdAt).toLocaleDateString())
                             userSopById = res;
                             /**
                              * merging the common fields

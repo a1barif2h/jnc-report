@@ -284,7 +284,7 @@
               </div>
               <div>
                 <small>Type of Zone: </small>
-                <p>{{typeOfZone}}</p>
+                <p>{{typeOfEconomicZoneWhereBusinessToBeSet}}</p>
               </div>
               <div>
                 <small>Undertaking No.: </small>
@@ -342,7 +342,7 @@
               </div>
               <div>
                 <small>{{fobValue}}: </small>
-                <p>{{foBCurrency}} {{fobCurrencyValue}}</p>
+                <p>{{fobCurrencyValue}} {{foBCurrency}}</p>
               </div>
               <div>
                 <small>Ship Number: </small>
@@ -351,6 +351,37 @@
             </div>
           </div>
         </div>
+
+        <div class="export-material-details">
+          <h3>TT/ P.O/ SC/ CM/ L/C Information</h3>
+        </div>
+        <div class="border-box" style="margin-bottom: 35px;">
+          <div class="left">
+            <div>
+              <small>{{ttNo}}: </small>
+              <p>{{ttNoInput}}</p>
+            </div>
+            <div>
+              <small>Issuing Bank: </small>
+              <p>{{issuingBank}}</p>
+            </div>
+            <div>
+              <small>Issue Date: </small>
+              <p>{{issueDate}}</p>
+            </div>
+          </div>
+          <div class="right">
+            <div>
+              <small>{{ttNo}} Value: </small>
+              <p>{{ttvalueHidden}}</p>
+            </div>
+            <div>
+              <small>Type: </small>
+              <p>{{typeOfLC}}</p>
+            </div>
+          </div>
+        </div>
+
         {{firstMaterialsDetails}}
       </div>
     </main>
