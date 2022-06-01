@@ -18,12 +18,10 @@
       }
     .mainContainer .bar-code {
       width: 30%;
-      /* overflow: auto; */
-      /* margin-left: 6rem; */
     }
 .mainContainer {
       margin: 0rem auto;
-      padding: 30px;
+      padding: 15px;
       position: relative;
       z-index: 5;
     }
@@ -46,13 +44,9 @@
 
     header {
       display: -webkit-box;
-      /* OLD - iOS 6-, Safari 3.1-6 */
       display: -moz-box;
-      /* OLD - Firefox 19- (buggy but mostly works) */
       display: -ms-flexbox;
-      /* TWEENER - IE 10 */
       display: -webkit-flex;
-      /* NEW - Chrome */
       display: flex;
       align-items: -webkit-box;
       align-items: -moz-box;
@@ -141,14 +135,28 @@
     }
 
     .left {
-      width: 50%;
-      padding: 0.5rem 1.4rem;
+      width: 48%;
+      padding: 0.5rem 0.8rem;
       line-height: 2.5;
+      
+    }
+
+    .left p {
+      width: 75%;
+    }
+
+    .right p {
+      width: 65%;
     }
 
     .left p,
     .right p {
       font-size: 6.5px;
+    }
+
+    .left small,
+    .right small {
+      margin-right: 5px;
     }
 
     .left div {
@@ -158,11 +166,18 @@
       -webkit-box-pack: justify;
       -ms-flex-pack: justify;
       justify-content: space-between;
+
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      -ms-word-break: break-all;
+      word-break: break-all;
+      word-break: break-word;
+      
     }
 
     .right {
-      width: 50%;
-      padding: 0.5rem 1.4rem;
+      width: 48%;
+      padding: 0.5rem 0.8rem;
       line-height: 2.5;
     }
 
@@ -173,6 +188,13 @@
       -webkit-box-pack: justify;
       -ms-flex-pack: justify;
       justify-content: space-between;
+
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      -ms-word-break: break-all;
+      word-break: break-all;
+      word-break: break-word;
+      
     }
 
     .export-material-group {
@@ -307,7 +329,7 @@
                 <p>{{invoiceVendorReferenceNo}}</p>
               </div>
               <div>
-                <small>B/L, A/W, T.C No.: </small>
+                <small>{{BlNo}}: </small>
                 <p>{{bLValueInput}}</p>
               </div>
             </div>
@@ -316,9 +338,9 @@
                 <small>Carrier Type: </small>
                 <p>{{carrierType}}</p>
               </div>
-              <div style="width: 245px; word-wrap: break-word;">
+              <div>
                 <small>Name of Economice Zone :</small>
-                <p style="width: 50%; word-wrap: break-word;">{{economicZone}}</p>
+                <p>{{economicZone}}</p>
               </div>
               <div>
                 <small>Carrier Passport No: </small>
@@ -334,7 +356,7 @@
               </div>
               <div>
                 <small>Import From/ Port of Landing: </small>
-                <p>{{importFromPortOfLoading}}</p>
+                <p style="width: 55%;">{{importFromPortOfLoading}}</p>
               </div>
               <div>
                 <small>Port of Destination: </small>
