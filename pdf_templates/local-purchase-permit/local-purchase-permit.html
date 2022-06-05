@@ -133,19 +133,32 @@
       }
 
       .border-box small {
-        font-size: 8px;
+        font-size: 6.5px;
         font-weight: bold;
       }
 
       .left {
-        width: 50%;
-        padding: 0.5rem 1.4rem;
+        width: 48%;
+        padding: 0.5rem 0.8rem;
         line-height: 3;
+      }
+
+      .left p {
+        width: 75%;
+      }
+
+      .right p {
+        width: 65%;
       }
 
       .left p,
       .right p {
-        font-size: 7.5px;
+        font-size: 7px;
+      }
+
+      .left small,
+      .right small {
+        margin-right: 5px;
       }
 
       .left div {
@@ -155,11 +168,17 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
       }
 
       .right {
-        width: 50%;
-        padding: 0.5rem 1.4rem;
+        width: 48%;
+        padding: 0.5rem 0.8rem;
         line-height: 3;
       }
 
@@ -170,6 +189,12 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
       }
 
       .export-material-details {
@@ -238,11 +263,9 @@
 
           <div class="border-box">
             <div class="left">
-              <div style="width: 245px">
+              <div>
                 <small>Name of the Company: </small>
-                <p style="width: 55%; word-wrap: break-word">
-                  {{proposedProjectCompanyName}}
-                </p>
+                <p>{{proposedProjectCompanyName}}</p>
               </div>
               <div>
                 <small>Purchase Permit Type: </small>
@@ -266,11 +289,9 @@
               </div>
             </div>
             <div class="right">
-              <div style="width: 245px">
+              <div>
                 <small>Name of Zone: </small>
-                <p style="width: 70%; word-wrap: break-word">
-                  {{economicZone}}
-                </p>
+                <p>{{economicZone}}</p>
               </div>
               <div>
                 <small>Type of Carrier: </small>

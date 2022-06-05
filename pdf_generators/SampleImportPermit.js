@@ -1,5 +1,6 @@
 const { response } = require("express");
 const fs = require("fs");
+const { logger } = require("../util/helper")
 
 
 const pdf = require("./PdfGenerator");
@@ -15,19 +16,10 @@ class SampleImportPermit {
   async generate(body) {
 
     // CHANGE DATE FORMATE
-    body.formValue.invoiceDate = dateTimeFormattor.getFormatDate(body.formValue.invoiceDate);
-    if (body.formValue.issueDate) {
-      body.formValue.issueDate = dateTimeFormattor.getFormatDate(body.formValue.issueDate);
-      
-    }
-    body.formValue.expiredDate = dateTimeFormattor.getFormatDate(body.formValue.expiredDate);
+    body.formValue.invoiceDate = body?.formValue?.invoiceDate !== "N/A"  ? dateTimeFormattor.getFormatDate(body?.formValue?.invoiceDate) : body?.formValue?.invoiceDate;
+    body.formValue.issueDate = body?.formValue?.issueDate !== "N/A"  ? dateTimeFormattor.getFormatDate(body?.formValue?.issueDate) : body?.formValue?.issueDate;
 
-    // HANDLE EXPIRE DATE AND PLACE OF ISSUE
-    if (body.formValue.carrierType !== 'Hand Carry') {
-      body.formValue.endTime = '';
-      body.formValue.expiredDate = '';
-      body.formValue.hiddenPlaceOfIssue = '';
-    }
+    body.formValue.expiredDate = body?.formValue?.expiredDate !== "N/A" ? dateTimeFormattor.getFormatDate(body?.formValue?.expiredDate) : body?.formValue?.expiredDate;
     
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/sample-import-permit/sample-import-permit.html",
