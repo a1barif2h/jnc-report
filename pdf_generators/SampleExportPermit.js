@@ -14,17 +14,8 @@ class SampleExportPermit {
 
   async generate(body) {
 
-    body.formValue.expiredDate = dateTimeFormattor.getFormatDate(body.formValue.expiredDate);
-    // HANDLE EXPIRE DATE AND PLACE OF ISSUE
-    // if (body.formValue.carrierType !== 'Hand Carry') {
-    //   body.formValue.expiredDate = '';
-    // }
-    // if(body.formValue.issueDate) {
-    //   body.formValue.issueDate = `<div>
-    //   <small>Issue date :</small>
-    //   <p>${body.formValue.issueDate}</p>
-    // </div>`
-    // }
+    body.formValue.expiredDate = body.formValue.expiredDate !== "N/A" ? dateTimeFormattor.getFormatDate(body.formValue.expiredDate): body.formValue.expiredDate;
+
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/sample-export-permit/sample-export-permit.html",
       "utf8"
