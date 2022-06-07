@@ -56,9 +56,11 @@ const generateCertificate = async (req) => {
                             await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
 
                             if (res.additionalInfo != null && res.additionalInfo.id != null) {
+                                let inspectionDate = res?.additionalInfo?.inspectionDate;
+                                inspectionDate = new Date(inspectionDate).toLocaleDateString()
+                                res.additionalInfo.inspectionDate = inspectionDate ? dateTimeFormattor.getFormatDate(inspectionDate) : " "
                                 res.formValue = {...res.formValue, ...res.additionalInfo};
                             }
-                            logger("aditonal info", res.formValue);
 
                             if(req.body.isRevoke){
                                 res.formValue.backgroundImg = background_cancelled;
