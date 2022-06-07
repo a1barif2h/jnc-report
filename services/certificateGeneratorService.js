@@ -101,13 +101,11 @@ const generateCertificate = async (req) => {
                             }
 
                             bufferResponse = await certificateGeneratorFactory.generate(res);
-                            logger("buffer response", bufferResponse)
                             return bufferResponse;
                         }
                     ).then(
                         async (buffer) => {
                             certificateDetail = await bezaServiceGateway.upload(buffer, userSopById);
-                            logger("certificateDetail", certificateDetail)
                             return certificateDetail;
                         }
                     ).then(
