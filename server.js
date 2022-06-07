@@ -13,7 +13,7 @@ const ProjectClearance = require("./pdf_generators/ProjectClearance");
 const CertificateService = require("./services/certificateService");
 const { reportType } = require("./constants/reportTypes");
 const config = require("./config/config");
-const { getCurrentFormattedDateTime } = require("./util/dateTimeFormattor");
+const { getCurrentFormattedDateTime, getFormatDate } = require("./util/dateTimeFormattor");
 const PaymentVoucherService = require("./services/paymentVoucherService");
 const corsOptions = {
   exposedHeaders: ["pdfFileName", "Content-disposition"],
@@ -27,10 +27,11 @@ app.use(express.urlencoded({ limit: "50mb" }));
 app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
-  
+  const d = new Date(1654624800000).toLocaleDateString();
+  const vd = getFormatDate(d);
 
 
-  res.send({ msg: "ok" });
+  res.send({ msg: "ok", date:d, vd });
 });
 
 app.get("/info", function (req, res) {

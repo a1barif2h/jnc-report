@@ -58,6 +58,7 @@ const generateCertificate = async (req) => {
                             if (res.additionalInfo != null && res.additionalInfo.id != null) {
                                 res.formValue = {...res.formValue, ...res.additionalInfo};
                             }
+                            logger("aditonal info", res.formValue);
 
                             if(req.body.isRevoke){
                                 res.formValue.backgroundImg = background_cancelled;
