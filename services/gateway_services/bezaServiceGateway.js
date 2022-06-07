@@ -67,6 +67,8 @@ const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke
       config.backendApi.bezaServicePort)) +
     config.backendApi.bezaServiceGetCertificateInfoPath;
 
+    logger("save url", saveCertificateUrl)
+
   
 
    let res = await axios

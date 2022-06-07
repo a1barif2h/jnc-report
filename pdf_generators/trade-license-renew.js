@@ -1,6 +1,7 @@
 const { response } = require("express");
 const fs = require("fs");
 const dateTimeFormattor = require("../util/dateTimeFormattor");
+const {logger} = require("../util/helper")
 
 const pdf = require("./PdfGenerator");
 const options = { format: "A4", orientation: "portrait" };
@@ -18,6 +19,7 @@ class TradeLicenseRenew {
   constructor() {}
 
   async generate(body) {
+    logger("tradlicence renew", body)
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/trade-license-renew/trade-license-renew.html",
       "utf8"

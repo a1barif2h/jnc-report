@@ -94,23 +94,26 @@ const generateCertificate = async (req) => {
                             res.formValue.userFullName =  deskUserSignature?.name || '-';
                             if(deskUserSignature && deskUserSignature.signature)
                             {
-                                res.formValue.deskUserSignature = deskUserSignature.signature;
+                                res.formValue.deskUserSignature = `<img src="data:image/png;base64,${deskUserSignature.signature}" alt="" />`//deskUserSignature.signature;
                             }
                             else{
-                                res.formValue.deskUserSignature='R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
+                                res.formValue.deskUserSignature='<p class="no-image">-</p>'
                             }
 
                             bufferResponse = await certificateGeneratorFactory.generate(res);
+                            logger("buffer response", bufferResponse)
                             return bufferResponse;
                         }
                     ).then(
                         async (buffer) => {
                             certificateDetail = await bezaServiceGateway.upload(buffer, userSopById);
+                            logger("certificateDetail", certificateDetail)
                             return certificateDetail;
                         }
                     ).then(
                         async(certificate) => {
                             response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke);
+                            logger("response", response)
                             return response;
                         }
                     );
