@@ -13,6 +13,7 @@ const encryption = require("../util/encryption");
 const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
 const moment = require('moment')
+const allSopsCodes=require("../shared/constants/AllSopsCodes");
 
 const generateQR = async text => {
     try {
@@ -99,6 +100,10 @@ const generateCertificate = async (req) => {
                                 res.formValue.deskUserSignature='R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
                             }
 
+                            if(req.body.isProjectRegistration) {
+                                res.sopCode = allSopsCodes.AllSopsCodes.PROJECT_REGISTRATION.value;
+                            }
+
                             bufferResponse = await certificateGeneratorFactory.generate(res);
                             return bufferResponse;
                         }
@@ -109,7 +114,8 @@ const generateCertificate = async (req) => {
                         }
                     ).then(
                         async(certificate) => {
-                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke);
+                            let isProjectRegistration = req.body.isProjectRegistration == 1 ? true : false;
+                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke, isProjectRegistration);
                             return response;
                         }
                     );
