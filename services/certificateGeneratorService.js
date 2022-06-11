@@ -114,7 +114,7 @@ const generateCertificate = async (req) => {
                         }
                     ).then(
                         async(certificate) => {
-                            let isProjectRegistration = req.body.isProjectRegistration == 1 ? true : false;
+                            let isProjectRegistration = req.body.isProjectRegistration || false;
                             response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke, isProjectRegistration);
                             return response;
                         }
