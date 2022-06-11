@@ -29,7 +29,7 @@ const generate = async (data) => {
       // console.log("=========this is test for project registration")
       // const projectRegistration = new Project
       const projectRegistration = new ProjectRegistration();
-      console.log("Generating pdf for project Clearance");
+      console.log("Generating pdf for project Registration");
       generatedPdf = await projectRegistration.generate(data);
       break;
     case AllSopsCodes.PROJECT_CLEARANCE.value:
