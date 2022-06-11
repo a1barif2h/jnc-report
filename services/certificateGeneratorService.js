@@ -12,7 +12,8 @@ const fs = require("fs");
 const encryption = require("../util/encryption");
 const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
-const moment = require('moment');
+const moment = require('moment')
+const allSopsCodes=require("../shared/constants/AllSopsCodes");
 const { logger } = require("../util/helper");
 
 const generateQR = async text => {
@@ -103,6 +104,10 @@ const generateCertificate = async (req) => {
                                 res.formValue.deskUserSignature='<p class="no-image">-</p>'
                             }
 
+                            if(req.body.isProjectRegistration) {
+                                res.sopCode = allSopsCodes.AllSopsCodes.PROJECT_REGISTRATION.value;
+                            }
+
                             bufferResponse = await certificateGeneratorFactory.generate(res);
                             return bufferResponse;
                         }
@@ -113,8 +118,9 @@ const generateCertificate = async (req) => {
                         }
                     ).then(
                         async(certificate) => {
-                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke);
-                            logger("response", response)
+                            let isProjectRegistration = req.body.isProjectRegistration || false;
+                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke, isProjectRegistration);
+                            logger("response", response);
                             return response;
                         }
                     );

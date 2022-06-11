@@ -51,7 +51,7 @@ const upload = async (buffer, data) => {
 
 };
 
-const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke) => {
+const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke, isProjectRegistration) => {
   let model = {
     url: certificate.url,
     processInstanceId: processInstanceId,
@@ -60,14 +60,18 @@ const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke
     isRevoked: isRevoke ? 1 : 0,
     documentId: certificate.id
   }
-
+  let additionalUrl = isProjectRegistration ? "?isProjectRegistration=true" : ""
   const saveCertificateUrl =
     config.backendApi.bezaServiceBaseUrl +
     (config.backendApi.bezaServicePort == "" ? "" : (":" +
       config.backendApi.bezaServicePort)) +
-    config.backendApi.bezaServiceGetCertificateInfoPath;
+    config.backendApi.bezaServiceGetCertificateInfoPath
+    + additionalUrl;
 
-  
+
+    
+
+  console.log(saveCertificateUrl);
 
    let res = await axios
     .post(saveCertificateUrl, model)
