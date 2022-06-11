@@ -133,19 +133,32 @@
       }
 
       .border-box small {
-        font-size: 8px;
+        font-size: 6.5px;
         font-weight: bold;
       }
 
       .left {
-        width: 50%;
-        padding: 0.5rem 1.4rem;
+        width: 48%;
+        padding: 0.5rem 0.8rem;
         line-height: 3;
+      }
+
+      .left p {
+        width: 75%;
+      }
+
+      .right p {
+        width: 65%;
       }
 
       .left p,
       .right p {
-        font-size: 7.5px;
+        font-size: 7px;
+      }
+
+      .left small,
+      .right small {
+        margin-right: 5px;
       }
 
       .left div {
@@ -155,11 +168,17 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
       }
 
       .right {
-        width: 50%;
-        padding: 0.5rem 1.4rem;
+        width: 48%;
+        padding: 0.5rem 0.8rem;
         line-height: 3;
       }
 
@@ -170,6 +189,12 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
       }
 
       .export-material-details {
@@ -238,66 +263,62 @@
 
           <div class="border-box">
             <div class="left">
-              <div style="width: 245px">
-                <small>Name of the Company:</small>
-                <p style="width: 55%; word-wrap: break-word">
-                  {{proposedProjectCompanyName}}
-                </p>
+              <div>
+                <small>Name of the Company: </small>
+                <p>{{proposedProjectCompanyName}}</p>
               </div>
               <div>
-                <small>Purchase Permit Type:</small>
+                <small>Purchase Permit Type: </small>
                 <p>{{localPurchasePermitType}}</p>
               </div>
               <div>
-                <small>Undertaking No.:</small>
+                <small>Undertaking No.: </small>
                 <p>{{undertakingNo}}</p>
               </div>
               <div>
-                <small>Invoice/ Cash Memo No:</small>
+                <small>Invoice/ Cash Memo No: </small>
                 <p>{{invoiceCashMemoNo}}</p>
               </div>
               <div>
-                <small>Source Zone:</small>
+                <small>Source Zone: </small>
                 <p>{{sourceZoneIf}}</p>
               </div>
               <div>
-                <small>Cosignor/Supplier Name:</small>
+                <small>Cosignor/Supplier Name: </small>
                 <p>{{consigneeName}}</p>
-              </div>
-              <div>
-                <small>Remarks:</small>
-                <p>{{remarks}}</p>
               </div>
             </div>
             <div class="right">
-              <div style="width: 245px">
-                <small>Name of Zone:</small>
-                <p style="width: 70%; word-wrap: break-word">
-                  {{economicZone}}
-                </p>
+              <div>
+                <small>Name of Zone: </small>
+                <p>{{economicZone}}</p>
               </div>
               <div>
-                <small>Type of Carrier:</small>
+                <small>Type of Carrier: </small>
                 <p>{{carrierType}}</p>
               </div>
 
               <div>
-                <small>Undertaking Date:</small>
+                <small>Undertaking Date: </small>
                 <p>{{undertakingDate}}</p>
               </div>
               <div>
-                <small>Invoice/ Cash Memo Date :</small>
+                <small>Invoice/ Cash Memo Date : </small>
                 <p>{{invoiceDate}}</p>
               </div>
               <div style="width: 245px">
-                <small>Cosignor/Supplier Address :</small>
+                <small>Cosignor/Supplier Address : </small>
                 <p style="width: 45%; word-wrap: break-word">
                   {{consigneeAddress}}
                 </p>
               </div>
               <div>
-                <small>Value:</small>
+                <small>Value: </small>
                 <p>BDT {{hiddenUnitPrice}}</p>
+              </div>
+              <div>
+                <small>Remarks: </small>
+                <p>{{remarks}}</p>
               </div>
             </div>
           </div>

@@ -135,12 +135,37 @@
       }
 
       .application-ambassador .signature img {
-        margin-left: 3.2rem;
+        width: 32%;
+        margin-left: 4rem;
       }
 
       .refrence-land {
         margin: 1rem 0rem;
         font-size: 8.5px;
+      }
+
+      .left {
+        width: 95%;
+        padding: 0.5rem 0.8rem;
+        line-height: 2;
+      }
+      .left div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+      }
+      .left small {
+        margin-right: 5px;
+        font-weight: 800;
+      }
+      .left p {
+        font-size: 6.5px;
       }
     </style>
   </head>
@@ -193,23 +218,30 @@
             construction as under;
           </p>
         </div>
-
-        <div class="name-of-economic">
+        <div class="left">
           <div>
-            <p>Name of the Economic Zone</p>
-            <p>Address</p>
-            <p>Plot Number</p>
-            <p>Land Area(sqm)</p>
-            <p>Building Area(sqm)</p>
-            <p>Total Floor Area(sqm)</p>
+            <small>Name of the Economic Zone:</small>
+            <p>{{economicZone}}</p>
+          </div>
+          <!-- <div>
+            <small>Address:</small>
+            <p>{{presentAddress}}</p>
+          </div> -->
+          <div>
+            <small>Plot Number:</small>
+            <p>{{plotAddress}}</p>
           </div>
           <div>
-            <p>: &nbsp; {{economicZone}}</p>
-            <p>: &nbsp; {{presentAddress}}</p>
-            <p>: &nbsp; {{plotAddress}}</p>
-            <p>: &nbsp; {{landArea}}</p>
-            <p>: &nbsp; {{buildingAreaSqm}}</p>
-            <p>: &nbsp; {{totalFloorAreaSqm}}</p>
+            <small>Land Area(sqm):</small>
+            <p>{{agreedLandByDevelopersSqm}}</p>
+          </div>
+          <div>
+            <small>Building Area(sqm):</small>
+            <p>{{hiddenBuildingArea}}</p>
+          </div>
+          <div>
+            <small>Total Floor Area(sqm):</small>
+            <p>{{hiddenTotalFloorArea}}</p>
           </div>
         </div>
         <div class="application-ambassador">
@@ -224,7 +256,8 @@
           <div class="signature">
             <p>Yours faithfully</p>
             <p>
-              <img src="data:image/png;base64,{{deskUserSignature}}" alt="" />
+              <!-- <img src="data:image/png;base64,{{deskUserSignature}}" alt="" /> -->
+              {{deskUserSignature}}
             </p>
             <p style="font-weight: bolder; border-top: 1px solid black">
               Desk User (RD3)

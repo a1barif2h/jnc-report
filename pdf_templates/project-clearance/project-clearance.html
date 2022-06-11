@@ -211,7 +211,8 @@
         </div>
         <div class="application-info">
           <!-- <b>{{userDesignation}}</b> -->
-          <b>{{statusproposed2}}</b>
+          <b>Managing Director/ CEO</b>
+          <!-- <b>{{statusproposed2}}</b> -->
           <!-- <b>{{applyingFirmOrCompany}}</b> -->
           <b>{{proposedProjectCompanyName}}</b>
           <!-- <b>{{economicZone}}, {{ezAdress}}</b> -->
@@ -222,7 +223,7 @@
         </div>
         <div class="application-subject">
           <b
-            >Subject: Approval for setting up a(n)
+            >Subject: Approval for setting up an
             {{typeOfBusinessIndustryOrServices}} in {{economicZone}}
           </b>
         </div>
@@ -230,7 +231,7 @@
       <main>
         <div class="application-header">
           <!-- <p class="dear-ceo">Dear {{userDesignation}},</p> -->
-          <p class="dear-ceo">Dear {{statusproposed2}},</p>
+          <p class="dear-ceo">Dear MD/ CEO,</p>
           <p class="application-header-text">
             With reference to your Project Proposal received on
             {{applicationDate}}, this is to inform you that the Authority is
@@ -265,8 +266,9 @@
             <p>
               14. The company will have to:
               <br />
-              a. maintain the ratio of export and domestic sale within 50:50 of
-              entire product of its factory;
+              a. maintain the ratio of export and domestic sale within
+              {{hiddenExportValue}}:{{hiddenDomesticValue}} of entire product of
+              its factory;
               <br />
               b. submit monthly reports to the Authority on the progress of
               implementation of the project;
@@ -372,10 +374,8 @@
           <div class="bar-code">{{barcode}}</div>
           <div class="signature">
             <h3 style="text-align: center">Yours faithfully</h3>
-            <img
-            src="data:image/png;base64,{{deskUserSignature}}"
-              alt=""
-            />
+            <!-- <img src="data:image/png;base64,{{deskUserSignature}}" alt="" /> -->
+            {{deskUserSignature}}
             <div class="desk-user">Desk User (RD3)</div>
             <div style="font-weight: bolder; text-align: center">
               Technical Support Executive

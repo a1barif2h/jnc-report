@@ -7,6 +7,7 @@ const xmlSerializer = new XMLSerializer();
 const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 const JsBarcode = require('jsbarcode');
 const amountInWords = require("../../util/amountToWordUtil");
+const { logger } = require("../../util/helper");
 const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
 const getFormValueByApplicationID = async (applicationId) => {
@@ -17,7 +18,7 @@ const getFormValueByApplicationID = async (applicationId) => {
     config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
     applicationId;
   
-  console.log("URL to get from value from user sop: " + formValueUrl);
+  // console.log("URL to get from value from user sop: " + formValueUrl);
   try {
     const {data} = await axios.get(formValueUrl)
     return data;
@@ -89,6 +90,8 @@ const getCommonFileds= async function (investorId){
       config.backendApi.bezaServicePort))+
     config.backendApi.bezaServiceCommmonFields+
     investorId
+
+    console.log("URL to get from value from user sop: " + commonFiledsUrl);
     
    let res = await axios
    .get(commonFiledsUrl)
@@ -139,9 +142,7 @@ const getPaymentVoucherInfo = async ({applicationId}) => {
 
   try {
     const {data} = await axios.get(url);
-    const totalFees = data?.payAmount + data?.vat + data?.bankCharge + data?.bankVat;
-    data.totalFees = totalFees
-    data.amountInWords = amountInWords(totalFees)
+    data.amountInWords = amountInWords(data?.totalAmount)
     await generateBarcode(data.trackingId || "").then (barRes => data.barcode = barRes).catch(err=> console.log(err));    
     return data;
   } catch (error) {

@@ -5,10 +5,13 @@ const pdf = require("./PdfGenerator");
 const options = { format: "A4", orientation: "portrait" };
 
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
+const { logger } = require("../util/helper");
 class ImportPermit {
   constructor() {}
 
   async generate(body) {
+
+    logger("import parmit body", body)
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/import-permit/import-permit.html",
       "utf8"

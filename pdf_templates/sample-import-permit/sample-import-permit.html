@@ -128,14 +128,27 @@
       }
 
       .left {
-        width: 50%;
-        padding: 0.5rem 1.4rem;
+        width: 48%;
+        padding: 0.5rem 0.8rem;
         line-height: 2.6;
       }
+
+      .left p {
+      width: 75%;
+    }
+
+    .right p {
+      width: 65%;
+    }
 
       .left p,
       .right p {
         font-size: 6.5px;
+      }
+
+      .left small,
+      .right small {
+        margin-right: 5px;
       }
 
       .left div {
@@ -145,12 +158,18 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
       }
 
       .right {
-        width: 50%;
-        padding: 0.5rem 1.4rem;
-        line-height: 2.6;
+        width: 48%;
+        padding: 0.5rem 0.8rem;
+        line-height: 2.5;
       }
 
       .right div {
@@ -160,6 +179,12 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
       }
 
       .export-material-group {
@@ -290,7 +315,7 @@
                 </div>
                 <div>
                   <small>Expire Date:</small>
-                  <p>{{expiredDateBeza}}</p>
+                  <p>{{expiredDate}}</p>
                 </div>
 
                 <div>
@@ -305,11 +330,11 @@
                 </div>
                 <div>
                   <small>Import Permit Type:</small>
-                  <p>{{importPermitType}}</p>
+                  <p>Sample Import Permit</p>
                 </div>
                 <div>
                   <small>Process Charge:</small>
-                  <p>{{processChargeInput}} {{processCharge}}</p>
+                  <p>{{processChargeInput}} {{processChargeCurrency}}</p>
                 </div>
                 <div>
                   <small>Invoice Date:</small>
@@ -321,11 +346,11 @@
                 </div> -->
                 <div>
                   <small>Import From /Port of Landing</small>
-                  <p>{{importFromPortOfLoading}}</p>
+                  <p  style="width: 55%;">{{importFromPortOfLoading}}</p>
                 </div>
-                <div style="width: 245px; word-wrap: break-word;">
+                <div>
                   <small>Seller/Shipper Address:</small>
-                  <p style="width: 55%; word-wrap: break-word;">{{sellerShipperAddressLineOne}}</p>
+                  <p>{{sellerShipperAddressLineOne}}</p>
                 </div>
                 <div>
                   <small>Name of the Person Carryin</small>

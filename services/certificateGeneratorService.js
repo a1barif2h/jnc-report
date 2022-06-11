@@ -14,6 +14,7 @@ const background_image = fs.readFileSync('./pdf_templates/background_image.html'
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
 const moment = require('moment')
 const allSopsCodes=require("../shared/constants/AllSopsCodes");
+const { logger } = require("../util/helper");
 
 const generateQR = async text => {
     try {
@@ -55,7 +56,10 @@ const generateCertificate = async (req) => {
 
                             await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
 
-                            if (res.additionalInfo != null) {
+                            if (res.additionalInfo != null && res.additionalInfo.id != null) {
+                                let inspectionDate = res?.additionalInfo?.inspectionDate;
+                                inspectionDate = new Date(inspectionDate).toLocaleDateString()
+                                res.additionalInfo.inspectionDate = inspectionDate ? dateTimeFormattor.getFormatDate(inspectionDate) : " "
                                 res.formValue = {...res.formValue, ...res.additionalInfo};
                             }
 
@@ -73,7 +77,7 @@ const generateCertificate = async (req) => {
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate)
                             }
                             res.formValue.trackingId = res.trackingId;
-                            res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(res.createdAt);
+                            res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(new Date(res.createdAt).toLocaleDateString());
                             userSopById = res;
                             /**
                              * merging the common fields
@@ -94,10 +98,10 @@ const generateCertificate = async (req) => {
                             res.formValue.userFullName =  deskUserSignature?.name || '-';
                             if(deskUserSignature && deskUserSignature.signature)
                             {
-                                res.formValue.deskUserSignature = deskUserSignature.signature;
+                                res.formValue.deskUserSignature = `<img src="data:image/png;base64,${deskUserSignature.signature}" alt="" />`//deskUserSignature.signature;
                             }
                             else{
-                                res.formValue.deskUserSignature='R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
+                                res.formValue.deskUserSignature='<p class="no-image">-</p>'
                             }
 
                             if(req.body.isProjectRegistration) {
@@ -116,6 +120,7 @@ const generateCertificate = async (req) => {
                         async(certificate) => {
                             let isProjectRegistration = req.body.isProjectRegistration || false;
                             response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke, isProjectRegistration);
+                            logger("response", response);
                             return response;
                         }
                     );

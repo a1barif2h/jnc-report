@@ -13,7 +13,7 @@
 
       .mainContainer {
         margin: 0rem auto;
-        padding: 30px;
+        padding: 15px;
         position: relative;
         z-index: 5;
       }
@@ -130,14 +130,27 @@
       }
 
       .left {
-        width: 50%;
-        padding: 0.5rem 1.4rem;
+        width: 48%;
+        padding: 0.5rem 0.8rem;
         line-height: 2.6;
       }
+
+      .left p {
+      width: 75%;
+    }
+
+    .right p {
+      width: 65%;
+    }
 
       .left p,
       .right p {
         font-size: 6.5px;
+      }
+
+      .left small,
+      .right small {
+        margin-right: 5px;
       }
 
       .left div {
@@ -147,12 +160,18 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
       }
 
       .right {
-        width: 50%;
-        padding: 0.5rem 1.4rem;
-        line-height: 2.6;
+        width: 48%;
+        padding: 0.5rem 0.8rem;
+        line-height: 2.5;
       }
 
       .right div {
@@ -162,6 +181,12 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
       }
 
       .export-material-group {
@@ -284,11 +309,11 @@
                 </div>
                 <div>
                   <small>Passport No.:</small>
-                  <p>{{passportNo}}</p>
+                  <p>{{hiddenPassportNo}}</p>
                 </div>
                 <div>
                   <small>Expire Date</small>
-                  <p>{{endTime}}</p>
+                  <p>{{expiredDate}}</p>
                 </div>
                 <div>
                   <small>Buyer Name:</small>
@@ -318,11 +343,12 @@
                 </div>
                 <div>
                   <small>Name of the Person Carrying</small>
-                  <p>{{nameOfCarrier}}</p>
+                  <p style="width: 55%;">{{hiddenNameOfPersonCarring}}</p>
                 </div>
+                <!-- {{issueDate}} -->
                 <div>
-                  <small>Invoice/ Vendor Ref. Date :</small>
-                  <p>{{invoiceDate}}</p>
+                  <small>Issue date :</small>
+                  <p>{{issueDate}}</p>
                 </div>
                 <div>
                   <small>Place of Issue :</small>

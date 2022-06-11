@@ -1,5 +1,6 @@
 const { response } = require("express");
 const fs = require("fs");
+const { logger } = require("../util/helper")
 
 
 const pdf = require("./PdfGenerator");
@@ -14,29 +15,11 @@ class SampleImportPermit {
 
   async generate(body) {
 
-    console.log("================login date==============");
-    console.log("body.formValue.issueDate",body.formValue.issueDate);
-    console.log("dateTimeFormattor.getFormatDate(body.formValue.issueDate)", dateTimeFormattor.getFormatDate(body.formValue.issueDate));
-    console.log("body.formValue.expiredDateBeza",body.formValue.expiredDateBeza);
-    console.log("dateTimeFormattor.getFormatDate(body.formValue.expiredDateBeza)", dateTimeFormattor.getFormatDate(body.formValue.expiredDateBeza));
-
-    console.log("================login date==============");
-
-    // return;
-
     // CHANGE DATE FORMATE
-    body.formValue.invoiceDate = dateTimeFormattor.getFormatDate(body.formValue.invoiceDate);
-    if (body.formValue.issueDate) {
-      body.formValue.issueDate = dateTimeFormattor.getFormatDate(body.formValue.issueDate);
-      
-    }
-    body.formValue.expiredDateBeza = dateTimeFormattor.getFormatDate(body.formValue.expiredDateBeza);
+    body.formValue.invoiceDate = body?.formValue?.invoiceDate !== "N/A"  ? dateTimeFormattor.getFormatDate(body?.formValue?.invoiceDate) : body?.formValue?.invoiceDate;
+    body.formValue.issueDate = body?.formValue?.issueDate !== "N/A"  ? dateTimeFormattor.getFormatDate(body?.formValue?.issueDate) : body?.formValue?.issueDate;
 
-    // HANDLE EXPIRE DATE AND PLACE OF ISSUE
-    if (body.formValue.carrierType !== 'Hand Carry') {
-      body.formValue.endTime = '';
-      body.formValue.hiddenPlaceOfIssue = '';
-    }
+    body.formValue.expiredDate = body?.formValue?.expiredDate !== "N/A" ? dateTimeFormattor.getFormatDate(body?.formValue?.expiredDate) : body?.formValue?.expiredDate;
     
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/sample-import-permit/sample-import-permit.html",

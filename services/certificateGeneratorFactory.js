@@ -22,12 +22,8 @@ const generate = async (data) => {
   let sopCode = data.sopCode;
   let generatedPdf = null;
   const AllSopsCodes=allSopsCodes.AllSopsCodes;
-  // console.log("sopId:   "+sopCode);
-  // console.log("allSopsCodes.EXPORTPERMIT:   "+JSON.stringify(AllSopsCodes));
   switch (sopCode) {
     case AllSopsCodes.PROJECT_REGISTRATION.value:
-      // console.log("=========this is test for project registration")
-      // const projectRegistration = new Project
       const projectRegistration = new ProjectRegistration();
       console.log("Generating pdf for project Registration");
       generatedPdf = await projectRegistration.generate(data);

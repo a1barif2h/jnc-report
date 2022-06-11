@@ -13,6 +13,9 @@ class SampleExportPermit {
   constructor() {}
 
   async generate(body) {
+
+    body.formValue.expiredDate = body.formValue.expiredDate !== "N/A" ? dateTimeFormattor.getFormatDate(body.formValue.expiredDate): body.formValue.expiredDate;
+
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/sample-export-permit/sample-export-permit.html",
       "utf8"

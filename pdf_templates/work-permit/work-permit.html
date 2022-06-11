@@ -249,7 +249,8 @@
         </div>
 
         <div class="subject">
-          <b>{{statusproposed2}}</b>
+          <!-- <b>{{statusproposed2}}</b> -->
+          <b>Managing Director,</b>
           <b>{{proposedProjectCompanyName}}</b>
           <b></b>
           <!-- <b>{{economicZone}}, {{economicZoneAddress}}</b>
@@ -265,11 +266,11 @@
           <p>
             With reference to your applications received on {{applicationDate}}
             the above subject, this is to inform you that according to the
-            decision of meeting held on {{applicationDate}} the Bangladesh
-            Economic Zone Authority (BEZA) has been pleased to issue work permit
-            for the following foreign national employed in your company / office
-            for the period shown against his name on the terms, conditions and
-            remuneration as shown below :
+            decision of meeting held on {{certificateGenerateDate}} the
+            Bangladesh Economic Zone Authority (BEZA) has been pleased to issue
+            work permit for the following foreign national employed in your
+            company / office for the period shown against his name on the terms,
+            conditions and remuneration as shown below :
           </p>
         </div>
 
@@ -319,7 +320,7 @@
                   {{particularsNationality}}<br />
                   {{passport1}}
                 </td>
-                <td>{{desiredDuration}} (with effect from: {{issueDate}})</td>
+                <td>{{desiredDuration}} (with effect from: {{startDate}})</td>
                 <td class="child-td">
                   <!-- another table inside main table  -->
 
@@ -511,7 +512,8 @@
           </div>
           <div class="signature">
             <h6>Yours faithfully</h6>
-            <img src="data:image/png;base64,{{deskUserSignature}}" alt="" />
+            <!-- <img src="data:image/png;base64,{{deskUserSignature}}" alt="" /> -->
+            {{deskUserSignature}}
             <div style="margin-top: 0.35rem; line-height: 2">
               <p>Md. Moniruzzaman</p>
               <p>General Manager (Investment Promotion)</p>

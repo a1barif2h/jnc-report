@@ -5,7 +5,7 @@ const options = {format: 'A4', "orientation": "portrait"};
 
 const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
-const addDatagridInfoInLUP=require('../util/addDatagridInfoInLUP')
+const addDatagridInfoInLUP=require('../util/addDatagridInfoInLUP');
 
 class LandUsePlan {
     constructor() {

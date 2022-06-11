@@ -1,92 +1,53 @@
 {{headerHere}}
 <div class="export-material">
-    <div class="export-material-group">
-        <h3>Import Material & L/C Information Group</h3>
-    </div>
-    <div class="export-material-details" style="margin-top: .8rem;">
-        <h3>Import Material Details</h3>
-    </div>
-    <div class="border-box">
-        <div class="left">
-            <div>
-                <small>Type of Material :</small>
-                <p>{{typeOfMaterial}}</p>
-            </div>
-            <div>
-                <small>Material Description</small>
-                <p>{{materialDescription}}</p>
-            </div>
-            <div>
-                <small>Unit of Quantity</small>
-                <p>{{unitQuantity}}</p>
-            </div>
+  <div class="export-material-group">
+    <h3>Import Material & L/C Information Group</h3>
+  </div>
+  <div class="export-material-details" style="margin-top: 0.8rem">
+    <h3>Import Material Details</h3>
+  </div>
+  <div class="border-box">
+    <div class="left">
+      <div>
+        <small>Type of Material: </small>
+        <p>{{typeOfMaterial}}</p>
+      </div>
+      <div>
+        <small>Material Description: </small>
+        <p>{{materialDescription}}</p>
+      </div>
+      <div>
+        <small>Unit of Quantity: </small>
+        <p>{{unitQuantity}}</p>
+      </div>
 
-
-            <div style="padding-top: 1rem;">
-                <!-- <small>Flight No:</small>
-                <p>{{flightNumber}}</p> -->
-                <small>{{hiddenCompoLabelOne}}</small>
-                <p>{{hiddenCompoValueOne}}</p>
-            </div>
-
-
-        </div>
-        <div class="right">
-            <div>
-                <!-- <small>HS Code: <br> <span style="font-size: 10px;">Phenazone (Antipyrin) And Its
-                        Derivative</span></small> -->
-                <small>HS Code :</small>
-                <p>{{hsCode}}</p>
-            </div>
-            <div>
-                <small style="font-size: 7.2px;">{{fobValue}} :</small>
-                <p>{{fobCurrencyValue}} {{foBCurrency}}</p>
-            </div>
-            <div>
-                <small>Quantity :</small>
-                <p>{{quantity}}</p>
-            </div>
-            <div>
-                <!-- <small>Flight Date :</small>
-                <p>{{flightDate}}</p> -->
-                <small>{{hiddenCompoLabelTwo}}</small>
-                <p>{{hiddenCompoValueTwo}}</p>
-            </div>
-            <div>
-            </div>
-        </div>
+      <div style="padding-top: 1rem">
+        <small>{{hiddenCompoLabelOne}}: </small>
+        <p>{{hiddenCompoValueOne}}</p>
+      </div>
     </div>
-    <div class="export-material-details">
-        <!-- <h3>Import Material Details</h3> -->
-        <h3>TT/ P.O/ SC/ CM/ L/C Information</h3>
+    <div class="right">
+      <div>
+        <small>HS Code: </small>
+        <p>{{hsCode}}</p>
+      </div>
+      <div>
+        <small></small>
+        <p>{{hsCodeDetails}}</p>
+      </div>
+      <div>
+        <small style="font-size: 7.2px">{{fobValue1}} :</small>
+        <p>{{fobCurrencyValue1}} {{foBCurrency1}}</p>
+      </div>
+      <div>
+        <small>Quantity: </small>
+        <p>{{quantity}}</p>
+      </div>
+      <div>
+        <small>{{hiddenCompoLabelTwo}}: </small>
+        <p>{{hiddenCompoValueTwo}}</p>
+      </div>
     </div>
-    <div class="border-box">
-        <div class="left">
-            <div>
-                <!-- <small>P.O No:</small> -->
-                <small>{{ttNo}}</small>
-                <p>{{ttNoInput}}</p>
-            </div>
-            <div>
-                <small>Issuing Bank</small>
-                <p>{{issuingBank}}</p>
-            </div>
-            <div>
-                <small>Issue Date:</small>
-                <p>{{issueDate}}</p>
-            </div>
-        </div>
-        <div class="right">
-            <div>
-                <!-- This shoud be dynamic, depends on ttNo -->
-                <small>{{ttNo}} Value</small>
-                <p>{{ttvalueHidden}}</p>
-            </div>
-            <div>
-                <small>Type :</small>
-                <p>{{typeOfLC}}</p>
-            </div>
-        </div>
-    </div>
-    {{footerHere}}
+  </div>
+  {{footerHere}}
 </div>
