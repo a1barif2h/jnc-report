@@ -1,7 +1,7 @@
 #FROM node:14
-FROM node:16
+FROM node:16-alpine
 
-RUN apt update #&& apt add --no-cache tzdata
+RUN apk update #&& apk add --no-cache tzdata
 RUN rm -f /etc/localtime \
 && ln -sv /usr/share/zoneinfo/Asia/Dhaka /etc/localtime \
 && echo "Asia/Dhaka" > /etc/timezone
