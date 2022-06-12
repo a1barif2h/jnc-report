@@ -105,5 +105,19 @@ app.post("/beza-certificate/api/v1/private/generate/payment-voucher/pdf", async 
   .catch(err => res.send({message: 'ERROR'}))
 })
 
+
+app.post(
+  "/certificate-service/api/v1/private/generate/pr-cert/pdf",
+  async (req, res) => {
+    // console.log("Printing pdf");
+    const certificateService = new CertificateService();
+    await certificateService
+      .generatePdf(req)
+      .then((data) => res.send(data))
+      .catch((err) => res.send({ message: "ERR" }));
+  }
+);
+
+
 console.log(`Download service si running on http://${HOST}:${PORT}`);
 app.listen(PORT, HOST);
