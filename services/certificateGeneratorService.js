@@ -97,7 +97,7 @@ const generateCertificate = async (req) => {
                             res.formValue.userFullName =  deskUserSignature?.name || '-';
                             if(deskUserSignature && deskUserSignature.signature)
                             {
-                                res.formValue.deskUserSignature = `<img src="data:image/png;base64,${deskUserSignature.signature}" alt="" />`//deskUserSignature.signature;
+                                res.formValue.deskUserSignature = `<img width="50%" src="data:image/png;base64,${deskUserSignature.signature}" alt="" />`//deskUserSignature.signature;
                             }
                             else{
                                 res.formValue.deskUserSignature='<p class="no-image">-</p>'
