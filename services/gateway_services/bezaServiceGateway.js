@@ -162,6 +162,16 @@ const getCertificateInfo = async (applicationId) => {
   }
 }
 
+const getConvertedCurrencyValue = async (quantity, source, target) => {
+  const url = `${config.backendApi.bezaServiceBaseUrl}:${config.backendApi.bezaServicePort}/beza-service/api/v1/private/currency/exchange/convert?q=${quantity}&source=${source}&target=${target}`;
+  try {
+    const {data: {amount}} = await axios.get(url);
+    return amount;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 module.exports = {
   getFormValueByApplicationID,
@@ -171,4 +181,5 @@ module.exports = {
   getPaymentVoucherInfo,
   getCertificateInfo,
   getdeskUserSignature,
+  getConvertedCurrencyValue
 };
