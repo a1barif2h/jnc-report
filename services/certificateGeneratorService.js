@@ -72,13 +72,13 @@ const generateCertificate = async (req) => {
                             }
                             else{
                                 res.formValue.backgroundImg = background_image;
-                                const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date())
+                                const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.approvalDate))
                                 res.formValue.certificateGenerateDate = certificateGenerateDate;
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate)
                             }
                             res.formValue.trackingId = res.trackingId;
-                            res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(new Date(res.createdAt).toLocaleDateString());
-                            userSopById = res;
+                            res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(new Date(res.submittedDate).toLocaleDateString());
+                            
                             /**
                              * merging the common fields
                              */
@@ -107,7 +107,7 @@ const generateCertificate = async (req) => {
                             if(req.body.isProjectRegistration) {
                                 res.sopCode = allSopsCodes.AllSopsCodes.PROJECT_REGISTRATION.value;
                             }
-
+                            userSopById = res;
                             bufferResponse = await certificateGeneratorFactory.generate(res);
                             return bufferResponse;
                         }
