@@ -1,7 +1,7 @@
 const { response } = require("express");
 const fs = require("fs");
 const { getFormatDate } = require("../util/dateTimeFormattor");
-const { logger } = require("../util/helper");
+// const { logger } = require("../util/helper");
 
 const pdf = require('./PdfGenerator');
 const options = {format: 'A4', "orientation": "portrait"};

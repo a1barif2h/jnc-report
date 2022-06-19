@@ -1,6 +1,6 @@
 const fs = require("fs")
 const pdf = require("./PdfGenerator")
-const { logger } = require('../util/helper');
+// const { logger } = require('../util/helper');
 const { getFormatDateWithTime } = require("../util/dateTimeFormattor");
 
 const options = {format: 'A4', "orientation": "portrait"};

@@ -12,11 +12,30 @@ const background_cancelled = fs.readFileSync(
 );
 const replaceMaterialsInProjectClearance = require("../util/replaceMaterialsInProjectClearance");
 const { logger } = require("../util/helper");
+const currencyConverter = require("../util/currencyConverter");
 
 class ProjectClearance {
   constructor() {}
+
+  #getCurrencyList(additionOfMachinery) {
+    const currencies = {};
+    additionOfMachinery.length > 0 && additionOfMachinery.map((machinery) => {
+      const currencyName = machinery.valueCurrency;
+      const currencyValue = machinery.valueInput;
+      if (currencies[currencyName]) {
+        currencies[currencyName] = currencies[currencyName] + currencyValue;
+      } else {
+        currencies[currencyName] = currencyValue;
+      }
+    })
+    return currencies;
+  }
+
   async generate(body) {
-    logger('project clearance body', body)
+
+    const currencyList = this.#getCurrencyList(body.formValue?.additionOfMachinery)
+    body.formValue.machineryCurrencyValue = await currencyConverter(currencyList, "USD");
+    body.formValue.machineryCurrency = "USD";
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/project-clearance/project-clearance.html",
       "utf8"

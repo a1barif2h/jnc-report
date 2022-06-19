@@ -9,7 +9,7 @@ const replaceAllMaterialsValue=function(data, template){
     template=templateEngine.replacer(template,data.formValue)
     let templateMaterials=template;
     // logger('dataGrid2', data.formValue.dataGrid2)
-    logger('productionProgramme', data.formValue.productionProgramme)
+    // logger('productionProgramme', data.formValue.productionProgramme)
     // for(i=0;i<data.formValue.dataGrid2.length;i++){
     
     //     templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.dataGrid2[i])

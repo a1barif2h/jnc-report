@@ -1,7 +1,8 @@
 const fs = require('fs');
 const pdf = require('./PdfGenerator');
 const options = {format: 'A4', "orientation": "portrait"};
-const replaceMaterialsInProjectClearance=require('../util/replaceMaterialsInProjectClearance')
+const replaceMaterialsInProjectClearance=require('../util/replaceMaterialsInProjectClearance');
+const { logger } = require('../util/helper');
 
 
 
@@ -9,6 +10,8 @@ class ProjectRegistration {
     constructor() {
     }
     async generate(body) {
+        logger("project registration", body)
+        body.formValue.industryCategory = body.formValue?.industryCategory.name || "";
         let htmlTemplate = fs.readFileSync('./pdf_templates/project-registration/project-registration.html', 'utf8');
         let materialsDesTemplate = fs.readFileSync(
             "./pdf_templates/project-registration/project-registration-materials-description.html",
