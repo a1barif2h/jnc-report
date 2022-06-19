@@ -59,14 +59,15 @@ const upload = async (buffer, data) => {
 
 };
 
-const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke, isProjectRegistration) => {
+const saveCertificateInfo = async (certificate, sop, req, isProjectRegistration) => {
   let model = {
     url: certificate.url,
-    processInstanceId: processInstanceId,
+    processInstanceId: req.processInstanceId,
     userSopId: sop.id,
     isValid: 1,
-    isRevoked: isRevoke ? 1 : 0,
-    documentId: certificate.id
+    isRevoked: req.isRevoke ? 1 : 0,
+    documentId: certificate.id,
+    isRegenerated: req.isRegenerated
   }
   let additionalUrl = isProjectRegistration ? "?isProjectRegistration=true" : ""
   const saveCertificateUrl =
