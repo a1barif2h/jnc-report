@@ -67,7 +67,7 @@ const saveCertificateInfo = async (certificate, sop, req, isProjectRegistration)
     isValid: 1,
     isRevoked: req.isRevoke ? 1 : 0,
     documentId: certificate.id,
-    isRegenerated: req.isRegenerated
+    isRegenerated: req.isRegenerated || false
   }
   let additionalUrl = isProjectRegistration ? "?isProjectRegistration=true" : ""
   const saveCertificateUrl =
