@@ -10,11 +10,19 @@ const amountInWords = require("../../util/amountToWordUtil");
 const { logger } = require("../../util/helper");
 const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
+
+const getBaseUrl = () => {
+  const baseUrl = config.backendApi.bezaServiceBaseUrl +
+  (config.backendApi.bezaServicePort == "" ? "" : (":" +
+    config.backendApi.bezaServicePort));
+
+  return baseUrl;
+}
+
+
 const getFormValueByApplicationID = async (applicationId) => {
   let formValueUrl =
-    config.backendApi.bezaServiceBaseUrl +
-    (config.backendApi.bezaServicePort == "" ? "" : (":" +
-      config.backendApi.bezaServicePort)) +
+    getBaseUrl() +
     config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
     applicationId;
   
@@ -27,11 +35,11 @@ const getFormValueByApplicationID = async (applicationId) => {
   }
 };
 
+
+
 const upload = async (buffer, data) => {
   const uploadUrl =
-    config.backendApi.bezaServiceBaseUrl +
-    (config.backendApi.bezaServicePort == "" ? "" : (":" +
-      config.backendApi.bezaServicePort)) +
+    getBaseUrl() +
     config.backendApi.mayanCertificateUploadPath;
 
   let pdfFileName = data.title + "_" + data.id + getCurrentFormattedDateTime() + ".pdf";
@@ -51,20 +59,19 @@ const upload = async (buffer, data) => {
 
 };
 
-const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke, isProjectRegistration) => {
+const saveCertificateInfo = async (certificate, sop, req, isProjectRegistration) => {
   let model = {
     url: certificate.url,
-    processInstanceId: processInstanceId,
+    processInstanceId: req.processInstanceId,
     userSopId: sop.id,
     isValid: 1,
-    isRevoked: isRevoke ? 1 : 0,
-    documentId: certificate.id
+    isRevoked: req.isRevoke ? 1 : 0,
+    documentId: certificate.id,
+    isRegenerated: req.isRegenerated || false
   }
   let additionalUrl = isProjectRegistration ? "?isProjectRegistration=true" : ""
   const saveCertificateUrl =
-    config.backendApi.bezaServiceBaseUrl +
-    (config.backendApi.bezaServicePort == "" ? "" : (":" +
-      config.backendApi.bezaServicePort)) +
+    getBaseUrl() +
     config.backendApi.bezaServiceGetCertificateInfoPath
     + additionalUrl;
 
@@ -85,9 +92,7 @@ const saveCertificateInfo = async (certificate, sop, processInstanceId, isRevoke
 
 const getCommonFileds= async function (investorId){
     const commonFiledsUrl =
-    config.backendApi.bezaServiceBaseUrl +
-    (config.backendApi.bezaServicePort == "" ? "" : (":" +
-      config.backendApi.bezaServicePort))+
+    getBaseUrl()+
     config.backendApi.bezaServiceCommmonFields+
     investorId
 
@@ -151,8 +156,7 @@ const getPaymentVoucherInfo = async ({applicationId}) => {
 }
 
 const getCertificateInfo = async (applicationId) => {
-  const url = config.backendApi.bezaServiceBaseUrl+  ":" +
-  config.backendApi.bezaServicePort+ config.backendApi.certificateInfoPath + applicationId
+  const url = getBaseUrl()+ config.backendApi.certificateInfoPath + applicationId
 
   try {
     const {data} = await axios.get(url);

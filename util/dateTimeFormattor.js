@@ -39,7 +39,7 @@ const getFormatDateWithTime = (givenDate) => {
 }
 
 const getValidTillDate = (givenDate) => {
-    return moment(givenDate).add(1, 'y').format('DD MMM, YYYY');
+    return moment(givenDate).local().add(1, 'y').format('DD MMM, YYYY');
 }
 
 module.exports = {
