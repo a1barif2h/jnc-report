@@ -20,15 +20,24 @@ class ImportPermit {
       "./pdf_templates/import-permit/headerTemplate.html",
       "utf8"
     );
+    let materialLabelTemplate = fs.readFileSync(
+      "./pdf_templates/import-permit/materialDetailsLabel.html",
+      "utf8"
+    );
     const materialsDetailsTemplateInitial = fs.readFileSync(
       "./pdf_templates/import-permit/materialsDetails.html",
       "utf8"
     );
+
+    const lcInfoDetailsTemplateinitial = fs.readFileSync(
+      "./pdf_templates/import-permit/lcsInformationsDetails.html",
+      "utf8");
     
     headerTemplate = materialsDescriptionParser.parseJasonIntoHtml(
       body.formValue,
       headerTemplate
     );
+
     let htmlImportTemplate = htmlTemplate;
     htmlImportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
       body.formValue,
@@ -38,23 +47,42 @@ class ImportPermit {
       `{{headerHere}}`,
       headerTemplate.toString() || "-"
     );
-    let materialsDetailsTemplate = materialsDetailsTemplateInitial;
+
     
-    htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
+    let materialsDetailsTemplate = materialsDetailsTemplateInitial;
+
+    htmlImportTemplate = materialsDescriptionParser.addMaterialsDescriptions(
       body.formValue.importMaterialsInformationGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
-      headerTemplate
+      headerTemplate,
+      materialLabelTemplate
     );
 
-    // console.log("==========================================");
-    materialsDetailsTemplate = materialsDetailsTemplateInitial;
-    htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
-      body.formValue.importMaterialsInformationGroup,
-      materialsDetailsTemplate,
+    let lcInfoDetailsTemplate = lcInfoDetailsTemplateinitial;
+
+    htmlImportTemplate = materialsDescriptionParser.addLcInfos(
+      body.formValue.ttPOScCmLCInformationContainer,
+      lcInfoDetailsTemplate,
       htmlImportTemplate,
       headerTemplate
     );
+    
+    // htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
+    //   body.formValue.importMaterialsInformationGroup,
+    //   materialsDetailsTemplate,
+    //   htmlImportTemplate,
+    //   headerTemplate
+    // );
+
+    // console.log("==========================================");
+    // materialsDetailsTemplate = materialsDetailsTemplateInitial;
+    // htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
+    //   body.formValue.importMaterialsInformationGroup,
+    //   materialsDetailsTemplate,
+    //   htmlImportTemplate,
+    //   headerTemplate
+    // );
     // if (body.formValue.dataGrid.length!=1){
       
     // }

@@ -140,9 +140,79 @@ const addRemainingMaterials = function (
   // console.log("remainingMaterialsDetails:   " + remainingMaterialsDetails);
   return htmlExportTemplate;
 };
+
+const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate, headerTemplate){
+  let lcInfoDetailsTemplates = "";
+  for(let i=0;i<dataGrid.length;i++){
+    lcInfoDetailsTemplates += parseJasonIntoHtml(
+      dataGrid[i],
+      lcInfoDetailsTemplate
+    );
+  }
+  htmlExportTemplate = htmlExportTemplate.replace(
+    `{{lcinformations}}`,
+    lcInfoDetailsTemplates || "-"
+  );
+  return htmlExportTemplate;
+}
+
+const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, htmlExportTemplate, 
+  headerTemplate, materialLabelTemplate){
+    const pageBreak = '<div class="mainContainer pageBreak"></div>';
+
+    let materialDescriptionTemplates = "";
+    let firstDetailsTemplate = materialsDetailsTemplate;
+    firstDetailsTemplate = firstDetailsTemplate.replace(
+      `{{materialLabel}}`,
+      materialLabelTemplate || "-"
+    );
+    firstDetailsTemplate = firstDetailsTemplate.replace(
+      `{{headerHere}}`,
+      ""
+    );
+    materialDescriptionTemplates += parseJasonIntoHtml(
+      dataGrid[0],
+      firstDetailsTemplate
+    );
+
+    for(let i=1; i<dataGrid.length; i++){
+      let thisMaterialsDetailsTemplate = materialsDetailsTemplate;
+      if((i+1) % 3 == 0){
+        materialDescriptionTemplates+=pageBreak;
+        thisMaterialsDetailsTemplate = thisMaterialsDetailsTemplate.replace(
+          `{{headerHere}}`,
+        headerTemplate.toString()
+        );
+        thisMaterialsDetailsTemplate = thisMaterialsDetailsTemplate.replace(
+          `{{materialLabel}}`,
+          materialLabelTemplate
+        );
+      }else{
+        thisMaterialsDetailsTemplate = thisMaterialsDetailsTemplate.replace(
+          `{{materialLabel}}`,
+          ""
+        );
+        thisMaterialsDetailsTemplate = thisMaterialsDetailsTemplate.replace(
+          `{{headerHere}}`,
+         ""
+        );
+      }
+      materialDescriptionTemplates += parseJasonIntoHtml(
+        dataGrid[i],
+        thisMaterialsDetailsTemplate
+      );
+    }
+    htmlExportTemplate = htmlExportTemplate.replace(
+      `{{materialDescriptions}}`,
+      materialDescriptionTemplates || "-"
+    );
+    return htmlExportTemplate;
+  }
 module.exports = {
   parseJasonIntoHtml,
   generateMultipleMaterialsDescription,
   addFirstMaterials,
   addRemainingMaterials,
+  addLcInfos,
+  addMaterialsDescriptions,
 };
