@@ -143,12 +143,12 @@ const addRemainingMaterials = function (
 
 const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate, headerTemplate, lcInfLabelTemplate ,materialsLength){
   let j = materialsLength;
-  let remains = 0;
+  let alreadyAdded = 0;
   if(j>2){
     if((j+1) % 3 ==1){
-      remains = 2;
+      alreadyAdded = 2;
     }else if((j+1) % 3 ==2){
-      remains = 1;
+      alreadyAdded = 1;
     }
   }
   
@@ -156,7 +156,8 @@ const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate,
   let lcInfoDetailsTemplates = "";
   const pageBreak = '<div class="mainContainer pageBreak">';
 
-  for(let i=remains;i<dataGrid.length ;i++){
+  let c=0;
+  for(let i=alreadyAdded;i<dataGrid.length && dataGrid.length>alreadyAdded;i++){
     let thisLcInfoDetailsTemplate = lcInfoDetailsTemplate;
     if(i==dataGrid.length-1){
       thisLcInfoDetailsTemplate = thisLcInfoDetailsTemplate.replace(
@@ -169,10 +170,10 @@ const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate,
         ""
       );
     }
-    if((i+1) % 3 == 2){
+    if(c % 3 == 2){
       lcInfoDetailsTemplates+="</div>";
     }
-    if((i+1) % 3 == 0 || i==0){
+    if(c % 3 == 0 || c==0){
       lcInfoDetailsTemplates+=pageBreak;
       thisLcInfoDetailsTemplate = thisLcInfoDetailsTemplate.replace(
         `{{headerHere}}`,
@@ -197,6 +198,7 @@ const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate,
       dataGrid[i],
       thisLcInfoDetailsTemplate
     );
+    c++;
   }
   htmlExportTemplate = htmlExportTemplate.replace(
     `{{lcinformations}}`,
