@@ -24,6 +24,10 @@ class ImportPermit {
       "./pdf_templates/import-permit/materialDetailsLabel.html",
       "utf8"
     );
+    let lcInfLabelTemplate = fs.readFileSync(
+      "./pdf_templates/import-permit/lcInfoDetailsLabel.html",
+      "utf8"
+    );
     const materialsDetailsTemplateInitial = fs.readFileSync(
       "./pdf_templates/import-permit/materialsDetails.html",
       "utf8"
@@ -59,13 +63,16 @@ class ImportPermit {
       materialLabelTemplate
     );
 
+
     let lcInfoDetailsTemplate = lcInfoDetailsTemplateinitial;
 
     htmlImportTemplate = materialsDescriptionParser.addLcInfos(
       body.formValue.ttPOScCmLCInformationContainer,
       lcInfoDetailsTemplate,
       htmlImportTemplate,
-      headerTemplate
+      headerTemplate,
+      lcInfLabelTemplate,
+      body.formValue.importMaterialsInformationGroup.length
     );
     
     // htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
