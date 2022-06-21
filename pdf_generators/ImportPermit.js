@@ -55,7 +55,7 @@ class ImportPermit {
     
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
 
-    htmlImportTemplate = materialsDescriptionParser.addMaterialsDescriptions(
+    htmlImportTemplate = materialsDescriptionParser.addFirstTwoMaterialDescriptions(
       body.formValue.importMaterialsInformationGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
@@ -63,8 +63,19 @@ class ImportPermit {
       materialLabelTemplate
     );
 
-
     let lcInfoDetailsTemplate = lcInfoDetailsTemplateinitial;
+
+    htmlImportTemplate = materialsDescriptionParser.addMaterialsDescriptions(
+      body.formValue.importMaterialsInformationGroup,
+      materialsDetailsTemplate,
+      htmlImportTemplate,
+      headerTemplate,
+      materialLabelTemplate,
+      body.formValue.ttPOScCmLCInformationContainer,
+      lcInfoDetailsTemplate,
+      lcInfLabelTemplate
+    );
+
 
     htmlImportTemplate = materialsDescriptionParser.addLcInfos(
       body.formValue.ttPOScCmLCInformationContainer,
