@@ -170,9 +170,6 @@ const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate,
         ""
       );
     }
-    if(c % 3 == 2){
-      lcInfoDetailsTemplates+="</div>";
-    }
     if(c % 3 == 0 || c==0){
       lcInfoDetailsTemplates+=pageBreak;
       thisLcInfoDetailsTemplate = thisLcInfoDetailsTemplate.replace(
@@ -198,6 +195,9 @@ const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate,
       dataGrid[i],
       thisLcInfoDetailsTemplate
     );
+    if(c % 3 == 2){
+      lcInfoDetailsTemplates+="</div>";
+    }
     c++;
   }
   htmlExportTemplate = htmlExportTemplate.replace(
@@ -215,9 +215,6 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
     let i;
     for( i=2; i<dataGrid.length; i++){
       let thisMaterialsDetailsTemplate = materialsDetailsTemplate;
-      if((i+1) % 3 == 2 ){
-        materialDescriptionTemplates+="</div>";
-      }
       if((i+1) % 3 == 0){
         materialDescriptionTemplates+=pageBreak;
         thisMaterialsDetailsTemplate = thisMaterialsDetailsTemplate.replace(
@@ -242,6 +239,9 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
         dataGrid[i],
         thisMaterialsDetailsTemplate
       );
+      if((i+1) % 3 == 2 ){
+        materialDescriptionTemplates+="</div>";
+      }
     }
 
     if(dataGrid.length>2){
