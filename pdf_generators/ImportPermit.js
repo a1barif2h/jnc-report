@@ -83,7 +83,8 @@ class ImportPermit {
       htmlImportTemplate,
       headerTemplate,
       lcInfLabelTemplate,
-      body.formValue.importMaterialsInformationGroup.length
+      body.formValue.importMaterialsInformationGroup.length,
+      materialLabelTemplate
     );
     
     // htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(

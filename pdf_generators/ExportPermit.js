@@ -92,7 +92,8 @@ class ExportPermit {
       htmlExportTemplate,
       headerTemplate,
       lcInfLabelTemplate,
-      body.formValue.exportMaterialsInformationGroup.length
+      body.formValue.exportMaterialsInformationGroup.length,
+      materialLabelTemplate
     );
 
 

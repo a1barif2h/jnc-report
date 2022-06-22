@@ -141,7 +141,7 @@ const addRemainingMaterials = function (
   return htmlExportTemplate;
 };
 
-const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate, headerTemplate, lcInfLabelTemplate ,materialsLength){
+const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate, headerTemplate, lcInfLabelTemplate ,materialsLength, materialLabelTemplate){
   let j = materialsLength;
   let alreadyAdded = 0;
   if(j>2){
@@ -178,7 +178,7 @@ const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate,
       );
       thisLcInfoDetailsTemplate = thisLcInfoDetailsTemplate.replace(
         `{{materialLabel}}`,
-        lcInfLabelTemplate || ""
+        materialLabelTemplate || ""
       );
     }else{
       thisLcInfoDetailsTemplate = thisLcInfoDetailsTemplate.replace(
@@ -259,7 +259,8 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
         );
         lcTemplate = lcTemplate.replace(
           `{{materialLabel}}`,
-          lcInfLabelTemplate || ""
+          // lcInfLabelTemplate || ""
+          ""
         );
         if(lcDataGrid.length==1){
           lcTemplate = lcTemplate.replace(
