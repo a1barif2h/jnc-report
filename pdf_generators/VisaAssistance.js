@@ -1,5 +1,6 @@
 const { response } = require('express');
 const fs = require('fs');
+const { logger } = require('../util/helper');
 const pdf = require('./PdfGenerator');
 const options = {format: 'A4', "orientation": "portrait"};
 
