@@ -313,7 +313,8 @@
                   {{particularsNationality}}<br />
                   {{passport1}}
                 </td>
-                <td>{{desiredDuration}} (with effect from: {{startDate}})</td>
+                <!-- <td>{{desiredDuration}} (with effect from: {{startDate}})</td> -->
+                <td>{{desiredDurationWithDetails}} (with effect from: {{startDate}})</td>
                 <td class="child-td">
                   <!-- another table inside main table  -->
 
@@ -401,14 +402,14 @@
               </tr>
 
               <tr>
-                <td>Others: {{hOtherFringeBenefitsIfAny}}</td>
-                <td></td>
-                <td></td>
+                <td colspan="3">Others: {{hOtherFringeBenefitsIfAny}}</td>
+                <!-- <td></td>
+                <td></td> -->
               </tr>
               <tr>
-                <td>Remarks: {{anyParticularComments}}</td>
-                <td></td>
-                <td></td>
+                <td colspan="3">Remarks: {{anyParticularComments}}</td>
+                <!-- <td></td>
+                <td></td> -->
               </tr>
             </tbody>
           </table>

@@ -374,7 +374,7 @@
           </div>
         </div>
 
-        <div class="export-material-details">
+        <!-- <div class="export-material-details">
           <h3>TT/ P.O/ SC/ CM/ L/C Information</h3>
         </div>
         <div class="border-box" style="margin-bottom: 35px;">
@@ -395,20 +395,23 @@
           <div class="right">
             <div>
               <small>{{ttNo}} Value: </small>
-              <p>{{ttvalueHidden}}</p>
+              <p>{{ttvalueHidden}} {{ttCurrencyValue}}</p>
             </div>
             <div>
               <small>Type: </small>
               <p>{{typeOfLC}}</p>
             </div>
           </div>
-        </div>
-
-        {{firstMaterialsDetails}}
+        </div> -->
+        {{materialDescriptions}}
+        
+        <!-- {{firstMaterialsDetails}} -->
       </div>
     </main>
   </div>
-  {{remainingMaterialsDetails}}
+  <!-- {{remainingMaterialsDetails}} -->
+  {{remainingMaterialDescriptions}}
+  {{lcinformations}}
   </div>
 </body>
 
