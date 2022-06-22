@@ -31,6 +31,20 @@ class ExportPermit {
       "./pdf_templates/export-permit/export-permit-footer.html",
       "utf8"
     );
+
+    let materialLabelTemplate = fs.readFileSync(
+      "./pdf_templates/export-permit/materialDetailsLabel.html",
+      "utf8"
+    );
+
+    const lcInfoDetailsTemplateinitial = fs.readFileSync(
+      "./pdf_templates/export-permit/lcsInformationsDetails.html",
+      "utf8");
+
+      let lcInfLabelTemplate = fs.readFileSync(
+        "./pdf_templates/export-permit/lcInfoDetailsLabel.html",
+        "utf8"
+      );
     
     headerTemplate = materialsDescriptionParser.parseJasonIntoHtml(
       body.formValue,
@@ -50,22 +64,54 @@ class ExportPermit {
     );
     
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
-    
-    htmlExportTemplate = materialsDescriptionParser.addFirstMaterials(
+
+    htmlExportTemplate = materialsDescriptionParser.addFirstTwoMaterialDescriptions(
       body.formValue.exportMaterialsInformationGroup,
       materialsDetailsTemplate,
       htmlExportTemplate,
-      headerTemplate
+      headerTemplate,
+      materialLabelTemplate
     );
 
-    // console.log("==========================================");
-    materialsDetailsTemplate = materialsDetailsTemplateInitial;
-    htmlExportTemplate = materialsDescriptionParser.addRemainingMaterials(
+    let lcInfoDetailsTemplate = lcInfoDetailsTemplateinitial;
+
+    htmlExportTemplate = materialsDescriptionParser.addMaterialsDescriptions(
       body.formValue.exportMaterialsInformationGroup,
       materialsDetailsTemplate,
       htmlExportTemplate,
-      headerTemplate
+      headerTemplate,
+      materialLabelTemplate,
+      body.formValue.ttPOScCmLCInformationContainer,
+      lcInfoDetailsTemplate,
+      lcInfLabelTemplate
     );
+
+    htmlExportTemplate = materialsDescriptionParser.addLcInfos(
+      body.formValue.ttPOScCmLCInformationContainer,
+      lcInfoDetailsTemplate,
+      htmlExportTemplate,
+      headerTemplate,
+      lcInfLabelTemplate,
+      body.formValue.exportMaterialsInformationGroup.length
+    );
+
+
+    
+    // htmlExportTemplate = materialsDescriptionParser.addFirstMaterials(
+    //   body.formValue.exportMaterialsInformationGroup,
+    //   materialsDetailsTemplate,
+    //   htmlExportTemplate,
+    //   headerTemplate
+    // );
+
+    // console.log("==========================================");
+    //materialsDetailsTemplate = materialsDetailsTemplateInitial;
+    // htmlExportTemplate = materialsDescriptionParser.addRemainingMaterials(
+    //   body.formValue.exportMaterialsInformationGroup,
+    //   materialsDetailsTemplate,
+    //   htmlExportTemplate,
+    //   headerTemplate
+    // );
     // if (body.formValue.dataGrid.length!=1){
       
     // }

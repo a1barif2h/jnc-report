@@ -156,13 +156,13 @@ const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate,
   let lcInfoDetailsTemplates = "";
   const pageBreak = '<div class="mainContainer pageBreak">';
 
-  let c=0;
+  let insertElementCount=0;
   for(let i=alreadyAdded;i<dataGrid.length && dataGrid.length>alreadyAdded;i++){
     let thisLcInfoDetailsTemplate = lcInfoDetailsTemplate;
     if(i==dataGrid.length-1){
       thisLcInfoDetailsTemplate = thisLcInfoDetailsTemplate.replace(
         `{{footerHere}}`,
-        footerTemplate.toString() || "-"
+        footerTemplate.toString() || ""
       );
     }else{
       thisLcInfoDetailsTemplate = thisLcInfoDetailsTemplate.replace(
@@ -170,7 +170,7 @@ const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate,
         ""
       );
     }
-    if(c % 3 == 0 || c==0){
+    if(insertElementCount % 3 == 0 || insertElementCount==0){
       lcInfoDetailsTemplates+=pageBreak;
       thisLcInfoDetailsTemplate = thisLcInfoDetailsTemplate.replace(
         `{{headerHere}}`,
@@ -178,7 +178,7 @@ const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate,
       );
       thisLcInfoDetailsTemplate = thisLcInfoDetailsTemplate.replace(
         `{{materialLabel}}`,
-        lcInfLabelTemplate || "-"
+        lcInfLabelTemplate || ""
       );
     }else{
       thisLcInfoDetailsTemplate = thisLcInfoDetailsTemplate.replace(
@@ -195,14 +195,14 @@ const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate,
       dataGrid[i],
       thisLcInfoDetailsTemplate
     );
-    if(c % 3 == 2){
+    if(insertElementCount % 3 == 2){
       lcInfoDetailsTemplates+="</div>";
     }
-    c++;
+    insertElementCount++;
   }
   htmlExportTemplate = htmlExportTemplate.replace(
     `{{lcinformations}}`,
-    lcInfoDetailsTemplates || "-"
+    lcInfoDetailsTemplates || ""
   );
   return htmlExportTemplate;
 }
@@ -245,13 +245,13 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
     }
 
     if(dataGrid.length>2){
-      let remains = 0;
+      let remainsToAdd = 0;
       if((i+1) % 3 ==1){
-        remains = 2;
+        remainsToAdd = 2;
       }else if((i+1) % 3 ==2){
-        remains = 1;
+        remainsToAdd = 1;
       }
-      if(remains>0){
+      if(remainsToAdd>0){
         let lcTemplate = lcInfoDetailsTemplate;
         lcTemplate = lcTemplate.replace(
           `{{headerHere}}`,
@@ -259,12 +259,12 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
         );
         lcTemplate = lcTemplate.replace(
           `{{materialLabel}}`,
-          lcInfLabelTemplate || "-"
+          lcInfLabelTemplate || ""
         );
         if(lcDataGrid.length==1){
           lcTemplate = lcTemplate.replace(
             `{{footerHere}}`,
-            footerTemplate.toString() || "-"
+            footerTemplate.toString() || ""
           );
         }else{
           lcTemplate = lcTemplate.replace(
@@ -277,7 +277,7 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
           lcTemplate
         );
 
-        if(remains==2 && lcDataGrid.length>1){
+        if(remainsToAdd==2 && lcDataGrid.length>1){
           let lcTemplate = lcInfoDetailsTemplate;
         lcTemplate = lcTemplate.replace(
           `{{headerHere}}`,
@@ -290,7 +290,7 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
         if(lcDataGrid.length==2){
           lcTemplate = lcTemplate.replace(
             `{{footerHere}}`,
-            footerTemplate.toString() || "-"
+            footerTemplate.toString() || ""
           );
         }else{
           lcTemplate = lcTemplate.replace(
@@ -313,7 +313,7 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
 
     htmlExportTemplate = htmlExportTemplate.replace(
       `{{remainingMaterialDescriptions}}`,
-      materialDescriptionTemplates || "-"
+      materialDescriptionTemplates || ""
     );
     return htmlExportTemplate;
   }
@@ -326,7 +326,7 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
         if(i==0){
           firstDetailsTemplate = firstDetailsTemplate.replace(
             `{{materialLabel}}`,
-            materialLabelTemplate || "-"
+            materialLabelTemplate || ""
           );
         }else{
           firstDetailsTemplate = firstDetailsTemplate.replace(
@@ -345,7 +345,7 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
       }
       htmlExportTemplate = htmlExportTemplate.replace(
         `{{materialDescriptions}}`,
-        materialDescriptionTemplates || "-"
+        materialDescriptionTemplates || ""
       );
       return htmlExportTemplate;
     }
