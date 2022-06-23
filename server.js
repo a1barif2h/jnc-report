@@ -15,6 +15,7 @@ const { reportType } = require("./constants/reportTypes");
 const config = require("./config/config");
 const { getCurrentFormattedDateTime, getFormatDate } = require("./util/dateTimeFormattor");
 const PaymentVoucherService = require("./services/paymentVoucherService");
+const { authenticate } = require("./services/authentication_service");
 const corsOptions = {
   exposedHeaders: ["pdfFileName", "Content-disposition"],
 };
@@ -64,12 +65,23 @@ app.get("/info", function (req, res) {
 
 app.post(
   "/certificate-service/api/v1/private/generate/pdf",
+  authenticate,
   async (req, res) => {
     await generateCertificate(req,res);
+
+    //This is for test purpose
+  //   res.setHeader("Content-Type", "application/json");
+  // res.send(
+  //   JSON.stringify({
+  //     status: 200
+  //   })
+  // );
   }
 );
 
-app.post("/beza-certificate/api/v1/private/generate/payment-voucher/pdf", async (req, res) => {
+app.post("/beza-certificate/api/v1/private/generate/payment-voucher/pdf", 
+authenticate,
+async (req, res) => {
   const paymentVoucherService = new PaymentVoucherService();
   await paymentVoucherService.generatePdf(req.body)
   .then(data => {
