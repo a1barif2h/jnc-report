@@ -6,10 +6,14 @@
       "mayanCertificateUploadPath": "/beza-service/api/v1/private/mayan/upload-document/",
       "bezaServiceGetFormValuesByApplicationIdPath": "/beza-service/api/v1/private/user-sops/",
       "bezaServiceGetCertificateInfoPath": "/beza-service/api/v1/private/user-certificate/",
-      "analysisRequestServicePath": "/query-service/api/v1/private/discovery/search-data/",
       "bezaServiceCommmonFields": "/beza-service/api/v1/private/sop-common-fields/",
+      "paymentVoucherInfoPath": "/beza-service/api/v1/private/user-sops/payment-voucher/",
+      "certificateInfoPath": "/beza-service/api/v1/private/user-certificate/",
       "bezaServiceDeskUserSignature": "/beza-service/api/v1/private/users/signature",
-      "analysisReportDownloadPdfUrlPath": "query-service/api/v1/private/analysis/report"
+      "convertCurrency": "/beza-service/api/v1/private/currency/exchange/convert",
+      "keycloakBaseUrl": "http://202.181.14.20",
+      "keycloakPort": "8081",
+      "keycloakUserInfoPath": "/auth/realms/OSS/protocol/openid-connect/userinfo"
     }
   }
   

@@ -15,6 +15,7 @@ const { reportType } = require("./constants/reportTypes");
 const config = require("./config/config");
 const { getCurrentFormattedDateTime, getFormatDate } = require("./util/dateTimeFormattor");
 const PaymentVoucherService = require("./services/paymentVoucherService");
+const { authenticate } = require("./services/authentication_service");
 const corsOptions = {
   exposedHeaders: ["pdfFileName", "Content-disposition"],
 };
@@ -63,39 +64,24 @@ app.get("/info", function (req, res) {
 });
 
 app.post(
-  "/report-download/api/v1/private/vehicle-registration/print/pdf",
-  (req, res) => {
-    // console.log("Printing vehicle-registration");
-    let pdfFileName = "vehicle-registration";
-
-    if (req.body && req.body.vehicleRegistrationNumber) {
-      pdfFileName +=
-        "_" +
-        req.body.vehicleRegistrationNumber +
-        getCurrentFormattedDateTime() +
-        ".pdf";
-    }
-    res.setHeader("Content-disposition", "attachment; filename=" + pdfFileName); //file name should contain nid 10 digit
-    res.setHeader("Content-type", "application/pdf");
-    res.set("pdfFileName", pdfFileName);
-    const vehicleRegistration = new VehicleRegistration();
-    vehicleRegistration.generate(res, req.body);
-  }
-);
-
-app.post(
   "/certificate-service/api/v1/private/generate/pdf",
+  authenticate,
   async (req, res) => {
-    // console.log("Printing pdf");
-    const certificateService = new CertificateService();
-    await certificateService
-      .generatePdf(req)
-      .then((data) => res.send(data))
-      .catch((err) => res.send({ message: "ERR" }));
+    await generateCertificate(req,res);
+
+    //This is for test purpose
+  //   res.setHeader("Content-Type", "application/json");
+  // res.send(
+  //   JSON.stringify({
+  //     status: 200
+  //   })
+  // );
   }
 );
 
-app.post("/beza-certificate/api/v1/private/generate/payment-voucher/pdf", async (req, res) => {
+app.post("/beza-certificate/api/v1/private/generate/payment-voucher/pdf", 
+authenticate,
+async (req, res) => {
   const paymentVoucherService = new PaymentVoucherService();
   await paymentVoucherService.generatePdf(req.body)
   .then(data => {
@@ -103,18 +89,39 @@ app.post("/beza-certificate/api/v1/private/generate/payment-voucher/pdf", async 
     res.send(data)
   })
   .catch(err => res.send({message: 'ERROR'}))
-})
+});
 
 
 app.post(
   "/certificate-service/api/v1/private/generate/pr-cert/pdf",
   async (req, res) => {
-    // console.log("Printing pdf");
-    const certificateService = new CertificateService();
-    await certificateService
-      .generatePdf(req)
-      .then((data) => res.send(data))
-      .catch((err) => res.send({ message: "ERR" }));
+    await generateCertificate(req,res);
+  }
+);
+
+
+const generateCertificate = async function(req,res) {
+  const certificateService = new CertificateService();
+  await certificateService
+    .generatePdf(req)
+    .then((data) => res.send(data))
+    .catch((err) => res.send({ message: "ERR" }));
+}
+
+
+
+app.post(
+  "/certificate-service/api/v1/internal/generate/pdf",
+  async (req, res) => {
+    await generateCertificate(req,res);
+  }
+);
+
+
+app.post(
+  "/certificate-service/api/v1/internal/generate/pr-cert/pdf",
+  async (req, res) => {
+    await generateCertificate(req,res);
   }
 );
 

@@ -3,14 +3,19 @@
     "bezaServiceBaseUrl": "http://202.181.14.20",
     "bezaServicePort": "8585",
     "bezaServiceFrontEndPort": "7890",
-    "mayanCertificateUploadPath": "/beza-service/api/v1/private/mayan/upload-document/",
-    "bezaServiceGetFormValuesByApplicationIdPath": "/beza-service/api/v1/private/user-sops/",
-    "bezaServiceGetCertificateInfoPath": "/beza-service/api/v1/private/user-certificate/",
-    "bezaServiceCommmonFields": "/beza-service/api/v1/private/sop-common-fields/",
-    "analysisRequestServicePath": "/query-service/api/v1/private/discovery/search-data/",
-    "analysisReportDownloadPdfUrlPath": "query-service/api/v1/private/analysis/report",
-    "paymentVoucherInfoPath": "/beza-service/api/v1/private/user-sops/payment-voucher/",
-    "certificateInfoPath": "/beza-service/api/v1/private/user-certificate/",
-    "bezaServiceDeskUserSignature": "/beza-service/api/v1/private/users/signature"
+    
+    "mayanCertificateUploadPath": "/beza-service/api/v1/internal/mayan/upload-document/",
+
+    "bezaServiceGetFormValuesByApplicationIdPath": "/beza-service/api/v1/internal/user-sops/",
+    "bezaServiceGetCertificateInfoPath": "/beza-service/api/v1/internal/user-certificate/",
+    "bezaServiceCommmonFields": "/beza-service/api/v1/internal/sop-common-fields/",
+    "paymentVoucherInfoPath": "/beza-service/api/v1/internal/user-sops/payment-voucher/",
+    "certificateInfoPath": "/beza-service/api/v1/internal/user-certificate/",
+    "bezaServiceDeskUserSignature": "/beza-service/api/v1/internal/users/signature",
+    "convertCurrency": "/beza-service/api/v1/internal/currency/exchange/convert",
+    
+    "keycloakBaseUrl": "http://202.181.14.20",
+    "keycloakPort": "8081",
+    "keycloakUserInfoPath": "/auth/realms/OSS/protocol/openid-connect/userinfo",
   }
 }
