@@ -1,11 +1,18 @@
 {
   "backendApi": {
-    "bezaServiceBaseUrl": "http://dip-query-service",
-    "bezaServicePort": "5005",
-    "analysisRequestServicePath": "/query-service/api/v1/private/discovery/search-data/",
-    "bezaServiceCommmonFields": "/beza-service/api/v1/private/sop-common-fields/",
-    "analysisReportDownloadPdfUrlPath": "query-service/api/v1/private/analysis/report",
-    "paymentVoucherInfoPath": "/beza-service/api/v1/private/user-sops/payment-voucher/",
-    "certificateInfoPath": "/beza-service/api/v1/private/user-certificate/"
+    "bezaServiceBaseUrl": "http://122.152.48.180",
+    "bezaServicePort": "8585",
+    "bezaServiceFrontEndPort": "7890",
+    "mayanCertificateUploadPath": "/beza-service/api/v1/internal/mayan/upload-document/",
+    "bezaServiceGetFormValuesByApplicationIdPath": "/beza-service/api/v1/internal/user-sops/",
+    "bezaServiceGetCertificateInfoPath": "/beza-service/api/v1/internal/user-certificate/",
+    "bezaServiceCommmonFields": "/beza-service/api/v1/internal/sop-common-fields/",
+    "bezaServiceDeskUserSignature": "/beza-service/api/v1/internal/users/signature",
+    "paymentVoucherInfoPath": "/beza-service/api/v1/internal/user-sops/payment-voucher/",
+    "certificateInfoPath": "/beza-service/api/v1/internal/user-certificate/",
+    "convertCurrency": "/beza-service/api/v1/private/currency/exchange/convert",
+    "keycloakBaseUrl": "http://202.181.14.20",
+    "keycloakPort": "8081",
+    "keycloakUserInfoPath": "/auth/realms/OSS/protocol/openid-connect/userinfo"
   }
 }
