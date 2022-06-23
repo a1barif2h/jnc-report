@@ -59,7 +59,19 @@ const generateCertificate = async (req) => {
                             if (res.additionalInfo != null && res.additionalInfo.id != null) {
                                 let inspectionDate = res?.additionalInfo?.inspectionDate;
                                 inspectionDate = new Date(inspectionDate).toLocaleDateString()
-                                res.additionalInfo.inspectionDate = inspectionDate ? dateTimeFormattor.getFormatDate(inspectionDate) : " "
+                                res.additionalInfo.inspectionDate = inspectionDate ? dateTimeFormattor.getFormatDate(inspectionDate) : " ";
+                                Object.keys(res.additionalInfo).map((key) => {
+                                    if (!res.additionalInfo[key]) {
+                                        res.additionalInfo[key] = "";
+                                    }
+                                })
+                                res.formValue = {...res.formValue, ...res.additionalInfo};
+                            } else {
+                                Object.keys(res.additionalInfo).map((key) => {
+                                    if (!res.additionalInfo[key]) {
+                                        res.additionalInfo[key] = "";
+                                    }
+                                })
                                 res.formValue = {...res.formValue, ...res.additionalInfo};
                             }
 
