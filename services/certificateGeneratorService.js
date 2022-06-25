@@ -50,7 +50,7 @@ const generateCertificate = async (req) => {
                             
                             colonOrNot = config.backendApi.bezaServiceFrontEndPort == "" ? "" : ":";
                             const url =
-                              `${config.backendApi.bezaServiceBaseUrl}${colonOrNot}${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=` +
+                              `${config.backendApi.bezaServiceFrontEndBaseUrl}${colonOrNot}${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=` +
                               appId;
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));
 
