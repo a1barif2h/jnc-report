@@ -59,7 +59,19 @@ const generateCertificate = async (req) => {
                             if (res.additionalInfo != null && res.additionalInfo.id != null) {
                                 let inspectionDate = res?.additionalInfo?.inspectionDate;
                                 inspectionDate = new Date(inspectionDate).toLocaleDateString()
-                                res.additionalInfo.inspectionDate = inspectionDate ? dateTimeFormattor.getFormatDate(inspectionDate) : " "
+                                res.additionalInfo.inspectionDate = inspectionDate ? dateTimeFormattor.getFormatDate(inspectionDate) : " ";
+                                Object.keys(res.additionalInfo).map((key) => {
+                                    if (!res.additionalInfo[key]) {
+                                        res.additionalInfo[key] = "";
+                                    }
+                                })
+                                res.formValue = {...res.formValue, ...res.additionalInfo};
+                            } else {
+                                Object.keys(res.additionalInfo).map((key) => {
+                                    if (!res.additionalInfo[key]) {
+                                        res.additionalInfo[key] = "";
+                                    }
+                                })
                                 res.formValue = {...res.formValue, ...res.additionalInfo};
                             }
 
@@ -71,7 +83,7 @@ const generateCertificate = async (req) => {
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate);
                             }
                             else{
-                                res.formValue.backgroundImg = background_image;
+                                res.formValue.backgroundImg = res.sopCode !== 'VISA_ASSISTANCE' ? background_image : '';
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.approvalDate))
                                 res.formValue.certificateGenerateDate = certificateGenerateDate;
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate)
