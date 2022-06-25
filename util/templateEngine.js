@@ -1,4 +1,5 @@
 
+const { regexp } = require('express-xml-bodyparser');
 var dataProcessor = require('flat')
 // const dataProcessor = (ob) => {
 //     // The object which contains the
@@ -26,11 +27,30 @@ var dataProcessor = require('flat')
 //     return result;
 // };
 
-
+// String.prototype.replaceAll = function(search, replacement) {
+//     var target = this;
+//     return target.split(search).join(replacement);
+// };
 
 const replacer = function (template, data) {
+    // const flattenedData = dataProcessor(data);
+    const flattenedData = data;
+    const regexp = new RegExp();
+    for (var key in flattenedData) {
+        // console.log("key:",key," || value:",flattenedData[key])
+        //{{spouseName}}
+        //dat[spouseName] = neetu
+        // template= template.replace('{{spouseName}}', ("neetu" || "-"))
+        template = template.replaceAll('{{'+key+'}}', ((flattenedData[key] ||flattenedData[key] === 0 ) ? flattenedData[key] : "-"))
+    }
+
+    return template
+}
+
+const replaceOne = function (template, data) {
     const flattenedData = dataProcessor(data);
 
+    const regexp = new RegExp();
     for (var key in flattenedData) {
         // console.log("key:",key," || value:",flattenedData[key])
         //{{spouseName}}
@@ -42,4 +62,4 @@ const replacer = function (template, data) {
     return template
 }
 
-module.exports = {replacer}
+module.exports = {replacer, replaceOne}

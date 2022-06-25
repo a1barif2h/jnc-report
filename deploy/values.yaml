@@ -1,0 +1,25 @@
+variables:
+  imageAppVersion: "0.0.1"
+  replicaCount: 1
+
+  imageRepository: devpentabd/beza-cert-service
+  imagePullPolicy: IfNotPresent
+
+  hostName: beza-cert-service.svc.cluster.oss
+  serviceType: NodePort
+  servicePort: 80
+  #servicePort: 443
+  serviceTargetPort: 5010
+  nodePort: 30101
+
+  imagePullSecrets: regcred
+  #auto scaling config
+  #autoScalingEnabled: 0
+
+  #autoScalingMinReplicas: 1
+
+  #autoScalingMaxReplicas: 100
+
+  #autoScalingTargetCPUUtilizationPercentage: 80
+
+  #autoScalingTargetMemoryUtilizationPercentage: 80

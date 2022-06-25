@@ -10,9 +10,12 @@ const PORT = 5010;
 const HOST = "0.0.0.0";
 const VehicleRegistration = require("./pdf_generators/VehicleRegistration");
 const ProjectClearance = require("./pdf_generators/ProjectClearance");
+const CertificateService = require("./services/certificateService");
 const { reportType } = require("./constants/reportTypes");
 const config = require("./config/config");
-const { getCurrentFormattedDateTime } = require("./util/dateTimeFormattor");
+const { getCurrentFormattedDateTime, getFormatDate } = require("./util/dateTimeFormattor");
+const PaymentVoucherService = require("./services/paymentVoucherService");
+const { authenticate } = require("./services/authentication_service");
 const corsOptions = {
   exposedHeaders: ["pdfFileName", "Content-disposition"],
 };
@@ -25,12 +28,28 @@ app.use(express.urlencoded({ limit: "50mb" }));
 app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
-  res.send({ msg: "ok" });
+
+  res.send({ msg: "ok"});
+});
+
+app.get("/server-date", (req, res) => {
+  let queryParam = req.query.date;
+  const queryParam2 = req.query.type;
+
+  if(queryParam2) {
+    queryParam = parseInt(queryParam);
+  }
+  const d = new Date(queryParam).toLocaleDateString();
+  const t = new Date(queryParam).toLocaleTimeString();
+  const vd = getFormatDate(d);
+
+
+  res.send({ msg: "ok", date:d, time:t, vd });
 });
 
 app.get("/info", function (req, res) {
   const gitInfo = getRepoInfo();
-  console.log("checking health...");
+  // console.log("checking health...");
   res.setHeader("Content-Type", "application/json");
   res.send(
     JSON.stringify({
@@ -45,63 +64,67 @@ app.get("/info", function (req, res) {
 });
 
 app.post(
-  "/report-download/api/v1/private/vehicle-registration/print/pdf",
-  (req, res) => {
-    console.log("Printing vehicle-registration");
-    let pdfFileName = "vehicle-registration";
+  "/certificate-service/api/v1/private/generate/pdf",
+  authenticate,
+  async (req, res) => {
+    await generateCertificate(req,res);
 
-    if (req.body && req.body.vehicleRegistrationNumber) {
-      pdfFileName +=
-        "_" +
-        req.body.vehicleRegistrationNumber +
-        getCurrentFormattedDateTime() +
-        ".pdf";
-    }
-    res.setHeader("Content-disposition", "attachment; filename=" + pdfFileName); //file name should contain nid 10 digit
-    res.setHeader("Content-type", "application/pdf");
-    res.set("pdfFileName", pdfFileName);
-
-    const vehicleRegistration = new VehicleRegistration();
-    vehicleRegistration.generate(res, req.body);
+    //This is for test purpose
+  //   res.setHeader("Content-Type", "application/json");
+  // res.send(
+  //   JSON.stringify({
+  //     status: 200
+  //   })
+  // );
   }
 );
+
+app.post("/beza-certificate/api/v1/private/generate/payment-voucher/pdf", 
+authenticate,
+async (req, res) => {
+  const paymentVoucherService = new PaymentVoucherService();
+  await paymentVoucherService.generatePdf(req.body)
+  .then(data => {
+    res.setHeader('content-type', 'application/pdf');
+    res.send(data)
+  })
+  .catch(err => res.send({message: 'ERROR'}))
+});
+
 
 app.post(
-  "/certificate-service/api/v1/private/project-clearance/print/pdf",
+  "/certificate-service/api/v1/private/generate/pr-cert/pdf",
   async (req, res) => {
-    console.log("Printing project-clearance");
-    let pdfFileName = "project-clearance";
-
-    if (req.body && req.body.applicationId) {
-      pdfFileName +=
-        "_" + req.body.applicationId + getCurrentFormattedDateTime() + ".pdf";
-    }
-
-    axios
-      .get(
-        config.backendApi.bezaServiceBaseUrl +
-          ":" +
-          config.backendApi.bezaServicePort +
-          config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
-          req.body.applicationId
-      )
-      .then((response) => {
-        // console.log(response.data);
-        // console.log(response.data.explanation);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    // res.setHeader("Content-disposition", "attachment; filename=" + pdfFileName); //file name should contain nid 10 digit
-    // res.setHeader("Content-type", "application/pdf");
-    // res.set("pdfFileName", pdfFileName);
-
-    const projectClearance = new ProjectClearance();
-    await projectClearance.generate(res, req.body);
-    res.send({msg: "OK"})
+    await generateCertificate(req,res);
   }
 );
+
+
+const generateCertificate = async function(req,res) {
+  const certificateService = new CertificateService();
+  await certificateService
+    .generatePdf(req)
+    .then((data) => res.send(data))
+    .catch((err) => res.send({ message: "ERR" }));
+}
+
+
+
+app.post(
+  "/certificate-service/api/v1/internal/generate/pdf",
+  async (req, res) => {
+    await generateCertificate(req,res);
+  }
+);
+
+
+app.post(
+  "/certificate-service/api/v1/internal/generate/pr-cert/pdf",
+  async (req, res) => {
+    await generateCertificate(req,res);
+  }
+);
+
 
 console.log(`Download service si running on http://${HOST}:${PORT}`);
 app.listen(PORT, HOST);

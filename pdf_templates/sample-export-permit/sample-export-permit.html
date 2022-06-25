@@ -1,0 +1,363 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAMPLE EXPORT PERMIT</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .mainContainer {
+        margin: 0rem auto;
+        padding: 15px;
+        position: relative;
+        z-index: 5;
+      }
+
+      .mainContainer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url("{{backgroundImg}}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 450px;
+        width: 100%;
+        height: 110%;
+        opacity: 0.1;
+        z-index: 10;
+      }
+
+      header {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        align-items: -webkit-box;
+        align-items: -moz-box;
+        align-items: -ms-flexbox;
+        align-items: -webkit-flex;
+        align-items: center;
+        justify-content: -webkit-box;
+        justify-content: -moz-box;
+        justify-content: -ms-flexbox;
+        justify-content: -webkit-flex;
+        justify-content: space-between;
+        margin-left: 1rem;
+      }
+
+      header img {
+        width: 44%;
+      }
+
+      .import-permit {
+        height: 1.6rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background-color: red;
+        font-size: 8px;
+        letter-spacing: 0.5px;
+        margin-top: 0.5rem;
+        color: white;
+      }
+
+      .import-date {
+        font-size: 7.5px;
+        font-weight: bold;
+        margin: 0.8rem 0rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+      header .header-bar-code img {
+        width: 30%;
+      }
+
+      .general-information {
+        height: 1.5rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        font-size: 8px;
+        letter-spacing: 0.5px;
+        color: white;
+        background-color: #278000;
+      }
+
+      .border-box {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        border: 1px solid #278000;
+        min-height: 4.2rem;
+      }
+
+      .border-box small {
+        font-size: 6.5px;
+        font-weight: bold;
+      }
+
+      .left {
+        width: 48%;
+        padding: 0.5rem 0.8rem;
+        line-height: 2.6;
+      }
+
+      .left p {
+      width: 75%;
+    }
+
+    .right p {
+      width: 65%;
+    }
+
+      .left p,
+      .right p {
+        font-size: 6.5px;
+      }
+
+      .left small,
+      .right small {
+        margin-right: 5px;
+      }
+
+      .left div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+      }
+
+      .right {
+        width: 48%;
+        padding: 0.5rem 0.8rem;
+        line-height: 2.5;
+      }
+
+      .right div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+      }
+
+      .export-material-group {
+        height: 2rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background-color: #353535;
+        font-size: 8px;
+        letter-spacing: 0.5px;
+        margin-top: 0.5rem;
+        color: white;
+      }
+
+      .export-material-details {
+        height: 1.5rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background-color: #267e01;
+        font-size: 8px;
+        letter-spacing: 0.5px;
+        margin-top: 0.5rem;
+        color: white;
+      }
+
+      footer div {
+        margin: 1rem auto;
+        width: 100%;
+      }
+
+      .first-caution {
+        background: #b0e8ec;
+        padding: 0.4rem 1.2rem;
+        line-height: 1.35;
+        font-weight: 500;
+        text-align: center;
+        color: #27829e;
+        font-size: 8.3px;
+      }
+
+      .second-caution {
+        background: #dfbdcd;
+        padding: 0.4rem 0.5rem;
+        line-height: 1.35;
+        font-weight: 500;
+        text-align: center;
+        color: #d02f67;
+        font-weight: 600;
+        font-size: 9px;
+      }
+
+      .third-caution {
+        background: #dad7b0;
+        padding: 0.5rem 1.2rem;
+        line-height: 1.4;
+        font-weight: 500;
+        text-align: center;
+        color: #d02f67;
+        font-weight: 600;
+        min-height: 2rem;
+        font-size: 9px;
+      }
+
+      .pageBreak {
+        page-break-after: always;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="mainContainer pageBreak">
+      {{headerHere}}
+      <main>
+        <div class="container">
+          <div class="import-permit">
+            <h3>SAMPLE EXPORT PERMIT</h3>
+          </div>
+          <div class="import-date">
+            <p>File No: {{trackingId}}</p>
+            <p>Date: {{certificateGenerateDate}}</p>
+          </div>
+
+          <div class="general">
+            <div class="general-information">
+              <h3>BASIC INFORMATION</h3>
+            </div>
+
+            <div class="border-box">
+              <div class="left">
+                <div>
+                  <small>Name of the Company:</small>
+                  <p>
+                    {{proposedProjectCompanyName}}
+                  </p>
+                </div>
+                <div>
+                  <small>Carrier Type:</small>
+                  <p>{{carrierType}}</p>
+                </div>
+                <div>
+                  <small>Invoice No.:</small>
+                  <p>{{invoiceNo}}</p>
+                </div>
+                <div>
+                  <small>Port of destination:</small>
+                  <p>{{portOfDestination}}</p>
+                </div>
+                <div>
+                  <small>Passport No.:</small>
+                  <p>{{hiddenPassportNo}}</p>
+                </div>
+                <div>
+                  <small>Expire Date</small>
+                  <p>{{expiredDate}}</p>
+                </div>
+                <div>
+                  <small>Buyer Name:</small>
+                  <p>{{buyerName}}</p>
+                </div>
+                <div>
+                  <small>Buyer Address :</small>
+                  <p>{{buyerAddress}}</p>
+                </div>
+                <div>
+                  <small>Remarks</small>
+                  <p>{{remarks}}</p>
+                </div>
+              </div>
+              <div class="right">
+                <div>
+                  <small>Economic Zone:</small>
+                  <p>{{economicZone}}</p>
+                </div>
+                <div>
+                  <small>Invoice Date:</small>
+                  <p>{{invoiceDate}}</p>
+                </div>
+                <div>
+                  <small>Destination Country</small>
+                  <p>{{destinationCountry}}</p>
+                </div>
+                <div>
+                  <small>Name of the Person Carrying</small>
+                  <p style="width: 55%;">{{hiddenNameOfPersonCarring}}</p>
+                </div>
+                <!-- {{issueDate}} -->
+                <div>
+                  <small>Issue date :</small>
+                  <p>{{issueDate}}</p>
+                </div>
+                <div>
+                  <small>Place of Issue :</small>
+                  <p>{{conutryName}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{firstMaterialsDetails}}
+        </div>
+      </main>
+    </div>
+    {{remainingMaterialsDetails}}
+    </div>
+  </body>
+</html>

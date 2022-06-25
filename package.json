@@ -11,19 +11,23 @@
     "axios": "^0.24.0",
     "convict": "^6.1.0",
     "cors": "^2.8.5",
+    "cryptr": "^6.0.2",
     "dotenv": "^10.0.0",
+    "enum": "^3.0.4",
     "express": "^4.16.1",
     "express-xml-bodyparser": "0.3.0",
     "flat": "^5.0.2",
     "form-data": "^4.0.0",
     "git-repo-info": "^2.1.1",
     "html-pdf": "^3.0.1",
+    "jsbarcode": "^3.11.5",
     "moment": "^2.29.1",
-    "nodemon": "^2.0.14",
+    "nodemon": "^2.0.15",
     "pdfkit": "^0.12.1",
-    "phantomjs-prebuilt": "^2.1.16",
+    "qrcode": "^1.4.4",
     "template-strings": "^0.0.6",
-    "xml": "1.0.1"
+    "xml": "1.0.1",
+    "xmldom": "^0.6.0"
   },
   "config": {
     "unsafe-perm": true
