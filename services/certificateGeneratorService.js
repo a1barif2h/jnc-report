@@ -66,7 +66,8 @@ const generateCertificate = async (req) => {
                                     }
                                 })
                                 res.formValue = {...res.formValue, ...res.additionalInfo};
-                            } else {
+                            } else if(res.additionalInfo != null) {
+                                logger("response", res)
                                 Object.keys(res.additionalInfo).map((key) => {
                                     if (!res.additionalInfo[key]) {
                                         res.additionalInfo[key] = "";
