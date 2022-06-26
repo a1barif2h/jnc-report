@@ -122,7 +122,7 @@ const generateCertificate = async (req) => {
                         }
                     ).then(
                         async (buffer) => {
-                            certificateDetail = await bezaServiceGateway.upload(buffer, userSopById);
+                            certificateDetail = await bezaServiceGateway.upload(buffer, userSopById, isProjectRegistration);
                             return certificateDetail;
                         }
                     ).then(
