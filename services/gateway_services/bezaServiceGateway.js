@@ -37,12 +37,13 @@ const getFormValueByApplicationID = async (applicationId) => {
 
 
 
-const upload = async (buffer, data) => {
+const upload = async (buffer, data, isProjectRegistration) => {
   const uploadUrl =
     getBaseUrl() +
     config.backendApi.mayanCertificateUploadPath;
-
-  let pdfFileName = data.title + "_" + data.id + getCurrentFormattedDateTime() + ".pdf";
+  
+  let title = isProjectRegistration ? "Project Registration" : data.title;
+  let pdfFileName = title + "_" + data.id + getCurrentFormattedDateTime() + ".pdf";
   let form = new FormData();
   form.append("file", buffer, pdfFileName);
   let res = await axios
