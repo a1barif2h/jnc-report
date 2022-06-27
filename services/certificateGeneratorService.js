@@ -13,7 +13,7 @@ const encryption = require("../util/encryption");
 const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
 const moment = require('moment')
-const allSopsCodes=require("../shared/constants/AllSopsCodes");
+const { AllSopsCodes }=require("../shared/constants/AllSopsCodes");
 const { logger } = require("../util/helper");
 
 const generateQR = async text => {
@@ -56,18 +56,14 @@ const generateCertificate = async (req) => {
 
                             await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
 
-                            if (res.additionalInfo != null && res.additionalInfo.id != null) {
+                            if (res.additionalInfo != null && res.sopCode == AllSopsCodes.OCCUPANCY.value) {
                                 let inspectionDate = res?.additionalInfo?.inspectionDate;
-                                inspectionDate = new Date(inspectionDate).toLocaleDateString()
-                                res.additionalInfo.inspectionDate = inspectionDate ? dateTimeFormattor.getFormatDate(inspectionDate) : " ";
-                                Object.keys(res.additionalInfo).map((key) => {
-                                    if (!res.additionalInfo[key]) {
-                                        res.additionalInfo[key] = "";
-                                    }
-                                })
-                                res.formValue = {...res.formValue, ...res.additionalInfo};
-                            } else if(res.additionalInfo != null) {
-                                logger("response", res)
+
+                                if(inspectionDate) {
+                                    inspectionDate = new Date(inspectionDate).toLocaleDateString()
+                                    res.additionalInfo.inspectionDate = inspectionDate 
+                                    ? dateTimeFormattor.getFormatDate(inspectionDate) : " ";
+                                }
                                 Object.keys(res.additionalInfo).map((key) => {
                                     if (!res.additionalInfo[key]) {
                                         res.additionalInfo[key] = "";
@@ -118,7 +114,7 @@ const generateCertificate = async (req) => {
                             }
 
                             if(req.body.isProjectRegistration) {
-                                res.sopCode = allSopsCodes.AllSopsCodes.PROJECT_REGISTRATION.value;
+                                res.sopCode = AllSopsCodes.PROJECT_REGISTRATION.value;
                             }
                             userSopById = res;
                             bufferResponse = await certificateGeneratorFactory.generate(res);
@@ -126,7 +122,7 @@ const generateCertificate = async (req) => {
                         }
                     ).then(
                         async (buffer) => {
-                            certificateDetail = await bezaServiceGateway.upload(buffer, userSopById);
+                            certificateDetail = await bezaServiceGateway.upload(buffer, userSopById, req.body.isProjectRegistration);
                             return certificateDetail;
                         }
                     ).then(
