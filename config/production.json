@@ -15,8 +15,8 @@
     "bezaServiceDeskUserSignature": "/beza-service/api/v1/internal/users/signature",
     "convertCurrency": "/beza-service/api/v1/internal/currency/exchange/convert",
 
-    "keycloakBaseUrl": "http://202.181.14.20",
-    "keycloakPort": "8081",
+    "keycloakBaseUrl": "http://192.168.90.61",
+    "keycloakPort": "8082",
     "keycloakUserInfoPath": "/auth/realms/OSS/protocol/openid-connect/userinfo"
   }
 }
