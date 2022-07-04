@@ -100,19 +100,19 @@
       }
 
       .application-list {
-        width: 50%;
+        /* width: 50%; */
         line-height: 1.9;
-        display: -webkit-box;
+        /* display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
-        justify-content: space-between;
+        justify-content: space-between; */
       }
 
-      .application-list b {
+      /* .application-list b {
         display: block;
-      }
+      } */
 
       .application-ambassador {
         display: -webkit-box;
@@ -196,16 +196,25 @@
 
         <div class="application-list">
           <div>
-            <b>Name</b>
-            <b>Nationality</b>
-            <b>Passport No.</b>
-            <b>Type of Visa Required</b>
+            <p>
+              <b>Name  </b><b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {{nameOfTheForeignNational}}</b>
+            </p>
+            <p>
+              <b>Nationality</b><b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {{particularsNationality}}</b>
+            </p>
+            <p>
+              <b>Passport No. </b><b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {{passport1}}</b>
+            </p>
+            <p>
+              <b>Type of Visa Required </b><b>&emsp;&emsp;&emsp;&emsp;: {{typeOfVisaObtainedForTheIncumbentForeignNationals}}</b>
+            </p>
+            
           </div>
           <div>
-            <b>: {{nameOfTheForeignNational}}</b>
-            <b>: {{particularsNationality}}</b>
-            <b>: {{passport1}}</b>
-            <b>: {{typeOfVisaObtainedForTheIncumbentForeignNationals}}</b>
+            
+            
+            
+            
           </div>
         </div>
 

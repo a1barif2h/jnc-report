@@ -1,7 +1,7 @@
 const { response } = require("express");
 const fs = require("fs");
 const { getFormatDate } = require("../util/dateTimeFormattor");
-// const { logger } = require("../util/helper");
+const { logger } = require("../util/helper");
 
 const pdf = require('./PdfGenerator');
 const options = {format: 'A4', "orientation": "portrait"};
@@ -14,6 +14,8 @@ class Occupancy {
     }
 
     async generate(body) {
+      logger('occupancy body', body)
+      body.formValue.plotAddress = body.formValue?.plotAddress ? body.formValue?.plotAddress : "N/A";
       let htmlTemplate = fs.readFileSync(
         "./pdf_templates/occupancy/occupancy.html",
         "utf8"
