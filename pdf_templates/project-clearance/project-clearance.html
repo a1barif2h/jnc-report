@@ -30,7 +30,7 @@
         background-repeat: no-repeat;
         background-size: 450px;
         width: 100%;
-        height: 110%;
+        height: 100%;
         opacity: 0.1;
         z-index: 10;
       }
@@ -48,6 +48,30 @@
       }
 
       .secondPageContainer::before {
+        content: "";
+        position: absolute;
+        top: 80px;
+        left: 0;
+        background-image: url("{{backgroundImg}}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 450px;
+        width: 100%;
+        height: 80%;
+        opacity: 0.1;
+        z-index: 10;
+      }
+
+
+      .thirdPageContainer {
+        margin: 0rem auto;
+        padding: 30px;
+        font-size: 8px;
+        position: relative;
+        z-index: 5;
+      }
+
+      .thirdPageContainer::before{
         content: "";
         position: absolute;
         top: 0;
@@ -181,7 +205,9 @@
         margin: 0 auto;
         text-align: center;
       }
-    </style>
+
+     
+          </style>
   </head>
 
   <body>
@@ -195,7 +221,10 @@
         </div>
         <div class="application-date">
           <p>File no: {{trackingId}}</p>
+         <div>
           <p>Date: {{certificateGenerateDate}}</p>
+          <p>{{lastAmendmentDate}}</p>
+         </div>
         </div>
         <div class="application-info">
           <b>Managing Director/ CEO</b>
@@ -242,7 +271,7 @@
         </div>
       </header>
       <main>
-        <div class="application-list">
+        <div class="application-list" >
           <ol>
             <p>
               14. The company will have to:
@@ -344,7 +373,7 @@
         </div>
       </main>
     </div>
-    <div class="secondPageContainer">
+    <div class="thirdPageContainer">
       <header>
         <div class="header-logo">
           <img
