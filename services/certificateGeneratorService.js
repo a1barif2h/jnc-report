@@ -87,6 +87,9 @@ const generateCertificate = async (req) => {
                             }
                             res.formValue.trackingId = res.trackingId;
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(new Date(res.submittedDate).toLocaleDateString());
+
+                            res.formValue.lastAmendmentDate = res.formValue.hasOwnProperty('lastAmendmentDate') ?
+                                             "Amendment date : "+ dateTimeFormattor.getFormatDate(res.formValue.lastAmendmentDate) : " ";                     
                             
                             /**
                              * merging the common fields
