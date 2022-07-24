@@ -1,7 +1,7 @@
 const { response } = require("express");
 const ProjectClearance = require("../pdf_generators/ProjectClearance");
 const certificateGeneratorService = require('./certificateGeneratorService');
-const config = require("../config/config");
+const config = require("../config/config.js");
 const axios = require("axios");
 
 class CertificateService {

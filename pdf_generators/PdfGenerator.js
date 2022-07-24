@@ -1,6 +1,5 @@
 
 const axios = require('axios');
-const config = require("../config/config");
 const pdf = require('html-pdf');
 const templateEngine = require('../util/templateEngine');
 const { Readable } = require('stream');

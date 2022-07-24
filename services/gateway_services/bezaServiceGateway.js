@@ -1,5 +1,5 @@
 const axios = require("axios");
-const config = require("../../config/config");
+const config = require("../../config/config.js");
 const { getCurrentFormattedDateTime } = require("../../util/dateTimeFormattor");
 const FormData = require('form-data');
 const { DOMImplementation, XMLSerializer } = require('xmldom');
