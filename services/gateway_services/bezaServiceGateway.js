@@ -1,5 +1,5 @@
 const axios = require("axios");
-const config = require("../../config/config");
+const {config} = require("../../config/config.js");
 const { getCurrentFormattedDateTime } = require("../../util/dateTimeFormattor");
 const FormData = require('form-data');
 const { DOMImplementation, XMLSerializer } = require('xmldom');
@@ -12,9 +12,9 @@ const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
 
 const getBaseUrl = () => {
-  const baseUrl = config.backendApi.bezaServiceBaseUrl +
-  (config.backendApi.bezaServicePort == "" ? "" : (":" +
-    config.backendApi.bezaServicePort));
+  const baseUrl = config.BEZA_SERVICE_BASE_URL +
+  (config.BEZA_SERVICE_PORT == "" ? "" : (":" +
+    config.BEZA_SERVICE_PORT));
 
   return baseUrl;
 }
@@ -23,7 +23,7 @@ const getBaseUrl = () => {
 const getFormValueByApplicationID = async (applicationId) => {
   let formValueUrl =
     getBaseUrl() +
-    config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
+    config.BEZA_SERVICE_FORM_BY_APPLICATION_ID_PATH +
     applicationId;
   
   // console.log("URL to get from value from user sop: " + formValueUrl);
@@ -40,7 +40,7 @@ const getFormValueByApplicationID = async (applicationId) => {
 const upload = async (buffer, data, isProjectRegistration) => {
   const uploadUrl =
     getBaseUrl() +
-    config.backendApi.mayanCertificateUploadPath;
+    config.BEZA_SERVICE_MAYAN_UPLOAD_PATH;
   
   let title = isProjectRegistration ? "Project Registration" : data.title;
   let pdfFileName = title + "_" + data.id + getCurrentFormattedDateTime() + ".pdf";
@@ -73,7 +73,7 @@ const saveCertificateInfo = async (certificate, sop, req, isProjectRegistration)
   let additionalUrl = isProjectRegistration ? "?isProjectRegistration=true" : ""
   const saveCertificateUrl =
     getBaseUrl() +
-    config.backendApi.bezaServiceGetCertificateInfoPath
+    config.BEZA_SERVICE_CERTIFICATE_INFO_PATH
     + additionalUrl;
 
 
@@ -94,7 +94,7 @@ const saveCertificateInfo = async (certificate, sop, req, isProjectRegistration)
 const getCommonFileds= async function (investorId){
     const commonFiledsUrl =
     getBaseUrl()+
-    config.backendApi.bezaServiceCommmonFields+
+    config.BEZA_SERVICE_COMMON_FIELDS_PATH+
     investorId
 
     console.log("URL to get from value from user sop: " + commonFiledsUrl);
@@ -110,12 +110,12 @@ const getCommonFileds= async function (investorId){
 }
 
 const getdeskUserSignature= async function (processInstanceId, deskCode){
-  let signatureUrl = config.backendApi.bezaServiceDeskUserSignature;
+  let signatureUrl = config.BEZA_SERVICE_DESK_USER_SIGNATURE_PATH;
   var deskUserSignatureUrl = signatureUrl+"?processInstanceId="+processInstanceId+"&deskCode="+deskCode;
     const bezaServiceDeskUserSignature =
-    config.backendApi.bezaServiceBaseUrl+
-    (config.backendApi.bezaServicePort == "" ? "" : (":" +
-      config.backendApi.bezaServicePort))+
+    config.BEZA_SERVICE_BASE_URL+
+    (config.BEZA_SERVICE_PORT == "" ? "" : (":" +
+      config.BEZA_SERVICE_PORT))+
     deskUserSignatureUrl
 
     // console.log("deskUserSignatureUrl:   "+bezaServiceDeskUserSignature)
@@ -131,8 +131,8 @@ const getdeskUserSignature= async function (processInstanceId, deskCode){
   }
   
 const getPaymentVoucherInfo = async ({applicationId}) => {
-  const url = config.backendApi.bezaServiceBaseUrl+  ":" +
-  config.backendApi.bezaServicePort+ config.backendApi.paymentVoucherInfoPath + applicationId
+  const url = config.BEZA_SERVICE_BASE_URL+  (config.BEZA_SERVICE_PORT == "" ? "" : (":" +
+  config.BEZA_SERVICE_PORT)) + config.BEZA_SERVICE_PAYMENT_VOUCHER_PATH + applicationId
 
   const generateBarcode = async text => {
       JsBarcode(svgNode, text, {
@@ -157,7 +157,7 @@ const getPaymentVoucherInfo = async ({applicationId}) => {
 }
 
 const getCertificateInfo = async (applicationId) => {
-  const url = getBaseUrl()+ config.backendApi.certificateInfoPath + applicationId
+  const url = getBaseUrl()+ config.BEZA_SERVICE_CERTIFICATE_INFO_PATH + applicationId
 
   try {
     const {data} = await axios.get(url);
@@ -168,8 +168,10 @@ const getCertificateInfo = async (applicationId) => {
 }
 
 const getConvertedCurrencyValue = async (quantity, source, target) => {
-  const url = `${config.backendApi.bezaServiceBaseUrl}:${config.backendApi.bezaServicePort}${config.backendApi.convertCurrency}?q=${quantity}&source=${source}&target=${target}`;
-  
+  const  port = (config.BEZA_SERVICE_PORT == "" ? "" : (":" +
+  config.BEZA_SERVICE_PORT));
+  const url = `${config.BEZA_SERVICE_BASE_URL}:${port}${config.BEZA_SERVICE_CONVERT_CURRENCY_PATH}?q=${quantity}&source=${source}&target=${target}`;
+  port
   try {
     const {data: {amount}} = await axios.get(url);
     return amount;

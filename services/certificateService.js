@@ -1,7 +1,7 @@
 const { response } = require("express");
 const ProjectClearance = require("../pdf_generators/ProjectClearance");
 const certificateGeneratorService = require('./certificateGeneratorService');
-const config = require("../config/config");
+const {config} = require("../config/config.js");
 const axios = require("axios");
 
 class CertificateService {
@@ -9,10 +9,10 @@ class CertificateService {
   
   getFormValue(req) {
     let formValueUrl =
-      config.backendApi.bezaServiceBaseUrl +
-      (config.backendApi.bezaServicePort == "" ? "" : (":" +
-      config.backendApi.bezaServicePort)) +
-      config.backendApi.bezaServiceGetFormValuesByApplicationIdPath +
+      config.BEZA_SERVICE_BASE_URL+
+      (config.BEZA_SERVICE_PORT == "" ? "" : (":" +
+      config.BEZA_SERVICE_PORT)) +
+      config.BEZA_SERVICE_FORM_BY_APPLICATION_ID_PATH +
       req.body.applicationId;
     const data = axios
       .get(formValueUrl)

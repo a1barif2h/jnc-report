@@ -12,7 +12,6 @@ const VehicleRegistration = require("./pdf_generators/VehicleRegistration");
 const ProjectClearance = require("./pdf_generators/ProjectClearance");
 const CertificateService = require("./services/certificateService");
 const { reportType } = require("./constants/reportTypes");
-const config = require("./config/config");
 const { getCurrentFormattedDateTime, getFormatDate } = require("./util/dateTimeFormattor");
 const PaymentVoucherService = require("./services/paymentVoucherService");
 const { authenticate } = require("./services/authentication_service");
