@@ -11,7 +11,23 @@ const client = require('cloud-config-client');
 // });
 // dotenv.config();
 
-let configProperties;
+const configProperties = {
+    BEZA_SERVICE_BASE_URL: "",
+    BEZA_SERVICE_PORT: "",
+    BEZA_FRONT_END_BASE_URL: "",
+    BEZA_FRONT_END_PORT: "",
+    BEZA_SERVICE_MAYAN_UPLOAD_PATH: "",
+    BEZA_SERVICE_FORM_BY_APPLICATION_ID_PATH: "",
+    BEZA_SERVICE_CERTIFICATE_INFO_PATH: "",
+    BEZA_SERVICE_COMMON_FIELDS_PATH: "",
+    BEZA_SERVICE_PAYMENT_VOUCHER_PATH: "",
+    BEZA_SERVICE_CERTIFICATE_INFO_PATH: "",
+    BEZA_SERVICE_DESK_USER_SIGNATURE_PATH: "",
+    BEZA_SERVICE_CONVERT_CURRENCY_PATH: "",
+    KEYCLOAK_BASE_URL: "",
+    KEYCLOAK_PORT: "",
+    KEYCLOAK_USER_INFO_PATH: ""
+};
 
 const config = convict({
 
@@ -32,7 +48,7 @@ const activeProfile = process.env.NODE_ENV;
 
 // Explicit basic auth
 const options = {
-  application: 'beza-service',
+  application: process.env.APPLICATION_NAME,
   profiles: [process.env.NODE_ENV],
   endpoint: process.env.CONFIG_SERVER_URL,
   auth: {
@@ -44,16 +60,31 @@ const options = {
 (async function loadCfg() {
     
     console.log("Loading configuration for profile: " + activeProfile);
-    const cfg = await client.load(options).then((cfg) => {
-        return cfg;
-    }).catch((error) => console.error(error));
-    configProperties = cfg;
-    getBezaBaseUrl();
+    await client.load(options)
+        .then((cfg) => {
+            configProperties.BEZA_SERVICE_BASE_URL = cfg.get('beza.service.base.url');
+            configProperties.BEZA_SERVICE_PORT = cfg.get('beza.service.base.port');
+            configProperties.BEZA_FRONT_END_BASE_URL = cfg.get('beza.service.front_end.base.url');
+            configProperties.BEZA_FRONT_END_PORT = cfg.get('beza.service.front_end.port');
+            configProperties.BEZA_SERVICE_MAYAN_UPLOAD_PATH = cfg.get('beza.service.mayan_upload.path');
+            configProperties.BEZA_SERVICE_FORM_BY_APPLICATION_ID_PATH = cfg.get('beza.service.form_value_by_application_id.path');
+            configProperties.BEZA_SERVICE_CERTIFICATE_INFO_PATH = cfg.get('beza.service.certificate_info.path');
+            configProperties.BEZA_SERVICE_COMMON_FIELDS_PATH = cfg.get('beza.service.commom_fields.path');
+            configProperties.BEZA_SERVICE_PAYMENT_VOUCHER_PATH = cfg.get('beza.service.payment_voucher_info.path');
+            configProperties.BEZA_SERVICE_CERTIFICATE_INFO_PATH = cfg.get('beza.service.certificate_info.path');
+            configProperties.BEZA_SERVICE_DESK_USER_SIGNATURE_PATH = cfg.get('beza.service.desk_user_signature.path');
+            configProperties.BEZA_SERVICE_CONVERT_CURRENCY_PATH = cfg.get('beza.service.convert_currency.path');
+            configProperties.KEYCLOAK_BASE_URL = cfg.get('keycloak.base.url');
+            configProperties.KEYCLOAK_PORT = cfg.get('keyloak.port');
+            configProperties.KEYCLOAK_USER_INFO_PATH = cfg.get('keyloak.user_info.path');
+        })
+        .catch((error) => console.error(error));
+
+    console.log("Loaded propertes: ");
+    console.log(configProperties);
 })();
 
-function getBezaBaseUrl() {
-    console.log("againnnnnnnnnnnnn");
-    console.log(configProperties.get('spring.keycloak.user.role.add.url'));
-}
-
-module.exports = config.getProperties();
+module.exports = {
+    oldConfig: config.getProperties(),
+    config: configProperties
+};

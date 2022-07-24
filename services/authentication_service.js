@@ -1,10 +1,13 @@
 const axios = require('axios');
-const { keyckloakUserInfoUrl } = require('../constants/backend_url');
+// const { keyckloakUserInfoUrl } = require('../constants/backend_url');
+const { config } = require('../config/config');
 
 async function authenticate(req, res, next) {
-    const accessToken = req.headers. authorization;
+    const accessToken = req.headers.authorization;
     if(accessToken) {
         console.log("Have access token");
+
+        const keycLoakBaseUrl = config.KEYCLOAK_BASE_URL + ":" + config.KEYCLOAK_PORT + config.KEYCLOAK_USER_INFO_PATH;
 
     // configure the request to your keycloak server
         const options = {
