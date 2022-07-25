@@ -170,7 +170,7 @@ const getCertificateInfo = async (applicationId) => {
 const getConvertedCurrencyValue = async (quantity, source, target) => {
   const  port = (config.BEZA_SERVICE_PORT == "" ? "" : (":" +
   config.BEZA_SERVICE_PORT));
-  const url = `${config.BEZA_SERVICE_BASE_URL}:${port}${config.BEZA_SERVICE_CONVERT_CURRENCY_PATH}?q=${quantity}&source=${source}&target=${target}`;
+  const url = `${config.BEZA_SERVICE_BASE_URL}${port}${config.BEZA_SERVICE_CONVERT_CURRENCY_PATH}?q=${quantity}&source=${source}&target=${target}`;
   port
   try {
     const {data: {amount}} = await axios.get(url);
