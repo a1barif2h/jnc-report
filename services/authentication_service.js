@@ -7,7 +7,7 @@ async function authenticate(req, res, next) {
     if(accessToken) {
         console.log("Have access token");
 
-        const keycLoakBaseUrl = config.KEYCLOAK_BASE_URL + ":" + config.KEYCLOAK_PORT + config.KEYCLOAK_USER_INFO_PATH;
+        const keyckloakUserInfoUrl = config.KEYCLOAK_BASE_URL + ":" + config.KEYCLOAK_PORT + config.KEYCLOAK_USER_INFO_PATH;
 
     // configure the request to your keycloak server
         const options = {
