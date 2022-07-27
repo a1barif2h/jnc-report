@@ -25,7 +25,7 @@ const replaceAllMaterialsValue=function(data, template){
         templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.projectionOfExport[i])
         templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.projectionOfDomestic[i])
         templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.additionOfMachinery[i])
-        templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.costOfProduction[i])
+        //templateMaterials=templateEngine.replacer(templateMaterials,data.formValue.costOfProduction[i])
     }
     return templateMaterials
 }
