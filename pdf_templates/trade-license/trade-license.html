@@ -101,6 +101,38 @@
         display: block;
       }
 
+      /* UPDATED CSS FOR APPLICATION LIST */
+      .left {
+        width: 80%;
+        padding: 0.5rem 0.8rem;
+        line-height: 2;
+        margin-top: 0.3rem;
+      }
+      .left div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+      }
+      .left small {
+        margin-right: 5px;
+        font-weight: 800;
+        font-size: 8px;
+      }
+      .left p {
+        font-size: 8px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+      }
+
       .application-terms {
         margin-top: 0.5rem;
         padding: 0.5rem;
@@ -197,7 +229,7 @@
         <div class="factory">
           <b>Factory Address</b>
         </div>
-        <div class="application-list">
+        <!-- <div class="application-list">
           <div>
             <p>Plot No.:/ Dag No.(if applible)</p>
             <p>Mouza</p>
@@ -211,7 +243,6 @@
             <p>Office Address</p>
             <p>Nature of Business</p>
             <p>Date of Expiry</p>
-            <!-- found no field for expiry date in the jason -->
           </div>
           <div>
             <p>: &nbsp; {{plotAddress}}</p>
@@ -226,6 +257,69 @@
             <p>: &nbsp; {{officeAddress}}</p>
             <p>: &nbsp; {{typeOfBusinessIndustryOrServices}}</p>
             <p>: &nbsp; {{validTill}}</p>
+          </div>
+        </div> -->
+
+        <div class="left">
+
+          <div>
+            <small>Plot No.:/ Dag No.(if applible):</small>
+            <p>{{plotAddress}}</p>
+          </div>
+
+          <div>
+            <small>Mouza:</small>
+            <p>{{specifyAreaOfMouza}}</p>
+          </div>
+
+          <div>
+            <small>District:</small>
+            <p>{{district2}}</p>
+          </div>
+
+          <div>
+            <small>Upozila:</small>
+            <p>{{upazilla}}</p>
+          </div>
+
+          <div>
+            <small>Union Porishad:</small>
+            <p>{{unionParishad}}</p>
+          </div>
+
+          <div>
+            <small>Name:</small>
+            <p>{{authorizedName}}</p>
+          </div>
+
+          <div>
+            <small>Position:</small>
+            <p>{{authorizePosition}}</p>
+          </div>
+
+          <div>
+            <small>Nationality:</small>
+            <p>{{nationality}}</p>
+          </div>
+
+          <div>
+            <small>NID/ Passport No.:</small>
+            <p>{{passportNumber}}</p>
+          </div>
+
+          <div>
+            <small>Office Address:</small>
+            <p>{{officeAddress}}</p>
+          </div>
+
+          <div>
+            <small>Nature of Business:</small>
+            <p>{{typeOfBusinessIndustryOrServices}}</p>
+          </div>
+
+          <div>
+            <small>Date of Expiry:</small>
+            <p>{{validTill}}</p>
           </div>
         </div>
 
