@@ -2,6 +2,7 @@
   "backendApi": {
     "bezaServiceBaseUrl": "http://localhost",
     "bezaServicePort": "8585",
+    "bezaServiceFrontEndBaseUrl": "http://202.181.14.20",
     "bezaServiceFrontEndPort": "7891",
     "mayanCertificateUploadPath": "/beza-service/api/v1/internal/mayan/upload-document/",
     "bezaServiceGetFormValuesByApplicationIdPath": "/beza-service/api/v1/internal/user-sops/",
