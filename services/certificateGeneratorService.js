@@ -7,7 +7,7 @@ const { DOMImplementation, XMLSerializer } = require('xmldom');
 const xmlSerializer = new XMLSerializer();
 const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-const config = require("../config/config");
+const { config } = require("../config/config.js");
 const fs = require("fs");
 const encryption = require("../util/encryption");
 const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
@@ -48,9 +48,9 @@ const generateCertificate = async (req) => {
                        async res=>{
                             const appId = encryption.encrypt(""+req.body.applicationId);
                             
-                            colonOrNot = config.backendApi.bezaServiceFrontEndPort == "" ? "" : ":";
+                            colonOrNot = config.BEZA_SERVICE_PORT == "" ? "" : ":";
                             const url =
-                              `${config.backendApi.bezaServiceFrontEndBaseUrl}${colonOrNot}${config.backendApi.bezaServiceFrontEndPort}/validate-certificate?applicationId=` +
+                              `${config.BEZA_SERVICE_BASE_URL}${colonOrNot}${config.BEZA_SERVICE_PORT}/validate-certificate?applicationId=` +
                               appId;
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));
 
@@ -87,6 +87,9 @@ const generateCertificate = async (req) => {
                             }
                             res.formValue.trackingId = res.trackingId;
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(new Date(res.submittedDate).toLocaleDateString());
+
+                            res.formValue.lastAmendmentDate = res.formValue.hasOwnProperty('lastAmendmentDate') ?
+                                             "Amendment date : "+ dateTimeFormattor.getFormatDate(res.formValue.lastAmendmentDate) : " ";                     
                             
                             /**
                              * merging the common fields

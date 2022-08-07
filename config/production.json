@@ -4,7 +4,6 @@
     "bezaServicePort": "8585",
     "bezaServiceFrontEndBaseUrl": "http://192.168.89.20",
     "bezaServiceFrontEndPort": "",
-    
     "mayanCertificateUploadPath": "/beza-service/api/v1/internal/mayan/upload-document/",
 
     "bezaServiceGetFormValuesByApplicationIdPath": "/beza-service/api/v1/internal/user-sops/",
