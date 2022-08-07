@@ -48,9 +48,9 @@ const generateCertificate = async (req) => {
                        async res=>{
                             const appId = encryption.encrypt(""+req.body.applicationId);
                             
-                            colonOrNot = config.BEZA_SERVICE_PORT == "" ? "" : ":";
+                            colonOrNot = config.BEZA_FRONT_END_PORT == "" ? "" : ":";
                             const url =
-                              `${config.BEZA_SERVICE_BASE_URL}${colonOrNot}${config.BEZA_SERVICE_PORT}/validate-certificate?applicationId=` +
+                              `${config.BEZA_FRONT_END_BASE_URL}${colonOrNot}${config.BEZA_FRONT_END_PORT}/validate-certificate?applicationId=` +
                               appId;
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));
 
