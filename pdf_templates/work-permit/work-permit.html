@@ -248,6 +248,7 @@
         <div class="subject">
           <b>Managing Director,</b>
           <b>{{proposedProjectCompanyName}}</b>
+          <b>Plot# {{plotAddress}}</b>
           <b></b>
           <b>{{economicZoneAddress}}</b>
           <b class="sub">Subject: Work Permit for Foreign National.</b>
@@ -259,12 +260,11 @@
         <div class="application-text">
           <p>
             With reference to your applications received on {{applicationDate}}
-            the above subject, this is to inform you that according to the
-            decision of meeting held on {{certificateGenerateDate}} the
-            Bangladesh Economic Zone Authority (BEZA) has been pleased to issue
-            work permit for the following foreign national employed in your
-            company / office for the period shown against his name on the terms,
-            conditions and remuneration as shown below :
+            the above subject, this is to inform you that Bangladesh Economic
+            Zone Authority (BEZA) has been pleased to issue work permit for the
+            following foreign national employed in your company / office for the
+            period shown against his name on the terms, conditions and
+            remuneration as shown below :
           </p>
         </div>
 
@@ -315,7 +315,10 @@
                   {{passport1}}
                 </td>
                 <!-- <td>{{desiredDuration}} (with effect from: {{startDate}})</td> -->
-                <td>{{desiredDurationWithDetails}} (with effect from: {{startDate}})</td>
+                <td>
+                  {{desiredDurationWithDetails}} (with effect from:
+                  {{startDate}})
+                </td>
                 <td class="child-td">
                   <!-- another table inside main table  -->
 
