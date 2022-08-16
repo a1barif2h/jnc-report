@@ -40,6 +40,8 @@ class TradeLicenseRenew {
       authorizePositionFormatted += "Chairman";
     }
 
+    body.formValue.authorizeIdentity = body.formValue.passportNumber ? body.formValue.passportNumber : body.formValue.nidNo ? body.formValue.nidNo : "";
+
     body.formValue.authorizePositionFormatted = authorizePositionFormatted;
     const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
     return response;

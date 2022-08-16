@@ -54,6 +54,7 @@ class ExportPermit {
     
     // console.log("ExportTemplate:");
     // console.log(htmlExportTemplate);
+    // console.log("57",body)
     htmlExportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
       body.formValue,
       htmlExportTemplate
