@@ -10,7 +10,7 @@ var footerTemplate = fs.readFileSync(
 //   "utf8"
 // );
 
-const parseJasonIntoHtml = function (json, template) {
+const addJsonValuesIntoHtml = function (json, template) {
   for (var key in json) {
     // console.log(`json[${key}] = ${json[key]}`)
     template = template.replaceAll("{{" + key + "}}", json[key] || "-");
@@ -27,10 +27,7 @@ const generateMultipleMaterialsDescription = function (
   // }
   // const dataGrid = data.dataGrid;
   let materialsDescriptionTemplate = "";
-  // materialsDescriptionTemplate += parseJasonIntoHtml(
-  //   dataGrid[0],
-  //   materialsTemplate
-  // );
+
   const pageBreak = '<div class="mainContainer pageBreak">';
   for (let i = 1; i < dataGrid.length; i++) {
     let tempmaterialsTemplate = materialsTemplate;
@@ -60,7 +57,7 @@ const generateMultipleMaterialsDescription = function (
         ""
       );
     }
-    materialsDescriptionTemplate += parseJasonIntoHtml(
+    materialsDescriptionTemplate += addJsonValuesIntoHtml(
       dataGrid[i],
       tempmaterialsTemplate
     );
@@ -102,7 +99,7 @@ const addFirstMaterials = function (
     `{{headerHere}}`,
     ""
   );
-  let firstMaterialsDetails = parseJasonIntoHtml(
+  let firstMaterialsDetails = addJsonValuesIntoHtml(
     dataGrid[0],
     materialsDetailsTemplate
   );
@@ -191,7 +188,7 @@ const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate,
       );
     }
     
-    lcInfoDetailsTemplates += parseJasonIntoHtml(
+    lcInfoDetailsTemplates += addJsonValuesIntoHtml(
       dataGrid[i],
       thisLcInfoDetailsTemplate
     );
@@ -208,7 +205,7 @@ const addLcInfos = function(dataGrid, lcInfoDetailsTemplate, htmlExportTemplate,
 }
 
 const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, htmlExportTemplate, 
-  headerTemplate, materialLabelTemplate, lcDataGrid, lcInfoDetailsTemplate, lcInfLabelTemplate){
+  headerTemplate, materialLabelTemplate, lcDataGrid, lcInfoDetailsTemplate){
     const pageBreak = '<div class="mainContainer pageBreak">';
 
     let materialDescriptionTemplates = "";
@@ -235,7 +232,7 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
          ""
         );
       }
-      materialDescriptionTemplates += parseJasonIntoHtml(
+      materialDescriptionTemplates += addJsonValuesIntoHtml(
         dataGrid[i],
         thisMaterialsDetailsTemplate
       );
@@ -273,7 +270,7 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
             ""
           );
         }
-        materialDescriptionTemplates += parseJasonIntoHtml(
+        materialDescriptionTemplates += addJsonValuesIntoHtml(
           lcDataGrid[0],
           lcTemplate
         );
@@ -299,7 +296,7 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
             ""
           );
         }
-        materialDescriptionTemplates += parseJasonIntoHtml(
+        materialDescriptionTemplates += addJsonValuesIntoHtml(
           lcDataGrid[1],
           lcTemplate
         );
@@ -339,7 +336,7 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
           `{{headerHere}}`,
           ""
         );
-        materialDescriptionTemplates += parseJasonIntoHtml(
+        materialDescriptionTemplates += addJsonValuesIntoHtml(
           dataGrid[i],
           firstDetailsTemplate
         );
@@ -351,7 +348,7 @@ const addMaterialsDescriptions = function(dataGrid, materialsDetailsTemplate, ht
       return htmlExportTemplate;
     }
 module.exports = {
-  parseJasonIntoHtml,
+  addJsonValuesIntoHtml: addJsonValuesIntoHtml,
   generateMultipleMaterialsDescription,
   addFirstMaterials,
   addRemainingMaterials,

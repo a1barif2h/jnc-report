@@ -21,12 +21,12 @@ class LocalPurchasePermit {
       "./pdf_templates/local-purchase-permit/materialsDetails.html",
       "utf8"
     );
-    headerTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+    headerTemplate = materialsDescriptionParser.addJsonValuesIntoHtml(
       body.formValue,
       headerTemplate
     );
     let htmlImportTemplate = htmlTemplate;
-    htmlImportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+    htmlImportTemplate = materialsDescriptionParser.addJsonValuesIntoHtml(
       body.formValue,
       htmlImportTemplate
     );

@@ -12,11 +12,11 @@ class ImportPermit {
   async generate(body) {
 
     logger("import parmit body", body.formValue.ttPOScCmLCInformationContainer[0])
-    let htmlTemplate = fs.readFileSync(
+    let baseHtmlTemplate = fs.readFileSync(
       "./pdf_templates/import-permit/import-permit.html",
       "utf8"
     );
-    let headerTemplate = fs.readFileSync(
+    let logoQrBarCodeHeaderTemplate = fs.readFileSync(
       "./pdf_templates/import-permit/headerTemplate.html",
       "utf8"
     );
@@ -37,19 +37,19 @@ class ImportPermit {
       "./pdf_templates/import-permit/lcsInformationsDetails.html",
       "utf8");
     
-    headerTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+    logoQrBarCodeHeaderTemplate = materialsDescriptionParser.addJsonValuesIntoHtml(
       body.formValue,
-      headerTemplate
+      logoQrBarCodeHeaderTemplate
     );
 
-    let htmlImportTemplate = htmlTemplate;
-    htmlImportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+    let htmlImportTemplate = baseHtmlTemplate;
+    htmlImportTemplate = materialsDescriptionParser.addJsonValuesIntoHtml(
       body.formValue,
       htmlImportTemplate
     );
     htmlImportTemplate = htmlImportTemplate.replace(
       `{{headerHere}}`,
-      headerTemplate.toString() || "-"
+      logoQrBarCodeHeaderTemplate.toString() || "-"
     );
 
     
@@ -59,7 +59,7 @@ class ImportPermit {
       body.formValue.importMaterialsInformationGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
-      headerTemplate,
+      logoQrBarCodeHeaderTemplate,
       materialLabelTemplate
     );
 
@@ -69,11 +69,10 @@ class ImportPermit {
       body.formValue.importMaterialsInformationGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
-      headerTemplate,
+      logoQrBarCodeHeaderTemplate,
       materialLabelTemplate,
       body.formValue.ttPOScCmLCInformationContainer,
-      lcInfoDetailsTemplate,
-      lcInfLabelTemplate
+      lcInfoDetailsTemplate
     );
 
 
@@ -81,7 +80,7 @@ class ImportPermit {
       body.formValue.ttPOScCmLCInformationContainer,
       lcInfoDetailsTemplate,
       htmlImportTemplate,
-      headerTemplate,
+      logoQrBarCodeHeaderTemplate,
       lcInfLabelTemplate,
       body.formValue.importMaterialsInformationGroup.length,
       materialLabelTemplate
