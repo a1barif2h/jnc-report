@@ -14,7 +14,7 @@
     "bezaServiceDeskUserSignature": "/beza-service/api/v1bd/internal/users/signature",
     "convertCurrency": "/beza-service/api/v1/internal/currency/exchange/convert",
 
-    "keycloakBaseUrl": "http://oss.beza.gov.bd",
+    "keycloakBaseUrl": "http://192.168.90.61",
     "keycloakPort": "8082",
     "keycloakUserInfoPath": "/auth/realms/OSS/protocol/openid-connect/userinfo"
   }
