@@ -167,15 +167,23 @@
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        margin-top: 2.5rem;
+        margin-top: 1.5rem;
         width: 40%;
       }
+      .application-ambassador .signature p {
+        margin: 0;
+      }
+
       header .header-bar-code img {
         width: 30%;
       }
 
-      .application-ambassador .signature img {
-        margin-left: 3.2rem;
+      .sig_img {
+        width: 40%;
+      }
+
+      .sig_img img {
+        width: 100%;
       }
 
       .factory {
@@ -318,12 +326,13 @@
             />
           </div>
           <div class="signature">
-            <p>Yours faithfully</p>
-            <p>{{deskUserSignature}}</p>
+            <h3>Yours faithfully</h3>
+            <div class="sig_img">{{deskUserSignature}}</div>
             <p style="font-weight: bolder; border-top: 1px solid black">
-              Desk User (RD3)
+              {{deskUserFullName}}
             </p>
-            <p style="font-weight: bolder">Technical Support Executive</p>
+            <p style="font-weight: bolder">{{deskUserDesignation}}</p>
+            <p>BEZA Executive Board</p>
             <p>Bangladesh Economic Zones Authority (BEZA)</p>
           </div>
         </div>

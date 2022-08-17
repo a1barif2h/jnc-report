@@ -147,7 +147,7 @@
       }
 
       .cc {
-        margin-top: 2.5rem;
+        margin-top: 1.5rem;
         line-height: 2;
       }
       header .header-bar-code img {
@@ -197,25 +197,35 @@
         <div class="application-list">
           <div>
             <p>
-              <b>Name  </b><b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {{nameOfTheForeignNational}}</b>
+              <b>Name </b
+              ><b
+                >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:
+                {{nameOfTheForeignNational}}</b
+              >
             </p>
             <p>
-              <b>Nationality</b><b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {{particularsNationality}}</b>
+              <b>Nationality</b
+              ><b
+                >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:
+                {{particularsNationality}}</b
+              >
             </p>
             <p>
-              <b>Passport No. </b><b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {{passport1}}</b>
+              <b>Passport No. </b
+              ><b
+                >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:
+                {{passport1}}</b
+              >
             </p>
             <p>
-              <b>Type of Visa Required </b><b>&emsp;&emsp;&emsp;&emsp;: {{typeOfVisaObtainedForTheIncumbentForeignNationals}}</b>
+              <b>Type of Visa Required </b
+              ><b
+                >&emsp;&emsp;&emsp;&emsp;:
+                {{typeOfVisaObtainedForTheIncumbentForeignNationals}}</b
+              >
             </p>
-            
           </div>
-          <div>
-            
-            
-            
-            
-          </div>
+          <div></div>
         </div>
 
         <div class="application-info">
@@ -237,9 +247,10 @@
             <p>Yours faithfully</p>
             <p>{{deskUserSignature}}</p>
             <p style="font-weight: bolder; border-top: 1px solid black">
-              Desk User (RD3)
+              {{deskUserFullName}}
             </p>
-            <p style="font-weight: bolder">Technical Support Executive</p>
+            <p style="font-weight: bolder">{{deskUserDesignation}}</p>
+            <p>BEZA Executive Board</p>
             <p>Bangladesh Economic Zones Authority (BEZA)</p>
           </div>
         </div>
