@@ -167,8 +167,11 @@
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        margin-top: 2.5rem;
+        margin-top: 1.5rem;
         width: 40%;
+      }
+      .application-ambassador .signature p {
+        margin: 0;
       }
       header .header-bar-code img {
         width: 30%;
@@ -181,7 +184,7 @@
       }
 
       .sig_img {
-        width: 150px;
+        width: 100px;
       }
 
       .sig_img img {
@@ -215,7 +218,7 @@
           <h1>Trade License</h1>
         </div>
 
-        <div class="application-list">
+        <!-- <div class="application-list">
           <div style="font-weight: bold">
             <b>Name of Company:</b>
             <b>Name of the Eonomic Zone:</b>
@@ -223,6 +226,17 @@
           <div>
             <b>: &nbsp; {{proposedProjectCompanyName}}</b>
             <b>: &nbsp; {{economicZone}}</b>
+          </div>
+        </div> -->
+
+        <div class="left">
+          <div style="font-weight: bold">
+            <small>Name of Company:</small>
+            <p>{{proposedProjectCompanyName}}</p>
+          </div>
+          <div style="font-weight: bold">
+            <small>Name of the Eonomic Zone:</small>
+            <p>{{economicZone}}</p>
           </div>
         </div>
 
@@ -261,7 +275,6 @@
         </div> -->
 
         <div class="left">
-
           <div>
             <small>Plot No.:/ Dag No.(if applible):</small>
             <p>{{plotAddress}}</p>
@@ -341,12 +354,13 @@
             />
           </div>
           <div class="signature">
-            <p>Yours faithfully</p>
+            <h3>Yours faithfully</h3>
             <div class="sig_img">{{deskUserSignature}}</div>
             <p style="font-weight: bolder; border-top: 1px solid black">
-              Desk User (RD3)
+              {{deskUserFullName}}
             </p>
-            <p style="font-weight: bolder">Technical Support Executive</p>
+            <p style="font-weight: bolder">{{deskUserDesignation}}</p>
+            <p>BEZA Executive Board</p>
             <p>Bangladesh Economic Zones Authority (BEZA)</p>
           </div>
         </div>

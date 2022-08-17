@@ -1,5 +1,6 @@
 const { response } = require("express");
 const fs = require("fs");
+const { logger } = require("../util/helper");
 
 const pdf = require('./PdfGenerator');
 const options = {format: 'A4', "orientation": "portrait"};
@@ -20,6 +21,7 @@ class WorkPermit {
         // body.routePermitExpDate = body.hasOwnProperty("routePermitExpDate") ? body.routePermitExpDate : "_";
         // body.fitnessIssueDate = body.hasOwnProperty("fitnessIssueDate") ? body.fitnessIssueDate : "_";
         // pdf.pdfGenerator(htmlTemplate, body, res, options)
+        // logger("work permit", body);
         const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
         return response;
   }
