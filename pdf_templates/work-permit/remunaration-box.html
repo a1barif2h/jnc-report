@@ -1,0 +1,119 @@
+<div class="remunaration-box" style="margin-top: 0.75rem">
+  <style>
+    table.GeneratedTable {
+      width: 100%;
+      background-color: #ffffff;
+      border-collapse: collapse;
+      border-width: 1px;
+      border-color: #000000;
+      border-style: solid;
+      color: #000000;
+    }
+
+    table.GeneratedTable td,
+    table.GeneratedTable th {
+      border-width: 1px;
+      border-color: #000000;
+      border-style: solid;
+      padding: 5px;
+    }
+
+    table.GeneratedTable thead {
+      background-color: #ffffff;
+    }
+  </style>
+
+  <table class="GeneratedTable">
+    <thead>
+      <tr>
+        <th class="first-th">
+          Name, Designation <br />
+          Nationality and Passport No
+        </th>
+        <th class="second-th">Period of Work Permit</th>
+        <th class="third-th">Remuneration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="first-td">
+          {{nameOfTheForeignNational}} <br />
+          {{nameOfThePostEmployedOfDesignation}}
+          <br />
+          {{particularsNationality}}<br />
+          {{passport1}}
+        </td>
+        <td>
+          {{desiredDurationWithDetails}} (with effect from: {{startDate}})
+        </td>
+        <td class="child-td">
+          <table class="GeneratedTable">
+            <thead>
+              <tr>
+                <th>Payment</th>
+                <th>Payable Locally</th>
+                <th>Payable Abroad</th>
+              </tr>
+            </thead>
+            <tbody class="child-tbody">
+              <tr>
+                <td>{{payment}}</td>
+                <td>Basic Salary: {{currencyLocally}} {{amountLocally}}</td>
+                <td>Basic Salary: {{currencyLocally7}} {{amountAbroad}}</td>
+              </tr>
+              <tr>
+                <td>{{payment3}}</td>
+                <td>Conveyance: {{currencyLocally3}} {{amountLocally3}}</td>
+                <td>Conveyance: {{currencyLocally11}} {{amountAbroad3}}</td>
+              </tr>
+              <tr>
+                <td>{{payment1}}</td>
+                <td>
+                  Overseas Allowance: {{currencyLocally1}} {{amountLocally1}}
+                </td>
+                <td>
+                  Overseas Allowance: {{currencyLocally8}} {{amountAbroad1}}
+                </td>
+              </tr>
+              <tr>
+                <td>{{payment2}}</td>
+                <td>House Rent: {{currencyLocally2}} {{amountLocally2}}</td>
+                <td>House Rent: {{currencyLocally9}} {{amountAbroad2}}</td>
+              </tr>
+              <tr>
+                <td>{{payment4}}</td>
+                <td>
+                  Medical Allowance: {{currencyLocally4}} {{amountLocally4}}
+                </td>
+                <td>
+                  Medical Allowance: {{currencyLocally12}} {{amountAbroad4}}
+                </td>
+              </tr>
+              <tr>
+                <td>{{payment5}}</td>
+                <td>
+                  Entertain. Allowance: {{currencyLocally5}} {{amountLocally5}}
+                </td>
+                <td>
+                  Entertain. Allowance: {{currencyLocally13}} {{amountAbroad5}}
+                </td>
+              </tr>
+              <tr>
+                <td>{{payment6}}</td>
+                <td>Annual Bonus: {{currencyLocally6}} {{amountLocally6}}</td>
+                <td>Annual Bonus: {{currencyLocally14}} {{amountAbroad6}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="3">Others: {{hOtherFringeBenefitsIfAny}}</td>
+      </tr>
+      <tr>
+        <td colspan="3">Remarks: {{anyParticularComments}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
