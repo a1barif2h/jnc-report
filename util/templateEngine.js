@@ -1,20 +1,21 @@
 
 const { regexp } = require('express-xml-bodyparser');
-var dataProcessor = require('flat')
+var dataProcessor = require('flat');
+const { logger } = require('./helper');
 // const dataProcessor = (ob) => {
 //     // The object which contains the
 //     // final result
 //     let result = {};
 //     // loop through the object "ob"
 //     for (const i in ob) {
-  
+
 //         // We check the type of the i using
 //         // typeof() function and recursively
 //         // call the function again
 //         if ((typeof ob[i]) === 'object') {
 //             const temp = dataProcessor(ob[i]);
 //             for (const j in temp) {
-  
+
 //                 // Store temp in result
 //                 result[i + '.' + j] = temp[j];
 //             }
@@ -33,15 +34,10 @@ var dataProcessor = require('flat')
 // };
 
 const replacer = function (template, data) {
-    // const flattenedData = dataProcessor(data);
     const flattenedData = data;
     const regexp = new RegExp();
     for (var key in flattenedData) {
-        // console.log("key:",key," || value:",flattenedData[key])
-        //{{spouseName}}
-        //dat[spouseName] = neetu
-        // template= template.replace('{{spouseName}}', ("neetu" || "-"))
-        template = template.replaceAll('{{'+key+'}}', ((flattenedData[key] ||flattenedData[key] === 0 ) ? flattenedData[key] : "-"))
+        template = template.replaceAll('{{' + key + '}}', ((flattenedData[key] || flattenedData[key] === 0) ? flattenedData[key] : "-"))
     }
 
     return template
@@ -52,14 +48,16 @@ const replaceOne = function (template, data) {
 
     const regexp = new RegExp();
     for (var key in flattenedData) {
-        // console.log("key:",key," || value:",flattenedData[key])
-        //{{spouseName}}
-        //dat[spouseName] = neetu
-        // template= template.replace('{{spouseName}}', ("neetu" || "-"))
-        template = template.replace('{{'+key+'}}', (flattenedData[key] || "-"))
+        template = template.replace('{{' + key + '}}', (flattenedData[key] || "-"))
     }
 
     return template
 }
 
-module.exports = {replacer, replaceOne}
+const keyRemover = (template) => {
+    let removeAbleTemplate = template;
+    removeAbleTemplate = removeAbleTemplate.replace(/\{\{.*?}}/g, 'N/A');
+    return removeAbleTemplate;
+}
+
+module.exports = { replacer, replaceOne, keyRemover }
