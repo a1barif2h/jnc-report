@@ -169,10 +169,10 @@
       <main>
         <div class="application-date">
           <b>File no: {{trackingId}}</b>
-        <div>
-          <b>Date: {{certificateGenerateDate}}</b>
-          <b>{{lastAmendmentDate}}</b>
-        </div>
+          <div>
+            <b>Date: {{certificateGenerateDate}}</b>
+            <b>{{lastAmendmentDate}}</b>
+          </div>
         </div>
         <div>
           <b>Subject: Request for Issuance of visa </b>
@@ -182,10 +182,10 @@
           <p class="dear-ceo">Dear Sir,</p>
           <p class="application-header-text">
             With reference to the above mentioned subject, it is to inform you
-            that <b>{{proposedProjectCompanyName}}</b> is a commercial or industrial
-            unit registered with the Bangladesh Economic Zone Authority. The
-            Company has requested for visa recommendation for the following
-            expatriate:
+            that <b>{{proposedProjectCompanyName}}</b> is a commercial or
+            industrial unit registered with the Bangladesh Economic Zone
+            Authority. The Company has requested for visa recommendation for the
+            following expatriate:
           </p>
         </div>
 
@@ -229,9 +229,10 @@
             <p>Yours faithfully</p>
             <p>{{deskUserSignature}}</p>
             <p style="font-weight: bolder; border-top: 1px solid black">
-              Desk User (RD3)
+              {{deskUserFullName}}
             </p>
-            <p style="font-weight: bolder">Technical Support Executive</p>
+            <p style="font-weight: bolder">{{deskUserDesignation}}</p>
+            <p>BEZA Executive Board</p>
             <p>Bangladesh Economic Zones Authority (BEZA)</p>
           </div>
         </div>

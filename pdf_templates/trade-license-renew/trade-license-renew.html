@@ -167,15 +167,23 @@
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        margin-top: 2.5rem;
+        margin-top: 1.5rem;
         width: 40%;
       }
+      .application-ambassador .signature p {
+        margin: 0;
+      }
+
       header .header-bar-code img {
         width: 30%;
       }
 
-      .application-ambassador .signature img {
-        margin-left: 3.2rem;
+      .sig_img {
+        width: 40%;
+      }
+
+      .sig_img img {
+        width: 100%;
       }
 
       .factory {
@@ -213,7 +221,7 @@
           <h1>Trade License Renew</h1>
         </div>
 
-        <div class="application-list">
+        <!-- <div class="application-list">
           <div style="font-weight: bold">
             <b>Name of Company:</b>
             <b>Name of the Eonomic Zone:</b>
@@ -222,41 +230,21 @@
             <b>: &nbsp; {{proposedProjectCompanyName}}</b>
             <b>: &nbsp; {{economicZone}}</b>
           </div>
+        </div> -->
+        <div class="left">
+          <div style="font-weight: bold">
+            <small>Name of Company:</small>
+            <p>{{proposedProjectCompanyName}}</p>
+          </div>
+          <div style="font-weight: bold">
+            <small>Name of the Eonomic Zone:</small>
+            <p>{{economicZone}}</p>
+          </div>
         </div>
 
         <div class="factory">
           <b>Factory Address</b>
         </div>
-        <!-- <div class="application-list">
-          <div>
-            <p>Plot No.:/ Dag No.(if applible)</p>
-            <p>Mouza</p>
-            <p>District</p>
-            <p>Upozila</p>
-            <p>Union Porishad</p>
-            <p>Name</p>
-            <p>Position</p>
-            <p>Nationality</p>
-            <p>NID/ Passport No.</p>
-            <p>Office Address</p>
-            <p>Nature of Business</p>
-            <p>Date of Expiry</p>
-          </div>
-          <div>
-            <p>: &nbsp; {{plotAddress}}</p>
-            <p>: &nbsp; {{specifyAreaOfMouza}}</p>
-            <p>: &nbsp; {{district2}}</p>
-            <p>: &nbsp; {{upazilla}}</p>
-            <p>: &nbsp; {{unionParishad}}</p>
-            <p>: &nbsp; {{authorizedName}}</p>
-            <p>: &nbsp; {{authorizePosition}}</p>
-            <p>: &nbsp; {{nationality}}</p>
-            <p>: &nbsp; {{passportNumber}}</p>
-            <p>: &nbsp; {{officeAddress}}</p>
-            <p>: &nbsp; {{typeOfBusinessIndustryOrServices}}</p>
-            <p>: &nbsp; {{validTill}}</p>
-          </div>
-        </div> -->
 
         <div class="left">
           <div>
@@ -338,12 +326,13 @@
             />
           </div>
           <div class="signature">
-            <p>Yours faithfully</p>
-            <p>{{deskUserSignature}}</p>
+            <h3>Yours faithfully</h3>
+            <div class="sig_img">{{deskUserSignature}}</div>
             <p style="font-weight: bolder; border-top: 1px solid black">
-              Desk User (RD3)
+              {{deskUserFullName}}
             </p>
-            <p style="font-weight: bolder">Technical Support Executive</p>
+            <p style="font-weight: bolder">{{deskUserDesignation}}</p>
+            <p>BEZA Executive Board</p>
             <p>Bangladesh Economic Zones Authority (BEZA)</p>
           </div>
         </div>
