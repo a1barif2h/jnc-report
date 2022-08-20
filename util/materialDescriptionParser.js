@@ -419,7 +419,6 @@ module.exports = {
   generateMultipleMaterialsDescription,
   addFirstMaterials,
   addRemainingMaterials,
-  addLcInfos,
   addMaterialsDescriptions,
   addFirstTwoMaterialDescriptions,
   generateFirstPage: generateFirstPage
