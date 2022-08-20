@@ -6,17 +6,20 @@ const options = { format: "A4", orientation: "portrait" };
 
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
 const { logger } = require("../util/helper");
+const { AllSopsCodes } = require("../shared/constants/AllSopsCodes");
+
 class ImportPermit {
   constructor() {}
 
   async generate(body) {
 
     logger("import parmit body", body.formValue.ttPOScCmLCInformationContainer[0])
-    let htmlTemplate = fs.readFileSync(
+    let baseHtmlTemplate = fs.readFileSync(
       "./pdf_templates/import-permit/import-permit.html",
       "utf8"
     );
-    let headerTemplate = fs.readFileSync(
+
+    let logoQrBarCodeHeaderTemplate = fs.readFileSync(
       "./pdf_templates/import-permit/headerTemplate.html",
       "utf8"
     );
@@ -24,10 +27,7 @@ class ImportPermit {
       "./pdf_templates/import-permit/materialDetailsLabel.html",
       "utf8"
     );
-    let lcInfLabelTemplate = fs.readFileSync(
-      "./pdf_templates/import-permit/lcInfoDetailsLabel.html",
-      "utf8"
-    );
+  
     const materialsDetailsTemplateInitial = fs.readFileSync(
       "./pdf_templates/import-permit/materialsDetails.html",
       "utf8"
@@ -36,77 +36,52 @@ class ImportPermit {
     const lcInfoDetailsTemplateinitial = fs.readFileSync(
       "./pdf_templates/import-permit/lcsInformationsDetails.html",
       "utf8");
-    
-    headerTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+
+    //Add logo bar code in header template
+    logoQrBarCodeHeaderTemplate = materialsDescriptionParser.addJsonValuesIntoHtml(
       body.formValue,
-      headerTemplate
+      logoQrBarCodeHeaderTemplate
     );
 
-    let htmlImportTemplate = htmlTemplate;
-    htmlImportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+
+    //Adding general infomation values
+    let copyOfBasehtmlImportTemplate = baseHtmlTemplate;
+    copyOfBasehtmlImportTemplate = materialsDescriptionParser.addJsonValuesIntoHtml(
       body.formValue,
-      htmlImportTemplate
+      copyOfBasehtmlImportTemplate
     );
-    htmlImportTemplate = htmlImportTemplate.replace(
+
+    //Add the logo qr bar code template in the main template
+    copyOfBasehtmlImportTemplate = copyOfBasehtmlImportTemplate.replace(
       `{{headerHere}}`,
-      headerTemplate.toString() || "-"
+      logoQrBarCodeHeaderTemplate.toString() || "-"
     );
 
     
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
 
-    htmlImportTemplate = materialsDescriptionParser.addFirstTwoMaterialDescriptions(
-      body.formValue.importMaterialsInformationGroup,
-      materialsDetailsTemplate,
-      htmlImportTemplate,
-      headerTemplate,
-      materialLabelTemplate
-    );
-
     let lcInfoDetailsTemplate = lcInfoDetailsTemplateinitial;
+   
+    const materialAndLcDescriptionsSectionGenerationProps = {
+      materialInfoItems: body.formValue.importMaterialsInformationGroup,
+      materialsDetailsTemplate: materialsDetailsTemplate,
+      baseHtmlIEPTemplate: copyOfBasehtmlImportTemplate,
+      logoQrBarCodeHeaderTemplate: logoQrBarCodeHeaderTemplate,
+      materialLabelTemplate: materialLabelTemplate,
+      //lc sections infos
+      lcInfoItems: body.formValue.ttPOScCmLCInformationContainer,
+      lcInfoDetailsTemplate: lcInfoDetailsTemplate,
+      applicationCode: AllSopsCodes.IMPORT_PERMIT.value
+    };
 
-    htmlImportTemplate = materialsDescriptionParser.addMaterialsDescriptions(
-      body.formValue.importMaterialsInformationGroup,
-      materialsDetailsTemplate,
-      htmlImportTemplate,
-      headerTemplate,
-      materialLabelTemplate,
-      body.formValue.ttPOScCmLCInformationContainer,
-      lcInfoDetailsTemplate,
-      lcInfLabelTemplate
-    );
+    copyOfBasehtmlImportTemplate = materialsDescriptionParser.generateFirstPage(materialAndLcDescriptionsSectionGenerationProps);
 
+    materialAndLcDescriptionsSectionGenerationProps.baseHtmlIEPTemplate = copyOfBasehtmlImportTemplate;
 
-    htmlImportTemplate = materialsDescriptionParser.addLcInfos(
-      body.formValue.ttPOScCmLCInformationContainer,
-      lcInfoDetailsTemplate,
-      htmlImportTemplate,
-      headerTemplate,
-      lcInfLabelTemplate,
-      body.formValue.importMaterialsInformationGroup.length,
-      materialLabelTemplate
-    );
-    
-    // htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
-    //   body.formValue.importMaterialsInformationGroup,
-    //   materialsDetailsTemplate,
-    //   htmlImportTemplate,
-    //   headerTemplate
-    // );
+    copyOfBasehtmlImportTemplate = materialsDescriptionParser.addMaterialsDescriptions(materialAndLcDescriptionsSectionGenerationProps);
 
-    // console.log("==========================================");
-    // materialsDetailsTemplate = materialsDetailsTemplateInitial;
-    // htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
-    //   body.formValue.importMaterialsInformationGroup,
-    //   materialsDetailsTemplate,
-    //   htmlImportTemplate,
-    //   headerTemplate
-    // );
-    // if (body.formValue.dataGrid.length!=1){
-      
-    // }
     const response = await pdf.generatePdfFromHtmlMultipleMaterialDescription(
-      htmlImportTemplate,
+      copyOfBasehtmlImportTemplate,
       options
     );
 
