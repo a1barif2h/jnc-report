@@ -2,7 +2,17 @@ const { response } = require("express");
 const fs = require("fs");
 
 const pdf = require("./PdfGenerator");
-const options = { format: "A4", orientation: "portrait" };
+const options = { 
+  format: "A4", 
+  orientation: "portrait",
+  footer: {
+    height: '5mm',
+    contents: {
+      default:
+        '<div id="pageFooter" style="text-align: center; font-size: 8px;">{{page}}/{{pages}}</div>',
+    },
+  }
+};
 
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
 class LocalSalesPermit {

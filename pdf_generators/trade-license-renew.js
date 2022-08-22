@@ -3,7 +3,17 @@ const fs = require("fs");
 const dateTimeFormattor = require("../util/dateTimeFormattor");
 
 const pdf = require("./PdfGenerator");
-const options = { format: "A4", orientation: "portrait" };
+const options = { 
+  format: "A4", 
+  orientation: "portrait",
+  footer: {
+    height: '5mm',
+    contents: {
+      default:
+        '<div id="pageFooter" style="text-align: center; font-size: 8px;">{{page}}/{{pages}}</div>',
+    },
+  }
+};
 
 const background_image = fs.readFileSync(
   "./pdf_templates/background_image.html",

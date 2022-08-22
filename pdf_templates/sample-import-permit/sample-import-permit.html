@@ -11,11 +11,16 @@
         box-sizing: border-box;
       }
 
+      .mainContainer .bar-code {
+        width: 30%;
+      }
+
       .mainContainer {
         margin: 0rem auto;
-        padding: 30px;
+        padding: 15px 15px 1px 15px;
         position: relative;
         z-index: 5;
+        min-height: 750px;
       }
 
       .mainContainer::before {
@@ -35,26 +40,23 @@
 
       header {
         display: -webkit-box;
-        display: -moz-box;
         display: -ms-flexbox;
-        display: -webkit-flex;
         display: flex;
-        align-items: -webkit-box;
-        align-items: -moz-box;
-        align-items: -ms-flexbox;
-        align-items: -webkit-flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
-        justify-content: -webkit-box;
-        justify-content: -moz-box;
-        justify-content: -ms-flexbox;
-        justify-content: -webkit-flex;
         justify-content: space-between;
-        margin-left: 1rem;
-        border: 5px solid #278000;
+        width: 100%;
       }
 
-      header img {
-        width: 44%;
+      .header-logo img {
+        width: 160px;
+      }
+
+      .header-qr-code img {
+        width: 80px;
       }
 
       .import-permit {
