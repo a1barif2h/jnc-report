@@ -23,7 +23,6 @@ class ImportPermit {
 
   async generate(body) {
 
-    logger("import parmit body", body.formValue.ttPOScCmLCInformationContainer[0])
     let baseHtmlTemplate = fs.readFileSync(
       "./pdf_templates/import-permit/import-permit.html",
       "utf8"
