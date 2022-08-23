@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const pdf = require("./PdfGenerator");
 const options = { 
-  format: "A4", 
+  format: "A4",
   orientation: "portrait",
   footer: {
     height: '5mm',
@@ -34,6 +34,11 @@ class SampleExportPermit {
       "./pdf_templates/sample-export-permit/sample-export-multipage-header.html",
       "utf8"
     );
+
+    let materialsDetailsLabel = fs.readFileSync(
+      "./pdf_templates/sample-export-permit/sample-export-permit-material_label.html",
+      "utf8"
+    );
     
     let materialsDetailsTemplateInitial = fs.readFileSync(
       "./pdf_templates/sample-export-permit/sample-export-material-group.html",
@@ -59,25 +64,35 @@ class SampleExportPermit {
     );
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
     
-    htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
+    // htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
+    //   body.formValue.productDetails,
+    //   materialsDetailsTemplate,
+    //   htmlImportTemplate,
+    //   headerTemplate
+    // );
+    htmlImportTemplate = materialsDescriptionParser.addFirstTwoMaterialDescriptions(
       body.formValue.productDetails,
       materialsDetailsTemplate,
       htmlImportTemplate,
-      headerTemplate
+      materialsDetailsLabel,
+      footerTemplate
     );
     // console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
-    htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
+    htmlImportTemplate = materialsDescriptionParser.addRemainingMaterialsDescription(
       body.formValue.productDetails,
       materialsDetailsTemplate,
       htmlImportTemplate,
-      headerTemplate
+      materialsDetailsLabel,
+      headerTemplate,
+      footerTemplate
     );
-    // console.log("htmlSampleExportTemplate:");
-    // console.log(htmlImportTemplate);
-    // if (body.formValue.dataGrid.length!=1){
-      
-    // }
+    // htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
+    //   body.formValue.productDetails,
+    //   materialsDetailsTemplate,
+    //   htmlImportTemplate,
+    //   headerTemplate
+    // );
     const response = await pdf.generatePdfFromHtmlMultipleMaterialDescription(
       htmlImportTemplate,
       options

@@ -114,11 +114,18 @@
         justify-content: space-between;
         border: 1px solid #278000;
         min-height: 4.2rem;
+        max-height: 230px;
+        overflow: hidden;
       }
 
       .border-box small {
         font-size: 6.5px;
         font-weight: bold;
+      }
+
+      .product-details {
+        max-height: 100px;
+        overflow: hidden;
       }
 
       .left {
@@ -268,13 +275,12 @@
         page-break-after: always;
       }
       .pageBreak:last-of-type {
-          page-break-after: auto
+        page-break-after: auto;
       }
-
     </style>
   </head>
 
-  <body class = "bodys">
+  <body class="bodys">
     <div class="mainContainer pagebreak">
       {{headerHere}}
       <main>
@@ -300,7 +306,10 @@
                 <div>
                   <small>Name of the Company: </small>
                   <!-- <p>{{proposedProjectCompanyName}}</p> -->
-                  <p>Cuban Industrial Property Office Ministr Cuban Industrial Property Office Ministr</p>
+                  <p>
+                    Cuban Industrial Property Office Ministr Cuban Industrial
+                    Property Office Ministr
+                  </p>
                 </div>
                 <div>
                   <small>Export Permit Type: </small>

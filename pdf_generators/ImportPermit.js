@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const pdf = require("./PdfGenerator");
 const options = { 
-  format: "A4", 
+  format: "A4",
   orientation: "portrait",
   footer: {
     height: '5mm',
