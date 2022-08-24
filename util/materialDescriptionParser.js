@@ -183,7 +183,7 @@ const generateFirstPage = function (materialAndLcDescriptionsSectionGenerationPr
 
     let thisMaterialsDetailsTemplate = materialsDetailsTemplate;
 
-    thisMaterialsDetailsTemplate = (index == 1) ? addLogoQrBarCodeAndMaterialLabelHeader(thisMaterialsDetailsTemplate, "", "", footerTemplate)
+    thisMaterialsDetailsTemplate = (index === 1) ? addLogoQrBarCodeAndMaterialLabelHeader(thisMaterialsDetailsTemplate, "", "", footerTemplate)
       : addLogoQrBarCodeAndMaterialLabelHeader(thisMaterialsDetailsTemplate, "", materialLabelTemplate, "");
 
     materialsTemplates += addJsonValuesIntoHtml(
@@ -381,6 +381,7 @@ const addLcInfos = function (lcInfoItems, lcInfoDetailsTemplate, baseHtmlIEPTemp
   return baseHtmlIEPTemplate;
 }
 
+// FOR SAMPLE IMPORT PERMIT AND SAMPLE EXPORT PERMIT TILL NOW
 const addFirstTwoMaterialDescriptions = function (
   dataGrid,
   materialsDetailsTemplate,
