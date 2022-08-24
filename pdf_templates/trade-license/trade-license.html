@@ -143,36 +143,70 @@
         margin-left: 0.5rem;
       }
 
-      .application-ambassador {
+      .secondPageContainer {
+        margin: 0rem auto;
+
+        font-size: 8px;
+        position: relative;
+        z-index: 5;
+      }
+
+      .secondPageContainer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 450px;
+        width: 100%;
+        height: 80%;
+        opacity: 0.1;
+        z-index: 10;
+      }
+
+      .footer-container {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
-        -webkit-box-align: end;
-        -ms-flex-align: end;
-        align-items: flex-end;
-        line-height: 2;
-      }
-
-      .application-ambassador .signature {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        margin-top: 1.5rem;
-        width: 40%;
+        width: 100%;
       }
-      .application-ambassador .signature p {
-        margin: 0;
+
+      .footer-container .qr-code {
+        width: 30%;
+        text-align: center;
       }
+
+      .footer-container .qr-code img {
+        width: 50%;
+      }
+
+      .footer-container .signature {
+        width: 50%;
+        text-align: center;
+      }
+
+      .footer-container .signature img {
+        width: 30%;
+      }
+
+      .footer-container .signature hr {
+        border: 0;
+        border-bottom: 1.5px solid rgb(46, 45, 45);
+        width: 50%;
+        margin: 5px auto;
+      }
+
+      .footer-container .signature .desk-user {
+        font-weight: 700;
+      }
+
       header .header-bar-code img {
         width: 30%;
       }
@@ -218,17 +252,6 @@
           <h1>Trade License</h1>
         </div>
 
-        <!-- <div class="application-list">
-          <div style="font-weight: bold">
-            <b>Name of Company:</b>
-            <b>Name of the Eonomic Zone:</b>
-          </div>
-          <div>
-            <b>: &nbsp; {{proposedProjectCompanyName}}</b>
-            <b>: &nbsp; {{economicZone}}</b>
-          </div>
-        </div> -->
-
         <div class="left">
           <div style="font-weight: bold">
             <small>Name of Company:</small>
@@ -243,36 +266,6 @@
         <div class="factory">
           <b>Factory Address</b>
         </div>
-        <!-- <div class="application-list">
-          <div>
-            <p>Plot No.:/ Dag No.(if applible)</p>
-            <p>Mouza</p>
-            <p>District</p>
-            <p>Upozila</p>
-            <p>Union Porishad</p>
-            <p>Name</p>
-            <p>Position</p>
-            <p>Nationality</p>
-            <p>NID/ Passport No.</p>
-            <p>Office Address</p>
-            <p>Nature of Business</p>
-            <p>Date of Expiry</p>
-          </div>
-          <div>
-            <p>: &nbsp; {{plotAddress}}</p>
-            <p>: &nbsp; {{specifyAreaOfMouza}}</p>
-            <p>: &nbsp; {{district2}}</p>
-            <p>: &nbsp; {{upazilla}}</p>
-            <p>: &nbsp; {{unionParishad}}</p>
-            <p>: &nbsp; {{authorizedName}}</p>
-            <p>: &nbsp; {{authorizePosition}}</p>
-            <p>: &nbsp; {{nationality}}</p>
-            <p>: &nbsp; {{passportNumber}}</p>
-            <p>: &nbsp; {{officeAddress}}</p>
-            <p>: &nbsp; {{typeOfBusinessIndustryOrServices}}</p>
-            <p>: &nbsp; {{validTill}}</p>
-          </div>
-        </div> -->
 
         <div class="left">
           <div>
@@ -344,25 +337,26 @@
             Trade License will be Considered as punishable offence.
           </p>
         </div>
-        <div class="application-ambassador">
-          <div>
-            <img
-              width="30%"
-              style="margin-left: 0.5rem"
-              src="{{qrcode}}"
-              alt=""
-            />
-          </div>
-          <div class="signature">
-            <h3>Yours faithfully</h3>
-            <div class="sig_img">{{deskUserSignature}}</div>
-            <p style="font-weight: bolder; border-top: 1px solid black">
-              {{deskUserFullName}}
-            </p>
-            <p style="font-weight: bolder">{{deskUserDesignation}}</p>
-            <p>BEZA Executive Board</p>
-            <p>Bangladesh Economic Zones Authority (BEZA)</p>
-          </div>
+        <div class="secondPageContainer">
+          <footer>
+            <div class="footer-container">
+              <div class="qr-code">
+                <img src="{{qrcode}}" alt="" />
+              </div>
+
+              <div class="signature">
+                <h3>Yours faithfully</h3>
+                {{deskUserSignature}}
+                <hr />
+                <div class="desk-user">
+                  <p>{{deskUserFullName}}</p>
+                  <p>{{deskUserDesignation}}</p>
+                </div>
+                <p>BEZA Executive Board</p>
+                <div>Bangladesh Economic Zones Authority</div>
+              </div>
+            </div>
+          </footer>
         </div>
       </main>
     </div>
