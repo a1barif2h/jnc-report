@@ -14,9 +14,6 @@ const options = {
     }
   };
 
-const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
-const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
-
 class VisaAssistance {
     constructor() {
     }
@@ -24,10 +21,7 @@ class VisaAssistance {
     async generate(body) {
         
         let htmlTemplate = fs.readFileSync('./pdf_templates/visa-assistance/visa-assistance.html', 'utf8');
-        // body.routePermitIssueDate = body.hasOwnProperty("routePermitIssueDate") ? body.routePermitIssueDate : "_";
-        // body.routePermitExpDate = body.hasOwnProperty("routePermitExpDate") ? body.routePermitExpDate : "_";
-        // body.fitnessIssueDate = body.hasOwnProperty("fitnessIssueDate") ? body.fitnessIssueDate : "_";
-        // pdf.pdfGenerator(htmlTemplate, body, res, options)
+
         const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
         return response;
     }
