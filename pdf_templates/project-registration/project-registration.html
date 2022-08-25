@@ -13,11 +13,8 @@
       }
 
       .container {
-        /* border: 1px solid rgb(0, 0, 0);
-        width: 210mm;
-        height: 297.5mm; */
         margin: 0rem auto;
-        padding: 0px 30px;
+        padding: 5px 15px 0 15px;
         font-size: 8px;
         position: relative;
         z-index: 5;
@@ -42,7 +39,7 @@
         page-break-after: always;
       }
       .header-container {
-        margin: 1.8rem 0rem 1.1rem 0rem;
+        margin: 0.5rem 0rem 0.5rem 0rem;
         font-weight: bolder;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -61,7 +58,7 @@
       .barcode {
         width: 47%;
         text-align: center;
-        margin-top: 25px;
+        margin-top: 22px;
       }
       .qr-logo {
         width: 20%;
@@ -75,7 +72,7 @@
       }
 
       .application-date {
-        margin: 0rem 0rem 0.5rem 0rem;
+        margin: 0rem 0rem 0.4rem 0rem;
         font-weight: bolder;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -91,7 +88,7 @@
 
       .application-info {
         width: 50%;
-        line-height: 2;
+        line-height: 1.8;
       }
 
       .application-info b {
@@ -99,20 +96,20 @@
       }
 
       .application-subject {
-        margin: 0.5rem 0rem;
+        margin: 0.3rem 0rem;
       }
 
       .application-header {
-        margin-top: 0.5rem;
+        margin-top: 0.3rem;
       }
 
       .application-header .dear-ceo {
-        margin: 1rem 0rem;
+        margin: 0.8rem 0rem;
       }
 
       .application-header-text {
-        margin: 0.5rem 0rem;
-        line-height: 1.8;
+        margin: 0.3rem 0rem;
+        line-height: 1.5;
       }
 
       .application-header-text b {
@@ -124,11 +121,11 @@
       }
 
       .application-list li {
-        margin-top: 0.7rem;
+        margin-top: 0.5rem;
       }
 
       .application-list p {
-        margin-top: 0.5rem;
+        margin-top: 0.3rem;
         line-height: 1.74;
       }
 
@@ -143,7 +140,7 @@
         -ms-flex-align: center;
         align-items: center;
         width: 100%;
-        margin-top: 0.55rem;
+        margin-top: 1.5rem;
         overflow: auto;
       }
 
@@ -157,7 +154,7 @@
 
       footer .footer-items1 .copy-for {
         text-align: left;
-        line-height: 1.8;
+        line-height: 2.5;
       }
       footer .footer-items2 {
         width: 20%;
@@ -169,7 +166,7 @@
       }
 
       footer .footer-items3 img {
-        width: 60%;
+        width: 40%;
       }
     </style>
   </head>
@@ -231,7 +228,6 @@
         </div>
         <footer>
           <div class="footer-items1">
-            <img src="{{qrcode}}" alt="" />
             <p>Copy for Information to</p>
             <div class="copy-for">
               <p>a. {{statusproposed2}},</p>
@@ -240,9 +236,7 @@
               <p>d. ..............................</p>
             </div>
           </div>
-          <div class="footer-items2">
-            <p>{{barcode}}</p>
-          </div>
+          <div class="footer-items2"></div>
           <div class="footer-items3">
             <h3>Yours faithfully</h3>
             {{deskUserSignature}}

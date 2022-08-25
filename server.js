@@ -64,7 +64,7 @@ app.get("/info", function (req, res) {
 
 app.post(
   "/certificate-service/api/v1/private/generate/pdf",
-  authenticate,
+  // authenticate,
   async (req, res) => {
     await generateCertificate(req,res);
   }
