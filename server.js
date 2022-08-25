@@ -67,14 +67,6 @@ app.post(
   authenticate,
   async (req, res) => {
     await generateCertificate(req,res);
-
-    //This is for test purpose
-  //   res.setHeader("Content-Type", "application/json");
-  // res.send(
-  //   JSON.stringify({
-  //     status: 200
-  //   })
-  // );
   }
 );
 

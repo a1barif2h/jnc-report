@@ -36,27 +36,7 @@
       z-index: 10;
     }
 
-    .secondPageContainer {
-      margin: 0rem auto;
-
-      font-size: 8px;
-      position: relative;
-      z-index: 5;
-    }
-
-    .secondPageContainer::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 450px;
-      width: 100%;
-      height: 80%;
-      opacity: 0.1;
-      z-index: 10;
-    }
+    
 
     .import-permit {
       height: 1.6rem;
@@ -95,12 +75,16 @@
       justify-content: space-evenly;
     }
 
+    header .header-bar-code {
+      margin-left: 10;
+    }
+
     header .header-bar-code img {
       width: 30%;
     }
 
     header .header-logo img {
-      width: 65%;
+      width: 160px;
     }
 
     .application-date {
@@ -159,7 +143,29 @@
       line-height: 1.74;
     }
 
-    footer {
+    .secondPageContainer {
+      margin: 0rem auto;
+
+      font-size: 8px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .secondPageContainer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 450px;
+      width: 100%;
+      height: 80%;
+      opacity: 0.1;
+      z-index: 10;
+    }
+
+    .footer-container {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -172,39 +178,33 @@
       width: 100%;
     }
 
-    footer .qr-code img {
+    .footer-container .qr-code {
       width: 30%;
-      margin-left: 3rem;
+      text-align: center;
     }
 
-    footer .signature img {
-      margin-left: 3rem;
+    .footer-container .qr-code img {
+      width: 50%;
     }
 
-    footer .signature .no-image {
-      margin-left: 3.5rem;
+    .footer-container .signature {
+      width: 50%;
+      text-align: center;
     }
 
-    footer .qr-code ol {
-      list-style-type: lower-alpha;
-      margin-left: 1.6rem;
-      line-height: 1.8;
-    }
-
-    footer .signature {
+    .footer-container .signature img {
       width: 30%;
     }
 
-    footer .signature div {
-      line-height: 1.8;
+    .footer-container .signature hr {
+      border: 0;
+      border-bottom: 1.5px solid rgb(46, 45, 45);
+      width: 50%;
+      margin: 5px auto;
     }
 
-    footer .signature .desk-user {
-      font-weight: bold;
-      border-top: 1px solid black;
-      width: 58%;
-      margin: 0 auto;
-
+    .footer-container .signature .desk-user {
+      font-weight: 700;
     }
 
     .application-list {
@@ -240,10 +240,10 @@
       </div>
       <div class="application-date">
         <p>Tracking no: {{trackingId}}</p>
-      <div>
-        <p>Date: {{certificateGenerateDate}}</p>
-        <p>{{lastAmendmentDate}}</p>
-      </div>
+        <div>
+          <p>Date: {{certificateGenerateDate}}</p>
+          <p>{{lastAmendmentDate}}</p>
+        </div>
       </div>
       <div class="application-info">
         <p>Building Permit No: {{approvalNoBuildingPermit}}</p>
@@ -274,7 +274,7 @@
         <b>1. Terms and conditions for approval:</b>
         <li>i. The certificate shall be valid only for the following building:</li>
         <div class="terms-condition">
-          <small> a) Name of Economic Zone : {{economicZone}} Limited</small> 
+          <small> a) Name of Economic Zone : {{economicZone}}</small>
           <small> b) Plot Number : {{plotAddress}}</small>
           <small> c) Building Information:</small>
           <div class="building-information">
@@ -325,16 +325,23 @@
   </div>
   <div class="secondPageContainer">
     <footer>
-      <div class="qr-code">
-        <img src="{{qrcode}}" alt="" />
-      </div>
-      <div class="signature">
-        <h3 style="text-align: center;"> Yours faithfully</h3>
-        {{deskUserSignature}}
-        <div class="desk-user">Desk User (RD3)</div>
-        <div style="font-weight: bolder;">Technical Support Executive</div>
-        <div style="min-width: 245px; margin: 0 auto;">
-          Bangladesh Economic Zones Authority
+      <div class="footer-container">
+        <div class="qr-code">
+          <img src="{{qrcode}}" alt="" />
+        </div>
+
+        <div class="signature">
+          <h3> Yours faithfully</h3>
+          {{deskUserSignature}}
+          <hr />
+          <div class="desk-user">
+            <p>{{deskUserFullName}}</p>
+            <p>{{deskUserDesignation}}</p>
+          </div>
+          <p>BEZA Executive Board</p>
+          <div>
+            Bangladesh Economic Zones Authority
+          </div>
         </div>
       </div>
     </footer>

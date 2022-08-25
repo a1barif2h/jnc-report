@@ -134,50 +134,42 @@
 
       footer {
         display: -webkit-box;
-        display: -moz-box;
         display: -ms-flexbox;
-        display: -webkit-flex;
         display: flex;
-        align-items: -webkit-box;
-        align-items: -moz-box;
-        align-items: -ms-flexbox;
-        align-items: -webkit-flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
-        justify-content: -webkit-box;
-        justify-content: -moz-box;
-        justify-content: -ms-flexbox;
-        justify-content: -webkit-flex;
-        justify-content: space-evenly;
         width: 100%;
         margin-top: 0.55rem;
+        overflow: auto;
       }
 
-      footer .qr-code img {
+      footer .footer-items1 {
         width: 30%;
-        margin-left: 3rem;
+        text-align: center;
+      }
+      footer .footer-items1 img {
+        width: 50%;
       }
 
-      footer .bar-code {
-        width: 30%;
-      }
-
-      footer .signature img {
-        width: 32%;
-        margin-left: 6rem;
-      }
-
-      footer .qr-code ol {
-        list-style-type: lower-alpha;
-        margin-left: 1.6rem;
+      footer .footer-items1 .copy-for {
+        text-align: left;
         line-height: 1.8;
       }
-
-      footer .signature .desk-user {
-        font-weight: bold;
-        border-top: 1px solid black;
-        width: 41%;
-        margin: 0 auto;
+      footer .footer-items2 {
+        width: 20%;
         text-align: center;
+      }
+      footer .footer-items3 {
+        width: 40%;
+        text-align: center;
+      }
+
+      footer .footer-items3 img {
+        width: 60%;
       }
     </style>
   </head>
@@ -238,29 +230,26 @@
           </ol>
         </div>
         <footer>
-          <div class="qr-code">
-            <p style="text-align: center; margin: 0.3rem 0rem">
-              Copy for Information to
-            </p>
-
-            <ol style="width: 150%">
-              <li>{{statusproposed2}},</li>
-              <li>Commissioner, Customer Bond...</li>
-              <li>..............................</li>
-              <li>..............................</li>
-            </ol>
+          <div class="footer-items1">
+            <img src="{{qrcode}}" alt="" />
+            <p>Copy for Information to</p>
+            <div class="copy-for">
+              <p>a. {{statusproposed2}},</p>
+              <p>b. Commissioner, Customer Bond...</p>
+              <p>c. ..............................</p>
+              <p>d. ..............................</p>
+            </div>
           </div>
-          <div class="bar-code"></div>
-          <div class="signature">
-            <h3 style="text-align: center">Yours faithfully</h3>
+          <div class="footer-items2">
+            <p>{{barcode}}</p>
+          </div>
+          <div class="footer-items3">
+            <h3>Yours faithfully</h3>
             {{deskUserSignature}}
-            <div class="desk-user">Desk User (RD3)</div>
-            <div style="font-weight: bolder; text-align: center">
-              Technical Support Executive
-            </div>
-            <div style="margin-left: 3.5rem">
-              Bangladesh Economic Zones Authority (BEZA)
-            </div>
+            <p style="font-weight: bold">{{deskUserFullName}}</p>
+            <p style="font-weight: bold">{{deskUserDesignation}}</p>
+            <p>BEZA Executive Board</p>
+            <p>Bangladesh Economic Zones Authority (BEZA)</p>
           </div>
         </footer>
       </main>

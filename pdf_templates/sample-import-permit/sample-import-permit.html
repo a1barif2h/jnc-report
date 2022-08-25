@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SAMPLE EXPORT PERMIT</title>
+    <title>SAMPLE IMPORT PERMIT</title>
     <style>
       * {
         margin: 0;
@@ -11,11 +11,16 @@
         box-sizing: border-box;
       }
 
+      .mainContainer .bar-code {
+        width: 30%;
+      }
+
       .mainContainer {
         margin: 0rem auto;
-        padding: 30px;
+        padding: 10px 15px 0 15px;
         position: relative;
         z-index: 5;
+        min-height: 750px;
       }
 
       .mainContainer::before {
@@ -33,28 +38,25 @@
         z-index: 10;
       }
 
-      header {
+      .header {
         display: -webkit-box;
-        display: -moz-box;
         display: -ms-flexbox;
-        display: -webkit-flex;
         display: flex;
-        align-items: -webkit-box;
-        align-items: -moz-box;
-        align-items: -ms-flexbox;
-        align-items: -webkit-flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
-        justify-content: -webkit-box;
-        justify-content: -moz-box;
-        justify-content: -ms-flexbox;
-        justify-content: -webkit-flex;
         justify-content: space-between;
-        margin-left: 1rem;
-        border: 5px solid #278000;
+        width: 100%;
       }
 
-      header img {
-        width: 44%;
+      .header-logo img {
+        width: 160px;
+      }
+
+      .header-qr-code img {
+        width: 70px;
       }
 
       .import-permit {
@@ -90,6 +92,10 @@
         justify-content: space-between;
       }
 
+      .general{
+        margin-top: 0.3rem;
+      }
+
       .general-information {
         height: 1.5rem;
         display: -webkit-box;
@@ -116,6 +122,8 @@
         justify-content: space-between;
         border: 1px solid #278000;
         min-height: 4.2rem;
+        max-height: 150px;
+        overflow: hidden;
       }
 
       .border-box small {
@@ -126,7 +134,7 @@
       .left {
         width: 48%;
         padding: 0.5rem 0.8rem;
-        line-height: 2.6;
+        line-height: 2.2;
       }
 
       .left p {
@@ -165,7 +173,7 @@
       .right {
         width: 48%;
         padding: 0.5rem 0.8rem;
-        line-height: 2.5;
+        line-height: 2.2;
       }
 
       .right div {
@@ -184,7 +192,7 @@
       }
 
       .export-material-group {
-        height: 2rem;
+        height: 1.5rem;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -215,46 +223,49 @@
         background-color: #267e01;
         font-size: 8px;
         letter-spacing: 0.5px;
-        margin-top: 0.5rem;
+        margin-top: 0.2rem;
         color: white;
       }
 
-      footer div {
-        margin: 0.5rem auto;
-        width: 100%;
+      .product-details {
+        max-height: 90px;
+        overflow: hidden;
+        margin-top: 0.1rem
+      }
+
+      .product-details .left .right {
+        line-height: 1.8;
       }
 
       .first-caution {
-        background: #b0e8ec;
-        padding: 0.4rem 1.2rem;
+        background: #dfbdcd;
+        padding: 0.1rem 1.2rem;
+        width: 90%;
+        margin: 0 auto;
         line-height: 1.35;
         font-weight: 500;
         text-align: center;
-        color: #27829e;
-        font-size: 8.3px;
+        font-size: 8px;
+        color: #d02f67;
       }
 
       .second-caution {
-        background: #dfbdcd;
-        padding: 0.4rem 0.5rem;
-        line-height: 1.35;
-        font-weight: 500;
-        text-align: center;
-        color: #d02f67;
-        font-weight: 600;
-        font-size: 9px;
+        background: #dad7b0;
+        padding: 0.3rem 1.4rem;
+        width: 90%;
+        margin: 0.4rem auto;
+        line-height: 1.7;
+        font-weight: 300;
+        font-size: 8px;
       }
 
-      .third-caution {
-        background: #dad7b0;
-        padding: 0.5rem 1.2rem;
-        line-height: 1.4;
-        font-weight: 500;
+      .second-caution .headlines {
         text-align: center;
-        color: #d02f67;
-        font-weight: 600;
-        min-height: 2rem;
-        font-size: 9px;
+      }
+
+      .second-caution ul li {
+        margin-top: 0.1rem;
+        font-size: 7.4px;
       }
 
       .pageBreak {
@@ -268,14 +279,6 @@
       {{headerHere}}
       <main>
         <div class="">
-          <div class="import-permit">
-            <h3>SAMPLE IMPORT PERMIT</h3>
-          </div>
-          <div class="import-date">
-            <p>File No: {{trackingId}}</p>
-            <p>Date: {{certificateGenerateDate}}</p>
-          </div>
-
           <div class="general">
             <div class="general-information">
               <h3>BASIC INFORMATION</h3>
@@ -336,10 +339,6 @@
                   <small>Invoice Date:</small>
                   <p>{{invoiceDate}}</p>
                 </div>
-                <!-- <div>
-                  <small>Invoice/ Vendor Ref. Date :</small>
-                  <p>{{invoiceVendorRefDate}}</p>
-                </div> -->
                 <div>
                   <small>Import From /Port of Landing</small>
                   <p  style="width: 55%;">{{importFromPortOfLoading}}</p>
