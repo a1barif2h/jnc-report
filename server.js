@@ -64,17 +64,9 @@ app.get("/info", function (req, res) {
 
 app.post(
   "/certificate-service/api/v1/private/generate/pdf",
-  authenticate,
+  // authenticate,
   async (req, res) => {
     await generateCertificate(req,res);
-
-    //This is for test purpose
-  //   res.setHeader("Content-Type", "application/json");
-  // res.send(
-  //   JSON.stringify({
-  //     status: 200
-  //   })
-  // );
   }
 );
 

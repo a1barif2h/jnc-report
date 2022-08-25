@@ -2,7 +2,17 @@ const { response } = require("express");
 const fs = require("fs");
 
 const pdf = require("./PdfGenerator");
-const options = { format: "A4", orientation: "portrait" };
+const options = { 
+  format: "A4", 
+  orientation: "portrait",
+  footer: {
+    height: '5mm',
+    contents: {
+      default:
+        '<div id="pageFooter" style="text-align: center; font-size: 8px;">{{page}}/{{pages}}</div>',
+    },
+  }
+};
 
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
 class LocalPurchasePermit {
@@ -21,12 +31,12 @@ class LocalPurchasePermit {
       "./pdf_templates/local-purchase-permit/materialsDetails.html",
       "utf8"
     );
-    headerTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+    headerTemplate = materialsDescriptionParser.addJsonValuesIntoHtml(
       body.formValue,
       headerTemplate
     );
     let htmlImportTemplate = htmlTemplate;
-    htmlImportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+    htmlImportTemplate = materialsDescriptionParser.addJsonValuesIntoHtml(
       body.formValue,
       htmlImportTemplate
     );

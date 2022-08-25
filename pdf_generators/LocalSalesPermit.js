@@ -2,7 +2,17 @@ const { response } = require("express");
 const fs = require("fs");
 
 const pdf = require("./PdfGenerator");
-const options = { format: "A4", orientation: "portrait" };
+const options = { 
+  format: "A4", 
+  orientation: "portrait",
+  footer: {
+    height: '5mm',
+    contents: {
+      default:
+        '<div id="pageFooter" style="text-align: center; font-size: 8px;">{{page}}/{{pages}}</div>',
+    },
+  }
+};
 
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
 class LocalSalesPermit {
@@ -21,12 +31,16 @@ class LocalSalesPermit {
       "./pdf_templates/local-sales-permit/materialsDetails.html",
       "utf8"
     );
-    headerTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+    let footerTemplate = fs.readFileSync(
+      "./pdf_templates/local-sales-permit/footer.html",
+      "utf8"
+    );
+    headerTemplate = materialsDescriptionParser.addJsonValuesIntoHtml(
       body.formValue,
       headerTemplate
     );
     let htmlImportTemplate = htmlTemplate;
-    htmlImportTemplate = materialsDescriptionParser.parseJasonIntoHtml(
+    htmlImportTemplate = materialsDescriptionParser.addJsonValuesIntoHtml(
       body.formValue,
       htmlImportTemplate
     );
@@ -36,24 +50,25 @@ class LocalSalesPermit {
     );
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
 
-    htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
+    htmlImportTemplate = materialsDescriptionParser.addFirstTwoMaterialDescriptions(
       body.formValue.PurchaseDetailsGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
-      headerTemplate
-    );
+      "",
+      footerTemplate
+    )
 
-    // console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
-    htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
+
+    htmlImportTemplate = materialsDescriptionParser.addRemainingMaterialsDescription(
       body.formValue.PurchaseDetailsGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
-      headerTemplate
-    );
-    // if (body.formValue.dataGrid.length!=1){
+      "",
+      headerTemplate,
+      footerTemplate
+    )
 
-    // }
     const response = await pdf.generatePdfFromHtmlMultipleMaterialDescription(
       htmlImportTemplate,
       options

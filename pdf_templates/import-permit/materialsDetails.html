@@ -1,30 +1,32 @@
 {{headerHere}}
 <div class="export-material">
-  <!-- <div class="export-material-group">
-    <h3>Import Material & L/C Information Group</h3>
-  </div> -->
   {{materialLabel}}
-  <div class="export-material-details" style="margin-top: 0.8rem">
+  <div class="export-material-details" style="margin-top: 0.1rem">
     <h3>Import Material Details</h3>
   </div>
-  <div class="border-box">
+  <div class="border-box product-details">
     <div class="left">
       <div>
         <small>Type of Material: </small>
         <p>{{typeOfMaterial}}</p>
       </div>
-      <div>
+      <!-- <div>r
         <small>Material Description: </small>
         <p>{{materialDescription}}</p>
-      </div>
+      </div> -->
       <div>
         <small>Unit of Quantity: </small>
         <p>{{unitQuantity}}</p>
       </div>
 
-      <div style="padding-top: 1rem">
+      <!-- <div style="padding-top: 1rem">r -->
+      <div>
         <small>{{hiddenCompoLabelOne}}: </small>
         <p>{{hiddenCompoValueOne}}</p>
+      </div>
+      <div>
+        <small>Material Description: </small>
+        <p>{{materialDescription}}</p>
       </div>
     </div>
     <div class="right">
@@ -50,4 +52,5 @@
       </div>
     </div>
   </div>
+  {{footerHere}}
 </div>
