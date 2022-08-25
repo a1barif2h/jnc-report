@@ -8,6 +8,7 @@ RUN rm -f /etc/localtime \
 
 RUN mkdir -p /usr/share/fonts/truetype/SolaimanLipi_bengali
 COPY /fonts/SolaimanLipi_22-02-2012.ttf  /usr/share/fonts/truetype/SolaimanLipi_bengali
+COPY ./dejavu  /usr/share/fonts/
 # Rebuild the font cache.
 #RUN fc-cache -fv
 # Create app directory
