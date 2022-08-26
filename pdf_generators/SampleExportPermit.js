@@ -77,7 +77,6 @@ class SampleExportPermit {
       materialsDetailsLabel,
       footerTemplate
     );
-    // console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
     htmlImportTemplate = materialsDescriptionParser.addRemainingMaterialsDescription(
       body.formValue.productDetails,

@@ -21,8 +21,9 @@ const background_cancelled = fs.readFileSync(
   "utf8"
 );
 const replaceMaterialsInProjectClearance = require("../util/replaceMaterialsInProjectClearance");
-const { logger } = require("../util/helper");
+// const { logger } = require("../util/helper");
 const currencyConverter = require("../util/currencyConverter");
+const logger = require("../util/logger");
 
 class ProjectClearance {
   constructor() {}
@@ -78,7 +79,7 @@ class ProjectClearance {
         materialsDesTemplate || "-"
       );
     } catch (exceptionVar) {
-      console.log(exceptionVar);
+      logger.error(exceptionVar);
     }
     const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
     return response;

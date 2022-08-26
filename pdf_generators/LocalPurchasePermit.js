@@ -53,7 +53,6 @@ class LocalPurchasePermit {
       headerTemplate
     );
 
-    // console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
     htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
       body.formValue.PurchaseDetailsGroup,
