@@ -6,7 +6,6 @@ const encrypt =  (data) => {
   const hash = crypto.createHash("sha256");
   hash.update(key, "utf8");
   const sha256key = hash.digest();
-    // console.log("sha256key   "+sha256key);
   const keyBuffer = new Buffer.from(sha256key);
 
   const cipherBuffer = new Buffer.from(data, "hex");

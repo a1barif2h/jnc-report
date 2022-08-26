@@ -17,7 +17,6 @@ const itemsCountPerPage = 4;
 
 const addJsonValuesIntoHtml = function (json, template) {
   for (var key in json) {
-    // console.log(`json[${key}] = ${json[key]}`)
     template = template.replaceAll("{{" + key + "}}", json[key] || "-");
   }
   return template;

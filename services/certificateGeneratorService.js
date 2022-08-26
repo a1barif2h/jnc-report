@@ -14,6 +14,7 @@ const background_image = fs.readFileSync('./pdf_templates/background_image.html'
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
 const moment = require('moment')
 const { AllSopsCodes }=require("../shared/constants/AllSopsCodes");
+const logger = require("../util/logger");
 // const { logger } = require("../util/helper");
 
 const generateQR = async text => {
@@ -52,9 +53,9 @@ const generateCertificate = async (req) => {
                             const url =
                               `${config.BEZA_FRONT_END_BASE_URL}${colonOrNot}${config.BEZA_FRONT_END_PORT}/validate-certificate?applicationId=` +
                               appId;
-                            await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> console.log(err));
+                            await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> logger.error(err));
 
-                            await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> console.log(err));
+                            await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> logger.error(err));
 
                             if (res.additionalInfo != null && res.sopCode == AllSopsCodes.OCCUPANCY.value) {
                                 let inspectionDate = res?.additionalInfo?.inspectionDate;
@@ -97,16 +98,14 @@ const generateCertificate = async (req) => {
                             const commonFieldValue=await bezaServiceGateway.getCommonFileds(req.body.investorId);
                             let commonFieldValueKeys = Object.keys(commonFieldValue);
                             commonFieldValueKeys.forEach(key=>{
-                                // console.log("key:     "+key)
                                 if(key=="dataGrid1"){
-                                    // console.log("\n\n\n"+commonFieldValue[key].length+"\n\n\n")
                                 }
                                 if(commonFieldValue[key]!=null && !res.formValue.hasOwnProperty(key)){
                                     res.formValue[key] = commonFieldValue[key]
                                 }
                             })
                             const deskUserSignature = await bezaServiceGateway.getdeskUserSignature(req.body.processInstanceId,"RD_3");
-                            // console.log("\n\n\n\n\n\ndeskUserSignature Base64:   "+deskUserSignature.toString());
+                            logger.info("rd3 desk user's info: %o", {...deskUserSignature});
                             res.formValue.deskUserFullName =  deskUserSignature?.name || '-';
                             res.formValue.deskUserDesignation =  deskUserSignature?.designation || '-';
                             if(deskUserSignature && deskUserSignature.signature)

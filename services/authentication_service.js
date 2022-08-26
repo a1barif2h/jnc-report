@@ -6,7 +6,6 @@ const logger = require('../util/logger');
 async function authenticate(req, res, next) {
     const accessToken = req.headers.authorization;
     if(accessToken) {
-        // console.log("Have access token");
         logger.info("Have access token")
 
         const keyckloakUserInfoUrl = config.KEYCLOAK_BASE_URL + ":" + config.KEYCLOAK_PORT + config.KEYCLOAK_USER_INFO_PATH;
@@ -23,7 +22,6 @@ async function authenticate(req, res, next) {
 
         const response = await axios(options)
                             .then(res => {
-                                // console.log("Got response from keycloak with status: " + res);
                                 logger.info("Got response from keycloak with status: %s data: %s:", res, res.data)
                                 return res;
                             })

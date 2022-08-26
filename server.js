@@ -48,7 +48,6 @@ app.get("/server-date", (req, res) => {
 
 app.get("/info", function (req, res) {
   const gitInfo = getRepoInfo();
-  // console.log("checking health...");
   res.setHeader("Content-Type", "application/json");
   res.send(
     JSON.stringify({

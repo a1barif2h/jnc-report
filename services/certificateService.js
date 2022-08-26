@@ -19,11 +19,8 @@ class CertificateService {
       .get(formValueUrl)
       .then((response) => response.data.formValue)
       .catch((error) => {
-        // console.log(error);
         logger.error(error);
       });
-
-      // console.log(data);
       return data;
   }
 

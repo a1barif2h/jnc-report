@@ -2,15 +2,6 @@ require('dotenv').config();
 const convict = require('convict');
 const client = require('cloud-config-client');
 const logger = require('../util/logger');
-// import dotenv from 'dotenv';
-// import convict from 'convict';
-// import client from 'cloud-config-client';
-
-// cfgPromise.then(cf => {
-//   console.log("In first then");
-//   // console.log(cf);
-// });
-// dotenv.config();
 
 const configProperties = {
     BEZA_SERVICE_BASE_URL: "",
@@ -40,9 +31,7 @@ const config = convict({
     }
 });
 
-// console.log(cfg);
 const env = config.get('env');
-// console.log("env: " + env);
 config.loadFile(`./config/${env}.json`);
 
 const activeProfile = process.env.NODE_ENV;
