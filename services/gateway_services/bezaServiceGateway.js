@@ -118,12 +118,24 @@ const getdeskUserSignature= async function (processInstanceId, deskCode){
       config.BEZA_SERVICE_PORT))+
     deskUserSignatureUrl
 
-    // console.log("deskUserSignatureUrl:   "+bezaServiceDeskUserSignature)
+    console.log("Getting signature name and designation api url: " + deskUserSignatureUrl
+              + " for process: " + processInstanceId
+              + " for desk: " + deskCode);
     
    let res = await axios
    .get(bezaServiceDeskUserSignature)
-   .then((response) => response.data)
+   .then((response) => {
+     console.log(response.data);
+     console.log("Got signature name and designation api url: " + deskUserSignatureUrl
+              + " response: " + rJSON.stringify(response.data)
+              + " for process: " + processInstanceId
+              + " for desk: " + deskCode);
+     return response.data;
+   })
    .catch((error) => {
+     console.error("Coundn't get signature name designation"
+              + " for process: " + processInstanceId
+              + " for desk: " + deskCode);
      console.log(error);
    });
   //  console.log("res:  "+JSON.stringify(res))
