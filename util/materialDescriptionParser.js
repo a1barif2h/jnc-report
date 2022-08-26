@@ -397,7 +397,7 @@ const addFirstTwoMaterialDescriptions = function (
     );
 
 
-    if (i == 1) {
+    if (i === 1) {
       materialDescriptionTemplates += addLogoQrBarCodeAndMaterialLabelHeader(
         detailsTemplate,
         "",
@@ -405,13 +405,25 @@ const addFirstTwoMaterialDescriptions = function (
         footerTemplate
       )
     } else {
-      materialDescriptionTemplates += addLogoQrBarCodeAndMaterialLabelHeader(
-        detailsTemplate,
-        "",
-        materialsDetailsLabel,
-        ""
-      )
+      if (i === dataGrid.length - 1) {
+        materialDescriptionTemplates += addLogoQrBarCodeAndMaterialLabelHeader(
+          detailsTemplate,
+          "",
+          materialsDetailsLabel,
+          footerTemplate
+        )
+      } else {
+        materialDescriptionTemplates += addLogoQrBarCodeAndMaterialLabelHeader(
+          detailsTemplate,
+          "",
+          materialsDetailsLabel,
+          ""
+        )
+      }
+      
     }
+
+    
   }
   htmlExportTemplate = htmlExportTemplate.replace(
     `{{firstMaterialsDetails}}`,
