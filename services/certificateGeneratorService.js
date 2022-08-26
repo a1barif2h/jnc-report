@@ -106,6 +106,7 @@ const generateCertificate = async (req) => {
                                 }
                             })
                             const deskUserSignature = await bezaServiceGateway.getdeskUserSignature(req.body.processInstanceId,"RD_3");
+                            console.log("rd3 desk user's info: " + deskUserSignature);
                             // console.log("\n\n\n\n\n\ndeskUserSignature Base64:   "+deskUserSignature.toString());
                             res.formValue.deskUserFullName =  deskUserSignature?.name || '-';
                             res.formValue.deskUserDesignation =  deskUserSignature?.designation || '-';

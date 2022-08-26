@@ -2,7 +2,7 @@
   "backendApi": {
     "bezaServiceBaseUrl": "http://beza-service",
     "bezaServicePort": "8585",
-    "bezaServiceFrontEndBaseUrl": "http://oss.beza.gov.bd",
+    "bezaServiceFrontEndBaseUrl": "https://oss.beza.gov.bd",
     "bezaServiceFrontEndPort": "",
     "mayanCertificateUploadPath": "/beza-service/api/v1/internal/mayan/upload-document/",
 
@@ -11,7 +11,7 @@
     "bezaServiceCommmonFields": "/beza-service/api/v1/internal/sop-common-fields/",
     "paymentVoucherInfoPath": "/beza-service/api/v1/internal/user-sops/payment-voucher/",
     "certificateInfoPath": "/beza-service/api/v1/internal/user-certificate/",
-    "bezaServiceDeskUserSignature": "/beza-service/api/v1bd/internal/users/signature",
+    "bezaServiceDeskUserSignature": "/beza-service/api/v1/internal/users/signature",
     "convertCurrency": "/beza-service/api/v1/internal/currency/exchange/convert",
 
     "keycloakBaseUrl": "http://192.168.90.61",
