@@ -15,6 +15,9 @@ function buildDevLogger() {
       logFormat
     ),
     transports: [new transports.Console()],
+    rejectionHandlers: [new transports.Console()],
+    exceptionHandlers: [new transports.Console()],
+    exitOnError: false,
   });
 }
 
