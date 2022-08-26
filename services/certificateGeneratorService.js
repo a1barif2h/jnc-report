@@ -14,7 +14,7 @@ const background_image = fs.readFileSync('./pdf_templates/background_image.html'
 const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
 const moment = require('moment')
 const { AllSopsCodes }=require("../shared/constants/AllSopsCodes");
-const { logger } = require("../util/helper");
+// const { logger } = require("../util/helper");
 
 const generateQR = async text => {
     try {
@@ -134,7 +134,7 @@ const generateCertificate = async (req) => {
                             let isProjectRegistration = req.body.isProjectRegistration || false;
                             // response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke, isProjectRegistration, req.body.isRegenerated);
                             response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body, isProjectRegistration);
-                            logger("response", response);
+                            // logger("response", response);
                             return response;
                         }
                     );

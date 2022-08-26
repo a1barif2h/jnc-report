@@ -1,6 +1,6 @@
 const { response } = require("express");
 const fs = require("fs");
-const { logger } = require("../util/helper");
+// const { logger } = require("../util/helper");
 const { keyRemover, replacer } = require("../util/templateEngine");
 
 const pdf = require('./PdfGenerator');

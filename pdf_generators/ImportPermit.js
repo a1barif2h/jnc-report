@@ -15,7 +15,7 @@ const options = {
 };
 
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
-const { logger } = require("../util/helper");
+// const { logger } = require("../util/helper");
 const { AllSopsCodes } = require("../shared/constants/AllSopsCodes");
 
 class ImportPermit {

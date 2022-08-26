@@ -1,5 +1,4 @@
 "use strict";
-
 const express = require("express");
 const cors = require("cors");
 var getRepoInfo = require("git-repo-info");
@@ -15,6 +14,7 @@ const { reportType } = require("./constants/reportTypes");
 const { getCurrentFormattedDateTime, getFormatDate } = require("./util/dateTimeFormattor");
 const PaymentVoucherService = require("./services/paymentVoucherService");
 const { authenticate } = require("./services/authentication_service");
+const logger = require("./util/logger");
 const corsOptions = {
   exposedHeaders: ["pdfFileName", "Content-disposition"],
 };
@@ -64,8 +64,9 @@ app.get("/info", function (req, res) {
 
 app.post(
   "/certificate-service/api/v1/private/generate/pdf",
-  // authenticate,
+  authenticate,
   async (req, res) => {
+    logger.info("request body : %o", req.body)
     await generateCertificate(req,res);
   }
 );
@@ -117,5 +118,5 @@ app.post(
 );
 
 
-console.log(`Download service si running on http://${HOST}:${PORT}`);
+logger.info(`Download service si running on http://${HOST}:${PORT}`);
 app.listen(PORT, HOST);

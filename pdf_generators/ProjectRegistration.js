@@ -14,7 +14,8 @@ const options = {
     }
 };
 const replaceMaterialsInProjectClearance = require('../util/replaceMaterialsInProjectClearance');
-const { logger } = require('../util/helper');
+const logger = require('../util/logger');
+// const { logger } = require('../util/helper');
 
 
 
@@ -22,7 +23,7 @@ class ProjectRegistration {
     constructor() {
     }
     async generate(body) {
-        logger("project registration", body)
+        // logger("project registration", body)
         body.formValue.industryCategory = body.formValue?.industryCategory.name || "";
         let htmlTemplate = fs.readFileSync('./pdf_templates/project-registration/project-registration.html', 'utf8');
         let materialsDesTemplate = fs.readFileSync(
@@ -43,7 +44,7 @@ class ProjectRegistration {
             htmlTemplate = htmlTemplate.replace(`{{materialsDescription}}`, (materialsDesTemplate || "-"))
 
         } catch (exceptionVar) {
-            console.log(exceptionVar)
+            logger.error(exceptionVar)
         }
         const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
         return response;

@@ -3,6 +3,7 @@ const ProjectClearance = require("../pdf_generators/ProjectClearance");
 const certificateGeneratorService = require('./certificateGeneratorService');
 const {config} = require("../config/config.js");
 const axios = require("axios");
+const logger = require("../util/logger");
 
 class CertificateService {
   constructor() {}
@@ -18,7 +19,8 @@ class CertificateService {
       .get(formValueUrl)
       .then((response) => response.data.formValue)
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        logger.error(error);
       });
 
       // console.log(data);
@@ -26,7 +28,7 @@ class CertificateService {
   }
 
   async generatePdf(req) {
-    const response = await certificateGeneratorService.generateCertificate(req).then(res=>{return res}).catch(err=>{console.log(err)});
+    const response = await certificateGeneratorService.generateCertificate(req).then(res=>{return res}).catch(err=>{logger.error(err)});
     return response;
   }
 
