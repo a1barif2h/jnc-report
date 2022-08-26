@@ -125,9 +125,8 @@ const getdeskUserSignature= async function (processInstanceId, deskCode){
    let res = await axios
    .get(bezaServiceDeskUserSignature)
    .then((response) => {
-     console.log(response.data);
      console.log("Got signature name and designation api url: " + deskUserSignatureUrl
-              + " response: " + rJSON.stringify(response.data)
+              + " response: " + response.data
               + " for process: " + processInstanceId
               + " for desk: " + deskCode);
      return response.data;
