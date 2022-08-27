@@ -7,7 +7,8 @@ const xmlSerializer = new XMLSerializer();
 const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 const JsBarcode = require('jsbarcode');
 const amountInWords = require("../../util/amountToWordUtil");
-const { logger } = require("../../util/helper");
+const logger = require("../../util/logger/index.js");
+// const { logger } = require("../../util/helper");
 const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
 
@@ -25,13 +26,11 @@ const getFormValueByApplicationID = async (applicationId) => {
     getBaseUrl() +
     config.BEZA_SERVICE_FORM_BY_APPLICATION_ID_PATH +
     applicationId;
-  
-  // console.log("URL to get from value from user sop: " + formValueUrl);
   try {
     const {data} = await axios.get(formValueUrl)
     return data;
   } catch (error) {
-    console.log(error)
+    logger.error(error)
   }
 };
 
@@ -54,7 +53,7 @@ const upload = async (buffer, data, isProjectRegistration) => {
     })
     .then((response) => response.data)
     .catch((error) => {
-      console.log(error);
+      logger.error(error);
     });
   return res;
 
@@ -76,16 +75,13 @@ const saveCertificateInfo = async (certificate, sop, req, isProjectRegistration)
     config.BEZA_SERVICE_CERTIFICATE_INFO_PATH
     + additionalUrl;
 
-
-    
-
-  console.log(saveCertificateUrl);
+  logger.info(`save certificate url: ${saveCertificateUrl}`)
 
    let res = await axios
     .post(saveCertificateUrl, model)
     .then((response) => response.data)
     .catch((error) => {
-      console.log(error);
+      logger.error(error);
     });
   return res;
 }
@@ -96,16 +92,14 @@ const getCommonFileds= async function (investorId){
     getBaseUrl()+
     config.BEZA_SERVICE_COMMON_FIELDS_PATH+
     investorId
-
-    console.log("URL to get from value from user sop: " + commonFiledsUrl);
+    logger.info(`URL to get from value from user sop: ${commonFiledsUrl}`)
     
    let res = await axios
    .get(commonFiledsUrl)
    .then((response) => response.data)
    .catch((error) => {
-     console.log(error);
+    logger.error(error);
    });
-  //  console.log("res[0].formValue:  "+JSON.stringify(res.userSopCommonFieldDomainModels[0].formValue))
    return res.userSopCommonFieldDomainModels[0].formValue;
 }
 
@@ -118,15 +112,20 @@ const getdeskUserSignature= async function (processInstanceId, deskCode){
       config.BEZA_SERVICE_PORT))+
     deskUserSignatureUrl
 
-    // console.log("deskUserSignatureUrl:   "+bezaServiceDeskUserSignature)
+    logger.info(`Getting signature name and designation api url: ${deskUserSignatureUrl} for process: ${processInstanceId} for desk: ${deskCode}`)
     
    let res = await axios
    .get(bezaServiceDeskUserSignature)
-   .then((response) => response.data)
+   .then((response) => {
+      logger.info(`Got signature name and designation api url: ${deskUserSignatureUrl}`)
+      logger.info("response:%o", {...response.data}) 
+      logger.info(`for process: ${processInstanceId}`)
+      logger.info(`for desk: ${deskCode}`)
+     return response.data;
+   })
    .catch((error) => {
-     console.log(error);
+    logger.error(error);
    });
-  //  console.log("res:  "+JSON.stringify(res))
    return res;
   }
   
@@ -149,10 +148,10 @@ const getPaymentVoucherInfo = async ({applicationId}) => {
   try {
     const {data} = await axios.get(url);
     data.amountInWords = amountInWords(data?.totalAmount)
-    await generateBarcode(data.trackingId || "").then (barRes => data.barcode = barRes).catch(err=> console.log(err));    
+    await generateBarcode(data.trackingId || "").then (barRes => data.barcode = barRes).catch(err=> logger.error(err));    
     return data;
   } catch (error) {
-    console.log(error)
+    logger.error(error);
   }
 }
 
@@ -163,7 +162,7 @@ const getCertificateInfo = async (applicationId) => {
     const {data} = await axios.get(url);
     return data
   } catch (error) {
-    console.log(error)
+    logger.error(error);
   }
 }
 
@@ -176,7 +175,7 @@ const getConvertedCurrencyValue = async (quantity, source, target) => {
     const {data: {amount}} = await axios.get(url);
     return amount;
   } catch (error) {
-    console.log(error);
+    logger.error(error);
   }
 }
 

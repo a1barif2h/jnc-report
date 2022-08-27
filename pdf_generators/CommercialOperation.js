@@ -25,7 +25,6 @@ class CommercialOperation {
         const htmlTemplate = fs.readFileSync('./pdf_templates/commercial-operation/commercial-operation.html', 'utf8');
         const m = new Date();
         const myDate = m.getUTCDate() + "/" + (m.getUTCMonth()+1) + "/" + m.getUTCFullYear();
-        // console.log(myDate, "===check myDate===")
         body.formValue.commercialIssueDate = myDate;
         body.formValue.proposedDateOfCo = dateTimeFormattor.getApplicationDate(body.formValue.proposedDateOfCo);
         const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
