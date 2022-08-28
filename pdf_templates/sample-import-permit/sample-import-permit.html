@@ -122,8 +122,6 @@
         justify-content: space-between;
         border: 1px solid #278000;
         min-height: 4.2rem;
-        max-height: 150px;
-        overflow: hidden;
       }
 
       .border-box small {
@@ -132,7 +130,7 @@
       }
 
       .left {
-        width: 48%;
+        width: 52%;
         padding: 0.5rem 0.8rem;
         line-height: 2.2;
       }
@@ -230,11 +228,15 @@
       .product-details {
         max-height: 90px;
         overflow: hidden;
-        margin-top: 0.1rem
       }
 
       .product-details .left .right {
         line-height: 1.8;
+      }
+
+      .product-description {
+        max-height: 60px;
+        overflow: hidden;
       }
 
       .first-caution {
@@ -284,7 +286,7 @@
               <h3>BASIC INFORMATION</h3>
             </div>
 
-            <div class="border-box" style="padding-bottom: 1rem">
+            <div class="border-box">
               <div class="left">
                 <div>
                   <small>Name of the Company</small>
@@ -317,7 +319,7 @@
                   <p>{{expiredDate}}</p>
                 </div>
 
-                <div>
+                <div class="product-description">
                   <small>Remarks:</small>
                   <p>{{remarks}}</p>
                 </div>
