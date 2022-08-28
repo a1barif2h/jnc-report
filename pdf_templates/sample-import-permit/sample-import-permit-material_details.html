@@ -6,10 +6,16 @@
   </div>
   <div class="border-box product-details">
     <div class="left">
-      <div>
+      <div class="product-description">
         <small>Description:</small>
         <p>{{productDescription}}</p>
       </div>
+      <div>
+        <small>Sample Value :</small>
+        <p>{{sampleValue}} {{currency}}</p>
+      </div>
+    </div>
+    <div class="right">
       <div>
         <small>HS Code :</small>
         <p>{{hsCode}}</p>
@@ -17,12 +23,6 @@
       <div>
         <small></small>
         <p>{{hsCodeDetails}}</p>
-      </div>
-    </div>
-    <div class="right">
-      <div>
-        <small>Sample Value :</small>
-        <p>{{sampleValue}} {{currency}}</p>
       </div>
       <div>
         <small>Sample Quantity :</small>
@@ -32,6 +32,7 @@
         <small>Unit of Quantity :</small>
         <p>{{unitQuantity}}</p>
       </div>
+
       <div></div>
     </div>
   </div>

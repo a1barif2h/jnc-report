@@ -17,7 +17,6 @@ const itemsCountPerPage = 4;
 
 const addJsonValuesIntoHtml = function (json, template) {
   for (var key in json) {
-    // console.log(`json[${key}] = ${json[key]}`)
     template = template.replaceAll("{{" + key + "}}", json[key] || "-");
   }
   return template;
@@ -397,7 +396,7 @@ const addFirstTwoMaterialDescriptions = function (
     );
 
 
-    if (i == 1) {
+    if (i === 1) {
       materialDescriptionTemplates += addLogoQrBarCodeAndMaterialLabelHeader(
         detailsTemplate,
         "",
@@ -405,13 +404,25 @@ const addFirstTwoMaterialDescriptions = function (
         footerTemplate
       )
     } else {
-      materialDescriptionTemplates += addLogoQrBarCodeAndMaterialLabelHeader(
-        detailsTemplate,
-        "",
-        materialsDetailsLabel,
-        ""
-      )
+      if (i === dataGrid.length - 1) {
+        materialDescriptionTemplates += addLogoQrBarCodeAndMaterialLabelHeader(
+          detailsTemplate,
+          "",
+          materialsDetailsLabel,
+          footerTemplate
+        )
+      } else {
+        materialDescriptionTemplates += addLogoQrBarCodeAndMaterialLabelHeader(
+          detailsTemplate,
+          "",
+          materialsDetailsLabel,
+          ""
+        )
+      }
+      
     }
+
+    
   }
   htmlExportTemplate = htmlExportTemplate.replace(
     `{{firstMaterialsDetails}}`,

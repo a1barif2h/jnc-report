@@ -125,8 +125,6 @@
         justify-content: space-between;
         border: 1px solid #278000;
         min-height: 4.2rem;
-        max-height: 150px;
-        overflow: hidden;
       }
 
       .border-box small {
@@ -135,7 +133,7 @@
       }
 
       .left {
-        width: 48%;
+        width: 52%;
         padding: 0.5rem 0.8rem;
         line-height: 2.2;
       }
@@ -232,12 +230,16 @@
 
       .product-details {
         max-height: 90px;
-        margin-top: 0.1rem;
         overflow: hidden;
       }
 
       .product-details .left .right {
         line-height: 1.8;
+      }
+
+      .product-description {
+        max-height: 60px;
+        overflow: hidden;
       }
 
       .first-caution {
@@ -351,7 +353,7 @@
                   <small>Place of Issue :</small>
                   <p>{{hiddenPlaceOfIssue}}</p>
                 </div>
-                <div>
+                <div  class="product-description">
                   <small>Remarks</small>
                   <p>{{remarks}}</p>
                 </div>

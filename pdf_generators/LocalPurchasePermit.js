@@ -31,6 +31,10 @@ class LocalPurchasePermit {
       "./pdf_templates/local-purchase-permit/materialsDetails.html",
       "utf8"
     );
+    let footerTemplate = fs.readFileSync(
+      "./pdf_templates/local-purchase-permit/footer.html",
+      "utf8"
+    );
     headerTemplate = materialsDescriptionParser.addJsonValuesIntoHtml(
       body.formValue,
       headerTemplate
@@ -46,24 +50,25 @@ class LocalPurchasePermit {
     );
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
 
-    htmlImportTemplate = materialsDescriptionParser.addFirstMaterials(
+    htmlImportTemplate = materialsDescriptionParser.addFirstTwoMaterialDescriptions(
       body.formValue.PurchaseDetailsGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
-      headerTemplate
-    );
+      "",
+      footerTemplate
+    )
 
-    // console.log("==========================================");
     materialsDetailsTemplate = materialsDetailsTemplateInitial;
-    htmlImportTemplate = materialsDescriptionParser.addRemainingMaterials(
+
+    htmlImportTemplate = materialsDescriptionParser.addRemainingMaterialsDescription(
       body.formValue.PurchaseDetailsGroup,
       materialsDetailsTemplate,
       htmlImportTemplate,
-      headerTemplate
-    );
-    // if (body.formValue.dataGrid.length!=1){
+      "",
+      headerTemplate,
+      footerTemplate
+    )
 
-    // }
     const response = await pdf.generatePdfFromHtmlMultipleMaterialDescription(
       htmlImportTemplate,
       options

@@ -1,5 +1,6 @@
 
 import client from 'cloud-config-client';
+import logger from '../util/logger';
 
 
 const activeProfile = process.env.NODE_ENV;
@@ -15,11 +16,10 @@ const options = {
   }
 };
 
-console.log("Loading configuration for profile: " + activeProfile);
+logger.info(`Loading configuration for profile: ${activeProfile}`)
 const cfg = await client.load(options).then((cfg) => {
-//   console.log(cfg.toString(2));
   return cfg;
-}).catch((error) => console.error(error));
+}).catch((error) => logger.error(error));
 
 console.log(cfg.get('spring.keycloak.user.role.add.url'));
 

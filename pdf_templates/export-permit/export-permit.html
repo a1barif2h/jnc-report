@@ -114,8 +114,6 @@
         justify-content: space-between;
         border: 1px solid #278000;
         min-height: 4.2rem;
-        max-height: 230px;
-        overflow: hidden;
       }
 
       .border-box small {
@@ -222,6 +220,11 @@
         letter-spacing: 0.5px;
         margin-top: 0.1rem;
         color: white;
+      }
+
+      .product-description {
+        max-height: 50px;
+        overflow: hidden;
       }
 
       footer div {
@@ -393,7 +396,7 @@
                   <small>Consignee Address: </small>
                   <p style="font-size: 6px">{{consigneeAddress}}</p>
                 </div>
-                <div>
+                <div class="product-description">
                   <small>Remarks: </small>
                   <p>{{remarks}}</p>
                 </div>
