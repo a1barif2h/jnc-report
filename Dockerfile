@@ -35,6 +35,6 @@ RUN wget -qO- "https://github.com/dustinblackman/phantomized/releases/download/2
     
 # If you are building your code for production
 # RUN npm ci --only=production
-
+ENV NODE_OPTIONS=--max_old_space_size=4000
 EXPOSE 5010
 CMD [ "node", "server.js" ]
