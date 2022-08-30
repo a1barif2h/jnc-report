@@ -71,7 +71,7 @@ app.post(
 );
 
 app.post("/beza-certificate/api/v1/private/generate/payment-voucher/pdf", 
-// authenticate,
+authenticate,
 async (req, res) => {
   const paymentVoucherService = new PaymentVoucherService();
   await paymentVoucherService.generatePdf(req.body)
