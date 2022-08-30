@@ -13,6 +13,12 @@ class PaymentVoucher {
 
         body.downloadTime = getFormatDateWithTime(new Date());
 
+        if(!body.applicationFee) {
+            //This application fee comes from payment initiator info which is not present for legacy applications
+            // as a quick fix we are adding the payAmount which includes vat in the application fee.
+            body.applicationFee = body.payAmount;
+        }
+
         if (body.paymentMode === 'A01' && body.paymentStatus.toLowerCase() === 'pending') {
             htmlTemplate = fs.readFileSync('./pdf_templates/payment-voucher/A01-pending.html', 'utf8');
         } else if(body.paymentMode === 'A01' && body.paymentStatus.toLowerCase() === 'paid') {

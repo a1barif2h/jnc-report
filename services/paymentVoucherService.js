@@ -6,8 +6,8 @@ class PaymentVoucherService {
     constructor(){}
 
     async generatePdf(req) {
-        const paymentVoucher = new PaymentVoucher()
-        const paymentInfo = await bezaServiceGateway.getPaymentVoucherInfo(req)
+        const paymentVoucher = new PaymentVoucher();
+        const paymentInfo = await bezaServiceGateway.getPaymentVoucherInfo(req);
         const response = await paymentVoucher.generate(paymentInfo).then(res=>{return res}).catch(err=>{logger.error(err)})
         return response;
       }
