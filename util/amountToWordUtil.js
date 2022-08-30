@@ -2,6 +2,7 @@ const capitalized = (words) => words.charAt(0).toUpperCase() + words.slice(1);
 
 // THIS FUNCTION IS RESPONSE TO CONVERT NUMBER TO AMOUNT OF WORD.
 function inWords (num) {
+  try {
     const digitValueOne = ['','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen '];
     const digitValueTwo = ['', '', 'twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety'];
 
@@ -15,6 +16,11 @@ function inWords (num) {
     str += (n[4] != 0) ? (digitValueOne[Number(n[4])] || digitValueTwo[n[4][0]] + ' ' + digitValueOne[n[4][1]]) + 'hundred ' : '';
     str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (digitValueOne[Number(n[5])] || digitValueTwo[n[5][0]] + ' ' + digitValueOne[n[5][1]]) + '' : '';
     return str;
+  } catch (err) {
+    console.log("cant convert amount to string");
+    console.log(err);
+    return "-";
+  }
 }
 
 // THIS FUNCTION IS RESPONSE TO MAINTAINED FULL AMOUNT LIKE: 152.36 OR 152
