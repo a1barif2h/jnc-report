@@ -36,7 +36,7 @@ class ImportPermit {
     ) {
       const formatDate = getFormatDate(formValue[key])
       // if formateDate is valid date change the value or pass original value
-      formValue[key] =  formatDate !== "Invalid date" ? formValue[key] : formatDate
+      formValue[key] =  formatDate !== "Invalid date" ? formatDate : formValue[key]
     }
 
   }
