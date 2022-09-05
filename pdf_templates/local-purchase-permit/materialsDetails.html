@@ -1,13 +1,27 @@
 {{headerHere}}
 <div class="export-material">
-  <div class="export-material-details" style="margin-top: 0.8rem">
+  <div class="export-material-details">
     <h3>Purchase Materials Details</h3>
   </div>
-  <div class="border-box">
+  <div class="border-box product-details">
     <div class="left">
+      <div>
+        <small>Value: </small>
+        <p>{{fobCurrencyValue}} BDT</p>
+      </div>
       <div>
         <small>Product Description: </small>
         <p>{{productDescription}}</p>
+      </div>
+    </div>
+    <div class="right">
+      <div>
+        <small>Unit of Quantity: </small>
+        <p>{{unitQuantity}}</p>
+      </div>
+      <div>
+        <small>Quantity: </small>
+        <p>{{quantity1}}</p>
       </div>
       <div>
         <small>HS Code: </small>
@@ -16,20 +30,6 @@
       <div>
         <small></small>
         <p>{{hsCodeDetails}}</p>
-      </div>
-    </div>
-    <div class="right">
-      <div>
-        <small>Value: </small>
-        <p>{{fobCurrencyValue}} BDT</p>
-      </div>
-      <div>
-        <small>Unit of Quantity: </small>
-        <p>{{unitQuantity}}</p>
-      </div>
-      <div>
-        <small>Quantity: </small>
-        <p>{{quantity1}}</p>
       </div>
     </div>
   </div>

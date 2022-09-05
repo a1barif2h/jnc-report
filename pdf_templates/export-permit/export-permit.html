@@ -13,7 +13,7 @@
 
       .mainContainer {
         margin: 0rem auto;
-        padding: 5px 15px 1px 15px;
+        padding: 5px 15px 0 15px;
         position: relative;
         z-index: 5;
         min-height: 750px;
@@ -52,7 +52,7 @@
       }
 
       .header-qr-code img {
-        width: 75px;
+        width: 70px;
       }
 
       .import-permit {
@@ -114,8 +114,6 @@
         justify-content: space-between;
         border: 1px solid #278000;
         min-height: 4.2rem;
-        max-height: 230px;
-        overflow: hidden;
       }
 
       .border-box small {
@@ -224,8 +222,12 @@
         color: white;
       }
 
+      .product-description {
+        max-height: 50px;
+        overflow: hidden;
+      }
+
       footer div {
-        /* margin: 0.75rem auto; */
         width: 90%;
       }
 
@@ -269,6 +271,7 @@
       .second-caution ul li {
         margin-top: 0.1rem;
         font-size: 7.4px;
+        font-weight: bold;
       }
 
       .pageBreak {
@@ -285,17 +288,6 @@
       {{headerHere}}
       <main>
         <div class="">
-          <!-- <div class="import-permit">
-            <h3>EXPORT PERMIT</h3>
-          </div>
-          <div class="import-date">
-            <p>File no: {{trackingId}}</p>
-            <div>
-              <p>Date: {{certificateGenerateDate}}</p>
-              <p>{{lastAmendmentDate}}</p>
-            </div>
-          </div> -->
-
           <div class="general">
             <div class="general-information">
               <h3>GENERAL INFORMATION</h3>
@@ -305,11 +297,7 @@
               <div class="left">
                 <div>
                   <small>Name of the Company: </small>
-                  <!-- <p>{{proposedProjectCompanyName}}</p> -->
-                  <p>
-                    Cuban Industrial Property Office Ministr Cuban Industrial
-                    Property Office Ministr
-                  </p>
+                  <p>{{proposedProjectCompanyName}}</p>
                 </div>
                 <div>
                   <small>Export Permit Type: </small>
@@ -393,7 +381,7 @@
                   <small>Consignee Address: </small>
                   <p style="font-size: 6px">{{consigneeAddress}}</p>
                 </div>
-                <div>
+                <div class="product-description">
                   <small>Remarks: </small>
                   <p>{{remarks}}</p>
                 </div>

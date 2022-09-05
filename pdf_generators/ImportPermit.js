@@ -2,9 +2,14 @@ const { response } = require("express");
 const fs = require("fs");
 
 const pdf = require("./PdfGenerator");
-const options = { 
+const options = {
   format: "A4",
   orientation: "portrait",
+  childProcessOptions: {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  },
   footer: {
     height: '5mm',
     contents: {
@@ -15,13 +20,46 @@ const options = {
 };
 
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
-// const { logger } = require("../util/helper");
 const { AllSopsCodes } = require("../shared/constants/AllSopsCodes");
+const logger = require("../util/logger");
+const { getFormatDate } = require("../util/dateTimeFormattor");
 
 class ImportPermit {
-  constructor() {}
+  constructor() { }
+
+  changeDateFormat(formValue, key) {
+    if (
+      formValue &&
+      !formValue[key]
+    ) {
+      formValue[key] = "N/A"
+    } else {
+      const formatDate = getFormatDate(formValue[key])
+      // if formateDate is valid date change the value or pass original value
+      formValue[key] =  formatDate !== "Invalid date" ? formatDate : formValue[key]
+    }
+  }
+
+  handleDateTimeFormat(formValue) {
+    //DATE TIME FORMAT: 13 August 2022
+    this.changeDateFormat(formValue, "invoiceVendorRefDate");
+    this.changeDateFormat(formValue, "undertakingDate");
+    this.changeDateFormat(formValue, "carrierPassportValidity");
+
+    formValue.importMaterialsInformationGroup.map((materialDetails) => {
+      logger.info("materialDetails: %o", materialDetails)
+      this.changeDateFormat(materialDetails, "hiddenCompoValueOne");
+      this.changeDateFormat(materialDetails, "hiddenCompoValueTwo");
+    })
+
+    formValue.ttPOScCmLCInformationContainer.map((lcDetails) => {
+      this.changeDateFormat(lcDetails, "issueDate");
+    })
+  }
 
   async generate(body) {
+
+    this.handleDateTimeFormat(body.formValue);
 
     let baseHtmlTemplate = fs.readFileSync(
       "./pdf_templates/import-permit/import-permit.html",
@@ -36,7 +74,7 @@ class ImportPermit {
       "./pdf_templates/import-permit/materialDetailsLabel.html",
       "utf8"
     );
-  
+
     const materialsDetailsTemplateInitial = fs.readFileSync(
       "./pdf_templates/import-permit/materialsDetails.html",
       "utf8"
@@ -66,11 +104,11 @@ class ImportPermit {
       logoQrBarCodeHeaderTemplate.toString() || "-"
     );
 
-    
+
     let materialsDetailsTemplate = materialsDetailsTemplateInitial;
 
     let lcInfoDetailsTemplate = lcInfoDetailsTemplateinitial;
-   
+
     const materialAndLcDescriptionsSectionGenerationProps = {
       materialInfoItems: body.formValue.importMaterialsInformationGroup,
       materialsDetailsTemplate: materialsDetailsTemplate,
