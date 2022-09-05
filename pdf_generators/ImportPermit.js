@@ -32,8 +32,11 @@ class ImportPermit {
       formValue &&
       formValue[key] &&
       formValue[key] !== "N/A"
+      
     ) {
-      formValue[key] = getFormatDate(formValue[key])
+      const formatDate = getFormatDate(formValue[key])
+      // if formateDate is valid date change the value or pass original value
+      formValue[key] =  formatDate !== "Invalid date" ? formValue[key] : formatDate
     }
 
   }
@@ -45,6 +48,7 @@ class ImportPermit {
     this.changeDateFormat(formValue, "carrierPassportValidity");
 
     formValue.importMaterialsInformationGroup.map((materialDetails) => {
+      logger.info("materialDetails: %o", materialDetails)
       this.changeDateFormat(materialDetails, "hiddenCompoValueOne");
       this.changeDateFormat(materialDetails, "hiddenCompoValueTwo");
     })
