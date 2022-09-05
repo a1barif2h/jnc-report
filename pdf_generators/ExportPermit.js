@@ -6,6 +6,11 @@ const pdf = require("./PdfGenerator");
 const options = { 
   format: "A4",
   orientation: "portrait",
+  childProcessOptions: {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  },
   footer: {
     height: '5mm',
     contents: {

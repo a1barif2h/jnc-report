@@ -30,15 +30,14 @@ class ImportPermit {
   changeDateFormat(formValue, key) {
     if (
       formValue &&
-      formValue[key] &&
-      formValue[key] !== "N/A"
-      
+      !formValue[key]
     ) {
+      formValue[key] = "N/A"
+    } else {
       const formatDate = getFormatDate(formValue[key])
       // if formateDate is valid date change the value or pass original value
       formValue[key] =  formatDate !== "Invalid date" ? formatDate : formValue[key]
     }
-
   }
 
   handleDateTimeFormat(formValue) {
