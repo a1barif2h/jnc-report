@@ -2,7 +2,7 @@
   "backendApi": {
     "bezaServiceBaseUrl": "http://122.152.48.180",
     "bezaServicePort": "8585",
-    "bezaServiceFrontEndBaseUrl": "https://oss.beza.gov.beza",
+    "bezaServiceFrontEndBaseUrl": "https://oss.beza.gov.bd",
     "bezaServiceFrontEndPort": "",
 
     "mayanCertificateUploadPath": "/beza-service/api/v1/internal/mayan/upload-document/",
