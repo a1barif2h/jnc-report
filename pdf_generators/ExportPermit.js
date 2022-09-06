@@ -6,6 +6,7 @@ const { changeDateFormat } = require("../util/dateTimeFormattor");
 
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
 const { AllSopsCodes } = require("../shared/constants/AllSopsCodes");
+const logger = require("../util/logger");
 
 const options = { 
   format: "A4",
@@ -34,6 +35,7 @@ class ExportPermit {
     changeDateFormat(formValue, "carrierPassportValidity");
 
     formValue.ttPOScCmLCInformationContainer.map((lcDetails) => {
+      logger.info("lcDetails: %o", lcDetails);
       changeDateFormat(lcDetails, "issueDate");
     })
   }
