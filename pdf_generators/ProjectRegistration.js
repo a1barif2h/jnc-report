@@ -1,11 +1,8 @@
 const fs = require('fs');
 const pdf = require('./PdfGenerator');
 const options = {
-    format: 'A4', childProcessOptions: {
-        env: {
-            OPENSSL_CONF: '/dev/null',
-        },
-    }, "orientation": "portrait", footer: {
+    format: 'A4',
+    "orientation": "portrait", footer: {
         height: '5mm',
         contents: {
             default:
@@ -13,6 +10,15 @@ const options = {
         },
     }
 };
+
+if (process.env.NODE_ENV === "staging") {
+    options.childProcessOptions = {
+        env: {
+            OPENSSL_CONF: '/dev/null',
+        },
+    }
+}
+
 const replaceMaterialsInProjectClearance = require('../util/replaceMaterialsInProjectClearance');
 const logger = require('../util/logger');
 // const { logger } = require('../util/helper');

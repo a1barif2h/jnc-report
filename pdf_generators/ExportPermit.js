@@ -11,11 +11,6 @@ const logger = require("../util/logger");
 const options = { 
   format: "A4",
   orientation: "portrait",
-  childProcessOptions: {
-    env: {
-      OPENSSL_CONF: '/dev/null',
-    },
-  },
   footer: {
     height: '5mm',
     contents: {
@@ -24,6 +19,14 @@ const options = {
     },
   }
 };
+
+if(process.env.NODE_ENV === "staging") {
+  options.childProcessOptions = {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
+}
 
 class ExportPermit {
   constructor() {}
