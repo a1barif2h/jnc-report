@@ -1,5 +1,9 @@
 const { response } = require("express");
 const fs = require("fs");
+const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
+const { AllSopsCodes } = require("../shared/constants/AllSopsCodes");
+const logger = require("../util/logger");
+const {changeDateFormat } = require("../util/dateTimeFormattor");
 
 const pdf = require("./PdfGenerator");
 const options = {
@@ -15,6 +19,7 @@ const options = {
 };
 
 if(process.env.NODE_ENV === "staging") {
+  logger.info(`adding childProcessOptions for creating pdf in staging`)
   options.childProcessOptions = {
     env: {
       OPENSSL_CONF: '/dev/null',
@@ -22,10 +27,7 @@ if(process.env.NODE_ENV === "staging") {
   }
 }
 
-const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
-const { AllSopsCodes } = require("../shared/constants/AllSopsCodes");
-const logger = require("../util/logger");
-const {changeDateFormat } = require("../util/dateTimeFormattor");
+
 
 class ImportPermit {
   constructor() { }
@@ -40,7 +42,7 @@ class ImportPermit {
 
     formValue.importMaterialsInformationGroup.map((materialDetails) => {
       logger.info("materialDetails: %o", materialDetails)
-      changeDateFormat(materialDetails, "hiddenCompoValueOne");
+      materialDetails.hiddenCompoLabelOne !== "Flight No. :" && changeDateFormat(materialDetails, "hiddenCompoValueOne");
       changeDateFormat(materialDetails, "hiddenCompoValueTwo");
     })
 

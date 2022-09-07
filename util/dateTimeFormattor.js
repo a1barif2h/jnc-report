@@ -52,6 +52,7 @@ const changeDateFormat = (formValue, key) => {
       formValue[key] = "N/A"
     } else {
       const formatDate = getFormatDate(formValue[key])
+      logger.info(`after format: ${formatDate}`);
       // if formateDate is valid date change the value or pass original value
       formValue[key] =  formatDate !== "Invalid date" ? formatDate : formValue[key]
     }

@@ -21,6 +21,7 @@ const options = {
 };
 
 if(process.env.NODE_ENV === "staging") {
+  logger.info(`adding childProcessOptions for creating pdf in staging`)
   options.childProcessOptions = {
     env: {
       OPENSSL_CONF: '/dev/null',
