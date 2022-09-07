@@ -1,0 +1,21 @@
+{
+  "backendApi": {
+    "bezaServiceBaseUrl": "http://beza-service",
+    "bezaServicePort": "8585",
+    "bezaServiceFrontEndBaseUrl": "https://oss.beza.gov.bd",
+    "bezaServiceFrontEndPort": "",
+    "mayanCertificateUploadPath": "/beza-service/api/v1/internal/mayan/upload-document/",
+
+    "bezaServiceGetFormValuesByApplicationIdPath": "/beza-service/api/v1/internal/user-sops/",
+    "bezaServiceGetCertificateInfoPath": "/beza-service/api/v1/internal/user-certificate/",
+    "bezaServiceCommmonFields": "/beza-service/api/v1/internal/sop-common-fields/",
+    "paymentVoucherInfoPath": "/beza-service/api/v1/internal/user-sops/payment-voucher/",
+    "certificateInfoPath": "/beza-service/api/v1/internal/user-certificate/",
+    "bezaServiceDeskUserSignature": "/beza-service/api/v1/internal/users/signature",
+    "convertCurrency": "/beza-service/api/v1/internal/currency/exchange/convert",
+
+    "keycloakBaseUrl": "http://192.168.90.61",
+    "keycloakPort": "8082",
+    "keycloakUserInfoPath": "/auth/realms/OSS/protocol/openid-connect/userinfo"
+  }
+}
