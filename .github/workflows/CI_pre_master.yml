@@ -1,14 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI_master
+name: CI_pre_master
 
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ pre_master ]
   pull_request:
-    branches: [ master ]
+    branches: [ pre_master ]
 
   # Allows you to run this workflow manually from the Actions tab
   # workflow_dispatch:
@@ -44,10 +44,10 @@ jobs:
           path: deploy/
                   
       - name: "docker tag"
-        run: "docker tag beza-certificate-service  ${{ secrets.DOCKER_USER }}/beza-certificate-service-prod:${{ steps.chart.outputs.appVersion }}"        
+        run: "docker tag beza-certificate-service  ${{ secrets.DOCKER_USER }}/beza-certificate-service-pre-prod:${{ steps.chart.outputs.appVersion }}"        
 
       - name: "docker push"
-        run: "docker push  ${{ secrets.DOCKER_USER }}/beza-certificate-service-prod:${{ steps.chart.outputs.appVersion }}" 
+        run: "docker push  ${{ secrets.DOCKER_USER }}/beza-certificate-service-pre-prod:${{ steps.chart.outputs.appVersion }}" 
         
   
 
