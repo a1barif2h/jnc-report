@@ -1,8 +1,13 @@
-const { response } = require("express");
 const fs = require("fs");
 
-
 const pdf = require("./PdfGenerator");
+
+const { changeDateFormat } = require("../util/dateTimeFormattor");
+
+const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
+const { AllSopsCodes } = require("../shared/constants/AllSopsCodes");
+const logger = require("../util/logger");
+
 const options = { 
   format: "A4",
   orientation: "portrait",
@@ -14,16 +19,34 @@ const options = {
     },
   }
 };
-const dateTimeFormattor = require("../util/dateTimeFormattor");
-const templateEngine = require("../util/templateEngine");
 
-const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
-const { AllSopsCodes } = require("../shared/constants/AllSopsCodes");
+if(process.env.NODE_ENV === "staging") {
+  logger.info(`adding childProcessOptions for creating pdf in staging`)
+  options.childProcessOptions = {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
+}
 
 class ExportPermit {
   constructor() {}
 
+  handleDateTimeFormat(formValue) {
+    //DATE TIME FORMAT: 13 August 2022
+    changeDateFormat(formValue, "invoiceVendorRefDate");
+    changeDateFormat(formValue, "undertakingNo1");
+    changeDateFormat(formValue, "carrierPassportValidity");
+
+    formValue.ttPOScCmLCInformationContainer.map((lcDetails) => {
+      logger.info("lcDetails: %o", lcDetails);
+      changeDateFormat(lcDetails, "issueDate");
+    })
+  }
+
   async generate(body) {
+    this.handleDateTimeFormat(body.formValue)
+
     let baseHtmlTemplate = fs.readFileSync(
       "./pdf_templates/export-permit/export-permit.html",
       "utf8"
