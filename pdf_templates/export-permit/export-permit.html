@@ -13,7 +13,7 @@
 
       .mainContainer {
         margin: 0rem auto;
-        padding: 5px 15px 1px 15px;
+        padding: 5px 15px 0 15px;
         position: relative;
         z-index: 5;
         min-height: 750px;
@@ -29,7 +29,7 @@
         background-repeat: no-repeat;
         background-size: 450px;
         width: 100%;
-        height: 110%;
+        height: 100%;
         opacity: 0.1;
         z-index: 10;
       }
@@ -52,7 +52,7 @@
       }
 
       .header-qr-code img {
-        width: 75px;
+        width: 65px;
       }
 
       .import-permit {
@@ -127,7 +127,7 @@
       }
 
       .left {
-        width: 48%;
+        width: 55%;
         padding: 0.3rem 0.4rem 0.5rem 0.8rem;
         line-height: 2.5;
       }
@@ -166,7 +166,7 @@
       }
 
       .right {
-        width: 48%;
+        width: 45%;
         padding: 0.3rem 0.4rem 0.5rem 0.8rem;
         line-height: 2.5;
       }
@@ -271,6 +271,7 @@
       .second-caution ul li {
         margin-top: 0.1rem;
         font-size: 7.4px;
+        font-weight: bold;
       }
 
       .pageBreak {
@@ -338,6 +339,10 @@
                   <small>Ship Number: </small>
                   <p>{{hiddenShipNumber}}</p>
                 </div>
+                <div class="product-description">
+                  <small>Remarks: </small>
+                  <p>{{remarks}}</p>
+                </div>
               </div>
               <div class="right">
                 <div>
@@ -379,10 +384,6 @@
                 <div>
                   <small>Consignee Address: </small>
                   <p style="font-size: 6px">{{consigneeAddress}}</p>
-                </div>
-                <div class="product-description">
-                  <small>Remarks: </small>
-                  <p>{{remarks}}</p>
                 </div>
               </div>
             </div>

@@ -1,11 +1,12 @@
 const { response } = require("express");
 const fs = require("fs");
-// const { logger } = require("../util/helper");
+const { changeDateFormat } = require("../util/dateTimeFormattor");
+const logger = require("../util/logger");
 const { keyRemover, replacer } = require("../util/templateEngine");
 
 const pdf = require('./PdfGenerator');
-const options = { 
-  format: "A4", 
+const options = {
+  format: "A4",
   orientation: "portrait",
   footer: {
     height: '5mm',
@@ -17,24 +18,42 @@ const options = {
 };
 
 
-class WorkPermit {
-    constructor() {
-    }
+if (process.env.NODE_ENV === "staging") {
+  logger.info(`adding childProcessOptions for creating pdf in staging`)
+  options.childProcessOptions = {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
+}
 
-    async generate(body) {
-        let htmlTemplate = fs.readFileSync(
-          "./pdf_templates/work-permit/work-permit.html",
-          "utf8"
-        );
-        let remunarationBoxHtmlTemplate = fs.readFileSync("./pdf_templates/work-permit/remunaration-box.html", "utf8")
-        remunarationBoxHtmlTemplate = replacer(remunarationBoxHtmlTemplate, body.formValue);
-        if (body.formValue.typeOfVisaObtainedForTheIncumbentForeignNationals !== "E - Employment Visa") {
-          remunarationBoxHtmlTemplate = keyRemover(remunarationBoxHtmlTemplate);
-        }
-        body.formValue.remunarationBox = remunarationBoxHtmlTemplate;
-        
-        const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
-        return response;
+
+class WorkPermit {
+  constructor() {
+  }
+
+  handleDateTimeFormat(formValue) {
+    //DATE TIME FORMAT: 13 August 2022
+    changeDateFormat(formValue, "startDate");
+    changeDateFormat(formValue, "applicationDate");
+  }
+
+  async generate(body) {
+    this.handleDateTimeFormat(body.formValue)
+    body.formValue.plotAddress = body.formValue?.plotAddress ? `<b>Plot# ${body.formValue?.plotAddress}</b>` : "<b style='display: none;'>don't display</b>"
+    let htmlTemplate = fs.readFileSync(
+      "./pdf_templates/work-permit/work-permit.html",
+      "utf8"
+    );
+    let remunerationBoxHtmlTemplate = fs.readFileSync("./pdf_templates/work-permit/remuneration-box.html", "utf8")
+    remunerationBoxHtmlTemplate = replacer(remunerationBoxHtmlTemplate, body.formValue);
+    if (body.formValue.typeOfVisaObtainedForTheIncumbentForeignNationals !== "E - Employment Visa") {
+      remunerationBoxHtmlTemplate = keyRemover(remunerationBoxHtmlTemplate);
+    }
+    body.formValue.remunerationBox = remunerationBoxHtmlTemplate;
+
+    const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
+    return response;
   }
 }
 module.exports = WorkPermit;

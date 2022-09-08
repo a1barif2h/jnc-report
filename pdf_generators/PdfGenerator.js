@@ -1,12 +1,7 @@
 
-const axios = require('axios');
 const pdf = require('html-pdf');
 const templateEngine = require('../util/templateEngine');
-const { Readable } = require('stream');
-const FormData = require('form-data');
 const logger = require('../util/logger');
-
-// const upload = requ
 
 const pdfGenerator = function (htmlTemplate,json,res,options){
     const html = templateEngine.replacer(htmlTemplate,json)
@@ -57,8 +52,6 @@ const generatePdfFromHtmlForPayment = async function (htmlTemplate, data, option
 
 
 const generatePdfFromHtmlMultipleMaterialDescription = async function (htmlTemplate, options) {
-  // const html = htmlTemplate;
-  // const html = templateEngine.replacer(htmlTemplate, json.formValue);
   const buf = await new Promise((resolve, reject) => {
     pdf.create(htmlTemplate, options).toBuffer(function (err, buffer) {
       if (err) {
