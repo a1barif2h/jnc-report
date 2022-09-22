@@ -1,27 +1,38 @@
-const { response } = require('express');
 const fs = require('fs');
+const { changeDateFormat } = require('../util/dateTimeFormattor');
 const pdf = require('./PdfGenerator');
+
 const options = { 
-    format: "A4", 
-    orientation: "portrait",
-    footer: {
-      height: '5mm',
-      contents: {
-        default:
-          '<div id="pageFooter" style="text-align: center; font-size: 8px;">{{page}}/{{pages}}</div>',
-      },
-    }
+  format: "A4", 
+  orientation: "portrait",
+  footer: {
+    height: '5mm',
+    contents: {
+      default:
+        '<div id="pageFooter" style="text-align: center; font-size: 8px;">{{page}}/{{pages}}</div>',
+    },
+  }
 };
 
-const background_image = fs.readFileSync('./pdf_templates/background_image.html',"utf8");
-const background_cancelled = fs.readFileSync('./pdf_templates/background_cancelled.html',"utf8");
-const addDatagridInfoInLUP=require('../util/addDatagridInfoInLUP');
+if (process.env.NODE_ENV === "staging") {
+  options.childProcessOptions = {
+      env: {
+          OPENSSL_CONF: '/dev/null',
+      },
+  }
+}
 
 class LandUsePlan {
     constructor() {
     }
 
+    handleDateTimeFormat(formValue) {
+      //DATE TIME FORMAT: 13 August 2022
+      changeDateFormat(formValue, "applicationDate");
+    }
+
     async generate(body) {
+        this.handleDateTimeFormat(body.formValue)
         let htmlTemplate = fs.readFileSync('./pdf_templates/land-use-plan/land-use-plan.html', 'utf8');
         let htmlAreaTemplate = fs.readFileSync('./pdf_templates/land-use-plan/land-use-plan-area.html', 'utf8');
         htmlTemplate=htmlTemplate.replace(`{{buildingAreaSqm}}`,body.formValue.buildingInformation[0].buildingAreaSqm||"-")

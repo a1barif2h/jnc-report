@@ -1,7 +1,8 @@
-const { response } = require("express");
 const fs = require("fs");
-
 const pdf = require("./PdfGenerator");
+const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
+const { changeDateFormat } = require("../util/dateTimeFormattor");
+
 const options = { 
   format: "A4", 
   orientation: "portrait",
@@ -14,11 +15,26 @@ const options = {
   }
 };
 
-const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
+if (process.env.NODE_ENV === "staging") {
+  options.childProcessOptions = {
+      env: {
+          OPENSSL_CONF: '/dev/null',
+      },
+  }
+}
+
 class LocalPurchasePermit {
   constructor() {}
 
+  handleDateTimeFormat(formValue) {
+    //DATE TIME FORMAT: 13 August 2022
+    changeDateFormat(formValue, "undertakingDate");
+    changeDateFormat(formValue, "invoiceDate");
+  }
+
   async generate(body) {
+    this.handleDateTimeFormat(body.formValue);
+    
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/local-purchase-permit/local-purchase-permit.html",
       "utf8"

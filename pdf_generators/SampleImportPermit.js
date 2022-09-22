@@ -1,8 +1,8 @@
-const { response } = require("express");
 const fs = require("fs");
-
-
 const pdf = require("./PdfGenerator");
+const dateTimeFormattor = require("../util/dateTimeFormattor");
+const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
+
 const options = {
   format: "A4",
   orientation: "portrait",
@@ -14,10 +14,14 @@ const options = {
     },
   }
 };
-const dateTimeFormattor = require("../util/dateTimeFormattor");
-const templateEngine = require("../util/templateEngine");
 
-const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
+if (process.env.NODE_ENV === "staging") {
+  options.childProcessOptions = {
+      env: {
+          OPENSSL_CONF: '/dev/null',
+      },
+  }
+}
 
 class SampleImportPermit {
   constructor() { }

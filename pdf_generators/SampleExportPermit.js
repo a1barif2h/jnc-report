@@ -1,8 +1,8 @@
-const { response } = require("express");
 const fs = require("fs");
-
-
 const pdf = require("./PdfGenerator");
+const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
+const { changeDateFormat } = require("../util/dateTimeFormattor");
+
 const options = { 
   format: "A4",
   orientation: "portrait",
@@ -14,18 +14,29 @@ const options = {
     },
   }
 };
-const dateTimeFormattor = require("../util/dateTimeFormattor");
-const templateEngine = require("../util/templateEngine");
 
-const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
+if (process.env.NODE_ENV === "staging") {
+  options.childProcessOptions = {
+      env: {
+          OPENSSL_CONF: '/dev/null',
+      },
+  }
+}
 
 class SampleExportPermit {
   constructor() {}
 
+  handleDateTimeFormat(formValue) {
+    //DATE TIME FORMAT: 13 August 2022
+    changeDateFormat(formValue, "expiredDate");
+    changeDateFormat(formValue, "issueDate");
+    changeDateFormat(formValue, "invoiceDate");
+  }
+
   async generate(body) {
 
-    body.formValue.expiredDate = body.formValue.expiredDate !== "N/A" ? dateTimeFormattor.getFormatDate(body.formValue.expiredDate): body.formValue.expiredDate;
-
+    // body.formValue.expiredDate = body.formValue.expiredDate !== "N/A" ? dateTimeFormattor.getFormatDate(body.formValue.expiredDate): body.formValue.expiredDate;
+    this.handleDateTimeFormat(body.formValue);
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/sample-export-permit/sample-export-permit.html",
       "utf8"

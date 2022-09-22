@@ -1,5 +1,9 @@
 const fs = require('fs');
 const pdf = require('./PdfGenerator');
+const replaceMaterialsInProjectClearance = require('../util/replaceMaterialsInProjectClearance');
+const logger = require('../util/logger');
+const { changeDateFormat } = require('../util/dateTimeFormattor');
+
 const options = {
     format: 'A4',
     "orientation": "portrait", footer: {
@@ -19,17 +23,20 @@ if (process.env.NODE_ENV === "staging") {
     }
 }
 
-const replaceMaterialsInProjectClearance = require('../util/replaceMaterialsInProjectClearance');
-const logger = require('../util/logger');
-// const { logger } = require('../util/helper');
-
 
 
 class ProjectRegistration {
     constructor() {
     }
+
+    handleDateTimeFormat(formValue) {
+        //DATE TIME FORMAT: 13 August 2022
+        changeDateFormat(formValue, "applicationDate");
+      }
+
     async generate(body) {
-        // logger("project registration", body)
+        this.handleDateTimeFormat(body.formValue);
+
         body.formValue.industryCategory = body.formValue?.industryCategory.name || "";
         let htmlTemplate = fs.readFileSync('./pdf_templates/project-registration/project-registration.html', 'utf8');
         let materialsDesTemplate = fs.readFileSync(

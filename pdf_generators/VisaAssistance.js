@@ -1,7 +1,6 @@
-const { response } = require('express');
 const fs = require('fs');
-// const { logger } = require('../util/helper');
 const pdf = require('./PdfGenerator');
+
 const options = { 
     format: "A4", 
     orientation: "portrait",
@@ -13,6 +12,14 @@ const options = {
       },
     }
   };
+
+  if (process.env.NODE_ENV === "staging") {
+    options.childProcessOptions = {
+        env: {
+            OPENSSL_CONF: '/dev/null',
+        },
+    }
+  }
 
 class VisaAssistance {
     constructor() {
