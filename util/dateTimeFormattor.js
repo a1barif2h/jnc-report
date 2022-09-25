@@ -1,4 +1,5 @@
 const moment = require("moment");
+const logger = require("./logger");
 
 const getCurrentFormattedDateTime = () => {
     try {
@@ -42,10 +43,26 @@ const getValidTillDate = (givenDate) => {
     return moment(givenDate).local().add(1, 'y').format('DD MMM, YYYY');
 }
 
+const changeDateFormat = (formValue, key) => {
+    logger.info(`Converting date for - ${key} = ${formValue[key]}`)
+    if (
+      formValue &&
+      !formValue[key]
+    ) {
+      formValue[key] = "N/A"
+    } else {
+      const formatDate = getFormatDate(formValue[key])
+      logger.info(`after format: ${formatDate}`);
+      // if formateDate is valid date change the value or pass original value
+      formValue[key] =  formatDate !== "Invalid date" ? formatDate : formValue[key]
+    }
+  }
+
 module.exports = {
     getCurrentFormattedDateTime,
     getApplicationDate,
     getFormatDate,
     getValidTillDate,
-    getFormatDateWithTime
+    getFormatDateWithTime,
+    changeDateFormat
 }
