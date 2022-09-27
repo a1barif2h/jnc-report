@@ -25,7 +25,7 @@ const getApplicationDate = (givenDate) => {
 }
 
 const getFormatDate = (givenDate) => {
-    return moment(givenDate).format('DD-MMMM-YYYY')
+    return moment(givenDate).format('DD-MMM-YYYY')
 }
 
 const getFormatDateWithTime = (givenDate) => {
