@@ -18,7 +18,7 @@ const options = {
 };
 
 
-if (process.env.NODE_ENV === "staging") {
+if (process.env.NODE_ENV !== "production") {
   logger.info(`adding childProcessOptions for creating pdf in staging`)
   options.childProcessOptions = {
     env: {
