@@ -13,7 +13,7 @@ const options = {
     }
   };
 
-  if (process.env.NODE_ENV === "staging") {
+  if (process.env.NODE_ENV !== "production") {
     options.childProcessOptions = {
         env: {
             OPENSSL_CONF: '/dev/null',
