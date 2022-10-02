@@ -1,6 +1,19 @@
 const { response } = require("express");
 const fs = require("fs");
 const pdf = require("./PdfGenerator");
+const background_image = fs.readFileSync(
+  "./pdf_templates/background_image.html",
+  "utf8"
+);
+const background_cancelled = fs.readFileSync(
+  "./pdf_templates/background_cancelled.html",
+  "utf8"
+);
+const replaceMaterialsInProjectClearance = require("../util/replaceMaterialsInProjectClearance");
+const currencyConverter = require("../util/currencyConverter");
+const logger = require("../util/logger");
+const { changeDateFormat } = require("../util/dateTimeFormattor");
+
 const options = { 
   format: "A4", 
   orientation: "portrait",
@@ -12,21 +25,23 @@ const options = {
     },
   }
 };
-const background_image = fs.readFileSync(
-  "./pdf_templates/background_image.html",
-  "utf8"
-);
-const background_cancelled = fs.readFileSync(
-  "./pdf_templates/background_cancelled.html",
-  "utf8"
-);
-const replaceMaterialsInProjectClearance = require("../util/replaceMaterialsInProjectClearance");
-// const { logger } = require("../util/helper");
-const currencyConverter = require("../util/currencyConverter");
-const logger = require("../util/logger");
+
+if(process.env.NODE_ENV !== "production") {
+  logger.info(`adding childProcessOptions for creating pdf in staging`)
+  options.childProcessOptions = {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
+}
 
 class ProjectClearance {
   constructor() {}
+
+  handleDateTimeFormat(formValue) {
+    //DATE TIME FORMAT: 13 August 2022
+    changeDateFormat(formValue, "applicationDate");
+  }
 
   #getCurrencyList(additionOfMachinery) {
     const currencies = {};
@@ -43,6 +58,8 @@ class ProjectClearance {
   }
 
   async generate(body) {
+
+    this.handleDateTimeFormat(body.formValue);
 
     const currencyList = this.#getCurrencyList(body.formValue?.additionOfMachinery)
     body.formValue.machineryCurrencyValue = await currencyConverter(currencyList, "USD");
