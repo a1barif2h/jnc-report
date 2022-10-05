@@ -1,5 +1,6 @@
-const { response } = require("express");
 const fs = require("fs");
+const logger = require("../util/logger");
+const { changeDateFormat } = require("../util/dateTimeFormattor");
 
 const pdf = require("./PdfGenerator");
 const options = { 
@@ -13,12 +14,27 @@ const options = {
     },
   }
 };
+if(process.env.NODE_ENV !== "production") {
+  logger.info(`adding childProcessOptions for creating pdf in staging`)
+  options.childProcessOptions = {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
+}
 
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
+
 class LocalSalesPermit {
   constructor() {}
+  handleDateTimeFormat(formValue) {
+    //DATE TIME FORMAT: 13 August 2022
+    changeDateFormat(formValue, "undertakingDate");
+    changeDateFormat(formValue, "invoiceVendorRefDate");
+  }
 
   async generate(body) {
+    this.handleDateTimeFormat(body.formValue)
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/local-sales-permit/local-sales-permit.html",
       "utf8"
