@@ -19,6 +19,7 @@ const allSopsCodes=require("../shared/constants/AllSopsCodes");
 const ProjectRegistration = require("../pdf_generators/ProjectRegistration");
 const logger = require("../util/logger");
 const RoyaltyFee = require("../pdf_generators/RoyaltyFee");
+const TechnicalKnowHowFee = require("../pdf_generators/TechnicalKnowHowFee");
 
 const generate = async (data) => {
   let sopCode = data.sopCode;
@@ -110,6 +111,11 @@ const generate = async (data) => {
       logger.info(`Generating pdf for ${AllSopsCodes.ROYALTY_FEE.value}`);
       generatedPdf = await royaltyFee.generate(data);
       break;
+      case AllSopsCodes.TECHNICAL_KNOW_HOW_FEE.value:
+        const technicalKnowHowFee = new TechnicalKnowHowFee();
+        logger.info(`Generating pdf for ${AllSopsCodes.TECHNICAL_KNOW_HOW_FEE.value}`);
+        generatedPdf = await technicalKnowHowFee.generate(data);
+        break;
     default:
       break;
   }

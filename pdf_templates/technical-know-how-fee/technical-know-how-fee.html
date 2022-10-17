@@ -65,24 +65,14 @@
         margin-top: 8px;
         font-weight: 600;
         font-size: 10px;
-        line-height: 2em;
+        line-height: 1.7em;
       }
 
       .content-info {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        /* -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        -webkit-box-align: end;
-        -ms-flex-align: end;
-        align-items: flex-end; */
       }
-
-      /* .content-label {
-        width: 55%;
-      } */
 
       .content-value {
         max-width: 83%;
@@ -247,10 +237,9 @@
       </header>
       <div class="main-title">
         <p>Letter of Approval</p>
-        <p class="child-2">Repatriation of Royalty</p>
+        <p class="child-2">For Repatriation of Technical Assistance Fee</p>
         <p>
-          (in case of the amount exceeding 6% of the annual sales as reported in
-          Income Tax Return of the previous year)
+          (in case of the amount exceeding 6% of the cost of imported machinery)
         </p>
         <hr />
       </div>
@@ -336,13 +325,10 @@
             </div>
           </div>
           <div class="right">
-            <div class="content-info annula-text">
-              <p class="content-label">Annual Sales reported in Income</p>
-            </div>
             <div class="content-info">
-              <p class="content-label">Tax Return of the previous year:</p>
+              <p class="content-label">Cost of imported machinery :</p>
               <p class="content-value">
-                {{salesOnIncomeTaxReturnOnTheLastYear}}
+                {{importCostOfMachineryOfTheLastYear}}
               </p>
             </div>
             <div class="content-info">
