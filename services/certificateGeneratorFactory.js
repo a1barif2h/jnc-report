@@ -18,6 +18,7 @@ const WorkPermit=require("../pdf_generators/WorkPermit");
 const allSopsCodes=require("../shared/constants/AllSopsCodes");
 const ProjectRegistration = require("../pdf_generators/ProjectRegistration");
 const logger = require("../util/logger");
+const RoyaltyFee = require("../pdf_generators/RoyaltyFee");
 
 const generate = async (data) => {
   let sopCode = data.sopCode;
@@ -103,6 +104,11 @@ const generate = async (data) => {
       const workPermit = new WorkPermit();
       logger.info(`Generating pdf for ${AllSopsCodes.WORK_PERMIT.value}`);
       generatedPdf = await workPermit.generate(data);
+      break;
+    case AllSopsCodes.ROYALTY_FEE.value:
+      const royaltyFee = new RoyaltyFee();
+      logger.info(`Generating pdf for ${AllSopsCodes.ROYALTY_FEE.value}`);
+      generatedPdf = await royaltyFee.generate(data);
       break;
     default:
       break;
