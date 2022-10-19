@@ -49,7 +49,7 @@ class WorkPermit {
     remunerationBoxHtmlTemplate = replacer(remunerationBoxHtmlTemplate, body.formValue);
     // THIS LOGIC HAS PREVIOUS REQUERMENT 
     // if (body.formValue.typeOfVisaObtainedForTheIncumbentForeignNationals !== "E - Employment Visa") {
-    //   remunerationBoxHtmlTemplate = keyRemover(remunerationBoxHtmlTemplate);
+      remunerationBoxHtmlTemplate = keyRemover(remunerationBoxHtmlTemplate); // THIS LINE NEED TO CLEAN PREVIOUS VISA TYPE KEY
     // }
     body.formValue.remunerationBox = remunerationBoxHtmlTemplate;
 
