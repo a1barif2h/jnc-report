@@ -47,9 +47,10 @@ class WorkPermit {
     );
     let remunerationBoxHtmlTemplate = fs.readFileSync("./pdf_templates/work-permit/remuneration-box.html", "utf8")
     remunerationBoxHtmlTemplate = replacer(remunerationBoxHtmlTemplate, body.formValue);
-    if (body.formValue.typeOfVisaObtainedForTheIncumbentForeignNationals !== "E - Employment Visa") {
-      remunerationBoxHtmlTemplate = keyRemover(remunerationBoxHtmlTemplate);
-    }
+    // THIS LOGIC HAS PREVIOUS REQUERMENT 
+    // if (body.formValue.typeOfVisaObtainedForTheIncumbentForeignNationals !== "E - Employment Visa") {
+    //   remunerationBoxHtmlTemplate = keyRemover(remunerationBoxHtmlTemplate);
+    // }
     body.formValue.remunerationBox = remunerationBoxHtmlTemplate;
 
     const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
