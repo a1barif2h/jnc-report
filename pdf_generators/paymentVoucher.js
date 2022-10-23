@@ -1,9 +1,17 @@
 const fs = require("fs")
 const pdf = require("./PdfGenerator")
-// const { logger } = require('../util/helper');
 const { getFormatDateWithTime } = require("../util/dateTimeFormattor");
+const logger = require("../util/logger");
 
 const options = {format: 'A4', "orientation": "portrait"};
+
+if (process.env.NODE_ENV !== "production") {
+    options.childProcessOptions = {
+        env: {
+            OPENSSL_CONF: '/dev/null',
+        },
+    }
+  }
 
 class PaymentVoucher {
     constructor(){};
@@ -12,6 +20,8 @@ class PaymentVoucher {
         let htmlTemplate;
 
         body.downloadTime = getFormatDateWithTime(new Date());
+
+        logger.info("paymentInfo %o", body)
 
         if(!body.applicationFee) {
             //This application fee comes from payment initiator info which is not present for legacy applications
