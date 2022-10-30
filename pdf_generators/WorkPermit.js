@@ -2,7 +2,7 @@ const { response } = require("express");
 const fs = require("fs");
 const { changeDateFormat } = require("../util/dateTimeFormattor");
 const logger = require("../util/logger");
-const { keyRemover, replacer } = require("../util/templateEngine");
+const { keyRemover, replacer, doubleNaTextRemover } = require("../util/templateEngine");
 
 const pdf = require('./PdfGenerator');
 const options = {
@@ -51,6 +51,7 @@ class WorkPermit {
     const type_visa = body.formValue.typeOfVisaObtainedForTheIncumbentForeignNationals;
     if (type_visa !== "E - Employment Visa" || type_visa !== "PI - Private Investor Visa") {
       remunerationBoxHtmlTemplate = keyRemover(remunerationBoxHtmlTemplate); // THIS LINE NEED TO CLEAN PREVIOUS VISA TYPE KEY
+      remunerationBoxHtmlTemplate = doubleNaTextRemover(remunerationBoxHtmlTemplate)
     }
     body.formValue.remunerationBox = remunerationBoxHtmlTemplate;
 

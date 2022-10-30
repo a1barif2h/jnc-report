@@ -32,7 +32,7 @@ WORKDIR /usr/src/app
 # Bundle app source
 COPY . .
 
-RUN cp .env.example .env
+RUN cp .env.dev.example .env
 
 RUN npm install
 

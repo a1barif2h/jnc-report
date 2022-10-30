@@ -60,4 +60,10 @@ const keyRemover = (template) => {
     return removeAbleTemplate;
 }
 
-module.exports = { replacer, replaceOne, keyRemover }
+const doubleNaTextRemover = (template) => {
+    let removeAbleTemplate = template;
+    removeAbleTemplate = removeAbleTemplate.replaceAll("N/A N/A", 'N/A');
+    return removeAbleTemplate;
+}
+
+module.exports = { replacer, replaceOne, keyRemover, doubleNaTextRemover }
