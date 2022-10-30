@@ -47,8 +47,10 @@ class WorkPermit {
     );
     let remunerationBoxHtmlTemplate = fs.readFileSync("./pdf_templates/work-permit/remuneration-box.html", "utf8")
     remunerationBoxHtmlTemplate = replacer(remunerationBoxHtmlTemplate, body.formValue);
-    if (body.formValue.typeOfVisaObtainedForTheIncumbentForeignNationals !== "E - Employment Visa") {
-      remunerationBoxHtmlTemplate = keyRemover(remunerationBoxHtmlTemplate);
+    // THIS IS NEW REQUIREMENT LOGIC 
+    const type_visa = body.formValue.typeOfVisaObtainedForTheIncumbentForeignNationals;
+    if (type_visa !== "E - Employment Visa" || type_visa !== "PI - Private Investor Visa") {
+      remunerationBoxHtmlTemplate = keyRemover(remunerationBoxHtmlTemplate); // THIS LINE NEED TO CLEAN PREVIOUS VISA TYPE KEY
     }
     body.formValue.remunerationBox = remunerationBoxHtmlTemplate;
 

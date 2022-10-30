@@ -1,6 +1,6 @@
-const { response } = require("express");
 const fs = require("fs");
-const dateTimeFormattor = require("../util/dateTimeFormattor");
+const { changeDateFormat } = require("../util/dateTimeFormattor");
+const logger = require("../util/logger");
 
 const pdf = require("./PdfGenerator");
 const options = { 
@@ -14,20 +14,26 @@ const options = {
     },
   }
 };
+if(process.env.NODE_ENV !== "production") {
+  logger.info(`adding childProcessOptions for creating pdf in staging`)
+  options.childProcessOptions = {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
+}
 
-const background_image = fs.readFileSync(
-  "./pdf_templates/background_image.html",
-  "utf8"
-);
-const background_cancelled = fs.readFileSync(
-  "./pdf_templates/background_cancelled.html",
-  "utf8"
-);
 
 class TradeLicenseRenew {
   constructor() {}
 
+  handleDateTimeFormat(formValue) {
+    //DATE TIME FORMAT: 13 August 2022
+    changeDateFormat(formValue, "validTill");
+  }
+
   async generate(body) {
+    this.handleDateTimeFormat(body.formValue)
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/trade-license-renew/trade-license-renew.html",
       "utf8"
