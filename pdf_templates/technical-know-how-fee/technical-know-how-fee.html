@@ -24,14 +24,17 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        justify-content: space-between;
         width: 100%;
       }
 
-      .header-logo img {
+      .header-logo img,
+      .qr-code img {
         width: 60px;
       }
 
@@ -39,7 +42,6 @@
         text-align: center;
         font-size: 10px;
         margin-left: 4px;
-        font-weight: lighter;
         color: #242121;
       }
 
@@ -81,14 +83,13 @@
         -ms-word-break: break-all;
         word-break: break-all;
         word-break: break-word;
-        font-size: 10px;
+        /* font-size: 10px; */
         font-weight: 500;
         margin-left: 5px;
       }
 
       .owner-info-container {
         margin-left: 25px;
-        /* overflow: auto; */
         overflow-wrap: break-word;
         word-wrap: break-word;
         -ms-word-break: break-all;
@@ -165,10 +166,15 @@
       .terms-conditions-container {
         font-size: 9px;
         font-weight: 400;
+        font-family: "DejaVuSansCondensed-Bold", serif;
       }
 
       .terms-conditions-container ol {
         margin-left: 15px;
+      }
+
+      .terms-conditions-container li {
+        line-height: 1.7em;
       }
 
       .footer-content {
@@ -197,10 +203,10 @@
         line-height: 2em;
       }
 
-      .footer-content .copy-container ol li {
+      /* .footer-content .copy-container ol li {
         font-size: 7px;
         font-weight: 600;
-      }
+      } */
 
       .signature-container {
         text-align: center;
@@ -233,6 +239,9 @@
           <p>Monem Business District (Level 12)</p>
           <p>111, Bir Uttam C.R. Dutta Road</p>
           <p>Karwanbazar, Dhaka-1205, Bangladesh</p>
+        </div>
+        <div class="qr-code">
+          <img src="{{qrcode}}" alt="" />
         </div>
       </header>
       <div class="main-title">
@@ -291,8 +300,12 @@
         <div class="beneficiary-info-container">
           <div class="left">
             <div class="content-info">
-              <p class="content-label">Name of the Beneficiary:</p>
-              <p class="content-value">{{beneficiaryName}}</p>
+              <p class="content-label" style="line-height: 1.5em">
+                Name of the Beneficiary:
+              </p>
+              <p class="content-value" style="line-height: 1.5em">
+                {{beneficiaryName}}
+              </p>
             </div>
             <div class="content-info">
               <p class="content-label">Invoice no:</p>
@@ -301,8 +314,12 @@
           </div>
           <div class="right">
             <div class="content-info">
-              <p class="content-label">Name of the Country:</p>
-              <p class="content-value">{{conutryName}}</p>
+              <p class="content-label" style="line-height: 1.5em">
+                Name of the Country:
+              </p>
+              <p class="content-value" style="line-height: 1.5em">
+                {{conutryName}}
+              </p>
             </div>
             <div class="content-info">
               <p class="content-label">Date:</p>
@@ -320,8 +337,12 @@
               </p>
             </div>
             <div class="content-info">
-              <p class="content-label">Name of the AD Bank:</p>
-              <p class="content-value">{{nameOfTheADBank}}</p>
+              <p class="content-label" style="line-height: 1.5em">
+                Name of the AD Bank:
+              </p>
+              <p class="content-value" style="line-height: 1.5em">
+                {{nameOfTheADBank}}
+              </p>
             </div>
           </div>
           <div class="right">
@@ -330,15 +351,16 @@
               <p class="content-value">
                 {{importCostOfMachineryOfTheLastYear}}
               </p>
-            </div>terms-conditions-container
+            </div>
+
             <div class="content-info">
-              <p class="content-label">FCA No:</p>
-              <p class="content-value">{{fcaNo}}</p>
+              <p class="content-label" style="line-height: 1.5em">FCA No:</p>
+              <p class="content-value" style="line-height: 1.5em">{{fcaNo}}</p>
             </div>
           </div>
         </div>
         <p>Terms and Conditions:</p>
-        <div class="">
+        <div class="terms-conditions-container">
           <ol>
             <li>
               The stated amount of Technical Know-how Fee shall be remitted only
