@@ -46,6 +46,14 @@ app.get("/server-date", (req, res) => {
   res.send({ msg: "ok", date:d, time:t, vd });
 });
 
+app.post("/deoFileId", (req, res) => {
+  const time = req.body.time
+
+  setTimeout(() => {
+    res.send({doeFileId: 2200516})
+  }, time)
+})
+
 app.get("/info", function (req, res) {
   const gitInfo = getRepoInfo();
   res.setHeader("Content-Type", "application/json");
@@ -115,6 +123,11 @@ app.post(
     await generateCertificate(req,res);
   }
 );
+
+app.post("/test", (req, res) => {
+  logger.info("request body : %o", req.body)
+  res.json({id: 1})
+})
 
 
 logger.info(`Download service si running on http://${HOST}:${PORT}`);
