@@ -1,5 +1,6 @@
 const fs = require("fs");
 const { changeDateFormat } = require("../util/dateTimeFormattor");
+const { downloadAndConvertImage } = require("../util/downloadImageAndConvertInBase64");
 const logger = require("../util/logger");
 
 const pdf = require("./PdfGenerator");
@@ -32,8 +33,23 @@ class TradeLicenseRenew {
     changeDateFormat(formValue, "validTill");
   }
 
+  async getOwnerPhoto(formValue) {
+    if(
+      formValue &&
+      formValue.photograph &&
+      formValue.photograph.length > 0 &&
+      formValue.photograph[0].url
+    ) {
+      formValue["ownerPhoto"] = await downloadAndConvertImage(formValue.photograph[0].url)
+    } else {
+      formValue["ownerPhoto"] = ""
+    }
+  }
+
+
   async generate(body) {
     this.handleDateTimeFormat(body.formValue)
+    await this.getOwnerPhoto(body.formValue)
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/trade-license-renew/trade-license-renew.html",
       "utf8"
