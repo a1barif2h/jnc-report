@@ -13,7 +13,7 @@
       }
 
       .container {
-        padding: 15px;
+        padding: 25px 30px;
         font-size: 8px;
         position: relative;
         z-index: 5;
@@ -32,6 +32,10 @@
         height: 100%;
         opacity: 0.2;
         z-index: 10;
+      }
+
+      .main-content {
+        padding: 0 10px;
       }
 
       header {
@@ -162,7 +166,7 @@
           <img src="{{qrcode}}" alt="" />
         </div>
       </header>
-      <main>
+      <main class="main-content">
         <div class="application-date">
           <b>Tracking No:{{trackingId}}</b>
           <div>
@@ -223,8 +227,8 @@
             <p style="font-weight: bolder; border-top: 1px solid black">
               {{deskUserFullName}}
             </p>
-            <p style="font-weight: bolder">{{deskUserDesignation}}</p>
-            <p>BEZA Executive Board</p>
+            <p style="font-weight: bold">{{deskUserDesignation}}</p>
+
             <p>Bangladesh Economic Zones Authority (BEZA)</p>
           </div>
         </div>
@@ -243,15 +247,15 @@
           <p>5. ..............................................</p>
         </div>
       </main>
-      <footer>
+      <footer class="main-content">
         <p>
           The above mentioned foreign national may be advised to approach in
           Embassy/ High Commission of Bangladesh in <b>{{countryName}}</b> with
           the copy of his appointment letter and other related documents for
           obtaining<b>
             {{typeOfVisaRequiredForTheIncumbentForeignNationals}}, You are also
-            advised to apply for his/ her work permit to this authority within 90
-            days after arrival in Bangladesh.</b
+            advised to apply for his/ her work permit to this authority within
+            90 days after arrival in Bangladesh.</b
           >
           The company shall be responsible for all action of the expatriate
           during his/ her stay in Bangladesh.
