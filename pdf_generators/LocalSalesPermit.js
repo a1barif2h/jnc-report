@@ -14,14 +14,14 @@ const options = {
     },
   }
 };
-if(process.env.NODE_ENV !== "production") {
-  logger.info(`adding childProcessOptions for creating pdf in staging`)
+// if(process.env.NODE_ENV !== "production") {
+  // logger.info(`adding childProcessOptions for creating pdf in staging`)
   options.childProcessOptions = {
     env: {
       OPENSSL_CONF: '/dev/null',
     },
   }
-}
+// }
 
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
 
