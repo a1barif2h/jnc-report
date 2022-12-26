@@ -39,7 +39,6 @@ class ExportPermit {
     changeDateFormat(formValue, "carrierPassportValidity");
 
     formValue.ttPOScCmLCInformationContainer.map((lcDetails) => {
-      logger.info("lcDetails: %o", lcDetails);
       changeDateFormat(lcDetails, "issueDate");
       changeDateFormat(lcDetails, "expiryDate");
     })
