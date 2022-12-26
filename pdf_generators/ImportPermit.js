@@ -3,9 +3,10 @@ const fs = require("fs");
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
 const { AllSopsCodes } = require("../shared/constants/AllSopsCodes");
 const logger = require("../util/logger");
-const {changeDateFormat } = require("../util/dateTimeFormattor");
+const { changeDateFormat } = require("../util/dateTimeFormattor");
 
 const pdf = require("./PdfGenerator");
+const { CARRIER_TYPE } = require("../constants/const.js");
 const options = {
   format: "A4",
   orientation: "portrait",
@@ -18,7 +19,7 @@ const options = {
   }
 };
 
-if(process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== "production") {
   logger.info(`adding childProcessOptions for creating pdf in staging`)
   options.childProcessOptions = {
     env: {
@@ -32,6 +33,40 @@ if(process.env.NODE_ENV !== "production") {
 class ImportPermit {
   constructor() { }
 
+  handleArrivalAndDepartureValueBasedOnCarrierType(formValue, materialDetail) {
+    const carrierType = formValue.carrierType;
+    const naString = "N/A";
+
+    let hiddenCompoValueOne = naString, hiddenCompoValueTwo = naString;
+
+    switch (carrierType) {
+      case CARRIER_TYPE.byAir:
+        const flightNumber = formValue.flightNumber;
+        hiddenCompoValueOne = flightNumber || naString;
+        hiddenCompoValueTwo = new Date(formValue.flightDate);
+        break;
+
+      case CARRIER_TYPE.bySea:
+        hiddenCompoValueOne = new Date(formValue.arrivalDateSea);
+        hiddenCompoValueTwo = new Date(formValue.departureDateSea);
+        break;
+
+      case CARRIER_TYPE.byRoad:
+        hiddenCompoValueOne = new Date(formValue.arrivalDateRoad);
+        hiddenCompoValueTwo = new Date(formValue.departureDateRoad);
+        break;
+      default:
+        break;
+    }
+
+    hiddenCompoValueOne = (carrierType === CARRIER_TYPE.byAir) ? hiddenCompoValueOne
+                          : (!isNaN(hiddenCompoValueOne) ? hiddenCompoValueOne.toLocaleDateString() : naString);
+
+    hiddenCompoValueTwo = !isNaN(hiddenCompoValueTwo) ? hiddenCompoValueTwo.toLocaleDateString() : naString
+    materialDetail["hiddenCompoValueOne"] = hiddenCompoValueOne;
+    materialDetail["hiddenCompoValueTwo"] = hiddenCompoValueTwo;
+  }
+
 
 
   handleDateTimeFormat(formValue) {
@@ -40,10 +75,12 @@ class ImportPermit {
     changeDateFormat(formValue, "undertakingDate");
     changeDateFormat(formValue, "carrierPassportValidity");
 
-    formValue.importMaterialsInformationGroup.map((materialDetails) => {
-      logger.info("materialDetails: %o", materialDetails)
-      materialDetails.hiddenCompoLabelOne !== "Flight No. :" && changeDateFormat(materialDetails, "hiddenCompoValueOne");
-      changeDateFormat(materialDetails, "hiddenCompoValueTwo");
+
+
+    formValue.importMaterialsInformationGroup.map((materialDetail) => {
+      this.handleArrivalAndDepartureValueBasedOnCarrierType(formValue, materialDetail);
+      materialDetail.hiddenCompoLabelOne !== "Flight No. :" && changeDateFormat(materialDetail, "hiddenCompoValueOne");
+      changeDateFormat(materialDetail, "hiddenCompoValueTwo");
     })
 
     formValue.ttPOScCmLCInformationContainer.map((lcDetails) => {
