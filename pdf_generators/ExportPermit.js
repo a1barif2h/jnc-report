@@ -20,14 +20,14 @@ const options = {
   }
 };
 
-if(process.env.NODE_ENV !== "production") {
+// if(process.env.NODE_ENV !== "production") {
   logger.info(`adding childProcessOptions for creating pdf in staging`)
   options.childProcessOptions = {
     env: {
       OPENSSL_CONF: '/dev/null',
     },
   }
-}
+// }
 
 class ExportPermit {
   constructor() {}
