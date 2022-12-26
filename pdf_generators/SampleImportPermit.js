@@ -15,13 +15,13 @@ const options = {
   }
 };
 
-if (process.env.NODE_ENV !== "production") {
+// if (process.env.NODE_ENV !== "production") {
   options.childProcessOptions = {
       env: {
           OPENSSL_CONF: '/dev/null',
       },
   }
-}
+// }
 
 class SampleImportPermit {
   constructor() { }
