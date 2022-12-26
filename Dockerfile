@@ -8,8 +8,6 @@ RUN rm -f /etc/localtime \
 && ln -sv /usr/share/zoneinfo/Asia/Dhaka /etc/localtime \
 && echo "Asia/Dhaka" > /etc/timezone
 
-# RUN apk --no-cache add ttf-freefont fontconfig
-
 RUN mkdir -p /usr/share/fonts/truetype/SolaimanLipi_bengali
 COPY /fonts/SolaimanLipi_22-02-2012.ttf  /usr/share/fonts/truetype/SolaimanLipi_bengali
 COPY ./dejavu/*.ttf /usr/share/fonts/
