@@ -16,6 +16,7 @@ const configProperties = {
     BEZA_SERVICE_CERTIFICATE_INFO_PATH: "",
     BEZA_SERVICE_DESK_USER_SIGNATURE_PATH: "",
     BEZA_SERVICE_CONVERT_CURRENCY_PATH: "",
+    BEZA_SERVICE_GET_MACHENARIES_PATH: "",
     KEYCLOAK_BASE_URL: "",
     KEYCLOAK_PORT: "",
     KEYCLOAK_USER_INFO_PATH: ""
@@ -59,6 +60,7 @@ configProperties.BEZA_SERVICE_COMMON_FIELDS_PATH = conf.backendApi.bezaServiceCo
 configProperties.BEZA_SERVICE_PAYMENT_VOUCHER_PATH = conf.backendApi.paymentVoucherInfoPath;
 configProperties.BEZA_SERVICE_CERTIFICATE_INFO_PATH = conf.backendApi.certificateInfoPath;
 configProperties.BEZA_SERVICE_DESK_USER_SIGNATURE_PATH = conf.backendApi.bezaServiceDeskUserSignature;
+configProperties.BEZA_SERVICE_GET_MACHENARIES_PATH = conf.backendApi.getMachineriesPath;
 configProperties.BEZA_SERVICE_CONVERT_CURRENCY_PATH = conf.backendApi.convertCurrency;
 configProperties.KEYCLOAK_BASE_URL = conf.backendApi.keycloakBaseUrl;
 configProperties.KEYCLOAK_PORT = conf.backendApi.keycloakPort;
