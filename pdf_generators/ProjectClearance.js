@@ -71,23 +71,50 @@ class ProjectClearance {
     return currencies;
   }
 
+  getInfrastructureTableAnnexure1() {
+    try {
+      let annexure1Template = fs.readFileSync(
+        "./pdf_templates/project-clearance/infrastructures-annexure-1.html",
+        "utf8"
+      );
+      return annexure1Template;
+    } catch (error) {
+      console.error(error);
+      return "";
+    }
+  }
+
   getMachineriesTableAnnexure2(machineriesToCalculate) {
-    let additionOfMachineriesList = "<tbody>";
-    
-    machineriesToCalculate.length > 0 && machineriesToCalculate.map((machinery) => {
-      additionOfMachineriesList += "<tr>";
-      additionOfMachineriesList += "<td>"+(machinery.detailsOfMachinery == null ? "" : machinery.detailsOfMachinery)+"</td>";
-      additionOfMachineriesList += "<td>"+(machinery.coountryOfOrigin == null ? "" : machinery.coountryOfOrigin)+"</td>";
-      additionOfMachineriesList += "<td>"+(machinery.nameOfTheVendor == null ? "" : machinery.nameOfTheVendor)+"</td>";
-      additionOfMachineriesList += "<td>"+(machinery.valueInput == null ? "" : machinery.valueInput)+"</td>";
-      additionOfMachineriesList += "<td>"+(machinery.valueCurrency == null ? "" : machinery.valueCurrency)+"</td>";
-      additionOfMachineriesList += "<td>"+(machinery.state == null ? "" : machinery.state)+"</td>";
-        
+    if(machineriesToCalculate == null || machineriesToCalculate.length == 0) return "";
+    let additionOfMachineriesList = "";
+    try {
+      let annexure2Template = fs.readFileSync(
+        "./pdf_templates/project-clearance/materials-annexure-2.html",
+        "utf8"
+      );
+  
+      additionOfMachineriesList += "<tbody>";
+      
+      machineriesToCalculate.length > 0 && machineriesToCalculate.map((machinery) => {
+        additionOfMachineriesList += "<tr>";
+        additionOfMachineriesList += "<td>"+(machinery.detailsOfMachinery || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(machinery.coountryOfOrigin || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(machinery.nameOfTheVendor || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(machinery.valueInput || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(machinery.valueCurrency || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(machinery.state || "")+"</td>";
+          
         additionOfMachineriesList += "</tr>";
       });
-
-      additionOfMachineriesList += "</tbody>"
-    return additionOfMachineriesList;
+  
+        additionOfMachineriesList += "</tbody>";
+        annexure2Template = annexure2Template.replace("{{additionOfMachineriesListAn2}}", additionOfMachineriesList);
+        
+      return annexure2Template;
+    } catch (error) {
+      console.error(error);
+      return "";
+    }
   }
 
   async generate(body) {
@@ -96,6 +123,7 @@ class ProjectClearance {
     const machineriesToCalculate = await this.getMachineries(body?.id, body.formValue?.additionOfMachinery, body.formValue?.addMachineriesByFile);
     const currencyList = this.#getCurrencyList(machineriesToCalculate);
     body.formValue.additionOfMachineriesListAnnexure2 = this.getMachineriesTableAnnexure2(machineriesToCalculate);
+    body.formValue.infrastructuresListAnnexure1 = this.getInfrastructureTableAnnexure1();
     body.formValue.machineryCurrencyValue = await currencyConverter(currencyList, "USD");
     body.formValue.machineryCurrency = "USD";
     let htmlTemplate = fs.readFileSync(
@@ -106,6 +134,9 @@ class ProjectClearance {
       "./pdf_templates/project-clearance/project-clearance-materials-description.html",
       "utf8"
     );
+
+    htmlTemplate.replace( "`{{additionOfMachineriesListAnnexure2}}`",
+     "" + body.formValue.additionOfMachineriesListAnnexure2 || "");
 
     try {
       let localTotal = body.formValue.domesticTotal;

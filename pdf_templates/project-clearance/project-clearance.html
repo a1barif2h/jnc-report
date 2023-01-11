@@ -224,76 +224,90 @@
 
 
     table.GeneratedTable {
-        background-color: #ffffff;
-        border-collapse: collapse;
-        margin: 0 auto !important;
-      }
+      background-color: #ffffff;
+      border-collapse: collapse;
+      margin: 0 auto !important;
+    }
 
-      table.GeneratedTable td,
-      table.GeneratedTable th {
-        border: 1px solid black;
-      }
+    table.GeneratedTable td,
+    table.GeneratedTable th {
+      border: 1px solid black;
+    }
 
-      table.GeneratedTable thead {
-        background-color: #ffffff;
-      }
+    table.GeneratedTable thead {
+      background-color: #ffffff;
+    }
 
-      /* customize table */
+    /* customize table */
 
-      .second-page {
-        margin-top: 2.5rem;
-      }
+    .second-page {
+      margin-top: 2.5rem;
+    }
 
-      .child-td {
-        padding: 0rem !important;
-        border: none !important;
-      }
+    .child-td {
+      padding: 0rem !important;
+      border: none !important;
+    }
 
-      .child-td tr {
-        text-align: center;
-      }
+    .child-td tr {
+      text-align: center;
+    }
 
-      .child-tbody td {
-        padding: 1rem 0rem !important;
-      }
+    .child-tbody td {
+      padding: 1rem 0rem !important;
+    }
 
-      th {
-        font-size: 6.8px;
-      }
+    th {
+      padding: 1rem;
+      text-align: left;
+      font-size: 6.8px;
+    }
 
-      td {
-        padding: 1rem;
-        font-size: 6.5px;
-      }
+    td {
+      padding: 1rem;
+      font-size: 6.5px;
+    }
 
-      .first-th {
-        width: 20% !important;
-      }
+    .first-th {
+      width: 20% !important;
+    }
 
-      .second-th {
-        width: 15% !important;
-      }
+    .second-th {
+      width: 15% !important;
+    }
 
-      .third-th {
-        width: 20% !important;
-      }
+    .third-th {
+      width: 20% !important;
+    }
 
-      .fourth-th {
-        width: 10% !important;
-      }
+    .fourth-th {
+      width: 10% !important;
+    }
 
-      .fifth-th {
-        width: 10% !important;
-      }
+    .fifth-th {
+      width: 10% !important;
+    }
 
-      .sixth-th {
-        width: 5% !important;
-      }
+    .sixth-th {
+      width: 5% !important;
+    }
 
-      .first-td {
-        text-align: center;
-        line-height: 2;
-      }
+    .first-td {
+      text-align: center;
+      line-height: 2;
+    }
+
+    .first-th-an1 {
+      width: 34% !important;
+    }
+
+    .second-th-an2 {
+      width: 33% !important;
+    }
+
+    .third-th-an3 {
+      width: 33% !important;
+    }
 
   </style>
 </head>
@@ -530,46 +544,8 @@
       </footer>
     </main>
   </div>
-  <div class="annexureTwoPageContainer">
-    <main>
-      <div>
-        <table class="GeneratedTable">
-          <thead>
-            <tr>
-              <th class="first-th">Details of Machinery</th>
-              <th class="second-th">Country of Origin</th>
-              <th class="third-th">Name of The vendor</th>
-              <th class="fourth-th">Value</th>
-              <th class="fifth-th">Value Currency</th>
-              <th class="sixth-th">State</th>
-            </tr>
-          </thead>
-          {{additionOfMachineriesListAnnexure2}}
-          <!-- <tbody>
-            <tr>
-              <td class="first-td">
-                {{nameOfTheForeignNational}} <br />
-                {{nameOfThePostEmployedOfDesignation}}
-                <br />
-                {{particularsNationality}}<br />
-                {{passport1}}
-              </td>
-              <td>
-                {{desiredDurationWithDetails}} (with effect from: {{startDateBeza}})
-              </td>
-            </tr>
-      
-            <tr>
-              <td colspan="3">Others: {{hOtherFringeBenefitsIfAny}}</td>
-            </tr>
-            <tr>
-              <td colspan="3">Remarks: {{anyParticularComments}}</td>
-            </tr>
-          </tbody> -->
-        </table>
-      </div>
-    </main>
-  </div>
+  {{infrastructuresListAnnexure1}}
+  {{additionOfMachineriesListAnnexure2}}
 </body>
 
 </html>
