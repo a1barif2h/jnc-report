@@ -44,9 +44,8 @@ class ProjectClearance {
     changeDateFormat(formValue, "applicationDate");
   }
 
-  async #getCurrencyList(applicationId, additionOfMachinery, addMachineriesByFile) {
-    const currencies = {};
-    let machineriesToCalculate;
+  async getMachineries (applicationId, additionOfMachinery, addMachineriesByFile) {
+    let machineriesToCalculate = [];
     if(addMachineriesByFile) {
       //machineries have been added through excel so get the values from there
       const machineries = await getMachenariesByApplicationID(applicationId);
@@ -54,6 +53,12 @@ class ProjectClearance {
     } else {
       machineriesToCalculate = additionOfMachinery;
     }
+    return machineriesToCalculate;
+  }
+
+  #getCurrencyList(machineriesToCalculate) {
+    const currencies = {};
+    
     machineriesToCalculate.length > 0 && machineriesToCalculate.map((machinery) => {
         const currencyName = machinery.valueCurrency;
         const currencyValue = parseFloat(machinery.valueInput);
@@ -66,11 +71,31 @@ class ProjectClearance {
     return currencies;
   }
 
+  getMachineriesTableAnnexure2(machineriesToCalculate) {
+    let additionOfMachineriesList = "<tbody>";
+    
+    machineriesToCalculate.length > 0 && machineriesToCalculate.map((machinery) => {
+      additionOfMachineriesList += "<tr>";
+      additionOfMachineriesList += "<td>"+(machinery.detailsOfMachinery == null ? "" : machinery.detailsOfMachinery)+"</td>";
+      additionOfMachineriesList += "<td>"+(machinery.coountryOfOrigin == null ? "" : machinery.coountryOfOrigin)+"</td>";
+      additionOfMachineriesList += "<td>"+(machinery.nameOfTheVendor == null ? "" : machinery.nameOfTheVendor)+"</td>";
+      additionOfMachineriesList += "<td>"+(machinery.valueInput == null ? "" : machinery.valueInput)+"</td>";
+      additionOfMachineriesList += "<td>"+(machinery.valueCurrency == null ? "" : machinery.valueCurrency)+"</td>";
+      additionOfMachineriesList += "<td>"+(machinery.state == null ? "" : machinery.state)+"</td>";
+        
+        additionOfMachineriesList += "</tr>";
+      });
+
+      additionOfMachineriesList += "</tbody>"
+    return additionOfMachineriesList;
+  }
+
   async generate(body) {
 
     this.handleDateTimeFormat(body.formValue);
-
-    const currencyList = await this.#getCurrencyList(body?.id, body.formValue?.additionOfMachinery, body.formValue?.addMachineriesByFile)
+    const machineriesToCalculate = await this.getMachineries(body?.id, body.formValue?.additionOfMachinery, body.formValue?.addMachineriesByFile);
+    const currencyList = this.#getCurrencyList(machineriesToCalculate);
+    body.formValue.additionOfMachineriesListAnnexure2 = this.getMachineriesTableAnnexure2(machineriesToCalculate);
     body.formValue.machineryCurrencyValue = await currencyConverter(currencyList, "USD");
     body.formValue.machineryCurrency = "USD";
     let htmlTemplate = fs.readFileSync(
