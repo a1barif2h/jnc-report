@@ -92,20 +92,29 @@ class ProjectClearance {
         "./pdf_templates/project-clearance/materials-annexure-2.html",
         "utf8"
       );
-  
+
+      let annexure2PageBreak = fs.readFileSync(
+        "./pdf_templates/project-clearance/materials-annexure-2-page-break.html",
+        "utf8"
+      );
+      
       additionOfMachineriesList += "<tbody>";
       
-      machineriesToCalculate.length > 0 && machineriesToCalculate.map((machinery) => {
+      // machineriesToCalculate.length > 0 && machineriesToCalculate.map((machinery) =>
+      for(let i = 0; i <machineriesToCalculate.length; i++) {
         additionOfMachineriesList += "<tr>";
-        additionOfMachineriesList += "<td>"+(machinery.detailsOfMachinery || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(machinery.coountryOfOrigin || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(machinery.nameOfTheVendor || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(machinery.valueInput || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(machinery.valueCurrency || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(machinery.state || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].detailsOfMachinery || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].coountryOfOrigin || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].nameOfTheVendor || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].valueInput || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].valueCurrency || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].state || "")+"</td>";
           
         additionOfMachineriesList += "</tr>";
-      });
+        if(i>0 && i%20==0 && i<(machineriesToCalculate.length-1)) {
+          additionOfMachineriesList+=annexure2PageBreak;
+        }
+      };
   
         additionOfMachineriesList += "</tbody>";
         annexure2Template = annexure2Template.replace("{{additionOfMachineriesListAn2}}", additionOfMachineriesList);

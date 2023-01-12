@@ -227,11 +227,14 @@
       background-color: #ffffff;
       border-collapse: collapse;
       margin: 0 auto !important;
+      border: 1px solid rgba(53, 62, 108, 0.1) !important;
+      border-radius: 4px !important;
     }
 
     table.GeneratedTable td,
     table.GeneratedTable th {
-      border: 1px solid black;
+      border: 1px solid rgba(53, 62, 108, 0.1) !important;
+      /* border-radius: 4px !important; */
     }
 
     table.GeneratedTable thead {
@@ -258,14 +261,22 @@
     }
 
     th {
-      padding: 1rem;
+      padding: 4px 1rem;
       text-align: left;
-      font-size: 6.8px;
+      font-size: 6.8 !important;
+      background-color: #353E6C0D !important;
+      color: #353E6C !important;
+      font-weight: 700 !important;
+      line-height: 24px !important;
     }
 
     td {
-      padding: 1rem;
+      padding: 4px 1rem;
       font-size: 6.5px;
+      font-weight: 400 !important;
+      letter-spacing: 0.5px !important;
+      line-height: 18px !important;
+      color: #353E6C !important;
     }
 
     .first-th {
@@ -307,6 +318,26 @@
 
     .third-th-an3 {
       width: 33% !important;
+    }
+
+    .annexure-table-headers {
+      height: 40px;
+      background-color: #353E6C;
+      color: #ffffff;
+      border-radius: 4px;
+      width: 100%;
+      line-height: 38px;
+      font-size: 20px;
+      font-weight: 400;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .annexure-th {
+      background-color: #353E6C0D;
+      color: #353E6C;
+      font-weight: 700;
+      line-height: 24px;
     }
 
   </style>
