@@ -13,6 +13,7 @@ const replaceMaterialsInProjectClearance = require("../util/replaceMaterialsInPr
 const currencyConverter = require("../util/currencyConverter");
 const logger = require("../util/logger");
 const { changeDateFormat } = require("../util/dateTimeFormattor");
+const {getMachenariesByApplicationID} = require("../services/gateway_services/bezaServiceGateway");
 
 const options = { 
   format: "A4", 
@@ -43,17 +44,25 @@ class ProjectClearance {
     changeDateFormat(formValue, "applicationDate");
   }
 
-  #getCurrencyList(additionOfMachinery) {
+  async #getCurrencyList(applicationId, additionOfMachinery, addMachineriesByFile) {
     const currencies = {};
-    additionOfMachinery.length > 0 && additionOfMachinery.map((machinery) => {
-      const currencyName = machinery.valueCurrency;
-      const currencyValue = machinery.valueInput;
-      if (currencies[currencyName]) {
-        currencies[currencyName] = currencies[currencyName] + currencyValue;
-      } else {
-        currencies[currencyName] = currencyValue;
-      }
-    })
+    let machineriesToCalculate;
+    if(addMachineriesByFile) {
+      //machineries have been added through excel so get the values from there
+      const machineries = await getMachenariesByApplicationID(applicationId);
+      machineriesToCalculate = machineries.additionOfMachinery;
+    } else {
+      machineriesToCalculate = additionOfMachinery;
+    }
+    machineriesToCalculate.length > 0 && machineriesToCalculate.map((machinery) => {
+        const currencyName = machinery.valueCurrency;
+        const currencyValue = parseFloat(machinery.valueInput);
+        if (currencies[currencyName]) {
+          currencies[currencyName] = currencies[currencyName] + currencyValue;
+        } else {
+          currencies[currencyName] = currencyValue;
+        }
+      });
     return currencies;
   }
 
@@ -61,7 +70,7 @@ class ProjectClearance {
 
     this.handleDateTimeFormat(body.formValue);
 
-    const currencyList = this.#getCurrencyList(body.formValue?.additionOfMachinery)
+    const currencyList = await this.#getCurrencyList(body?.id, body.formValue?.additionOfMachinery, body.formValue?.addMachineriesByFile)
     body.formValue.machineryCurrencyValue = await currencyConverter(currencyList, "USD");
     body.formValue.machineryCurrency = "USD";
     let htmlTemplate = fs.readFileSync(

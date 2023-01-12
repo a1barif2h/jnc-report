@@ -34,6 +34,21 @@ const getFormValueByApplicationID = async (applicationId) => {
   }
 };
 
+const getMachenariesByApplicationID = async (applicationId) => {
+  let formValueUrl =
+    getBaseUrl() +
+    config.BEZA_SERVICE_GET_MACHENARIES_PATH +
+    applicationId;
+  try {
+    const {data} = await axios.get(formValueUrl)
+    return data;
+  } catch (error) {
+    logger.error(error);
+
+    return {};
+  }
+};
+
 
 
 const upload = async (buffer, data, isProjectRegistration) => {
@@ -188,5 +203,6 @@ module.exports = {
   getPaymentVoucherInfo,
   getCertificateInfo,
   getdeskUserSignature,
-  getConvertedCurrencyValue
+  getConvertedCurrencyValue,
+  getMachenariesByApplicationID
 };

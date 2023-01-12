@@ -34,7 +34,7 @@ class WorkPermit {
 
   handleDateTimeFormat(formValue) {
     //DATE TIME FORMAT: 13 August 2022
-    changeDateFormat(formValue, "startDate");
+    changeDateFormat(formValue, "startDateBeza");
     changeDateFormat(formValue, "applicationDate");
   }
 

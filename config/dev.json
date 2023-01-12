@@ -12,6 +12,7 @@
     "bezaServiceCommmonFields": "/beza-service/api/v1/internal/sop-common-fields/",
     "bezaServiceDeskUserSignature": "/beza-service/api/v1/internal/users/signature",
     "paymentVoucherInfoPath": "/beza-service/api/v1/internal/user-sops/payment-voucher/",
+    "getMachineriesPath": "/beza-service/api/v1/internal/user-sops/machineries/",
 
     "certificateInfoPath": "/beza-service/api/v1/internal/user-certificate/",
     
