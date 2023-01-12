@@ -70,8 +70,9 @@ class ProjectClearance {
 
     this.handleDateTimeFormat(body.formValue);
 
-    const currencyList = await this.#getCurrencyList(body?.id, body.formValue?.additionOfMachinery, body.formValue?.addMachineriesByFile)
-    body.formValue.machineryCurrencyValue = await currencyConverter(currencyList, "USD");
+    const currencyList = await this.#getCurrencyList(body?.id, body.formValue?.additionOfMachinery, body.formValue?.addMachineriesByFile);
+    const totalMachineryAmount = await currencyConverter(currencyList, "USD");
+    body.formValue.machineryCurrencyValue = totalMachineryAmount.toFixed(2);
     body.formValue.machineryCurrency = "USD";
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/project-clearance/project-clearance.html",
