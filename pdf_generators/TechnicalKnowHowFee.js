@@ -43,8 +43,6 @@ class TechnicalKnowHowFee {
       "utf8"
     );
 
-    logger.info("this is for test")
-
     const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
     return response;
   }
