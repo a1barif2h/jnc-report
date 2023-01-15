@@ -71,12 +71,15 @@ class ProjectClearance {
     return currencies;
   }
 
-  getInfrastructureTableAnnexure1() {
+  getInfrastructureTableAnnexure1(machineriesToCalculate) {
     try {
       let annexure1Template = fs.readFileSync(
         "./pdf_templates/project-clearance/infrastructures-annexure-1.html",
         "utf8"
       );
+      // this.getMachineriesTableAnnexure2(machineriesToCalculate);
+      let machineries = this.getMachineriesTableAnnexure2(machineriesToCalculate);
+      annexure1Template = annexure1Template.replace("{{additionOfMachineriesListAnnexure2}}", machineries)
       return annexure1Template;
     } catch (error) {
       console.error(error);
@@ -109,11 +112,14 @@ class ProjectClearance {
         additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].valueInput || "")+"</td>";
         additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].valueCurrency || "")+"</td>";
         additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].state || "")+"</td>";
-          
+        
         additionOfMachineriesList += "</tr>";
-        // if(i>0 && i%10==0 && i<(machineriesToCalculate.length-1)) {
-        //   additionOfMachineriesList+=annexure2PageBreak;
-        // }
+        if(i>0 && i%15==0 && i<(machineriesToCalculate.length-1) && i<=15) {
+          additionOfMachineriesList+=annexure2PageBreak;
+        }
+        else if(i>15 && (i+10)%25==0 && i<(machineriesToCalculate.length-1)) {
+          additionOfMachineriesList+=annexure2PageBreak;
+        }
       };
   
         additionOfMachineriesList += "</tbody>";
@@ -131,8 +137,9 @@ class ProjectClearance {
     this.handleDateTimeFormat(body.formValue);
     const machineriesToCalculate = await this.getMachineries(body?.id, body.formValue?.additionOfMachinery, body.formValue?.addMachineriesByFile);
     const currencyList = this.#getCurrencyList(machineriesToCalculate);
-    body.formValue.additionOfMachineriesListAnnexure2 = this.getMachineriesTableAnnexure2(machineriesToCalculate);
-    body.formValue.infrastructuresListAnnexure1 = this.getInfrastructureTableAnnexure1();
+    
+    body.formValue.infrastructuresListAnnexure1 = this.getInfrastructureTableAnnexure1(machineriesToCalculate);
+    // body.formValue.additionOfMachineriesListAnnexure2 = this.getMachineriesTableAnnexure2(machineriesToCalculate);
     const totalMachineryAmount = await currencyConverter(currencyList, "USD");
     body.formValue.machineryCurrencyValue = totalMachineryAmount.toFixed(2);
     body.formValue.machineryCurrency = "USD";
