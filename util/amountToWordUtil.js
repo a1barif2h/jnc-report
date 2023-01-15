@@ -34,4 +34,13 @@ function amountInWords(num) {
   return capitalized(inWords(num) + 'only')
 }
 
-module.exports = amountInWords;
+function numberWithCommas(x) {
+  var parts = x.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
+}
+
+module.exports = {
+  amountInWords,
+  numberWithCommas
+};
