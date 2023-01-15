@@ -105,7 +105,6 @@ const generateCertificate = async (req) => {
                                 }
                             })
                             const deskUserSignature = await bezaServiceGateway.getdeskUserSignature(req.body.processInstanceId,"RD_3");
-                            logger.info("rd3 desk user's info: %o", {...deskUserSignature});
                             res.formValue.deskUserFullName =  deskUserSignature?.name || '-';
                             res.formValue.deskUserDesignation =  deskUserSignature?.designation || '-';
                             if(deskUserSignature && deskUserSignature.signature)

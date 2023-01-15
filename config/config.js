@@ -25,7 +25,7 @@ const configProperties = {
 const config = convict({
 
     env: {
-        format: ['production', 'staging', 'dev', 'default', 'staging_uat'],
+        format: ['production', 'staging', 'dev', 'default', 'staging_uat', 'production_local'],
         default: 'staging',
         arg: 'nodeEnv',
         env: 'NODE_ENV'

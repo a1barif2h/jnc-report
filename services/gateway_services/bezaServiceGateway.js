@@ -133,7 +133,7 @@ const getdeskUserSignature= async function (processInstanceId, deskCode){
    .get(bezaServiceDeskUserSignature)
    .then((response) => {
       logger.info(`Got signature name and designation api url: ${deskUserSignatureUrl}`)
-      logger.info("response:%o", {...response.data}) 
+      // logger.info("response:%o", {...response.data}) 
       logger.info(`for process: ${processInstanceId}`)
       logger.info(`for desk: ${deskCode}`)
      return response.data;

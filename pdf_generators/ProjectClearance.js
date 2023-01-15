@@ -133,7 +133,8 @@ class ProjectClearance {
     const currencyList = this.#getCurrencyList(machineriesToCalculate);
     body.formValue.additionOfMachineriesListAnnexure2 = this.getMachineriesTableAnnexure2(machineriesToCalculate);
     body.formValue.infrastructuresListAnnexure1 = this.getInfrastructureTableAnnexure1();
-    body.formValue.machineryCurrencyValue = await currencyConverter(currencyList, "USD");
+    const totalMachineryAmount = await currencyConverter(currencyList, "USD");
+    body.formValue.machineryCurrencyValue = totalMachineryAmount.toFixed(2);
     body.formValue.machineryCurrency = "USD";
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/project-clearance/project-clearance.html",
