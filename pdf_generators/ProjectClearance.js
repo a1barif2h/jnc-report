@@ -111,7 +111,7 @@ class ProjectClearance {
         additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].state || "")+"</td>";
           
         additionOfMachineriesList += "</tr>";
-        if(i>0 && i%20==0 && i<(machineriesToCalculate.length-1)) {
+        if(i>0 && i%10==0 && i<(machineriesToCalculate.length-1)) {
           additionOfMachineriesList+=annexure2PageBreak;
         }
       };
