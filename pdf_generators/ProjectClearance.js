@@ -14,6 +14,7 @@ const currencyConverter = require("../util/currencyConverter");
 const logger = require("../util/logger");
 const { changeDateFormat } = require("../util/dateTimeFormattor");
 const {getMachenariesByApplicationID} = require("../services/gateway_services/bezaServiceGateway");
+const { MachineriesConstants } = require("../constants/MachineriesConstants");
 
 const options = { 
   format: "A4", 
@@ -71,14 +72,14 @@ class ProjectClearance {
     return currencies;
   }
 
-  getInfrastructureTableAnnexure1(machineriesToCalculate) {
+  addInfrastructureTable(machineriesToCalculate) {
     try {
       let annexure1Template = fs.readFileSync(
         "./pdf_templates/project-clearance/infrastructures-annexure-1.html",
         "utf8"
       );
       // this.getMachineriesTableAnnexure2(machineriesToCalculate);
-      let machineries = this.getMachineriesTableAnnexure2(machineriesToCalculate);
+      let machineries = this.addMachineriesTable(machineriesToCalculate);
       annexure1Template = annexure1Template.replace("{{additionOfMachineriesListAnnexure2}}", machineries)
       return annexure1Template;
     } catch (error) {
@@ -87,7 +88,7 @@ class ProjectClearance {
     }
   }
 
-  getMachineriesTableAnnexure2(machineriesToCalculate) {
+  addMachineriesTable(machineriesToCalculate) {
     if(machineriesToCalculate == null || machineriesToCalculate.length == 0) return "";
     let additionOfMachineriesList = "";
     try {
@@ -96,31 +97,35 @@ class ProjectClearance {
         "utf8"
       );
 
-      let annexure2PageBreak = fs.readFileSync(
+      const annexure2PageBreak = fs.readFileSync(
         "./pdf_templates/project-clearance/materials-annexure-2-page-break.html",
         "utf8"
       );
       
       additionOfMachineriesList += "<tbody>";
-      
-      // machineriesToCalculate.length > 0 && machineriesToCalculate.map((machinery) =>
-      for(let i = 0; i <machineriesToCalculate.length; i++) {
+
+      machineriesToCalculate.forEach((element,i) => {
         additionOfMachineriesList += "<tr>";
-        additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].detailsOfMachinery || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].coountryOfOrigin || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].nameOfTheVendor || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].valueInput || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].valueCurrency || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].state || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(element.detailsOfMachinery || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(element.coountryOfOrigin || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(element.nameOfTheVendor || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(element.valueInput || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(element.valueCurrency || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(element.state || "")+"</td>";
         
         additionOfMachineriesList += "</tr>";
-        if(i>0 && i%15==0 && i<(machineriesToCalculate.length-1) && i<=15) {
+        const machineriesFirstPageConstants = MachineriesConstants.FIRST_PAGE_MACHINERIES;
+        const machineriesPerPageConstants = MachineriesConstants.PER_PAGE_MACHINERIES;
+        const diffBetweenFirstAndOtherPageItems = machineriesPerPageConstants - machineriesFirstPageConstants;
+        if(i>0 && i%machineriesFirstPageConstants==0 && i<(machineriesToCalculate.length-1) && i<=machineriesFirstPageConstants) {
           additionOfMachineriesList+=annexure2PageBreak;
         }
-        else if(i>15 && (i+10)%25==0 && i<(machineriesToCalculate.length-1)) {
+        else if(i>machineriesFirstPageConstants && (i+diffBetweenFirstAndOtherPageItems)%machineriesPerPageConstants==0 && i<(machineriesToCalculate.length-1)) {
           additionOfMachineriesList+=annexure2PageBreak;
         }
-      };
+      });
+      
+      
   
         additionOfMachineriesList += "</tbody>";
         annexure2Template = annexure2Template.replace("{{additionOfMachineriesListAn2}}", additionOfMachineriesList);
@@ -138,7 +143,7 @@ class ProjectClearance {
     const machineriesToCalculate = await this.getMachineries(body?.id, body.formValue?.additionOfMachinery, body.formValue?.addMachineriesByFile);
     const currencyList = this.#getCurrencyList(machineriesToCalculate);
     
-    body.formValue.infrastructuresListAnnexure1 = this.getInfrastructureTableAnnexure1(machineriesToCalculate);
+    body.formValue.infrastructuresListAnnexure1 = this.addInfrastructureTable(machineriesToCalculate);
     // body.formValue.additionOfMachineriesListAnnexure2 = this.getMachineriesTableAnnexure2(machineriesToCalculate);
     const totalMachineryAmount = await currencyConverter(currencyList, "USD");
     body.formValue.machineryCurrencyValue = totalMachineryAmount.toFixed(2);
