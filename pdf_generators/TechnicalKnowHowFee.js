@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { numberWithCommas } = require("../util/amountToWordUtil");
 const { changeDateFormat } = require("../util/dateTimeFormattor");
 const logger = require("../util/logger");
 
@@ -36,8 +37,14 @@ class TechnicalKnowHowFee {
     changeDateFormat(formValue, "applicationDate");
   }
 
+  handleAmountThousandsSeparator(formValue) {
+    formValue["currencyValue"] = numberWithCommas(formValue["currencyValue"]);
+    formValue["importCostOfMachineryOfTheLastYear"] = numberWithCommas(formValue["importCostOfMachineryOfTheLastYear"]);
+  }
+
   async generate(body) {
     this.handleDateTimeFormat(body.formValue)
+    this.handleAmountThousandsSeparator(body.formValue)
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/technical-know-how-fee/technical-know-how-fee.html",
       "utf8"

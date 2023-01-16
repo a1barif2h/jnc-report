@@ -1,3 +1,5 @@
+const logger = require("./logger");
+
 const capitalized = (words) => words.charAt(0).toUpperCase() + words.slice(1);
 
 // THIS FUNCTION IS RESPONSE TO CONVERT NUMBER TO AMOUNT OF WORD.
