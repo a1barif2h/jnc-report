@@ -114,10 +114,10 @@ class ProjectClearance {
         additionOfMachineriesList += "<td>"+(machineriesToCalculate[i].state || "")+"</td>";
         
         additionOfMachineriesList += "</tr>";
-        if(i>0 && i%15==0 && i<(machineriesToCalculate.length-1) && i<=15) {
+        if(i>0 && i%20==0 && i<(machineriesToCalculate.length-1) && i<=20) {
           additionOfMachineriesList+=annexure2PageBreak;
         }
-        else if(i>15 && (i+10)%25==0 && i<(machineriesToCalculate.length-1)) {
+        else if(i>20 && (i+10)%30==0 && i<(machineriesToCalculate.length-1)) {
           additionOfMachineriesList+=annexure2PageBreak;
         }
       };
