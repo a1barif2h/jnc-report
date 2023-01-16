@@ -1,5 +1,6 @@
 const { response } = require("express");
 const fs = require("fs");
+const { numberWithCommas } = require("../util/amountToWordUtil");
 const { changeDateFormat } = require("../util/dateTimeFormattor");
 const logger = require("../util/logger");
 const { keyRemover, replacer, doubleNaTextRemover } = require("../util/templateEngine");
@@ -38,8 +39,16 @@ class WorkPermit {
     changeDateFormat(formValue, "applicationDate");
   }
 
+  handleAmountThousandsSeparator(formValue) {
+    for (let i = 0; i < 7; i++) {
+      formValue[`amountLocally${i !== 0 ? i : ""}`] = numberWithCommas(formValue[`amountLocally${i !== 0 ? i : ""}`])
+      formValue[`amountAbroad${i !== 0 ? i : ""}`] = numberWithCommas(formValue[`amountAbroad${i !== 0 ? i : ""}`])
+    }
+  }
+
   async generate(body) {
     this.handleDateTimeFormat(body.formValue)
+    this.handleAmountThousandsSeparator(body.formValue)
     body.formValue.plotAddress = body.formValue?.plotAddress ? `<b>Plot# ${body.formValue?.plotAddress}</b>` : "<b style='display: none;'>don't display</b>"
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/work-permit/work-permit.html",
