@@ -6,9 +6,8 @@ const { DOMImplementation, XMLSerializer } = require('xmldom');
 const xmlSerializer = new XMLSerializer();
 const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 const JsBarcode = require('jsbarcode');
-const amountInWords = require("../../util/amountToWordUtil");
 const logger = require("../../util/logger/index.js");
-// const { logger } = require("../../util/helper");
+const { amountInWords } = require("../../util/amountToWordUtil.js");
 const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
 
