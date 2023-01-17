@@ -10,8 +10,8 @@ RUN rm -f /etc/localtime \
 
 # RUN apk --no-cache add ttf-freefont fontconfig
 
-# RUN mkdir -p /usr/share/fonts/truetype/SolaimanLipi_bengali
-# COPY /fonts/SolaimanLipi_22-02-2012.ttf  /usr/share/fonts/truetype/SolaimanLipi_bengali
+RUN mkdir -p /usr/share/fonts/truetype/SolaimanLipi_bengali
+COPY /fonts/SolaimanLipi_22-02-2012.ttf  /usr/share/fonts/truetype/SolaimanLipi_bengali
 COPY ./dejavu/*.ttf /usr/share/fonts/
 COPY ./dejavu/*.ttf /usr/local/share/fonts/
 # COPY ./fonts/*.ttf /usr/share/fonts/

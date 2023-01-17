@@ -2,6 +2,7 @@ const fs = require("fs");
 const pdf = require("./PdfGenerator");
 const dateTimeFormattor = require("../util/dateTimeFormattor");
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
+const { numberWithCommas } = require("../util/amountToWordUtil");
 
 const options = {
   format: "A4",
@@ -15,16 +16,23 @@ const options = {
   }
 };
 
-if (process.env.NODE_ENV !== "production") {
+// if (process.env.NODE_ENV !== "production") {
   options.childProcessOptions = {
       env: {
           OPENSSL_CONF: '/dev/null',
       },
   }
-}
+// }
 
 class SampleImportPermit {
   constructor() { }
+
+  handleAmountThousandsSeparator(formValue) {
+    formValue["processChargeInput"] = numberWithCommas(formValue["processChargeInput"]);
+    formValue.sampleImportMaterialsInformationGroup.map((sampleImportMaterialsInfo, idx) => {
+      formValue.sampleImportMaterialsInformationGroup[idx]["sampleValue"] = numberWithCommas(sampleImportMaterialsInfo["sampleValue"]);
+    })
+  }
 
   async generate(body) {
 
@@ -32,6 +40,8 @@ class SampleImportPermit {
     body.formValue.invoiceDate = body?.formValue?.invoiceDate !== "N/A" ? dateTimeFormattor.getFormatDate(body?.formValue?.invoiceDate) : body?.formValue?.invoiceDate;
     body.formValue.issueDate = body?.formValue?.issueDate !== "N/A" ? dateTimeFormattor.getFormatDate(body?.formValue?.issueDate) : body?.formValue?.issueDate;
     body.formValue.expiredDate = body?.formValue?.expiredDate !== "N/A" ? dateTimeFormattor.getFormatDate(body?.formValue?.expiredDate) : body?.formValue?.expiredDate;
+
+    this.handleAmountThousandsSeparator(body.formValue)
 
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/sample-import-permit/sample-import-permit.html",

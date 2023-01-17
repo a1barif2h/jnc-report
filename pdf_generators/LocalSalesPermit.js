@@ -14,16 +14,17 @@ const options = {
     },
   }
 };
-if(process.env.NODE_ENV !== "production") {
-  logger.info(`adding childProcessOptions for creating pdf in staging`)
+// if(process.env.NODE_ENV !== "production") {
+  // logger.info(`adding childProcessOptions for creating pdf in staging`)
   options.childProcessOptions = {
     env: {
       OPENSSL_CONF: '/dev/null',
     },
   }
-}
+// }
 
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
+const { numberWithCommas } = require("../util/amountToWordUtil");
 
 class LocalSalesPermit {
   constructor() {}
@@ -33,8 +34,16 @@ class LocalSalesPermit {
     changeDateFormat(formValue, "invoiceVendorRefDate");
   }
 
+  handleAmountThousandsSeparator(formValue) {
+    formValue["hiddenUnitPrice"] = numberWithCommas(formValue["hiddenUnitPrice"]);
+    formValue.PurchaseDetailsGroup.map((purchaseDetail, idx) => {
+      formValue.PurchaseDetailsGroup[idx]["unitPrice"] = numberWithCommas(purchaseDetail["unitPrice"]);
+    })
+  }
+
   async generate(body) {
     this.handleDateTimeFormat(body.formValue)
+    this.handleAmountThousandsSeparator(body.formValue)
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/local-sales-permit/local-sales-permit.html",
       "utf8"

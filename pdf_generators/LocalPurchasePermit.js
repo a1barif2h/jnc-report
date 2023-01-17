@@ -2,6 +2,8 @@ const fs = require("fs");
 const pdf = require("./PdfGenerator");
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
 const { changeDateFormat } = require("../util/dateTimeFormattor");
+const { numberWithCommas } = require("../util/amountToWordUtil");
+const logger = require("../util/logger");
 
 const options = { 
   format: "A4", 
@@ -15,13 +17,13 @@ const options = {
   }
 };
 
-if (process.env.NODE_ENV !== "production") {
+// if (process.env.NODE_ENV !== "production") {
   options.childProcessOptions = {
       env: {
           OPENSSL_CONF: '/dev/null',
       },
   }
-}
+// }
 
 class LocalPurchasePermit {
   constructor() {}
@@ -32,8 +34,16 @@ class LocalPurchasePermit {
     changeDateFormat(formValue, "invoiceDate");
   }
 
+  handleAmountThousandsSeparator(formValue) {
+    formValue["hiddenUnitPrice"] = numberWithCommas(formValue["hiddenUnitPrice"]);
+    formValue.PurchaseDetailsGroup.map((purchaseDetail, idx) => {
+      formValue.PurchaseDetailsGroup[idx]["fobCurrencyValue"] = numberWithCommas(purchaseDetail["fobCurrencyValue"]);
+    })
+  }
+
   async generate(body) {
     this.handleDateTimeFormat(body.formValue);
+    this.handleAmountThousandsSeparator(body.formValue)
     
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/local-purchase-permit/local-purchase-permit.html",

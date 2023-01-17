@@ -7,6 +7,7 @@ const { changeDateFormat } = require("../util/dateTimeFormattor");
 
 const pdf = require("./PdfGenerator");
 const { CARRIER_TYPE } = require("../constants/const.js");
+const { numberWithCommas } = require("../util/amountToWordUtil.js");
 const options = {
   format: "A4",
   orientation: "portrait",
@@ -19,14 +20,14 @@ const options = {
   }
 };
 
-if (process.env.NODE_ENV !== "production") {
-  logger.info(`adding childProcessOptions for creating pdf in staging`)
+// if (process.env.NODE_ENV !== "staging") {
+  logger.info(`adding childProcessOptions for creating pdf in production`)
   options.childProcessOptions = {
     env: {
       OPENSSL_CONF: '/dev/null',
     },
   }
-}
+// }
 
 
 
@@ -89,9 +90,21 @@ class ImportPermit {
     })
   }
 
+  handleAmountThousandsSeparator(formValue) {
+    formValue["fobCurrencyValue"] = numberWithCommas(formValue["fobCurrencyValue"]);
+    formValue.importMaterialsInformationGroup.map((importMaterialsInfo, idx) => {
+      formValue.importMaterialsInformationGroup[idx]["fobCurrencyValue1"] = numberWithCommas(importMaterialsInfo["fobCurrencyValue1"]);
+    })
+
+    formValue.ttPOScCmLCInformationContainer.map((ttPoScCmLCInfo, idx) => {
+      formValue.ttPOScCmLCInformationContainer[idx]["ttvalueHidden"] = numberWithCommas(ttPoScCmLCInfo["ttvalueHidden"])
+    })
+  }
+
   async generate(body) {
 
     this.handleDateTimeFormat(body.formValue);
+    this.handleAmountThousandsSeparator(body.formValue);
 
     let baseHtmlTemplate = fs.readFileSync(
       "./pdf_templates/import-permit/import-permit.html",

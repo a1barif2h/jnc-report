@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { numberWithCommas } = require("../util/amountToWordUtil");
 const { changeDateFormat } = require("../util/dateTimeFormattor");
 const logger = require("../util/logger");
 
@@ -16,14 +17,14 @@ const options = {
 };
 
 
-if (process.env.NODE_ENV !== "production") {
-  logger.info(`adding childProcessOptions for creating pdf in staging`)
+// if (process.env.NODE_ENV !== "production") {
+  // logger.info(`adding childProcessOptions for creating pdf in staging`)
   options.childProcessOptions = {
     env: {
       OPENSSL_CONF: '/dev/null',
     },
   }
-}
+// }
 
 
 class TechnicalKnowHowFee {
@@ -36,14 +37,18 @@ class TechnicalKnowHowFee {
     changeDateFormat(formValue, "applicationDate");
   }
 
+  handleAmountThousandsSeparator(formValue) {
+    formValue["currencyValue"] = numberWithCommas(formValue["currencyValue"]);
+    formValue["importCostOfMachineryOfTheLastYear"] = numberWithCommas(formValue["importCostOfMachineryOfTheLastYear"]);
+  }
+
   async generate(body) {
     this.handleDateTimeFormat(body.formValue)
+    this.handleAmountThousandsSeparator(body.formValue)
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/technical-know-how-fee/technical-know-how-fee.html",
       "utf8"
     );
-
-    logger.info("this is for test")
 
     const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
     return response;

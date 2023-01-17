@@ -5,13 +5,13 @@ const logger = require("../util/logger");
 
 const options = {format: 'A4', "orientation": "portrait"};
 
-if (process.env.NODE_ENV !== "production") {
+// if (process.env.NODE_ENV !== "production") {
     options.childProcessOptions = {
         env: {
             OPENSSL_CONF: '/dev/null',
         },
     }
-  }
+//   }
 
 class PaymentVoucher {
     constructor(){};
