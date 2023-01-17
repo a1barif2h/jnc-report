@@ -7,6 +7,7 @@ const { changeDateFormat } = require("../util/dateTimeFormattor");
 const materialsDescriptionParser = require("../util/materialDescriptionParser.js");
 const { AllSopsCodes } = require("../shared/constants/AllSopsCodes");
 const logger = require("../util/logger");
+const { numberWithCommas } = require("../util/amountToWordUtil");
 
 const options = { 
   format: "A4",
@@ -44,8 +45,22 @@ class ExportPermit {
     })
   }
 
+  handleAmountThousandsSeparator(formValue) {
+    formValue["cmCurrencyValue"] = numberWithCommas(formValue["cmCurrencyValue"]);
+    formValue["fobCurrencyValue"] = numberWithCommas(formValue["fobCurrencyValue"]);
+
+    formValue.exportMaterialsInformationGroup.map((exportMaterialsInfo, idx) => {
+      formValue.exportMaterialsInformationGroup[idx]["fobCurrencyValue1"] = numberWithCommas(exportMaterialsInfo["fobCurrencyValue1"]);
+    })
+
+    formValue.ttPOScCmLCInformationContainer.map((ttPoScCmLCInfo, idx) => {
+      formValue.ttPOScCmLCInformationContainer[idx]["ttvalueHidden"] = numberWithCommas(ttPoScCmLCInfo["ttvalueHidden"])
+    })
+  }
+
   async generate(body) {
     this.handleDateTimeFormat(body.formValue)
+    this.handleAmountThousandsSeparator(body.formValue)
 
     let baseHtmlTemplate = fs.readFileSync(
       "./pdf_templates/export-permit/export-permit.html",
