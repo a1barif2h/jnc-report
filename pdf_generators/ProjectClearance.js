@@ -15,6 +15,7 @@ const logger = require("../util/logger");
 const { changeDateFormat } = require("../util/dateTimeFormattor");
 const {getMachenariesByApplicationID} = require("../services/gateway_services/bezaServiceGateway");
 const { MachineriesConstants } = require("../constants/MachineriesConstants");
+const { numberWithCommas } = require("../util/amountToWordUtil");
 
 const options = { 
   format: "A4", 
@@ -109,7 +110,7 @@ class ProjectClearance {
         additionOfMachineriesList += "<td>"+(element.detailsOfMachinery || "")+"</td>";
         additionOfMachineriesList += "<td>"+(element.coountryOfOrigin || "")+"</td>";
         additionOfMachineriesList += "<td>"+(element.nameOfTheVendor || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(element.valueInput || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(numberWithCommas(element.valueInput) || "")+"</td>";
         additionOfMachineriesList += "<td>"+(element.valueCurrency || "")+"</td>";
         additionOfMachineriesList += "<td>"+(element.state || "")+"</td>";
         
@@ -137,6 +138,11 @@ class ProjectClearance {
     }
   }
 
+  handleAmountThousandsSeparator(formValue) {
+    formValue["machineryCurrencyValue"] = numberWithCommas(formValue["machineryCurrencyValue"])
+    formValue["dCostOfTheProjectInUs"] = numberWithCommas(formValue["dCostOfTheProjectInUs"])
+  }
+
   async generate(body) {
 
     this.handleDateTimeFormat(body.formValue);
@@ -148,6 +154,8 @@ class ProjectClearance {
     const totalMachineryAmount = await currencyConverter(currencyList, "USD");
     body.formValue.machineryCurrencyValue = totalMachineryAmount.toFixed(2);
     body.formValue.machineryCurrency = "USD";
+
+    this.handleAmountThousandsSeparator(body.formValue)
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/project-clearance/project-clearance.html",
       "utf8"
