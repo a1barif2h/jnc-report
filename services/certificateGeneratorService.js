@@ -54,7 +54,6 @@ const generateCertificate = async (req) => {
                               `${config.BEZA_FRONT_END_BASE_URL}${colonOrNot}${config.BEZA_FRONT_END_PORT}/validate-certificate?applicationId=` +
                               appId;
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> logger.error(err));
-
                             await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> logger.error(err));
 
                             if (res.additionalInfo != null && res.sopCode == AllSopsCodes.OCCUPANCY.value) {

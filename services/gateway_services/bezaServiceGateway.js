@@ -26,6 +26,7 @@ const getFormValueByApplicationID = async (applicationId) => {
     config.BEZA_SERVICE_FORM_BY_APPLICATION_ID_PATH +
     applicationId;
   try {
+
     const {data} = await axios.get(formValueUrl)
     return data;
   } catch (error) {

@@ -20,6 +20,8 @@ const ProjectRegistration = require("../pdf_generators/ProjectRegistration");
 const logger = require("../util/logger");
 const RoyaltyFee = require("../pdf_generators/RoyaltyFee");
 const TechnicalKnowHowFee = require("../pdf_generators/TechnicalKnowHowFee");
+const BuildingDesignModification = require("../pdf_generators/BuildingDesignModification");
+const PartialUseOfBuilding = require("../pdf_generators/PartialUseOfBuilding");
 
 const generate = async (data) => {
   let sopCode = data.sopCode;
@@ -116,6 +118,14 @@ const generate = async (data) => {
         logger.info(`Generating pdf for ${AllSopsCodes.TECHNICAL_KNOW_HOW_FEE.value}`);
         generatedPdf = await technicalKnowHowFee.generate(data);
         break;
+      case AllSopsCodes.BUILDING_DESIGN_MODIFICATION.value:
+        const buildingDesignModification = new BuildingDesignModification();
+        logger.info(`Generating pdf for ${AllSopsCodes.BUILDING_DESIGN_MODIFICATION.value}`)
+        generatedPdf = await buildingDesignModification.generate(data);
+      case AllSopsCodes.PARTIAL_USE_OF_BUILDING.value:
+        const partialUseOfBuilding = new PartialUseOfBuilding();
+        logger.info(`Generating pdf for ${AllSopsCodes.PARTIAL_USE_OF_BUILDING.value}`)
+        generatedPdf = await partialUseOfBuilding.generate(data);
     default:
       break;
   }
