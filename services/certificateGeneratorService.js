@@ -80,7 +80,8 @@ const generateCertificate = async (req) => {
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate);
                             }
                             else{
-                                res.formValue.backgroundImg = res.sopCode !== 'VISA_ASSISTANCE' ? background_image : '';
+                                logger.warn(req.body)
+                                res.formValue.backgroundImg = res.sopCode !== 'VISA_ASSISTANCE' && res.sopCode !== "ROYALTY_FEE" && res.sopCode !== "TECHNICAL_KNOW_HOW_FEE" ? background_image : '';
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.approvalDate))
                                 res.formValue.certificateGenerateDate = certificateGenerateDate;
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate)
