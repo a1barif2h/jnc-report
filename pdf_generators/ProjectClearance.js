@@ -112,7 +112,7 @@ class ProjectClearance {
         additionOfMachineriesList += "<td>"+(element.nameOfTheVendor || "")+"</td>";
         additionOfMachineriesList += "<td>"+(numberWithCommas(element.valueInput) || "")+"</td>";
         additionOfMachineriesList += "<td>"+(element.valueCurrency || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(element.state || "")+"</td>";
+        additionOfMachineriesList += "<td>"+(element.materialState || "")+"</td>";
         
         additionOfMachineriesList += "</tr>";
         const machineriesFirstPageConstants = MachineriesConstants.FIRST_PAGE_MACHINERIES;
