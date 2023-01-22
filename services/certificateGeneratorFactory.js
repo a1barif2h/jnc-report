@@ -122,10 +122,12 @@ const generate = async (data) => {
         const buildingDesignModification = new BuildingDesignModification();
         logger.info(`Generating pdf for ${AllSopsCodes.BUILDING_DESIGN_MODIFICATION.value}`)
         generatedPdf = await buildingDesignModification.generate(data);
+        break;
       case AllSopsCodes.PARTIAL_USE_OF_BUILDING.value:
         const partialUseOfBuilding = new PartialUseOfBuilding();
         logger.info(`Generating pdf for ${AllSopsCodes.PARTIAL_USE_OF_BUILDING.value}`)
         generatedPdf = await partialUseOfBuilding.generate(data);
+        break;
     default:
       break;
   }
