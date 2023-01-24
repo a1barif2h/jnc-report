@@ -72,7 +72,13 @@ const generateCertificate = async (req) => {
                                 res.formValue = {...res.formValue, ...res.additionalInfo};
                             }
 
-                            if(req.body.isRevoke){
+                            if(res.isCancellation) {
+                                res.formValue.backgroundImg = background_cancelled;
+                                const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.approvalDate));
+                                res.formValue.certificateGenerateDate = certificateGenerateDate;
+                                res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate);
+                            }
+                            else if(req.body.isRevoke){
                                 res.formValue.backgroundImg = background_cancelled;
                                 const certificateInfo = await bezaServiceGateway.getCertificateInfo(req.body.applicationId)
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(certificateInfo.createdAt)
