@@ -73,12 +73,14 @@ const generateCertificate = async (req) => {
                             }
 
                             if(res.isCancellation) {
+                                console.log("SETTING BACKGROUND FOR CANCELLATION");
                                 res.formValue.backgroundImg = background_cancelled;
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.approvalDate));
                                 res.formValue.certificateGenerateDate = certificateGenerateDate;
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate);
                             }
                             else if(req.body.isRevoke){
+                                console.log("SETTING BACKGROUND FOR REVOKE");
                                 res.formValue.backgroundImg = background_cancelled;
                                 const certificateInfo = await bezaServiceGateway.getCertificateInfo(req.body.applicationId)
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(certificateInfo.createdAt)
@@ -86,6 +88,7 @@ const generateCertificate = async (req) => {
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate);
                             }
                             else{
+                                console.log("SETTING BACKGROUND");
                                 logger.warn(req.body)
                                 res.formValue.backgroundImg = res.sopCode !== 'VISA_ASSISTANCE' && res.sopCode !== "ROYALTY_FEE" && res.sopCode !== "TECHNICAL_KNOW_HOW_FEE" ? background_image : '';
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.approvalDate))
