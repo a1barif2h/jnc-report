@@ -75,7 +75,7 @@ const generateCertificate = async (req) => {
                             if(res.isCancellation) {
                                 console.log("SETTING BACKGROUND FOR CANCELLATION");
                                 res.formValue.backgroundImg = background_cancelled;
-                                const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.approvalDate));
+                                const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.parentApprovalDate));
                                 res.formValue.certificateGenerateDate = certificateGenerateDate;
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate);
                             }
