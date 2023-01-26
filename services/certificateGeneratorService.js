@@ -78,6 +78,8 @@ const generateCertificate = async (req) => {
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.parentApprovalDate));
                                 res.formValue.certificateGenerateDate = certificateGenerateDate;
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate);
+                                res.formValue.cancellationDate = res.hasOwnProperty('approvalDate') ?
+                                             ("Cancellation Date : "+ dateTimeFormattor.getFormatDate(res.approvalDate)) : "";
                             }
                             else if(req.body.isRevoke){
                                 console.log("SETTING BACKGROUND FOR REVOKE");
