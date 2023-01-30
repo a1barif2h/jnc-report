@@ -88,6 +88,7 @@ const generateCertificate = async (req) => {
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(certificateInfo.createdAt)
                                 res.formValue.certificateGenerateDate = certificateGenerateDate;
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate);
+                                res.formValue.cancellationDate = "";
                             }
                             else{
                                 console.log("SETTING BACKGROUND");
@@ -96,6 +97,7 @@ const generateCertificate = async (req) => {
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.approvalDate))
                                 res.formValue.certificateGenerateDate = certificateGenerateDate;
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate)
+                                res.formValue.cancellationDate = "";
                             }
                             res.formValue.trackingId = res.trackingId;
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(new Date(res.submittedDate).toLocaleDateString());
