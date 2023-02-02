@@ -6,9 +6,8 @@ const { DOMImplementation, XMLSerializer } = require('xmldom');
 const xmlSerializer = new XMLSerializer();
 const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 const JsBarcode = require('jsbarcode');
-const amountInWords = require("../../util/amountToWordUtil");
 const logger = require("../../util/logger/index.js");
-// const { logger } = require("../../util/helper");
+const { amountInWords } = require("../../util/amountToWordUtil.js");
 const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
 
@@ -27,6 +26,7 @@ const getFormValueByApplicationID = async (applicationId) => {
     config.BEZA_SERVICE_FORM_BY_APPLICATION_ID_PATH +
     applicationId;
   try {
+
     const {data} = await axios.get(formValueUrl)
     return data;
   } catch (error) {
@@ -133,7 +133,7 @@ const getdeskUserSignature= async function (processInstanceId, deskCode){
    .get(bezaServiceDeskUserSignature)
    .then((response) => {
       logger.info(`Got signature name and designation api url: ${deskUserSignatureUrl}`)
-      logger.info("response:%o", {...response.data}) 
+      // logger.info("response:%o", {...response.data}) 
       logger.info(`for process: ${processInstanceId}`)
       logger.info(`for desk: ${deskCode}`)
      return response.data;

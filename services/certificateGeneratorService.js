@@ -54,7 +54,6 @@ const generateCertificate = async (req) => {
                               `${config.BEZA_FRONT_END_BASE_URL}${colonOrNot}${config.BEZA_FRONT_END_PORT}/validate-certificate?applicationId=` +
                               appId;
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> logger.error(err));
-
                             await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> logger.error(err));
 
                             if (res.additionalInfo != null && res.sopCode == AllSopsCodes.OCCUPANCY.value) {
@@ -73,18 +72,32 @@ const generateCertificate = async (req) => {
                                 res.formValue = {...res.formValue, ...res.additionalInfo};
                             }
 
-                            if(req.body.isRevoke){
+                            if(res.isCancellation) {
+                                console.log("SETTING BACKGROUND FOR CANCELLATION");
+                                res.formValue.backgroundImg = background_cancelled;
+                                const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.parentApprovalDate));
+                                res.formValue.certificateGenerateDate = certificateGenerateDate;
+                                res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate);
+                                res.formValue.cancellationDate = res.hasOwnProperty('approvalDate') ?
+                                             ("Cancellation Date : "+ dateTimeFormattor.getFormatDate(res.approvalDate)) : " ";
+                            }
+                            else if(req.body.isRevoke){
+                                console.log("SETTING BACKGROUND FOR REVOKE");
                                 res.formValue.backgroundImg = background_cancelled;
                                 const certificateInfo = await bezaServiceGateway.getCertificateInfo(req.body.applicationId)
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(certificateInfo.createdAt)
                                 res.formValue.certificateGenerateDate = certificateGenerateDate;
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate);
+                                res.formValue.cancellationDate = " ";
                             }
                             else{
-                                res.formValue.backgroundImg = res.sopCode !== 'VISA_ASSISTANCE' ? background_image : '';
+                                console.log("SETTING BACKGROUND");
+                                logger.warn(req.body)
+                                res.formValue.backgroundImg = res.sopCode !== 'VISA_ASSISTANCE' && res.sopCode !== "ROYALTY_FEE" && res.sopCode !== "TECHNICAL_KNOW_HOW_FEE" ? background_image : '';
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.approvalDate))
                                 res.formValue.certificateGenerateDate = certificateGenerateDate;
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate)
+                                res.formValue.cancellationDate = " ";
                             }
                             res.formValue.trackingId = res.trackingId;
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(new Date(res.submittedDate).toLocaleDateString());
@@ -105,7 +118,6 @@ const generateCertificate = async (req) => {
                                 }
                             })
                             const deskUserSignature = await bezaServiceGateway.getdeskUserSignature(req.body.processInstanceId,"RD_3");
-                            logger.info("rd3 desk user's info: %o", {...deskUserSignature});
                             res.formValue.deskUserFullName =  deskUserSignature?.name || '-';
                             res.formValue.deskUserDesignation =  deskUserSignature?.designation || '-';
                             if(deskUserSignature && deskUserSignature.signature)

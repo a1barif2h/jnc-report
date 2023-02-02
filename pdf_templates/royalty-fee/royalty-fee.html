@@ -20,6 +20,20 @@
         /* font-family: "times new roman", times, roman, serif; */
         /* font-family: "DejaVuSansCondensed-Bold", serif; */
       }
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url("{{backgroundImg}}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 380px;
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+        z-index: 10;
+      }
 
       header {
         display: -webkit-box;
