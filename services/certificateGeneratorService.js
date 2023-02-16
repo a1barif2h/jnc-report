@@ -95,7 +95,9 @@ const generateCertificate = async (req) => {
                                 logger.warn(req.body)
                                 res.formValue.backgroundImg = res.sopCode !== 'VISA_ASSISTANCE' && res.sopCode !== "ROYALTY_FEE" && res.sopCode !== "TECHNICAL_KNOW_HOW_FEE" ? background_image : '';
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.approvalDate))
-                                res.formValue.certificateGenerateDate = certificateGenerateDate;
+                                res.formValue.certificateGenerateDate = res.formValue.hasOwnProperty('lastAmendmentDate') 
+                                                                        ? dateTimeFormattor.getFormatDate(res.formValue.lastAmendmentDate)
+                                                                        : certificateGenerateDate;
                                 res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate)
                                 res.formValue.cancellationDate = " ";
                             }
@@ -103,7 +105,7 @@ const generateCertificate = async (req) => {
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(new Date(res.submittedDate).toLocaleDateString());
 
                             res.formValue.lastAmendmentDate = res.formValue.hasOwnProperty('lastAmendmentDate') ?
-                                             "Amendment date : "+ dateTimeFormattor.getFormatDate(res.formValue.lastAmendmentDate) : " ";                     
+                                             "Amendment date : "+ dateTimeFormattor.getFormatDate(res.approvalDate) : " ";                     
                             
                             /**
                              * merging the common fields
