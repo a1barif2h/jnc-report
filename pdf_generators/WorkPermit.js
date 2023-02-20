@@ -43,8 +43,10 @@ class WorkPermit {
     let type_visa = formValue.typeOfVisaObtainedForTheIncumbentForeignNationals;
     let eType = "E - Employment Visa";
     let piType = "PI - Private Investor Visa";
+    let a3Type = "A3 - Work on Government Projects Visa";
+    let eiType = "EI - Employment Type -1 Visa";
 
-    return type_visa === eType || type_visa === piType;
+    return type_visa === eType || type_visa === piType || type_visa === a3Type || type_visa === eiType;
   }
 
   handleAmountThousandsSeparator(formValue) {
