@@ -66,4 +66,10 @@ const doubleNaTextRemover = (template) => {
     return removeAbleTemplate;
 }
 
+const NaDashTextRemover = (template) => {
+    let removeAbleTemplate = template;
+    removeAbleTemplate = removeAbleTemplate.replaceAll("N/A -", 'N/A');
+    return removeAbleTemplate;
+}
+
 module.exports = { replacer, replaceOne, keyRemover, doubleNaTextRemover }

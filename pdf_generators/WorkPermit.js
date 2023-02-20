@@ -79,6 +79,7 @@ class WorkPermit {
       remunerationBoxHtmlTemplate = keyRemover(remunerationBoxHtmlTemplate); // THIS LINE NEED TO CLEAN PREVIOUS VISA TYPE KEY
       remunerationBoxHtmlTemplate = doubleNaTextRemover(remunerationBoxHtmlTemplate)
     }
+    remunerationBoxHtmlTemplate = NaDashTextRemover(remunerationBoxHtmlTemplate)
     body.formValue.remunerationBox = remunerationBoxHtmlTemplate;
 
     const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
