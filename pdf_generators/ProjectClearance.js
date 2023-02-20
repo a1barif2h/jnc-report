@@ -146,16 +146,21 @@ class ProjectClearance {
   async generate(body) {
 
     this.handleDateTimeFormat(body.formValue);
-    const machineriesToCalculate = await this.getMachineries(body?.id, body.formValue?.additionOfMachinery, body.formValue?.addMachineriesByFile);
-    const currencyList = this.#getCurrencyList(machineriesToCalculate);
-    
-    body.formValue.infrastructuresListAnnexure1 = this.addInfrastructureTable(machineriesToCalculate);
-    // body.formValue.additionOfMachineriesListAnnexure2 = this.getMachineriesTableAnnexure2(machineriesToCalculate);
-    const totalMachineryAmount = await currencyConverter(currencyList, "USD");
-    body.formValue.machineryCurrencyValue = totalMachineryAmount.toFixed(2);
-    body.formValue.machineryCurrency = "USD";
+    try {
+      const machineriesToCalculate = await this.getMachineries(body?.id, body.formValue?.additionOfMachinery, body.formValue?.addMachineriesByFile);
+      const currencyList = this.#getCurrencyList(machineriesToCalculate);
+      
+      body.formValue.infrastructuresListAnnexure1 = this.addInfrastructureTable(machineriesToCalculate);
+      // body.formValue.additionOfMachineriesListAnnexure2 = this.getMachineriesTableAnnexure2(machineriesToCalculate);
+      const totalMachineryAmount = await currencyConverter(currencyList, "USD");
+      body.formValue.machineryCurrencyValue = totalMachineryAmount.toFixed(2);
+      body.formValue.machineryCurrency = "USD";
+      this.handleAmountThousandsSeparator(body.formValue)
+    } catch (error) {
+      logger.error(exceptionVar);
+    }
 
-    this.handleAmountThousandsSeparator(body.formValue)
+    
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/project-clearance/project-clearance.html",
       "utf8"
