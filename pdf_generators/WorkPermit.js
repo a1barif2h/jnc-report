@@ -71,7 +71,11 @@ class WorkPermit {
     remunerationBoxHtmlTemplate = replacer(remunerationBoxHtmlTemplate, body.formValue);
     // THIS IS NEW REQUIREMENT LOGIC 
     const type_visa = body.formValue.typeOfVisaObtainedForTheIncumbentForeignNationals;
-    if (type_visa !== "E - Employment Visa" || type_visa !== "PI - Private Investor Visa") {
+    let eType = "E - Employment Visa";
+    let piType = "PI - Private Investor Visa";
+    let a3Type = "A3 - Work on Government Projects Visa";
+    let eiType = "EI - Employment Type -1 Visa";
+    if (type_visa !== eType || type_visa !== piType || type_visa !== a3Type || type_visa !== eiType) {
       remunerationBoxHtmlTemplate = keyRemover(remunerationBoxHtmlTemplate); // THIS LINE NEED TO CLEAN PREVIOUS VISA TYPE KEY
       remunerationBoxHtmlTemplate = doubleNaTextRemover(remunerationBoxHtmlTemplate)
     }
