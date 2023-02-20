@@ -72,4 +72,4 @@ const NaDashTextRemover = (template) => {
     return removeAbleTemplate;
 }
 
-module.exports = { replacer, replaceOne, keyRemover, doubleNaTextRemover }
+module.exports = { replacer, replaceOne, keyRemover, doubleNaTextRemover, NaDashTextRemover }
