@@ -3,7 +3,7 @@ const fs = require("fs");
 const { numberWithCommas } = require("../util/amountToWordUtil");
 const { changeDateFormat } = require("../util/dateTimeFormattor");
 const logger = require("../util/logger");
-const { keyRemover, replacer, doubleNaTextRemover } = require("../util/templateEngine");
+const { keyRemover, replacer, doubleNaTextRemover, NaDashTextRemover } = require("../util/templateEngine");
 
 const pdf = require('./PdfGenerator');
 const options = {
@@ -77,7 +77,7 @@ class WorkPermit {
     let eiType = "EI - Employment Type -1 Visa";
     if (type_visa !== eType || type_visa !== piType || type_visa !== a3Type || type_visa !== eiType) {
       remunerationBoxHtmlTemplate = keyRemover(remunerationBoxHtmlTemplate); // THIS LINE NEED TO CLEAN PREVIOUS VISA TYPE KEY
-      remunerationBoxHtmlTemplate = doubleNaTextRemover(remunerationBoxHtmlTemplate)
+      remunerationBoxHtmlTemplate = doubleNaTextRemover(remunerationBoxHtmlTemplate);
     }
     remunerationBoxHtmlTemplate = NaDashTextRemover(remunerationBoxHtmlTemplate)
     body.formValue.remunerationBox = remunerationBoxHtmlTemplate;
