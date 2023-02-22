@@ -45,9 +45,17 @@ class TradeLicense {
     }
   }
 
+  handlePassportAndNidNo = (formValue) => {
+    if(formValue.nationality === "Bangladeshi") {
+      formValue.passportNumber = formValue.nidNo;
+    }
+  }
+
   async generate(body) {
     this.handleDateTimeFormat(body.formValue)
     await this.getOwnerPhoto(body.formValue)
+
+    this.handlePassportAndNidNo(body.formValue)
 
     let htmlTemplate = fs.readFileSync(
       "./pdf_templates/trade-license/trade-license.html",

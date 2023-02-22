@@ -95,15 +95,26 @@ const generateCertificate = async (req) => {
                                 logger.warn(req.body)
                                 res.formValue.backgroundImg = res.sopCode !== 'VISA_ASSISTANCE' && res.sopCode !== "ROYALTY_FEE" && res.sopCode !== "TECHNICAL_KNOW_HOW_FEE" ? background_image : '';
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.approvalDate))
-                                res.formValue.certificateGenerateDate = certificateGenerateDate;
-                                res.formValue.validTill = dateTimeFormattor.getValidTillDate(certificateGenerateDate)
+                                res.formValue.certificateGenerateDate = res.formValue.hasOwnProperty('lastAmendmentDate') 
+                                                                        ? dateTimeFormattor.getFormatDate(res.formValue.lastAmendmentDate)
+                                                                        : certificateGenerateDate;
+                                res.formValue.validTill = res.formValue.hasOwnProperty('lastAmendmentDate')
+                                                            ? dateTimeFormattor.getValidTillDate(res.formValue.lastAmendmentDate)
+                                                            : dateTimeFormattor.getValidTillDate(certificateGenerateDate);
                                 res.formValue.cancellationDate = " ";
                             }
                             res.formValue.trackingId = res.trackingId;
                             res.formValue.applicationDate = dateTimeFormattor.getApplicationDate(new Date(res.submittedDate).toLocaleDateString());
 
-                            res.formValue.lastAmendmentDate = res.formValue.hasOwnProperty('lastAmendmentDate') ?
-                                             "Amendment date : "+ dateTimeFormattor.getFormatDate(res.formValue.lastAmendmentDate) : " ";                     
+                                                 
+
+                            if(res.sopCode === "ROYALTY_FEE" || res.sopCode === "TECHNICAL_KNOW_HOW_FEE") {
+                                res.formValue.lastAmendmentDate = res.formValue.hasOwnProperty('lastAmendmentDate') ?
+                                '<div class="content-info"><p class="content-label">Amendment Date:</p><p class="content-value">'+dateTimeFormattor.getFormatDate(res.approvalDate)+'</p></div>' : ' ';
+                            } else {
+                                res.formValue.lastAmendmentDate = res.formValue.hasOwnProperty('lastAmendmentDate') ?
+                                             "Amendment date : "+ dateTimeFormattor.getFormatDate(res.approvalDate) : " ";
+                            }
                             
                             /**
                              * merging the common fields
