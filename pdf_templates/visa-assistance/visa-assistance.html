@@ -20,7 +20,7 @@
 
       .container {
         padding: 25px 35px;
-        font-size: 8px;
+        font-size: 11px;
         position: relative;
         z-index: 5;
         font-family: "EB Garamond", serif;
@@ -73,15 +73,15 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
-        margin: 1.3rem 0rem;
+        margin: 1.2rem 0rem;
       }
 
       .application-subject {
-        margin: 2.3rem 0rem;
+        margin: 1.2rem 0rem 0.2rem 0rem;
       }
 
       .application-header {
-        margin-top: 2.3rem;
+        margin-top: 1rem;
       }
 
       .application-header .dear-ceo {
@@ -90,15 +90,15 @@
 
       .application-header-text {
         margin: 0.3rem 0rem;
-        line-height: 1.8;
+        line-height: 1.5;
       }
 
       .application-info {
-        margin-top: 1.5rem;
+        margin-top: 1.2rem;
       }
 
       .application-list {
-        line-height: 1.9;
+        line-height: 1.5;
       }
 
       .application-ambassador {
@@ -111,7 +111,7 @@
         -webkit-box-align: end;
         -ms-flex-align: end;
         align-items: flex-end;
-        line-height: 1.9;
+        line-height: 1.5;
       }
 
       .application-ambassador .signature {
@@ -125,7 +125,7 @@
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        margin-top: 2.5rem;
+        margin-top: 1.2rem;
         width: 40%;
       }
 
@@ -134,7 +134,7 @@
       }
 
       .cc {
-        margin-top: 1.5rem;
+        margin-top: 1.2rem;
         line-height: 2;
       }
       header .header-bar-code img {
@@ -142,8 +142,8 @@
       }
 
       footer p {
-        line-height: 1.9;
-        margin-top: 2rem;
+        line-height: 1.5;
+        margin-top: 1.2rem;
       }
     </style>
   </head>
@@ -163,9 +163,20 @@
       </header>
       <main>
         <div class="application-date">
-          <b>Tracking No:{{trackingId}}</b>
-          <b>Date: {{certificateGenerateDate}}</b>
+          <div>
+            <b>Tracking No:{{trackingId}}</b>
+          </div>
+          <div>
+            <b>Date: {{certificateGenerateDate}}</b>
+            <b>{{lastAmendmentDate}}</b>
+          </div>
         </div>
+
+        <!-- <div class="application-date">
+          <b></b>
+          <b>{{lastAmendmentDate}}</b>
+        </div> -->
+
         <div class="application-subject">
           <b>Subject: Request for Issuance of visa </b>
         </div>
@@ -223,7 +234,7 @@
         <div class="application-ambassador">
           <div>
             <p>The High Commissioner/ Ambassador</p>
-            <p style="font-size: 8px">
+            <p style="font-size: 11px">
               High Commission/ Embassy of the People's Republic of Bangladesh
             </p>
             <p>{{embassyHighCommission}}.</p>
