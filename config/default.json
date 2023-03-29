@@ -4,13 +4,20 @@
     "bezaServicePort": "8585",
     "bezaServiceFrontEndBaseUrl": "http://202.181.14.20",
     "bezaServiceFrontEndPort": "7891",
+    
     "mayanCertificateUploadPath": "/beza-service/api/v1/internal/mayan/upload-document/",
+
     "bezaServiceGetFormValuesByApplicationIdPath": "/beza-service/api/v1/internal/user-sops/",
     "bezaServiceGetCertificateInfoPath": "/beza-service/api/v1/internal/user-certificate/",
     "bezaServiceCommmonFields": "/beza-service/api/v1/internal/sop-common-fields/",
     "paymentVoucherInfoPath": "/beza-service/api/v1/internal/user-sops/payment-voucher/",
     "certificateInfoPath": "/beza-service/api/v1/internal/user-certificate/",
     "bezaServiceDeskUserSignature": "/beza-service/api/v1/internal/users/signature",
-    "convertCurrency": "/beza-service/api/v1/internal/currency/exchange/convert"
+    "convertCurrency": "/beza-service/api/v1/internal/currency/exchange/convert",
+    "getMachineriesPath": "/beza-service/api/v1/internal/user-sops/machineries/",
+
+    "keycloakBaseUrl": "http://202.181.14.20",
+    "keycloakPort": "8081",
+    "keycloakUserInfoPath": "/auth/realms/OSS/protocol/openid-connect/userinfo"
   }
 }

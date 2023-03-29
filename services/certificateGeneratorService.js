@@ -43,6 +43,7 @@ const generateCertificate = async (req) => {
     let certificateDetail;
     let deskUserSignature;
     let response;
+    let sopCode;
 
     await bezaServiceGateway
                     .getFormValueByApplicationID(req.body.applicationId).then(
@@ -143,23 +144,35 @@ const generateCertificate = async (req) => {
                                 res.sopCode = AllSopsCodes.PROJECT_REGISTRATION.value;
                             }
                             userSopById = res;
+                            sopCode = res.sopCode;
                             bufferResponse = await certificateGeneratorFactory.generate(res);
                             return bufferResponse;
                         }
                     ).then(
-                        async (buffer) => {
-                            certificateDetail = await bezaServiceGateway.upload(buffer, userSopById, req.body.isProjectRegistration);
-                            return certificateDetail;
-                        }
-                    ).then(
-                        async(certificate) => {
+                        async(buffer) => {
                             let isProjectRegistration = req.body.isProjectRegistration || false;
                             // response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke, isProjectRegistration, req.body.isRegenerated);
-                            response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body, isProjectRegistration);
+                            // response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body, isProjectRegistration);
+                            response = await bezaServiceGateway.uploadAndSave(buffer, userSopById.id, req.body.processInstanceId,
+                                req.body.isRevoke, req.body.isRegenerated, sopCode, userSopById.title, isProjectRegistration);
                             // logger("response", response);
                             return response;
                         }
                     );
+                    // .then(
+                    //     async (buffer) => {
+                    //         certificateDetail = await bezaServiceGateway.upload(buffer, userSopById, req.body.isProjectRegistration);
+                    //         return certificateDetail;
+                    //     }
+                    // ).then(
+                    //     async(certificate) => {
+                    //         let isProjectRegistration = req.body.isProjectRegistration || false;
+                    //         // response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke, isProjectRegistration, req.body.isRegenerated);
+                    //         response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body, isProjectRegistration);
+                    //         // logger("response", response);
+                    //         return response;
+                    //     }
+                    // );
     return response;
 }
 
