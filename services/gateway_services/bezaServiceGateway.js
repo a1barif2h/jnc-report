@@ -68,8 +68,10 @@ const upload = async (buffer, data, isProjectRegistration) => {
     })
     .then((response) => response.data)
     .catch((error) => {
+      logger.error("Upload failed")
       logger.error(error);
     });
+    logger.info("Upload res: %o", res)
   return res;
 
 };
@@ -159,9 +161,22 @@ const getCommonFileds= async function (investorId){
    .get(commonFiledsUrl)
    .then((response) => response.data)
    .catch((error) => {
+    logger.error("Common fields request failed for investorId: %s", investorId)
     logger.error(error);
+    return {}
    });
-   return res.userSopCommonFieldDomainModels[0].formValue;
+   if(res && res.userSopCommonFieldDomainModels && res.userSopCommonFieldDomainModels.length >  0) {
+    logger.info("Common field request success: %o",{
+      reqUserId: investorId,
+      resUserId: res.userSopCommonFieldDomainModels[0].userId,
+      companyName: res.userSopCommonFieldDomainModels[0].formValue.proposedProjectCompanyName
+    })
+    return res.userSopCommonFieldDomainModels[0].formValue;
+   } else {
+    logger.error("Common field not found for userId: %s", investorId)
+    return {}
+   }
+   
 }
 
 const getdeskUserSignature= async function (processInstanceId, deskCode){
@@ -173,18 +188,16 @@ const getdeskUserSignature= async function (processInstanceId, deskCode){
       config.BEZA_SERVICE_PORT))+
     deskUserSignatureUrl
 
-    logger.info(`Getting signature name and designation api url: ${deskUserSignatureUrl} for process: ${processInstanceId} for desk: ${deskCode}`)
-    
    let res = await axios
    .get(bezaServiceDeskUserSignature)
    .then((response) => {
       logger.info(`Got signature name and designation api url: ${deskUserSignatureUrl}`)
-      // logger.info("response:%o", {...response.data}) 
       logger.info(`for process: ${processInstanceId}`)
       logger.info(`for desk: ${deskCode}`)
      return response.data;
    })
    .catch((error) => {
+    logger.error("signature not found for process instance id: %s", processInstanceId)
     logger.error(error);
    });
    return res;

@@ -157,7 +157,7 @@ class ProjectClearance {
       body.formValue.machineryCurrency = "USD";
       this.handleAmountThousandsSeparator(body.formValue)
     } catch (error) {
-      logger.error(exceptionVar);
+      logger.error(error);
     }
 
     

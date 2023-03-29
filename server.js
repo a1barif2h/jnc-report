@@ -15,6 +15,7 @@ const { getCurrentFormattedDateTime, getFormatDate } = require("./util/dateTimeF
 const PaymentVoucherService = require("./services/paymentVoucherService");
 const { authenticate } = require("./services/authentication_service");
 const logger = require("./util/logger");
+const { getLoggerInfoText } = require("./util/utils");
 const corsOptions = {
   exposedHeaders: ["pdfFileName", "Content-disposition"],
 };
@@ -73,7 +74,7 @@ app.post(
   "/certificate-service/api/v1/private/generate/pdf",
   authenticate,
   async (req, res) => {
-    logger.info("request body : %o", req.body)
+    logger.info("request : %s", getLoggerInfoText(req.body))
     await generateCertificate(req,res);
   }
 );
@@ -130,5 +131,5 @@ app.post("/test", (req, res) => {
 })
 
 
-logger.info(`Download service si running on http://${HOST}:${PORT}`);
+logger.info(`Download service api running on http://${HOST}:${PORT}`);
 app.listen(PORT, HOST);

@@ -14,6 +14,7 @@ const pdfGenerator = function (htmlTemplate,json,res,options){
 const generatePdfFromHtml = async function (htmlTemplate, json, options) {
     let html = templateEngine.replacer(htmlTemplate,json.formValue);
     html=html.replaceAll(`{{statusproposed2}}`,`{{userDesignation}}`);
+    logger.info("Start replace key for: ", json.formValue.sopCode)
     html=templateEngine.replacer(html,json.formValue);
     const buf = await new Promise((resolve, reject) => {
     
@@ -26,9 +27,10 @@ const generatePdfFromHtml = async function (htmlTemplate, json, options) {
             resolve(buffer);
         });
     });
+
+    logger.info("Buffer ready")
     
     return buf;
-
 }
 
 const generatePdfFromHtmlForPayment = async function (htmlTemplate, data, options) {
