@@ -94,6 +94,7 @@ const saveCertificateInfo = async (certificate, sop, req, isProjectRegistration)
 
   logger.info(`save certificate url: ${saveCertificateUrl}`)
 
+  
    let res = await axios
     .post(saveCertificateUrl, model)
     .then((response) => response.data)
@@ -102,6 +103,51 @@ const saveCertificateInfo = async (certificate, sop, req, isProjectRegistration)
     });
   return res;
 }
+
+const uploadAndSave = async (buffer, userSopId, processInstanceId,
+  isRevoked, isRegenerated, sopCode, title, isProjectRegistration) => {
+  
+    let certTitle = isProjectRegistration ? "Project Registration" : title;
+    let pdfFileName = title + "_" + userSopId + getCurrentFormattedDateTime() + ".pdf";
+    let isRevokedCert = isRevoked ? 1 : 0;
+    let isRegeneratedCert = isRegenerated || false;
+
+    let form = new FormData();
+    form.append("file", buffer, pdfFileName);
+    form.append("userSopId", userSopId+"");
+    form.append("processInstanceId", processInstanceId+"");
+    form.append("isValid", "1");
+    form.append("isRevoked", isRevokedCert+"");
+    form.append("isRegenerated", isRegeneratedCert+"");
+    form.append("sopCode", sopCode+"");
+    form.append("title", certTitle+"");
+    form.append('extractArchive', 'false');
+
+    
+  
+    let additionalUrl = isProjectRegistration ? "?isProjectRegistration=true" : ""
+    const saveCertificateUrl =
+      getBaseUrl() +
+      config.BEZA_SERVICE_CERTIFICATE_INFO_PATH
+      + additionalUrl;
+  
+    logger.info(`save certificate url: ${saveCertificateUrl}`)
+  
+    
+      
+    let res = await axios
+    .post(saveCertificateUrl, form, {
+      headers: {
+        "Content-Type": `multipart/form-data; boundary=${form._boundary}`,
+      },
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      logger.error(error);
+    });
+    return res;
+
+};
 
 
 const getCommonFileds= async function (investorId){
@@ -217,5 +263,6 @@ module.exports = {
   getCertificateInfo,
   getdeskUserSignature,
   getConvertedCurrencyValue,
-  getMachenariesByApplicationID
+  getMachenariesByApplicationID,
+  uploadAndSave
 };
