@@ -15,6 +15,7 @@ const background_cancelled = fs.readFileSync('./pdf_templates/background_cancell
 const moment = require('moment')
 const { AllSopsCodes }=require("../shared/constants/AllSopsCodes");
 const logger = require("../util/logger");
+const { getLoggerInfoText } = require("../util/utils");
 // const { logger } = require("../util/helper");
 
 const generateQR = async text => {
@@ -43,11 +44,13 @@ const generateCertificate = async (req) => {
     let certificateDetail;
     let deskUserSignature;
     let response;
+    logger.info("Sending request for form value by application id: %s", req.body.applicationId);
     let sopCode;
-
+    
     await bezaServiceGateway
                     .getFormValueByApplicationID(req.body.applicationId).then(
                        async res=>{
+                            logger.info("Request success, application tracking id: %s", res.trackingId)
                             const appId = encryption.encrypt(""+req.body.applicationId);
                             
                             colonOrNot = config.BEZA_FRONT_END_PORT == "" ? "" : ":";
@@ -58,6 +61,7 @@ const generateCertificate = async (req) => {
                             await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> logger.error(err));
 
                             if (res.additionalInfo != null && res.sopCode == AllSopsCodes.OCCUPANCY.value) {
+                                logger.info("Start insert additional info in the form value for occupancy sop")
                                 let inspectionDate = res?.additionalInfo?.inspectionDate;
 
                                 if(inspectionDate) {
@@ -71,10 +75,11 @@ const generateCertificate = async (req) => {
                                     }
                                 })
                                 res.formValue = {...res.formValue, ...res.additionalInfo};
+                                logger.info("Insertion done.")
                             }
 
                             if(res.isCancellation) {
-                                console.log("SETTING BACKGROUND FOR CANCELLATION");
+                                logger.info("Request for certificate cancellation, set cancellation background.")
                                 res.formValue.backgroundImg = background_cancelled;
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.parentApprovalDate));
                                 res.formValue.certificateGenerateDate = certificateGenerateDate;
@@ -83,7 +88,7 @@ const generateCertificate = async (req) => {
                                              ("Cancellation Date : "+ dateTimeFormattor.getFormatDate(res.approvalDate)) : " ";
                             }
                             else if(req.body.isRevoke){
-                                console.log("SETTING BACKGROUND FOR REVOKE");
+                                logger.info("Request for certificate revoke, set revoke background.")
                                 res.formValue.backgroundImg = background_cancelled;
                                 const certificateInfo = await bezaServiceGateway.getCertificateInfo(req.body.applicationId)
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(certificateInfo.createdAt)
@@ -92,8 +97,7 @@ const generateCertificate = async (req) => {
                                 res.formValue.cancellationDate = " ";
                             }
                             else{
-                                console.log("SETTING BACKGROUND");
-                                logger.warn(req.body)
+                                logger.info("Request for general certificate")
                                 res.formValue.backgroundImg = res.sopCode !== 'VISA_ASSISTANCE' && res.sopCode !== "ROYALTY_FEE" && res.sopCode !== "TECHNICAL_KNOW_HOW_FEE" ? background_image : '';
                                 const certificateGenerateDate = dateTimeFormattor.getFormatDate(new Date(res.approvalDate))
                                 res.formValue.certificateGenerateDate = res.formValue.hasOwnProperty('lastAmendmentDate') 
@@ -120,6 +124,7 @@ const generateCertificate = async (req) => {
                             /**
                              * merging the common fields
                              */
+                            logger.info("Sending request for common fields for investor id: %s",req.body.investorId)
                             const commonFieldValue=await bezaServiceGateway.getCommonFileds(req.body.investorId);
                             let commonFieldValueKeys = Object.keys(commonFieldValue);
                             commonFieldValueKeys.forEach(key=>{
@@ -129,6 +134,7 @@ const generateCertificate = async (req) => {
                                     res.formValue[key] = commonFieldValue[key]
                                 }
                             })
+                            logger.info("Sending request for desk user signature: %s",getLoggerInfoText(req.body))
                             const deskUserSignature = await bezaServiceGateway.getdeskUserSignature(req.body.processInstanceId,"RD_3");
                             res.formValue.deskUserFullName =  deskUserSignature?.name || '-';
                             res.formValue.deskUserDesignation =  deskUserSignature?.designation || '-';
@@ -176,8 +182,6 @@ const generateCertificate = async (req) => {
                     // );
     return response;
 }
-
-
 
 module.exports = {
     generateCertificate,

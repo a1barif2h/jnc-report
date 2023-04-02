@@ -1,6 +1,7 @@
 
 const { regexp } = require('express-xml-bodyparser');
 var dataProcessor = require('flat');
+const logger = require('./logger');
 // const { logger } = require('./helper');
 // const dataProcessor = (ob) => {
 //     // The object which contains the
@@ -39,7 +40,6 @@ const replacer = function (template, data) {
     for (var key in flattenedData) {
         template = template.replaceAll('{{' + key + '}}', ((flattenedData[key] || flattenedData[key] === 0) ? flattenedData[key] : "-"))
     }
-
     return template
 }
 
