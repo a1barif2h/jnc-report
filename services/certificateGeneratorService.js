@@ -154,7 +154,8 @@ const generateCertificate = async (req) => {
                             // response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body.processInstanceId, req.body.isRevoke, isProjectRegistration, req.body.isRegenerated);
                             // response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body, isProjectRegistration);
                             response = await bezaServiceGateway.uploadAndSave(buffer, userSopById.id, req.body.processInstanceId,
-                                req.body.isRevoke, req.body.isRegenerated, sopCode, userSopById.title, isProjectRegistration);
+                                req.body.isRevoke, req.body.isRegenerated, sopCode, userSopById.title, req.body.investorId,
+                                isProjectRegistration);
                             // logger("response", response);
                             return response;
                         }
