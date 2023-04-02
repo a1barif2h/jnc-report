@@ -105,12 +105,13 @@ const saveCertificateInfo = async (certificate, sop, req, isProjectRegistration)
 }
 
 const uploadAndSave = async (buffer, userSopId, processInstanceId,
-  isRevoked, isRegenerated, sopCode, title, investorId, isProjectRegistration) => {
+  isRevoked, isRegenerated, sopCode, title, investorId, isProjectRegistration, isCancellation) => {
   
     let certTitle = isProjectRegistration ? "Project Registration" : title;
     let pdfFileName = title + "_" + userSopId + getCurrentFormattedDateTime() + ".pdf";
     let isRevokedCert = isRevoked ? 1 : 0;
     let isRegeneratedCert = isRegenerated || false;
+    let isCancellationCert = isCancellation || false;
 
     let form = new FormData();
     form.append("file", buffer, pdfFileName);
@@ -122,6 +123,7 @@ const uploadAndSave = async (buffer, userSopId, processInstanceId,
     form.append("sopCode", sopCode+"");
     form.append("title", certTitle+"");
     form.append("investorId", investorId + "");
+    form.append("isCancellation", isCancellationCert + "");
     form.append('extractArchive', 'false');
 
     
