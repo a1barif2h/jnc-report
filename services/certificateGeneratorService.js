@@ -60,14 +60,20 @@ const generateCertificate = async (req) => {
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> logger.error(err));
                             await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> logger.error(err));
 
-                            if (res.additionalInfo != null && res.sopCode == AllSopsCodes.OCCUPANCY.value) {
+                            if (res.additionalInfo !== null && (res.sopCode === AllSopsCodes.OCCUPANCY.value || res.sopCode === AllSopsCodes.BUILDING_PERMIT.value)) {
                                 logger.info("Start insert additional info in the form value for occupancy sop")
                                 let inspectionDate = res?.additionalInfo?.inspectionDate;
+                                let meetingDate = res?.additionalInfo?.meetingDate;
 
                                 if(inspectionDate) {
                                     inspectionDate = new Date(inspectionDate).toLocaleDateString()
                                     res.additionalInfo.inspectionDate = inspectionDate 
                                     ? dateTimeFormattor.getFormatDate(inspectionDate) : " ";
+                                }
+                                if(meetingDate) {
+                                    meetingDate = new Date(meetingDate).toLocaleDateString()
+                                    res.additionalInfo.meetingDate = meetingDate 
+                                    ? dateTimeFormattor.getFormatDate(meetingDate) : " ";
                                 }
                                 Object.keys(res.additionalInfo).map((key) => {
                                     if (!res.additionalInfo[key]) {
