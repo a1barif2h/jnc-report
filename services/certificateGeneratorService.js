@@ -46,6 +46,7 @@ const generateCertificate = async (req) => {
     let response;
     logger.info("Sending request for form value by application id: %s", req.body.applicationId);
     let sopCode;
+    let isCancellation;
     
     await bezaServiceGateway
                     .getFormValueByApplicationID(req.body.applicationId).then(
@@ -157,6 +158,7 @@ const generateCertificate = async (req) => {
                             }
                             userSopById = res;
                             sopCode = res.sopCode;
+                            isCancellation = res.isCancellation;
                             bufferResponse = await certificateGeneratorFactory.generate(res);
                             return bufferResponse;
                         }
@@ -167,7 +169,7 @@ const generateCertificate = async (req) => {
                             // response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body, isProjectRegistration);
                             response = await bezaServiceGateway.uploadAndSave(buffer, userSopById.id, req.body.processInstanceId,
                                 req.body.isRevoke, req.body.isRegenerated, sopCode, userSopById.title, req.body.investorId,
-                                isProjectRegistration, res.isCancellation);
+                                isProjectRegistration, isCancellation);
                             // logger("response", response);
                             return response;
                         }
