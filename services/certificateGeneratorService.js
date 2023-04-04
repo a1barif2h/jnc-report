@@ -51,7 +51,7 @@ const generateCertificate = async (req) => {
     await bezaServiceGateway
                     .getFormValueByApplicationID(req.body.applicationId).then(
                        async res=>{
-                            logger.info("Request success, application tracking id: %s", res.trackingId)
+                            logger.info("Request success, application tracking id: %s, %o", res.trackingId)
                             const appId = encryption.encrypt(""+req.body.applicationId);
                             
                             colonOrNot = config.BEZA_FRONT_END_PORT == "" ? "" : ":";
