@@ -105,7 +105,7 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
-        margin: 1.4rem 0rem;
+        margin: 1rem 0rem;
         line-height: 1.6;
       }
 
@@ -146,6 +146,10 @@
 
       .condition-left {
         width: 40%;
+      }
+
+      .condition-right {
+        width: 60%;
       }
 
       .inspections-left {
@@ -232,7 +236,7 @@
 
       /* UTILS CLASS */
       .fw-bold {
-        font-weight: bold;
+        font-weight: 600;
       }
       .fw-normal {
         font-weight: normal;
@@ -337,10 +341,13 @@
                       <div class="condition pl-10">
                         <div class="condition-left">Plot Number</div>
                         <div class="condition-right">
-                          :<span class="fw-bold">{{plotAddress}}</span>
+                          :<span class="fw-bold"
+                            >PRAN-RFL Center, 105 Bir Uttam Rafiqul Islam Ave.
+                            Dhaka 1212</span
+                          >
                         </div>
                       </div>
-
+                      <!-- {{plotAddress}} -->
                       <div class="condition pl-10">
                         <div class="condition-left">Land Area(sqm)</div>
                         <div class="condition-right">
