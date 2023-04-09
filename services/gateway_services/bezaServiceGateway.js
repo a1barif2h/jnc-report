@@ -68,8 +68,10 @@ const upload = async (buffer, data, isProjectRegistration) => {
     })
     .then((response) => response.data)
     .catch((error) => {
+      logger.error("Upload failed")
       logger.error(error);
     });
+    logger.info("Upload res: %o", res)
   return res;
 
 };
@@ -92,6 +94,7 @@ const saveCertificateInfo = async (certificate, sop, req, isProjectRegistration)
 
   logger.info(`save certificate url: ${saveCertificateUrl}`)
 
+  
    let res = await axios
     .post(saveCertificateUrl, model)
     .then((response) => response.data)
@@ -100,6 +103,54 @@ const saveCertificateInfo = async (certificate, sop, req, isProjectRegistration)
     });
   return res;
 }
+
+const uploadAndSave = async (buffer, userSopId, processInstanceId,
+  isRevoked, isRegenerated, sopCode, title, investorId, isProjectRegistration, isCancellation) => {
+  
+    let certTitle = isProjectRegistration ? "Project Registration" : title;
+    let pdfFileName = title + "_" + userSopId + getCurrentFormattedDateTime() + ".pdf";
+    let isRevokedCert = isRevoked ? 1 : 0;
+    let isRegeneratedCert = isRegenerated || false;
+    let isCancellationCert = isCancellation || false;
+
+    let form = new FormData();
+    form.append("file", buffer, pdfFileName);
+    form.append("userSopId", userSopId+"");
+    form.append("processInstanceId", processInstanceId+"");
+    form.append("isValid", "1");
+    form.append("isRevoked", isRevokedCert+"");
+    form.append("isRegenerated", isRegeneratedCert+"");
+    form.append("sopCode", sopCode+"");
+    form.append("title", certTitle+"");
+    form.append("investorId", investorId + "");
+    form.append("isCancellation", isCancellationCert + "");
+    form.append('extractArchive', 'false');
+
+    
+  
+    let additionalUrl = isProjectRegistration ? "?isProjectRegistration=true" : ""
+    const saveCertificateUrl =
+      getBaseUrl() +
+      config.BEZA_SERVICE_CERTIFICATE_INFO_PATH
+      + additionalUrl;
+  
+    logger.info(`save certificate url: ${saveCertificateUrl}`)
+  
+    
+      
+    let res = await axios
+    .post(saveCertificateUrl, form, {
+      headers: {
+        "Content-Type": `multipart/form-data; boundary=${form._boundary}`,
+      },
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      logger.error(error);
+    });
+    return res;
+
+};
 
 
 const getCommonFileds= async function (investorId){
@@ -113,9 +164,22 @@ const getCommonFileds= async function (investorId){
    .get(commonFiledsUrl)
    .then((response) => response.data)
    .catch((error) => {
+    logger.error("Common fields request failed for investorId: %s", investorId)
     logger.error(error);
+    return {}
    });
-   return res.userSopCommonFieldDomainModels[0].formValue;
+   if(res && res.userSopCommonFieldDomainModels && res.userSopCommonFieldDomainModels.length >  0) {
+    logger.info("Common field request success: %o",{
+      reqUserId: investorId,
+      resUserId: res.userSopCommonFieldDomainModels[0].userId,
+      companyName: res.userSopCommonFieldDomainModels[0].formValue.proposedProjectCompanyName
+    })
+    return res.userSopCommonFieldDomainModels[0].formValue;
+   } else {
+    logger.error("Common field not found for userId: %s", investorId)
+    return {}
+   }
+   
 }
 
 const getdeskUserSignature= async function (processInstanceId, deskCode){
@@ -127,18 +191,16 @@ const getdeskUserSignature= async function (processInstanceId, deskCode){
       config.BEZA_SERVICE_PORT))+
     deskUserSignatureUrl
 
-    logger.info(`Getting signature name and designation api url: ${deskUserSignatureUrl} for process: ${processInstanceId} for desk: ${deskCode}`)
-    
    let res = await axios
    .get(bezaServiceDeskUserSignature)
    .then((response) => {
       logger.info(`Got signature name and designation api url: ${deskUserSignatureUrl}`)
-      // logger.info("response:%o", {...response.data}) 
       logger.info(`for process: ${processInstanceId}`)
       logger.info(`for desk: ${deskCode}`)
      return response.data;
    })
    .catch((error) => {
+    logger.error("signature not found for process instance id: %s", processInstanceId)
     logger.error(error);
    });
    return res;
@@ -204,5 +266,6 @@ module.exports = {
   getCertificateInfo,
   getdeskUserSignature,
   getConvertedCurrencyValue,
-  getMachenariesByApplicationID
+  getMachenariesByApplicationID,
+  uploadAndSave
 };

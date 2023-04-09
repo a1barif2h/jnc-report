@@ -34,9 +34,12 @@ class ProjectRegistration {
   }
 
   handleAmountThousandsSeparator(formValue) {
+    logger.info("Start converting normal to thousands separator for sop: %s", formValue.sopCode)
     formValue["dCostOfTheProjectInUs"] = numberWithCommas(
       formValue["dCostOfTheProjectInUs"]
     );
+
+    logger.info("Converting done")
   }
 
   async generate(body) {
@@ -55,6 +58,7 @@ class ProjectRegistration {
     );
 
     try {
+      logger.info("Start calculate export total and local total")
       let localTotal = body.formValue.domesticTotal;
       let exportTotal = body.formValue.exportTotal;
       localTotal = (localTotal * 100) / (localTotal + exportTotal);
@@ -76,9 +80,12 @@ class ProjectRegistration {
         `{{materialsDescription}}`,
         materialsDesTemplate || "-"
       );
+      logger.info("Calculation done")
     } catch (exceptionVar) {
+      logger.error("Something happen wrong when calculate")
       logger.error(exceptionVar);
     }
+    logger.info("Start generate pdf buffer from generatePdfFromHtml")
     const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
     return response;
   }
