@@ -46,11 +46,12 @@ const generateCertificate = async (req) => {
     let response;
     logger.info("Sending request for form value by application id: %s", req.body.applicationId);
     let sopCode;
+    let isCancellation;
     
     await bezaServiceGateway
                     .getFormValueByApplicationID(req.body.applicationId).then(
                        async res=>{
-                            logger.info("Request success, application tracking id: %s", res.trackingId)
+                            logger.info("Request success, application tracking id: %s, %o", res.trackingId)
                             const appId = encryption.encrypt(""+req.body.applicationId);
                             
                             colonOrNot = config.BEZA_FRONT_END_PORT == "" ? "" : ":";
@@ -60,14 +61,20 @@ const generateCertificate = async (req) => {
                             await generateQR(url).then(qrRes=> res.formValue.qrcode = qrRes).catch(err=> logger.error(err));
                             await generateBarcode(res.trackingId).then (barRes => res.formValue.barcode = barRes).catch(err=> logger.error(err));
 
-                            if (res.additionalInfo != null && res.sopCode == AllSopsCodes.OCCUPANCY.value) {
+                            if (res.additionalInfo !== null && (res.sopCode === AllSopsCodes.OCCUPANCY.value || res.sopCode === AllSopsCodes.BUILDING_PERMIT.value)) {
                                 logger.info("Start insert additional info in the form value for occupancy sop")
                                 let inspectionDate = res?.additionalInfo?.inspectionDate;
+                                let meetingDate = res?.additionalInfo?.meetingDate;
 
                                 if(inspectionDate) {
                                     inspectionDate = new Date(inspectionDate).toLocaleDateString()
                                     res.additionalInfo.inspectionDate = inspectionDate 
                                     ? dateTimeFormattor.getFormatDate(inspectionDate) : " ";
+                                }
+                                if(meetingDate) {
+                                    meetingDate = new Date(meetingDate).toLocaleDateString()
+                                    res.additionalInfo.meetingDate = meetingDate 
+                                    ? dateTimeFormattor.getFormatDate(meetingDate) : " ";
                                 }
                                 Object.keys(res.additionalInfo).map((key) => {
                                     if (!res.additionalInfo[key]) {
@@ -151,6 +158,7 @@ const generateCertificate = async (req) => {
                             }
                             userSopById = res;
                             sopCode = res.sopCode;
+                            isCancellation = res.isCancellation;
                             bufferResponse = await certificateGeneratorFactory.generate(res);
                             return bufferResponse;
                         }
@@ -161,7 +169,7 @@ const generateCertificate = async (req) => {
                             // response = await bezaServiceGateway.saveCertificateInfo (certificateDetail, userSopById, req.body, isProjectRegistration);
                             response = await bezaServiceGateway.uploadAndSave(buffer, userSopById.id, req.body.processInstanceId,
                                 req.body.isRevoke, req.body.isRegenerated, sopCode, userSopById.title, req.body.investorId,
-                                isProjectRegistration, res.isCancellation);
+                                isProjectRegistration, isCancellation);
                             // logger("response", response);
                             return response;
                         }

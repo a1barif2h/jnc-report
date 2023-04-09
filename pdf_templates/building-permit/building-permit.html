@@ -105,7 +105,7 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
-        margin: 1.4rem 0rem;
+        margin: 1rem 0rem;
         line-height: 1.6;
       }
 
@@ -146,6 +146,10 @@
 
       .condition-left {
         width: 40%;
+      }
+
+      .condition-right {
+        width: 60%;
       }
 
       .inspections-left {
@@ -232,7 +236,7 @@
 
       /* UTILS CLASS */
       .fw-bold {
-        font-weight: bold;
+        font-weight: 600;
       }
       .fw-normal {
         font-weight: normal;
@@ -304,7 +308,7 @@
             Committee reviewed and examined all the documents and drawings
             submitted by
             <span class="fw-bold">{{proposedProjectCompanyName}}</span> at the
-            meeting held on <span class="fw-bold">{{keyUnknown}}</span> The
+            meeting held on <span class="fw-bold">{{meetingDate}}</span> The
             Committee found the conformity of all the drawings with the
             Bangladesh Economic Zones (construction of Building) Rules, 2017 and
             the Bangladesh National Building Code 2020. Consequently, BEZA-OSS
@@ -340,7 +344,6 @@
                           :<span class="fw-bold">{{plotAddress}}</span>
                         </div>
                       </div>
-
                       <div class="condition pl-10">
                         <div class="condition-left">Land Area(sqm)</div>
                         <div class="condition-right">
@@ -353,7 +356,7 @@
                       <div class="condition pl-10">
                         <div class="condition-left">No. of Building</div>
                         <div class="condition-right">
-                          :<span class="fw-bold">{{numberOfBuilding}}</span>
+                          :<span class="fw-bold">{{numberOfBuildingInfo}}</span>
                         </div>
                       </div>
 
