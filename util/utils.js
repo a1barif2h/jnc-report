@@ -12,5 +12,5 @@ const getLoggerInfoText = (reqBody) => {
 }
 
 module.exports = {
-    getLoggerInfoText,
+    getLoggerInfoText
 }

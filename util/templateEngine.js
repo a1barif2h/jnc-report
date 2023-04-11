@@ -1,7 +1,9 @@
 
 const { regexp } = require('express-xml-bodyparser');
 var dataProcessor = require('flat');
+const ejs = require('ejs')
 const logger = require('./logger');
+const util = require('./utils')
 // const { logger } = require('./helper');
 // const dataProcessor = (ob) => {
 //     // The object which contains the
@@ -72,4 +74,9 @@ const NaDashTextRemover = (template) => {
     return removeAbleTemplate;
 }
 
-module.exports = { replacer, replaceOne, keyRemover, doubleNaTextRemover, NaDashTextRemover }
+const ejsRender = function (initialTemplate, reqBody) {
+    let generatedTemplate = ejs.render(initialTemplate, reqBody);
+    return generatedTemplate;
+};
+
+module.exports = { replacer, replaceOne, keyRemover, doubleNaTextRemover, NaDashTextRemover, ejsRender }

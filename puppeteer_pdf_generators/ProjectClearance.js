@@ -1,47 +1,54 @@
 const { response } = require("express");
 const fs = require("fs");
-const pdf = require("./PdfGenerator");
+const puppeteer = require('puppeteer');
 
 const replaceMaterialsInProjectClearance = require("../util/replaceMaterialsInProjectClearance");
 const currencyConverter = require("../util/currencyConverter");
 const logger = require("../util/logger");
 const { changeDateFormat } = require("../util/dateTimeFormattor");
-const {getMachenariesByApplicationID} = require("../services/gateway_services/bezaServiceGateway");
+const { getMachenariesByApplicationID } = require("../services/gateway_services/bezaServiceGateway");
 const { MachineriesConstants } = require("../constants/MachineriesConstants");
 const { numberWithCommas } = require("../util/amountToWordUtil");
+const { ejsRender } = require("../util/templateEngine");
+const { ejsPuppeteerPdfGenerator } = require("../pdf_generators/PdfGenerator");
+const ejsUtils = require('../util/ejsUtils');
 
-const options = { 
-  format: "A4", 
+const options = {
   orientation: "portrait",
-  footer: {
-    height: '5mm',
-    contents: {
-      default:
-        '<div id="pageFooter" style="text-align: center; font-size: 8px;">{{page}}/{{pages}}</div>',
-    },
-  }
+  printBackground: true,
+  format: "A4",
+  displayHeaderFooter: true,
+  footerTemplate:
+    '<div style="text-align: right;width: 297mm;font-size: 8px;"><span style="margin-right: 1cm"><span class="pageNumber"></span> of <span class="totalPages"></span></span></div>',
 };
 
-// if(process.env.NODE_ENV !== "production") {
-  // logger.info(`adding childProcessOptions for creating pdf in staging`)
-  options.childProcessOptions = {
-    env: {
-      OPENSSL_CONF: '/dev/null',
-    },
-  }
-// }
+const headerTemplate = `
+<div class="logo" style="margin-bottom: 1.6rem; margin: 0px 35px;">
+  <img
+    style="width: 140px;"
+    src="data:image/png;base64,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"
+    alt=""
+  />
+</div>
+`
+
+options.childProcessOptions = {
+  env: {
+    OPENSSL_CONF: '/dev/null',
+  },
+}
 
 class ProjectClearance {
-  constructor() {}
+  constructor() { }
 
   handleDateTimeFormat(formValue) {
     //DATE TIME FORMAT: 13 August 2022
     changeDateFormat(formValue, "applicationDate");
   }
 
-  async getMachineries (applicationId, additionOfMachinery, addMachineriesByFile) {
+  async getMachineries(applicationId, additionOfMachinery, addMachineriesByFile) {
     let machineriesToCalculate = [];
-    if(addMachineriesByFile) {
+    if (addMachineriesByFile) {
       //machineries have been added through excel so get the values from there
       const machineries = await getMachenariesByApplicationID(applicationId);
       machineriesToCalculate = machineries.additionOfMachinery;
@@ -53,82 +60,17 @@ class ProjectClearance {
 
   #getCurrencyList(machineriesToCalculate) {
     const currencies = {};
-    
+
     machineriesToCalculate.length > 0 && machineriesToCalculate.map((machinery) => {
-        const currencyName = machinery.valueCurrency;
-        const currencyValue = parseFloat(machinery.valueInput);
-        if (currencies[currencyName]) {
-          currencies[currencyName] = currencies[currencyName] + currencyValue;
-        } else {
-          currencies[currencyName] = currencyValue;
-        }
-      });
+      const currencyName = machinery.valueCurrency;
+      const currencyValue = parseFloat(machinery.valueInput);
+      if (currencies[currencyName]) {
+        currencies[currencyName] = currencies[currencyName] + currencyValue;
+      } else {
+        currencies[currencyName] = currencyValue;
+      }
+    });
     return currencies;
-  }
-
-  addInfrastructureTable(machineriesToCalculate) {
-    try {
-      let annexure1Template = fs.readFileSync(
-        "./pdf_templates/project-clearance/infrastructures-annexure-1.html",
-        "utf8"
-      );
-      // this.getMachineriesTableAnnexure2(machineriesToCalculate);
-      let machineries = this.addMachineriesTable(machineriesToCalculate);
-      annexure1Template = annexure1Template.replace("{{additionOfMachineriesListAnnexure2}}", machineries)
-      return annexure1Template;
-    } catch (error) {
-      console.error(error);
-      return "";
-    }
-  }
-
-  addMachineriesTable(machineriesToCalculate) {
-    if(machineriesToCalculate == null || machineriesToCalculate.length == 0) return "";
-    let additionOfMachineriesList = "";
-    try {
-      let annexure2Template = fs.readFileSync(
-        "./pdf_templates/project-clearance/materials-annexure-2.html",
-        "utf8"
-      );
-
-      const annexure2PageBreak = fs.readFileSync(
-        "./pdf_templates/project-clearance/materials-annexure-2-page-break.html",
-        "utf8"
-      );
-      
-      additionOfMachineriesList += "<tbody>";
-
-      machineriesToCalculate.forEach((element,i) => {
-        additionOfMachineriesList += "<tr>";
-        additionOfMachineriesList += "<td>"+(element.detailsOfMachinery || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(element.coountryOfOrigin || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(element.nameOfTheVendor || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(numberWithCommas(element.valueInput) || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(element.valueCurrency || "")+"</td>";
-        additionOfMachineriesList += "<td>"+(element.materialState || "")+"</td>";
-        
-        additionOfMachineriesList += "</tr>";
-        const machineriesFirstPageConstants = MachineriesConstants.FIRST_PAGE_MACHINERIES;
-        const machineriesPerPageConstants = MachineriesConstants.PER_PAGE_MACHINERIES;
-        const diffBetweenFirstAndOtherPageItems = machineriesPerPageConstants - machineriesFirstPageConstants;
-        if(i>0 && i%machineriesFirstPageConstants==0 && i<(machineriesToCalculate.length-1) && i<=machineriesFirstPageConstants) {
-          additionOfMachineriesList+=annexure2PageBreak;
-        }
-        else if(i>machineriesFirstPageConstants && (i+diffBetweenFirstAndOtherPageItems)%machineriesPerPageConstants==0 && i<(machineriesToCalculate.length-1)) {
-          additionOfMachineriesList+=annexure2PageBreak;
-        }
-      });
-      
-      
-  
-        additionOfMachineriesList += "</tbody>";
-        annexure2Template = annexure2Template.replace("{{additionOfMachineriesListAn2}}", additionOfMachineriesList);
-        
-      return annexure2Template;
-    } catch (error) {
-      console.error(error);
-      return "";
-    }
   }
 
   handleAmountThousandsSeparator(formValue) {
@@ -137,14 +79,18 @@ class ProjectClearance {
   }
 
   async generate(body) {
+    // ADD UTILS FUNCTION IN THE FORM VALUE
+    body.formValue.utils = ejsUtils;
 
+    this.handleAmountThousandsSeparator(body.formValue);
     this.handleDateTimeFormat(body.formValue);
+
     try {
       const machineriesToCalculate = await this.getMachineries(body?.id, body.formValue?.additionOfMachinery, body.formValue?.addMachineriesByFile);
       const currencyList = this.#getCurrencyList(machineriesToCalculate);
       
-      body.formValue.infrastructuresListAnnexure1 = this.addInfrastructureTable(machineriesToCalculate);
-      // body.formValue.additionOfMachineriesListAnnexure2 = this.getMachineriesTableAnnexure2(machineriesToCalculate);
+      body.formValue.machineriesToCalculate = machineriesToCalculate;
+
       const totalMachineryAmount = await currencyConverter(currencyList, "USD");
       body.formValue.machineryCurrencyValue = totalMachineryAmount.toFixed(2);
       body.formValue.machineryCurrency = "USD";
@@ -153,46 +99,26 @@ class ProjectClearance {
       logger.error(error);
     }
 
-    
-    let htmlTemplate = fs.readFileSync(
-      "./pdf_templates/project-clearance/project-clearance.html",
-      "utf8"
-    );
-    let materialsDesTemplate = fs.readFileSync(
-      "./pdf_templates/project-clearance/project-clearance-materials-description.html",
-      "utf8"
-    );
-
-    htmlTemplate.replace( "`{{additionOfMachineriesListAnnexure2}}`",
-     "" + body.formValue.additionOfMachineriesListAnnexure2 || "");
-
-    try {
-      let localTotal = body.formValue.domesticTotal;
-      let exportTotal = body.formValue.exportTotal;
-      localTotal = (localTotal * 100) / (localTotal + exportTotal);
-      exportTotal = 100 - localTotal;
-      materialsDesTemplate = materialsDesTemplate.replaceAll(
-        `{{exportOrientedPercentage}}`,
-        "" + exportTotal || "-"
-      );
-      materialsDesTemplate = materialsDesTemplate.replaceAll(
-        `{{localOrientedPercentage}}`,
-        "" + localTotal || "-"
-      );
-      materialsDesTemplate =
-        replaceMaterialsInProjectClearance.replaceAllMaterialsValue(
-          body,
-          materialsDesTemplate
-        );
-      htmlTemplate = htmlTemplate.replace(
-        `{{materialsDescription}}`,
-        materialsDesTemplate || "-"
-      );
-    } catch (exceptionVar) {
-      logger.error(exceptionVar);
+    const initialTemplate = fs.readFileSync('./ejs_pdf_templates/project-clearance.ejs', 'utf-8');
+    const pageStyle = `
+    @page {
+      margin-top: 130px;
+      margin-bottom: 40px;
+      background-image: url('../bezaLogo.png') !important;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 600px;
+      opacity: 0.3;
+      border: 1px solid red;
+      z-index: 100000000000000000
     }
-    const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
-    return response;
+  `
+
+    const generateTemplate = ejsRender(initialTemplate, body);
+
+    const generatedPdf = ejsPuppeteerPdfGenerator(generateTemplate, options, headerTemplate, pageStyle);
+
+    return generatedPdf;
   }
 }
 
