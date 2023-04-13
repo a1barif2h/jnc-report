@@ -13,40 +13,10 @@
         box-sizing: border-box;
       }
 
-      @page {
-        margin: 0;
-        background-image: url("../bezaLogo.png");
-        background-repeat: no-repeat;
-        background-size: 60%;
-        background-position: center center;
-        background-attachment: fixed;
-        opacity: 0.5;
-      }
-      body {
-        margin: 0;
-      }
-
       .container {
         margin: 0rem auto;
         padding: 15px 50px 30px 50px;
-        font-size: 12px;
-        /* position: relative;
-        z-index: 5; */
-      }
-
-      .container::before {
-        /* content: "";
-        position: absolute;
-        top: 0;
-        left: 0; */
-        /* background-image: url("<%= formValue.backgroundImg %>");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 600px; */
-        /* width: 100%;
-        height: 100%; */
-        /* opacity: 0.1; */
-        /* z-index: 10; */
+        font-size: 13px;
       }
 
       .header-content {
@@ -63,7 +33,8 @@
       }
 
       .subject {
-        font-weight: 700;
+        font-weight: 600;
+        font-size: 13.5px;
       }
 
       .main-content {
@@ -132,11 +103,12 @@
 
       table.GeneratedTable {
         width: 100%;
-        background-color: #ffffff;
+        background-color: transparent;
         border-collapse: collapse;
         margin: 0 auto !important;
         border: 1px solid rgba(53, 62, 108, 0.1) !important;
         border-radius: 4px !important;
+        font-size: 12px;
       }
 
       table.GeneratedTable td,
@@ -145,7 +117,7 @@
       }
 
       table.GeneratedTable thead {
-        background-color: #ffffff;
+        background-color: transparent;
       }
 
       /* customize table */
@@ -321,7 +293,7 @@
           <li>
             Type of Investment: <%=
             formValue.utils.parseFormValue(formValue.hiddenExportValue) %>%
-            Export Orient<br /><span
+            Export Orient<br /><span style="margin-left: 108px"
               ><%= formValue.utils.parseFormValue(formValue.hiddenDomesticValue)
               %>% Domestic Orient</span
             >

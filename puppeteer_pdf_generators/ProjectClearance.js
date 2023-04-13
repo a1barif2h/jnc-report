@@ -18,8 +18,6 @@ const options = {
   printBackground: true,
   format: "A4",
   displayHeaderFooter: true,
-  footerTemplate:
-    '<div style="text-align: right;width: 297mm;font-size: 8px;"><span style="margin-right: 1cm"><span class="pageNumber"></span> of <span class="totalPages"></span></span></div>',
 };
 
 const headerTemplate = `
@@ -100,21 +98,23 @@ class ProjectClearance {
     }
 
     const initialTemplate = fs.readFileSync('./ejs_pdf_templates/project-clearance.ejs', 'utf-8');
+
+    const footerTemplate = fs.readFileSync(
+      "./ejs_pdf_templates/footer.ejs",
+      "utf-8"
+    );
+
     const pageStyle = `
     @page {
       margin-top: 130px;
       margin-bottom: 40px;
-      background-image: url('../bezaLogo.png') !important;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: 600px;
-      opacity: 0.3;
-      border: 1px solid red;
-      z-index: 100000000000000000
     }
   `
 
     const generateTemplate = ejsRender(initialTemplate, body);
+    const generateFooterTemplate = ejsRender(footerTemplate, body);
+
+    options['footerTemplate'] = generateFooterTemplate;
 
     const generatedPdf = ejsPuppeteerPdfGenerator(generateTemplate, options, headerTemplate, pageStyle);
 
