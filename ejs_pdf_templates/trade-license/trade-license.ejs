@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        padding: 35px;
+        font-size: 13px;
+      }
+
+      .application-date {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        margin: 1.4rem 0rem;
+        line-height: 1.9;
+      }
+
+      .trade-licence {
+        font-size: 13.5px;
+        background: red;
+        color: white;
+        height: 2.6rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin-top: 1rem;
+        opacity: 0.8;
+      }
+
+      .left {
+        width: 100%;
+        padding: 0.5rem 0.8rem;
+        line-height: 2;
+        margin-top: 0.3rem;
+      }
+      .left div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+      }
+      .left small {
+        margin-right: 5px;
+        font-size: 11px;
+        font-weight: 900;
+      }
+      .left p {
+        font-size: 11.5px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+      }
+
+      .factory {
+        margin: 1rem 0rem -0.5rem 0rem;
+        border-bottom: 1px solid black;
+      }
+
+      .application-terms {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        line-height: 1.9;
+      }
+
+      .application-terms p {
+        margin-left: 0.5rem;
+      }
+
+      .footer-container {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .footer-container .qr-code {
+        width: 30%;
+        text-align: center;
+      }
+
+      .footer-container .qr-code img {
+        width: 50%;
+      }
+
+      .footer-container .signature {
+        width: 50%;
+        text-align: center;
+      }
+
+      .footer-container .signature img {
+        width: 30%;
+      }
+
+      .footer-container .signature hr {
+        border: 0;
+        border-bottom: 1.5px solid rgb(46, 45, 45);
+        width: 50%;
+        margin: 5px auto;
+      }
+
+      .footer-container .signature .desk-user {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section>
+        <div class="application-date">
+          <div>
+            <p>License No.: <%= formValue.trackingId %></p>
+          </div>
+          <div>
+            <p>Date of Issuance: <%= formValue.certificateGenerateDate %></p>
+            <p>Valid Till : <%= formValue.validTill %></p>
+            <p><%= formValue.lastAmendmentDate %></p>
+          </div>
+        </div>
+
+        <div class="trade-licence">
+          <h1>Trade License</h1>
+        </div>
+
+        <div class="left">
+          <div style="font-weight: bold">
+            <small>Name of Company:</small>
+            <p>
+              <%=
+              formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)
+              %>
+            </p>
+          </div>
+          <div style="font-weight: bold">
+            <small>Name of the Economic Zone:</small>
+            <p><%= formValue.utils.parseFormValue(formValue.economicZone) %></p>
+          </div>
+        </div>
+
+        <div class="factory">
+          <b>Factory Address</b>
+        </div>
+
+        <div class="left">
+          <div>
+            <small>Plot No.:/ Dag No.(if applicable):</small>
+            <p><%= formValue.utils.parseFormValue(formValue.plotAddress) %></p>
+          </div>
+
+          <div>
+            <small>Mouza:</small>
+            <p>
+              <%= formValue.utils.parseFormValue(formValue.specifyAreaOfMouza)
+              %>
+            </p>
+          </div>
+
+          <div>
+            <small>District:</small>
+            <p><%= formValue.utils.parseFormValue(formValue.district2) %></p>
+          </div>
+
+          <div>
+            <small>Upozila:</small>
+            <p><%= formValue.utils.parseFormValue(formValue.upazilla) %></p>
+          </div>
+
+          <div>
+            <small>Union Porishad:</small>
+            <p>
+              <%= formValue.utils.parseFormValue(formValue.unionParishad) %>
+            </p>
+          </div>
+
+          <div>
+            <small>Name:</small>
+            <p>
+              <%= formValue.utils.parseFormValue(formValue.authorizedName) %>
+            </p>
+          </div>
+
+          <div>
+            <small>Position:</small>
+            <p>
+              <%= formValue.utils.parseFormValue(formValue.authorizePosition) %>
+            </p>
+          </div>
+
+          <div>
+            <small>Nationality:</small>
+            <p><%= formValue.utils.parseFormValue(formValue.nationality) %></p>
+          </div>
+
+          <div>
+            <small>NID/ Passport No.:</small>
+            <p>
+              <%= formValue.utils.parseFormValue(formValue.passportNumber) %>
+            </p>
+          </div>
+
+          <div>
+            <small>Office Address:</small>
+            <p>
+              <%= formValue.utils.parseFormValue(formValue.officeAddress) %>
+            </p>
+          </div>
+
+          <div>
+            <small>Nature of Business:</small>
+            <p>
+              <%=
+              formValue.utils.parseFormValue(formValue.typeOfBusinessIndustryOrServices)
+              %>
+            </p>
+          </div>
+
+          <div>
+            <small>Date of Expiry:</small>
+            <p><%= formValue.utils.parseFormValue(formValue.validTill) %></p>
+          </div>
+        </div>
+
+        <div class="application-terms">
+          <h3>Terms and Conditions:</h3>
+          <p>(1) The Trade License given is not transferable</p>
+          <p>
+            (2) The violation of any of the terms and conditions given in the
+            Trade License will be Considered as punishable offense.
+          </p>
+        </div>
+
+        <footer>
+          <div class="footer-container">
+            <div class="qr-code">
+              <img src="<%= formValue.qrcode %>" alt="" />
+            </div>
+
+            <div class="signature">
+              <h3>Yours faithfully</h3>
+              <%- formValue.deskUserSignature %>
+              <hr />
+              <div class="desk-user">
+                <p>
+                  <%= formValue.utils.parseFormValue(formValue.deskUserFullName)
+                  %>
+                </p>
+                <p>
+                  <%=
+                  formValue.utils.parseFormValue(formValue.deskUserDesignation)
+                  %>
+                </p>
+              </div>
+              <div>Bangladesh Economic Zones Authority</div>
+            </div>
+          </div>
+        </footer>
+      </section>
+    </div>
+  </body>
+</html>

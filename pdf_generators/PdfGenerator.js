@@ -69,7 +69,7 @@ const generatePdfFromHtmlMultipleMaterialDescription = async function (htmlTempl
   return buf;
 };
 
-const ejsPuppeteerPdfGenerator = async (generateTemplate, options, headerTemplate, pageStyle) => {
+const ejsPuppeteerPdfGenerator = async (generateTemplate, options, pageStyle) => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
@@ -82,8 +82,7 @@ const ejsPuppeteerPdfGenerator = async (generateTemplate, options, headerTemplat
   await page.emulateMediaType("screen");
 
   const generatedPdf = await page.pdf({
-    ...options,
-    headerTemplate
+    ...options
   });
 
   await browser.close();
