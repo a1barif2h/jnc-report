@@ -1,5 +1,14 @@
 
-const { ProjectClearance, TradeLicense, TradeLicenseRenew, TechnicalKnowHowFee, RoyaltyFee } = require("../puppeteer_pdf_generators");
+const { 
+    ProjectClearance, 
+    TradeLicense, 
+    TradeLicenseRenew, 
+    TechnicalKnowHowFee, 
+    RoyaltyFee, 
+    ImportPermit, 
+    ExportPermit,
+    SampleImportPermit
+} = require("../puppeteer_pdf_generators");
 const { AllSopsCodes } = require("../shared/constants/AllSopsCodes");
 const logger = require("../util/logger");
 
@@ -36,6 +45,24 @@ const generate = async (data) => {
             const royaltyFee = new RoyaltyFee();
             logger.info(`Generating ejs and puppeteer pdf for ${AllSopsCodes.ROYALTY_FEE.value}`);
             generatedPdf = await royaltyFee.generate(data);
+            break;
+
+        case  AllSopsCodes.IMPORT_PERMIT.value:
+            const importPermit = new ImportPermit();
+            logger.info(`Generating ejs and puppeteer pdf for ${AllSopsCodes.IMPORT_PERMIT.value}`);
+            generatedPdf = await importPermit.generate(data);
+            break;
+
+        case AllSopsCodes.EXPORT_PERMIT.value:
+            const exportPermit = new ExportPermit();
+            logger.info(`Generating ejs and puppeteer pdf for ${AllSopsCodes.EXPORT_PERMIT.value}`);
+            generatedPdf = await exportPermit.generate(data);
+            break;
+
+        case AllSopsCodes.SAMPLE_IMPORT_PERMIT.value:
+            const sampleImportPermit = new SampleImportPermit();
+            logger.info(`Generating ejs and puppeteer pdf for ${AllSopsCodes.SAMPLE_IMPORT_PERMIT.value}`);
+            generatedPdf = await sampleImportPermit.generate(data);
             break;
             
         default:
