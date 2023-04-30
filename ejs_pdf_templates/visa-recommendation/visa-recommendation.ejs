@@ -1,0 +1,269 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Certificate</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        padding: 0 30px;
+        font-size: 12px;
+        text-align: justify;
+      }
+
+      .main-content {
+        padding: 0 10px;
+      }
+
+      header {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .header-logo img {
+        width: 160px;
+      }
+
+      .header-qr-code img {
+        width: 80px;
+      }
+
+      .application-date b {
+        display: block;
+      }
+
+      .application-date {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        margin: 1.5rem 0rem;
+      }
+
+      .application-subject {
+        margin: 2.5rem 0rem;
+      }
+
+      .application-header {
+        margin-top: 2rem;
+      }
+
+      .application-header .dear-ceo {
+        margin: 1rem 0rem;
+      }
+
+      .application-header-text {
+        margin: 0.3rem 0rem;
+        line-height: 1.8;
+      }
+
+      .application-info {
+        margin-top: 2rem;
+      }
+
+      .application-list {
+        width: 50%;
+        line-height: 1.9;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .application-list b {
+        display: block;
+      }
+
+      .application-ambassador {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: end;
+        -ms-flex-align: end;
+        align-items: flex-end;
+        line-height: 1.9;
+      }
+
+      .application-ambassador .signature {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin-top: 2.5rem;
+        width: 40%;
+      }
+
+      .application-ambassador img {
+        margin-left: 3.2rem;
+      }
+
+      .cc {
+        margin-top: 1rem;
+        line-height: 2;
+      }
+
+      footer p {
+        line-height: 1.9;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <main class="main-content">
+        <div class="application-date">
+          <b
+            >Tracking
+            No:<%=formValue.utils.parseFormValue(formValue.trackingId)%></b
+          >
+          <div>
+            <b
+              >Date:
+              <%=formValue.utils.parseFormValue(formValue.certificateGenerateDate)%></b
+            >
+            <b
+              ><%=formValue.utils.parseFormValue(formValue.lastAmendmentDate)%></b
+            >
+          </div>
+        </div>
+        <div>
+          <b>Subject: Request for Issuance of visa </b>
+        </div>
+
+        <div class="application-header">
+          <p class="dear-ceo">Dear Sir,</p>
+          <p class="application-header-text">
+            With reference to the above mentioned subject, it is to inform you
+            that
+            <b
+              ><%=formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)%></b
+            >
+            is a commercial or industrial unit registered with the Bangladesh
+            Economic Zone Authority. The Company has requested for visa
+            recommendation for the following expatriate:
+          </p>
+        </div>
+
+        <div class="application-list">
+          <div>
+            <b>Name</b>
+            <b>Nationality</b>
+            <b>Passport No.</b>
+            <b>Designation</b>
+            <b>Type of Visa Required</b>
+          </div>
+          <div>
+            <b
+              >:
+              <%=formValue.utils.parseFormValue(formValue.nameOfTheForeignNational1)%></b
+            >
+            <b>: <%=formValue.utils.parseFormValue(formValue.nationality)%></b>
+            <b>: <%=formValue.utils.parseFormValue(formValue.passportNo)%></b>
+            <b
+              >:
+              <%=formValue.utils.parseFormValue(formValue.incumbentDesignation)%></b
+            >
+            <b
+              >:
+              <%=formValue.utils.parseFormValue(formValue.typeOfVisaRequiredForTheIncumbentForeignNationals)%></b
+            >
+          </div>
+        </div>
+
+        <div class="application-info">
+          <p class="application-header-text">
+            It would be highly appreciated if you would kindly issue the desired
+            in favour of the above-mentioned national on proper verification of
+            the papers upon submition of application for the same.
+          </p>
+        </div>
+        <div class="application-ambassador">
+          <div>
+            <b>The High Commissioner/ Ambassador</b>
+            <p>
+              High Commission/ Embassy of the People's Republic of Bangladesh
+            </p>
+            <p>
+              <%=formValue.utils.parseFormValue(formValue.embassyHighCommission)%>
+            </p>
+          </div>
+          <div class="signature">
+            <p>Yours faithfully</p>
+            <p><%- formValue.deskUserSignature%></p>
+            <p style="font-weight: bolder; border-top: 1px solid black">
+              <%=formValue.utils.parseFormValue(formValue.deskUserFullName)%>
+            </p>
+            <p style="font-weight: bold">
+              <%=formValue.utils.parseFormValue(formValue.deskUserDesignation)%>
+            </p>
+
+            <p>Bangladesh Economic Zones Authority (formValue.BEZA)</p>
+          </div>
+        </div>
+        <div class="cc">
+          <b>Cc to (formValue.Not According to Seniority)</b>
+          <p>For kind information and necessary action :</p>
+          <p>
+            1. Senior Secretary/ Secretary, Ministry of Foreign Affairs,
+            Segunbagicha, Dhaka
+          </p>
+          <p>
+            2. Senior Secretary/ Secretary, Public Security Division, Ministry
+            of Home Affairs, Bangladesh Secretariat, Dhaka
+          </p>
+          <p>
+            3. Senior Secretary/ Secretary, Security Service Division, Ministry
+            of Home Affairs, Bangladesh Secretariat, Dhaka
+          </p>
+          <p>
+            4. Director General, Department of Immigration and Passport,
+            Sher-e-Bangla Nagar, Agargaon, Dhaka
+          </p>
+        </div>
+      </main>
+      <footer class="main-content">
+        <p>
+          The above mentioned foreign national may be advised to approach in
+          Embassy/ High Commission of Bangladesh in
+          <b><%=formValue.utils.parseFormValue(formValue.countryName)%></b> with
+          the copy of his appointment letter and other related documents for
+          obtaining<b>
+            <%=formValue.utils.parseFormValue(formValue.typeOfVisaRequiredForTheIncumbentForeignNationals)%>,
+            You are also advised to apply for his/ her work permit to this
+            authority within 90 days after arrival in Bangladesh.</b
+          >
+          The company shall be responsible for all action of the expatriate
+          during his/ her stay in Bangladesh.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

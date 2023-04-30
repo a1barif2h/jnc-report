@@ -6,6 +6,18 @@ const RoyaltyFee = require("./RoyaltyFee");
 const ImportPermit = require("./ImportPermit");
 const ExportPermit = require("./ExportPermit");
 const SampleImportPermit  = require("./SampleImportPermit");
+const SampleExportPermit = require("./SampleExportPermit");
+const VisaRecommendation = require("./VisaRecommendation");
+const VisaAssistance = require("./VisaAssistance");
+const CommercialOperation = require("./CommercialOperation");
+const LocalSalesPermit = require("./LocalSalesPermit");
+const LocalPurchasePermit = require("./LocalPurchasePermit");
+const LandUsePlan = require("./LandUsePlan");
+const BuildingPermit = require("./BuildingPermit");
+const Occupancy = require("./Occupancy");
+const PartialUseOfBuilding = require("./PartialUseOfBuilding");
+const BuildingDesignModification = require("./BuildingDesignModification");
+const WorkPermit = require("./WorkPermit");
 
 module.exports = {
     ProjectClearance,
@@ -16,4 +28,16 @@ module.exports = {
     ImportPermit,
     ExportPermit,
     SampleImportPermit,
+    SampleExportPermit,
+    VisaRecommendation,
+    VisaAssistance,
+    CommercialOperation,
+    LocalSalesPermit,
+    LocalPurchasePermit,
+    LandUsePlan,
+    BuildingPermit,
+    Occupancy,
+    PartialUseOfBuilding,
+    BuildingDesignModification,
+    WorkPermit,
 };

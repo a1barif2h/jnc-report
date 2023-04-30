@@ -1,0 +1,200 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Certificate</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        padding: 35px;
+        font-size: 12px;
+        text-align: justify;
+      }
+
+      .commercial-operation {
+        font-size: 12px;
+        background: #008000;
+        color: white;
+        height: 2.8rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin-top: 1rem;
+      }
+
+      .tracking-no {
+        width: 80%;
+        line-height: 1.7;
+        margin-top: 2rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .center-div {
+        margin: 2rem 0rem;
+      }
+
+      .center-div h2 {
+        font-size: 16px;
+        margin: 2rem 0rem;
+        text-align: center;
+      }
+
+      .center-div p {
+        line-height: 1.8;
+        font-size: 17px;
+      }
+
+      .footer-container {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .footer-container .qr-code {
+        width: 30%;
+        text-align: center;
+      }
+
+      .footer-container .qr-code img {
+        width: 50%;
+      }
+
+      .footer-container .signature {
+        width: 50%;
+        text-align: center;
+      }
+
+      .footer-container .signature img {
+        width: 30%;
+      }
+
+      .footer-container .signature hr {
+        border: 0;
+        border-bottom: 1.5px solid rgb(46, 45, 45);
+        width: 50%;
+        margin: 5px auto;
+      }
+
+      .footer-container .signature .desk-user {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <main>
+        <div class="commercial-operation">
+          <h1>Permission for Starting Commercial Operation</h1>
+        </div>
+
+        <div class="tracking-no">
+          <div>
+            <p>
+              Tracking no: <%=
+              formValue.utils.parseFormValue(formValue.trackingId )%>
+            </p>
+            <p>
+              Proposed Date : &nbsp; <%=
+              formValue.utils.parseFormValue(formValue.proposedDateOfCo )%>
+            </p>
+            <p>
+              Company Name: <%=
+              formValue.utils.parseFormValue(formValue.proposedProjectCompanyName
+              )%>
+            </p>
+            <p>
+              Economic Zone: <%=
+              formValue.utils.parseFormValue(formValue.hiddenEconomicAddress )%>
+            </p>
+          </div>
+          <div>
+            <p>
+              Issue Date : &nbsp; <%=
+              formValue.utils.parseFormValue(formValue.certificateGenerateDate
+              )%>
+            </p>
+            <p>
+              <%= formValue.utils.parseFormValue(formValue.lastAmendmentDate )%>
+            </p>
+            <p>
+              PC No. : &nbsp; <%=
+              formValue.utils.parseFormValue(formValue.projectClearanceApprovalNumber
+              )%>
+            </p>
+          </div>
+        </div>
+
+        <div class="center-div">
+          <h2>Permission for Commencing Commercial Operation</h2>
+
+          <p>
+            We are pleased to issue the permission for commercial operation of
+            <%=
+            formValue.utils.parseFormValue(formValue.proposedProjectCompanyName
+            )%>, Project Clearance no. <%=
+            formValue.utils.parseFormValue(formValue.projectClearanceApprovalNumber
+            )%> Situated at <%=
+            formValue.utils.parseFormValue(formValue.hiddenEconomicAddress )%>
+            from <%= formValue.utils.parseFormValue(formValue.proposedDateOfCo
+            )%>
+          </p>
+        </div>
+
+        <div class="secondPageContainer">
+          <footer>
+            <div class="footer-container">
+              <div class="qr-code">
+                <img src="<%= formValue.qrcode%>" alt="" />
+              </div>
+
+              <div class="signature">
+                <h3>Yours faithfully</h3>
+                <%- formValue.deskUserSignature %>
+                <hr />
+                <div class="desk-user">
+                  <p>
+                    <%=
+                    formValue.utils.parseFormValue(formValue.deskUserFullName
+                    )%>
+                  </p>
+                  <p>
+                    <%=
+                    formValue.utils.parseFormValue(formValue.deskUserDesignation
+                    )%>
+                  </p>
+                </div>
+
+                <div>Bangladesh Economic Zones Authority</div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

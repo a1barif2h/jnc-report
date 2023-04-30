@@ -24,7 +24,9 @@ const getFooterTemplate = (sopCode) => {
         sopCode === SOP_CODE.importPermit || 
         sopCode === SOP_CODE.exportPermit ||
         sopCode === SOP_CODE.sampleImportPermit ||
-        sopCode === SOP_CODE.sampleExportPermit
+        sopCode === SOP_CODE.sampleExportPermit ||
+        sopCode === SOP_CODE.localSalesPermit ||
+        sopCode === SOP_CODE.localPurchasePermit
         ) {
         template = fs.readFileSync(
             "./ejs_pdf_templates/footer-with-caution.ejs",

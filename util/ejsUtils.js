@@ -6,6 +6,18 @@ const parseFormValue = (value) => {
     return '-'
 }
 
+const addNAText = (type_visa, value) => {
+  let eType = "E - Employment Visa";
+    let piType = "PI - Private Investor Visa";
+    let a3Type = "A3 - Work on Government Projects Visa";
+    let eiType = "EI - Employment Type -1 Visa";
+
+    if (type_visa !== eType || type_visa !== piType || type_visa !== a3Type || type_visa !== eiType) {
+      return "NA";
+    }
+    return value;
+};
+
 const numberWithCommas = (x) => {
     if(!x) {
       return ""
@@ -17,5 +29,6 @@ const numberWithCommas = (x) => {
 
 module.exports = {
     parseFormValue,
-    numberWithCommas
+    numberWithCommas,
+    addNAText
 }

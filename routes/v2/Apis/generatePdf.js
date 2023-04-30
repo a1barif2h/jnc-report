@@ -81,13 +81,13 @@ const generatePdf = async (req, res, next) => {
                     if (inspectionDate) {
                         inspectionDate = new Date(inspectionDate).toLocaleDateString();
                         res.additionalInfo.inspectionDate = inspectionDate
-                            ? dateTimeFormattor.getFormatDate(inspectionDate)
+                            ? getFormatDate(inspectionDate)
                             : " ";
                     }
                     if (meetingDate) {
                         meetingDate = new Date(meetingDate).toLocaleDateString();
                         res.additionalInfo.meetingDate = meetingDate
-                            ? dateTimeFormattor.getFormatDate(meetingDate)
+                            ? getFormatDate(meetingDate)
                             : " ";
                     }
                     Object.keys(res.additionalInfo).map((key) => {

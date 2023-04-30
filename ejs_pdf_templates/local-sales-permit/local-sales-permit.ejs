@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        margin: 0rem auto;
+        padding: 5px 15px 0 15px;
+      }
+
+      .import-permit {
+        height: 2.4rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background-color: red;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        margin-top: 0.5rem;
+        color: white;
+        opacity: 0.8;
+      }
+
+      .import-date {
+        font-size: 12.5px;
+        font-weight: bold;
+        margin: 0.6rem 0rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .general-information,
+      .material-details {
+        height: 2.4rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        color: white;
+        background-color: #278000;
+        opacity: 0.8;
+      }
+
+      .border-box {
+        display: flex;
+        justify-content: space-between;
+        border: 1.5px solid #278000;
+        line-height: 1.8;
+      }
+      .left {
+        width: 50%;
+        padding: 5px 15px;
+      }
+      .right {
+        width: 50%;
+        padding: 5px 15px;
+      }
+
+      .general-item {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 8px;
+      }
+
+      .item-label {
+        font-size: 10.5px;
+        font-weight: bold;
+        min-width: fit-content;
+        max-width: 45%;
+      }
+
+      .item-value {
+        width: auto;
+        font-size: 11px;
+      }
+
+      .material-group {
+        height: 2.4rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background-color: #278000;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        margin-top: 1rem;
+        color: white;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="import-permit">
+        <h3>LOCAL SALES PERMIT</h3>
+      </div>
+
+      <div class="import-date">
+        <p>
+          Tracking No: <%=formValue.utils.parseFormValue(formValue.trackingId)
+          %>
+        </p>
+        <div>
+          <p>Date: <%= formValue.certificateGenerateDate %></p>
+          <p><%= formValue.lastAmendmentDate %></p>
+        </div>
+      </div>
+
+      <div class="general">
+        <div class="general-information">
+          <h3>BASIC INFORMATION</h3>
+        </div>
+
+        <div class="border-box">
+          <div class="left">
+            <div class="general-item">
+              <p class="item-label">Name of the Company:</p>
+              <p class="item-value">
+                <%=
+                formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)
+                %>
+              </p>
+            </div>
+            <div class="general-item">
+              <p class="item-label">Local Sales Permit Type:</p>
+              <p class="item-value">
+                <%=
+                formValue.utils.parseFormValue(formValue.localSalesPermitType)
+                %>
+              </p>
+            </div>
+            <div class="general-item">
+              <p class="item-label">Economic Zone:</p>
+              <p class="item-value">
+                <%= formValue.utils.parseFormValue(formValue.economicZone) %>
+              </p>
+            </div>
+            <div class="general-item">
+              <p class="item-label">Undertaking No.:</p>
+              <p class="item-value">
+                <%= formValue.utils.parseFormValue(formValue.undertakingNo) %>
+              </p>
+            </div>
+            <div class="general-item">
+              <p class="item-label">Invoice/ Vendor Reference No:</p>
+              <p class="item-value">
+                <%= formValue.utils.parseFormValue(formValue.invoiceVendorRefNo)
+                %>
+              </p>
+            </div>
+            <div class="general-item">
+              <p class="item-label">Buyer Name:</p>
+              <p class="item-value">
+                <%= formValue.utils.parseFormValue(formValue.buyerName) %>
+              </p>
+            </div>
+          </div>
+          <div class="right">
+            <div class="general-item">
+              <p class="item-label">Carrier Type:</p>
+              <p class="item-value">
+                <%= formValue.utils.parseFormValue(formValue.carrierType) %>
+              </p>
+            </div>
+            <div class="general-item">
+              <p class="item-label">Undertaking Date:</p>
+              <p class="item-value">
+                <%= formValue.utils.parseFormValue(formValue.undertakingDate) %>
+              </p>
+            </div>
+            <div class="general-item">
+              <p class="item-label">Type of Zone:</p>
+              <p class="item-value">
+                <%=
+                formValue.utils.parseFormValue(formValue.typeOfEconomicZoneWhereBusinessToBeSet)
+                %>
+              </p>
+            </div>
+            <div class="general-item">
+              <p class="item-label">Invoice/ Vendor Ref. Date:</p>
+              <p class="item-value">
+                <%=
+                formValue.utils.parseFormValue(formValue.invoiceVendorRefDate)
+                %>
+              </p>
+            </div>
+            <div class="general-item">
+              <p class="item-label">Buyer Address:</p>
+              <p class="item-value">
+                <%= formValue.utils.parseFormValue(formValue.buyerAddress) %>
+              </p>
+            </div>
+            <div class="general-item">
+              <p class="item-label">Value:</p>
+              <p class="item-value">
+                BDT <%=
+                formValue.utils.parseFormValue(formValue.hiddenUnitPrice) %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="material-description">
+        <% formValue.PurchaseDetailsGroup.map((item) => { %>
+        <div>
+          <div class="material-group">
+            <h3>Local Sales Permit Details</h3>
+          </div>
+          <div class="border-box">
+            <div class="left">
+              <div class="general-item">
+                <p class="item-label">Type of Material:</p>
+                <p class="item-value">
+                  <%= formValue.utils.parseFormValue(item.typeOfMaterial) %>
+                </p>
+              </div>
+              <div class="general-item">
+                <p class="item-label">Quantity:</p>
+                <p class="item-value">
+                  <%= formValue.utils.parseFormValue(item.quantity) %>
+                </p>
+              </div>
+              <div class="general-item">
+                <p class="item-label">Material Description:</p>
+                <p class="item-value">
+                  <%= formValue.utils.parseFormValue(item.materialDescription)
+                  %>
+                </p>
+              </div>
+            </div>
+            <div class="right">
+              <div class="general-item">
+                <p class="item-label">Unit of Quantity:</p>
+                <p class="item-value">
+                  <%= formValue.utils.parseFormValue(item.unitOfQuantity) %>
+                </p>
+              </div>
+              <div class="general-item">
+                <p class="item-label">Unit Price:</p>
+                <p class="item-value">
+                  BDT <%= formValue.utils.parseFormValue(item.unitPrice) %>
+                </p>
+              </div>
+              <div class="general-item">
+                <p class="item-label">HS Code:</p>
+                <p class="item-value">
+                  <%= formValue.utils.parseFormValue(item.hsCode) %>
+                </p>
+              </div>
+              <div class="general-item">
+                <p class="item-label" style="visibility: hidden">HS Code:</p>
+                <p class="item-value">
+                  <%= formValue.utils.parseFormValue(item.hsCodeDetails) %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%})%>
+      </div>
+    </div>
+  </body>
+</html>

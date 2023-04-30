@@ -1,0 +1,274 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Certificate</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      margin: 0rem auto;
+      padding: 0 30px;
+      font-size: 13.5px;
+      text-align: justify;
+    }
+
+    .import-permit {
+      height: 2rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      background-color: red;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      margin-top: 0.8rem;
+      color: white;
+    }
+
+    .application-date {
+      margin: .6rem 0rem;
+      font-weight: bolder;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+
+    }
+
+    .application-info b {
+      display: block;
+
+    }
+
+    .application-info p {
+      font-size: 11.5px;
+    }
+
+    .application-info {
+      width: 50%;
+      line-height: 1.8;
+    }
+
+    .application-info b {
+      line-height: 1.5;
+    }
+
+    .application-subject {
+      margin: .5rem 0rem;
+    }
+
+
+    .application-header-text {
+      margin: .4rem 0rem;
+      line-height: 1.4;
+    }
+
+    .application-header-text b {
+      font-size: 11.5px;
+    }
+
+
+    .application-list li {
+      margin-top: 0.3rem;
+      line-height: 1.4;
+    }
+
+
+    .application-list p {
+      margin-top: 0.5rem;
+      line-height: 1.64;
+    }
+
+    .secondPageContainer {
+      margin: 0rem auto;
+      margin-top: 15px;
+    }
+
+    .footer-container {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .footer-container .qr-code {
+      width: 30%;
+      text-align: center;
+    }
+
+    .footer-container .qr-code img {
+      width: 50%;
+    }
+
+    .footer-container .signature {
+      width: 50%;
+      text-align: center;
+    }
+
+    .footer-container .signature img {
+      width: 30%;
+    }
+
+    .footer-container .signature hr {
+      border: 0;
+      border-bottom: 1.5px solid rgb(46, 45, 45);
+      width: 50%;
+      margin: 5px auto;
+    }
+
+    .footer-container .signature .desk-user {
+      font-weight: 700;
+    }
+
+    .application-list {
+      list-style: none;
+    }
+
+    .terms-condition small {
+      display: block;
+      margin: 6px 10px;
+      font-size: 11.5px;
+    }
+
+    .building-information {
+      margin-left: 10px;
+    }
+  </style>
+
+<body>
+  <div class="container container-page-break">
+    <header>
+      <div class="import-permit">
+        <h3>OCCUPANCY</h3>
+      </div>
+      <div class="application-date">
+        <p>Tracking no: <%= formValue.utils.parseFormValue(formValue.trackingId)%></p>
+        <div>
+          <p>Date: <%= formValue.utils.parseFormValue(formValue.certificateGenerateDate)%></p>
+          <p><%= formValue.utils.parseFormValue(formValue.lastAmendmentDate)%></p>
+        </div>
+      </div>
+      <div class="application-info">
+        <p>Building Permit No: <%= formValue.utils.parseFormValue(formValue.approvalNoBuildingPermit)%></p>
+        <p>Approval Building Permit Date: <%= formValue.utils.parseFormValue(formValue.approvalNoOfBuildingPermitDate)%></p>
+        <p>Effectiveness Certificate No: <%= formValue.utils.parseFormValue(formValue.approvalNoOfFireFightingFloorPlanApprovalCertificate)%></p>
+        <p>Effectiveness Certificate Date: <%= formValue.utils.parseFormValue(formValue.approvalNoOfFireFightingFloorPlanApprovalCertificateDate)%></p>
+        <p>Environmental Certificate No: <%= formValue.utils.parseFormValue(formValue.approvalNoOfTorForEia)%></p>
+        <p>Approval Environmental Certificate Date: <%= formValue.utils.parseFormValue(formValue.approvalNoOfTorForEiaDate)%></p>
+      </div>
+      <div class="application-subject">
+        <b>Attention: <%= formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)%></b>
+      </div>
+    </header>
+    <main>
+      <p class="application-header-text">
+        With reference to the above Permit and Certificate, BEZA-OSS Center of <%= formValue.utils.parseFormValue(formValue.economicZone)%> Limited conducted the
+        Final
+        Inspection on the day of <%= formValue.utils.parseFormValue(formValue.inspectionDate)%> and confirmed the building works approved under such Permit and
+        Certificate have been
+        completed in accordance with the approved plan and specification and the applied Building Code. Consequently,
+        BEZA-OSS Center issue
+        the Certificate here by to <%= formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)%> situated at <%= formValue.utils.parseFormValue(formValue.economicZone)%> Limited as
+        under:
+      </p>
+      <div class="application-list">
+        <b>1. Terms and conditions for approval:</b>
+        <li>i. The certificate shall be valid only for the following building:</li>
+        <div class="terms-condition">
+          <small> a) Name of Economic Zone : <%= formValue.utils.parseFormValue(formValue.economicZone)%></small>
+          <small> b) Plot Number : <%= formValue.utils.parseFormValue(formValue.plotAddress)%></small>
+          <small> c) Building Information:</small>
+          <div class="building-information">
+            <small>
+              1) Land Area(sqm): <%= formValue.utils.parseFormValue(formValue.landArea)%>
+            </small>
+            <small>
+              2) Maximum Ground Clearance (M.G.C) : <%= formValue.utils.parseFormValue(formValue.buildingArea)%>
+            </small>
+            <small>
+              3) Total built Area(sqm) : <%= formValue.utils.parseFormValue(formValue.totalFloorArea)%>
+            </small>
+            <small>
+              4) Nature of Facility : <%= formValue.utils.parseFormValue(formValue.natureOfFacility)%>
+            </small>
+            <small>
+              5) Kind of Construction : <%= formValue.utils.parseFormValue(formValue.kindOfConstruction)%>
+            </small>
+            <small>
+              6) Major Structure /storey: <%= formValue.utils.parseFormValue(formValue.majorStructure)%>
+            </small>
+            <small>
+              7) Number of Building : <%= formValue.utils.parseFormValue(formValue.numberOfBuilding)%>
+            </small>
+          </div>
+        </div>
+        <li>ii. In case you make any modification by adding/extending/reducing or in any other form to the approved
+          design or plan of the building
+          under this Occupation Certificate, you shall be required to apply for a new Building Permit and Fire License
+          to BEZA-OSS Center.</li>
+        <li>iii. This Occupation Certificate is issued based on the result of Final Inspection for building works on the
+          day of <%= formValue.utils.parseFormValue(formValue.requestDateAndTimeForInspection1)%> and
+          the issuance of Effectiveness License Approval No. <%= formValue.utils.parseFormValue(formValue.approvalNoOfFireFightingFloorPlanApprovalCertificate)%>
+          issued by the FSCD on the day of <%= formValue.utils.parseFormValue(formValue.approvalNoOfFireFightingFloorPlanApprovalCertificateDate)%>.</li>
+
+        <li>iv. You shall submit “Fire safety Plan” with other required documents to BEZA-OSS Center within thirty (30)
+          days from the issued date of
+          this Occupation Certificate.</li>
+
+        <li>v. You shall obtain “Approval of Commercial Operation” from the BEZA-OSS Center before commencement of
+          operation of the factory
+          under this Occupation Certificate.</li>
+
+        <li>vi. All future correspondence in terms of this Occupation Certificate shall be addressed to BEZA-OSS Center.
+        </li>
+      </div>
+    </main>
+  </div>
+  <div class="secondPageContainer">
+    <footer>
+      <div class="footer-container">
+        <div class="qr-code">
+          <img src="<%= formValue.qrcode%>" alt="" />
+        </div>
+
+        <div class="signature">
+          <h3> Yours faithfully</h3>
+          <%-formValue.deskUserSignature%>
+          <hr />
+          <div class="desk-user">
+            <p><%= formValue.utils.parseFormValue(formValue.deskUserFullName)%></p>
+            <p><%= formValue.utils.parseFormValue(formValue.deskUserDesignation)%></p>
+          </div>
+          
+          <div>
+            Bangladesh Economic Zones Authority
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</body>
+
+</html>
