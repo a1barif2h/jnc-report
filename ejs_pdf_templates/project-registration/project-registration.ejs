@@ -1,0 +1,299 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Certificate</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        margin: 0rem auto;
+        padding: 5px 25px 0 25px;
+        font-size: 13px;
+        text-align: justify;
+      }
+
+      .application-date {
+        margin: 0rem 0rem 0.4rem 0rem;
+        font-weight: bolder;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .application-info b {
+        display: block;
+      }
+
+      .application-info {
+        width: 50%;
+        line-height: 1.3;
+      }
+
+      .application-info b {
+        line-height: 1.2;
+      }
+
+      .application-subject {
+        margin: 0.3rem 0rem;
+      }
+
+      .application-header {
+        margin-top: 0.3rem;
+      }
+
+      .application-header .dear-ceo {
+        margin: 0.8rem 0rem;
+      }
+
+      .application-header-text {
+        margin: 0.3rem 0rem;
+        line-height: 1.2;
+      }
+
+      .application-header-text b {
+        font-size: 13px;
+      }
+
+      .application-list {
+        padding-left: 22px;
+      }
+
+      .application-list li {
+        margin-top: 0.5rem;
+      }
+
+      .application-list p {
+        margin-top: 0.3rem;
+        line-height: 1.34;
+      }
+
+      footer {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 1.2rem;
+        overflow: auto;
+      }
+
+      footer .footer-items1 {
+        width: 30%;
+        text-align: center;
+      }
+      footer .footer-items1 img {
+        width: 50%;
+      }
+
+      footer .footer-items1 .copy-for {
+        text-align: left;
+        line-height: 2;
+      }
+      footer .footer-items2 {
+        width: 20%;
+        text-align: center;
+      }
+      footer .footer-items3 {
+        width: 40%;
+        text-align: center;
+      }
+
+      footer .footer-items3 img {
+        width: 40%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <div class="application-date">
+          <p>
+            Tracking No:<%= formValue.utils.parseFormValue(formValue.trackingId
+            ) %>
+          </p>
+          <p>
+            Date: <%=
+            formValue.utils.parseFormValue(formValue.certificateGenerateDate )
+            %>
+          </p>
+        </div>
+        <div class="application-info">
+          <b>Managing Director / CEO</b>
+          <b
+            ><%=
+            formValue.utils.parseFormValue(formValue.proposedProjectCompanyName
+            ) %></b
+          >
+          <b><%= formValue.utils.parseFormValue(formValue.plotAddress ) %></b>
+          <b
+            ><%= formValue.utils.parseFormValue(formValue.economicZoneAddress )
+            %></b
+          >
+        </div>
+        <div class="application-subject">
+          <b
+            >Subject: Approval for Registration of a Project to Setup a(n) <%=
+            formValue.utils.parseFormValue(formValue.typeOfBusinessIndustryOrServices
+            ) %> in <%= formValue.utils.parseFormValue(formValue.economicZone )
+            %>
+          </b>
+        </div>
+      </header>
+      <main>
+        <div class="application-header">
+          <p class="dear-ceo">Dear MD/CEO,</p>
+          <p class="application-header-text">
+            With reference to your Application (Project Proposal) received <%=
+            formValue.utils.parseFormValue(formValue.applicationDate ) %>, this
+            is to inform that the Authority is pleased to issue this
+            registration subject to approval from competent authorities and
+            compliance of all legal requirements of the project for setting up
+            <b
+              ><%=
+              formValue.utils.parseFormValue(formValue.typeOfBusinessIndustryOrServices
+              ) %> in <%=
+              formValue.utils.parseFormValue(formValue.economicZoneAddress ) %>
+            </b>
+            on terms and conditions as indicated below:
+          </p>
+        </div>
+        <div class="application-list">
+          <ol>
+            <li>
+              Name of the project:
+              <b
+                ><%=
+                formValue.utils.parseFormValue(formValue.proposedProjectCompanyName
+                ) %></b
+              >
+            </li>
+            <li>
+              Products: <%=
+              formValue.utils.parseFormValue(formValue.aNameDescriptionOfTheProductS
+              ) %>
+            </li>
+            <li>
+              Cost of the project (In Million USD): <%=
+              formValue.utils.parseFormValue(formValue.dCostOfTheProjectInUs )
+              %>
+            </li>
+            <li>
+              <div style="display: flex; gap: 5px">
+                <div>Type of Investment:</div>
+                <div>
+                  <%= formValue.utils.parseFormValue(formValue.hiddenExportValue
+                  ) %>% Export Orient<br /><%=
+                  formValue.utils.parseFormValue(formValue. hiddenDomesticValue
+                  ) %>% Domestic Orient
+                </div>
+              </div>
+            </li>
+            <li>
+              Type of Industry: <%=
+              formValue.utils.parseFormValue(formValue.typeOfIndustry ) %>
+            </li>
+            <li>
+              Annual production capacity: <%=
+              formValue.utils.parseFormValue(formValue.productionCapacityHidden
+              ) %>
+            </li>
+            <li>
+              Employment: <%=
+              formValue.utils.parseFormValue(formValue.grandTotalSummation ) %>
+              persons including <%=
+              formValue.utils.parseFormValue(formValue.foreigenTotalSummation )
+              %> foreign nationals
+            </li>
+            <li>
+              Status of the Company: <%=
+              formValue.utils.parseFormValue(formValue.typeOfOrganization ) %>
+            </li>
+            <li>
+              Manufacturing Process: <%=
+              formValue.utils.parseFormValue(formValue.cManufacturingProcess )
+              %>
+            </li>
+            <li>
+              Area of land/SFB to be allotted: <%=
+              formValue.utils.parseFormValue(formValue.agreedLandByDevelopersSqm
+              ) %> Square Meters plot in <%=
+              formValue.utils.parseFormValue(formValue.plotAddress ) %> at <%=
+              formValue.utils.parseFormValue(formValue.specifyAreaOfMouza ) %>
+            </li>
+            <!-- NEW ADDING NEED TO RESPONSE FROM SERVER -->
+            <li>
+              Project Category: <%=
+              formValue.utils.parseFormValue(formValue.industryCategory ) %>
+            </li>
+            <!-- localTotal4 is for Local Machineries and Equipment -->
+            <li>
+              The applicant shall comply with the rules and regulations
+              pertaining to environment conversation, pollution control and
+              effluent treatment and take necessary safety measures against
+              possible fire hazards.
+            </li>
+            <li>
+              The applicant shall comply with all laws, by-laws, rules,
+              regulations, directives of the government and of this Authority
+              which are in force or which may be issued from time to time in
+              future;
+            </li>
+            <li>
+              This registration certificate is provided only to certify that the
+              project has been registered with Bangladesh Economic Zones
+              Authority and going through Project Clearance process.
+            </li>
+            <li>
+              All the clearance including construction permit will be provided
+              after project clearance.
+            </li>
+          </ol>
+        </div>
+        <footer>
+          <div class="footer-items1">
+            <p>Copy for Information to</p>
+            <div class="copy-for">
+              <p>
+                a. <%= formValue.utils.parseFormValue(formValue.userDesignation
+                ) %>,
+              </p>
+              <p>b. Commissioner, Customer Bond...</p>
+              <p>c. ..............................</p>
+              <p>d. ..............................</p>
+            </div>
+          </div>
+          <div class="footer-items2"></div>
+          <div class="footer-items3">
+            <h3>Yours faithfully</h3>
+            <%-formValue.deskUserSignature %>
+            <p style="font-weight: bold">
+              <%= formValue.utils.parseFormValue(formValue.deskUserFullName ) %>
+            </p>
+            <p style="font-weight: bold">
+              <%= formValue.utils.parseFormValue(formValue.deskUserDesignation )
+              %>
+            </p>
+
+            <p>Bangladesh Economic Zones Authority (BEZA)</p>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

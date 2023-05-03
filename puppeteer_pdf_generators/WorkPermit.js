@@ -78,7 +78,7 @@ class ImportPermit {
 
     const pageStyle = `
             @page {
-                margin-top: 150px;
+                margin-top: 130px;
                 margin-bottom: 200px;
             }
         `;

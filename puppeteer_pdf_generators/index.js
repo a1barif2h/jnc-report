@@ -18,6 +18,8 @@ const Occupancy = require("./Occupancy");
 const PartialUseOfBuilding = require("./PartialUseOfBuilding");
 const BuildingDesignModification = require("./BuildingDesignModification");
 const WorkPermit = require("./WorkPermit");
+const ProjectRegistration = require("./ProjectRegistration");
+const PaymentVoucher = require("./PaymentVoucher");
 
 module.exports = {
     ProjectClearance,
@@ -40,4 +42,6 @@ module.exports = {
     PartialUseOfBuilding,
     BuildingDesignModification,
     WorkPermit,
+    ProjectRegistration,
+    PaymentVoucher,
 };

@@ -19,7 +19,8 @@ const {
     Occupancy,
     PartialUseOfBuilding,
     BuildingDesignModification,
-    WorkPermit
+    WorkPermit,
+    ProjectRegistration
 } = require("../puppeteer_pdf_generators");
 const { AllSopsCodes } = require("../shared/constants/AllSopsCodes");
 const logger = require("../util/logger");
@@ -147,6 +148,12 @@ const generate = async (data) => {
             const workPermit = new WorkPermit();
             logger.info(`Generating ejs and puppeteer pdf for ${AllSopsCodes.WORK_PERMIT.value}`);
             generatedPdf = await workPermit.generate(data);
+            break;
+
+        case AllSopsCodes.PROJECT_REGISTRATION.value:
+            const projectRegistration = new ProjectRegistration();
+            logger.info(`Generating ejs and puppeteer pdf for ${AllSopsCodes.PROJECT_REGISTRATION.value}`);
+            generatedPdf = await projectRegistration.generate(data);
             break;
             
         default:

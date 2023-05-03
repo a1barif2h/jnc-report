@@ -22,6 +22,9 @@
       .container {
         width: 95%;
         margin: 0 auto;
+        font-size: 14px;
+        text-align: justify;
+        padding: 15px 35px;
       }
 
       .container p {
@@ -49,7 +52,7 @@
       .subject b {
         display: block;
         font-size: 13px;
-        line-height: 1.9;
+        line-height: 1.5;
       }
 
       .subject .sub {
@@ -75,12 +78,12 @@
       }
 
       table.GeneratedTable thead {
-        background-color: #ffffff;
+        background-color: transparent;
       }
 
       table.GeneratedTable {
         width: 100%;
-        background-color: #ffffff;
+        background-color: transparent;
         border-collapse: collapse;
         border-width: 1px;
         border-color: #000000;
@@ -97,7 +100,7 @@
       }
 
       table.GeneratedTable thead {
-        background-color: #ffffff;
+        background-color: transparent;
       }
 
       /* customize table */
@@ -120,11 +123,11 @@
       }
 
       th {
-        font-size: 12.8px;
+        font-size: 11.8px;
       }
 
       td {
-        font-size: 12.5px;
+        font-size: 11.5px;
       }
 
       .first-th {
@@ -141,12 +144,12 @@
       }
 
       .un-order {
-        margin-top: 1rem !important;
+        padding-top: 1rem;
       }
 
       .un-order li {
-        font-size: 13px !important;
-        line-height: 1.9 !important;
+        font-size: 12.5px !important;
+        line-height: 1.6 !important;
         margin-top: 0.4rem;
       }
 
@@ -164,19 +167,23 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: center;
-        width: 55% !important;
         margin-top: 2.5rem;
       }
 
       footer ol li {
-        font-size: 13px;
-        line-height: 1.5;
+        font-size: 11.5px;
+        line-height: 1.3;
         margin-top: 0.4rem;
+      }
+
+      .cc-item {
+        width: 60%;
       }
 
       .signature {
         text-align: center !important;
         line-height: 1.5 !important;
+        width: 40%;
       }
 
       .signature small {
@@ -185,7 +192,7 @@
       }
 
       .signature img {
-        width: 40% !important;
+        width: 60% !important;
         border-bottom: 1px solid black;
       }
 
@@ -197,367 +204,433 @@
   </head>
 
   <body>
-    <div class="mainContainer pagebreak">
-      <div class="container">
-        <div class="application-date">
-          <div>
-            <p>
-              Tracking No:<%=
-              formValue.utils.parseFormValue(formValue.trackingId )%>
-            </p>
-            <p>
-              Type of Visa: <%=
-              formValue.utils.parseFormValue(formValue.typeOfVisaObtainedForTheIncumbentForeignNationals
-              )%>
-            </p>
-          </div>
-          <div>
-            <p>
-              Date: <%=
-              formValue.utils.parseFormValue(formValue.certificateGenerateDate
-              )%>
-            </p>
-            <p>
-              <%= formValue.utils.parseFormValue(formValue.lastAmendmentDate )%>
-            </p>
-            <p>
-              <%= formValue.utils.parseFormValue(formValue.cancellationDate )%>
-            </p>
-            <p>
-              Work Permit Type: <%=
-              formValue.utils.parseFormValue(formValue.workPermitType )%>
-            </p>
-          </div>
-        </div>
-
-        <div class="subject">
-          <b>Managing Director,</b>
-          <b
-            ><%=
-            formValue.utils.parseFormValue(formValue.proposedProjectCompanyName
-            )%></b
-          >
-          <%= formValue.utils.parseFormValue(formValue.plotAddress )%>
-          <b></b>
-          <b
-            ><%= formValue.utils.parseFormValue(formValue.economicZoneAddress
-            )%></b
-          >
-          <b class="sub">Subject: Work Permit for Foreign National.</b>
-        </div>
-        <div style="margin: 0.75rem 0rem">
-          <p>Dear Sir,</p>
-        </div>
-
-        <div class="application-text">
+    <div class="container">
+      <div class="application-date">
+        <div>
           <p>
-            With reference to your application received on the above subject,
-            this is to inform you that Bangladesh Economic Zone Authority (BEZA)
-            has been pleased to issue work permit for the following foreign
-            national employed in your company / office for the period shown
-            against his name on the terms, conditions and remuneration as shown
-            below :
+            Tracking No:<%= formValue.utils.parseFormValue(formValue.trackingId
+            )%>
+          </p>
+          <p>
+            Type of Visa: <%=
+            formValue.utils.parseFormValue(formValue.typeOfVisaObtainedForTheIncumbentForeignNationals
+            )%>
           </p>
         </div>
-        <div class="remuneration-box" style="margin-top: 0.75rem">
-          <table class="GeneratedTable">
-            <thead>
-              <tr>
-                <th class="first-th">
-                  Name, Designation <br />
-                  Nationality and Passport No
-                </th>
-                <th class="second-th">Period of Work Permit</th>
-                <th class="third-th">Remuneration</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="first-td">
-                  <%=
-                  formValue.utils.parseFormValue(formValue.nameOfTheForeignNational
-                  )%> <br />
-                  <%=
-                  formValue.utils.parseFormValue(formValue.nameOfThePostEmployedOfDesignation
-                  )%>
-                  <br />
-                  <%=
-                  formValue.utils.parseFormValue(formValue.particularsNationality
-                  )%><br />
-                  <%= formValue.utils.parseFormValue(formValue.passport1 )%>
-                </td>
-                <td>
-                  <%=
-                  formValue.utils.parseFormValue(formValue.desiredDurationWithDetails
-                  )%> (with effect from: <%=
-                  formValue.utils.parseFormValue(formValue.startDateBeza )%>)
-                </td>
-                <td class="child-td">
-                  <table class="GeneratedTable">
-                    <thead>
-                      <tr>
-                        <th>Payment</th>
-                        <th>Payable Locally</th>
-                        <th>Payable Abroad</th>
-                      </tr>
-                    </thead>
-                    <tbody class="child-tbody">
-                      <tr>
-                        <td>
-                          <%= formValue.utils.parseFormValue(formValue.payment
-                          )%>
-                        </td>
-                        <td>
-                          Basic Salary: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountLocally
-                          )%>
-                        </td>
-                        <td>
-                          Basic Salary: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally7
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountAbroad
-                          )%>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <%= formValue.utils.parseFormValue(formValue.payment3
-                          )%>
-                        </td>
-                        <td>
-                          Conveyance: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally3
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountLocally3
-                          )%>
-                        </td>
-                        <td>
-                          Conveyance: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally11
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountAbroad3
-                          )%>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <%= formValue.utils.parseFormValue(formValue.payment1
-                          )%>
-                        </td>
-                        <td>
-                          Overseas Allowance: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally1
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountLocally1
-                          )%>
-                        </td>
-                        <td>
-                          Overseas Allowance: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally8
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountAbroad1
-                          )%>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <%= formValue.utils.parseFormValue(formValue.payment2
-                          )%>
-                        </td>
-                        <td>
-                          House Rent: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally2
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountLocally2
-                          )%>
-                        </td>
-                        <td>
-                          House Rent: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally9
-                          )%> <%= formValue.utils.parseFormValue(formValue.
-                          amountAbroad2 )%>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <%= formValue.utils.parseFormValue(formValue.payment4
-                          )%>
-                        </td>
-                        <td>
-                          Medical Allowance: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally4
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountLocally4
-                          )%>
-                        </td>
-                        <td>
-                          Medical Allowance: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally12
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountAbroad4
-                          )%>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <%= formValue.utils.parseFormValue(formValue.payment5
-                          )%>
-                        </td>
-                        <td>
-                          Entertain. Allowance: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally5
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountLocally5
-                          )%>
-                        </td>
-                        <td>
-                          Entertain. Allowance: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally13
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountAbroad5
-                          )%>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <%= formValue.utils.parseFormValue(formValue.payment6
-                          )%>
-                        </td>
-                        <td>
-                          Annual Bonus: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally6
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountLocally6
-                          )%>
-                        </td>
-                        <td>
-                          Annual Bonus: <%=
-                          formValue.utils.parseFormValue(formValue.currencyLocally14
-                          )%> <%=
-                          formValue.utils.parseFormValue(formValue.amountAbroad6
-                          )%>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-
-              <tr>
-                <td colspan="3">
-                  Others: <%=
-                  formValue.utils.parseFormValue(formValue.hOtherFringeBenefitsIfAny
-                  )%>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="3">
-                  Remarks: <%=
-                  formValue.utils.parseFormValue(formValue.anyParticularComments
-                  )%>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div>
+          <p>
+            Date: <%=
+            formValue.utils.parseFormValue(formValue.certificateGenerateDate )%>
+          </p>
+          <p>
+            <%= formValue.utils.parseFormValue(formValue.lastAmendmentDate )%>
+          </p>
+          <p>
+            <%= formValue.utils.parseFormValue(formValue.cancellationDate )%>
+          </p>
+          <p>
+            Work Permit Type: <%=
+            formValue.utils.parseFormValue(formValue.workPermitType )%>
+          </p>
         </div>
       </div>
 
-      <div class="container second-page">
-        <ol class="un-order">
-          <li>
-            The expenditure in this connection would be borne out of foreign
-            exchange remittance received from abroad. This condition in not
-            applicable in case of appointment of foreign nationals in Foreign
-            Bank, insurance, Airlines, Bangladeshi Company etc.
-          </li>
-          <li>
-            If your Company earns profit locally and wants to meet the necessary
-            expenditure of the company in Bangladesh with that profit, they can
-            apply to the Board with proper justification and sufficient
-            supporting documents for exemption of condition-1
-          </li>
-          <li>
-            Appointment of Bangladeshi national as per ratio i.e. One Foreign
-            national : Five Bangladeshi national [1:5] with suitable and
-            appropriate pay structure shall have to be ensured.
-          </li>
-          <li>
-            Income tax payable to the Government shall have to be deducted at
-            source and to be paid as per provisions of Bangladesh Government I.T
-            Ordinance 1984.
-          </li>
-          <li>
-            The Foreign national(s) is / are required to submit Income Tex
-            Certificate/Income Tax Exemption certificate according to the
-            provision of section 107 of Income Tex Ordinance, 1984 before the
-            concerned Income Tax office at the time of leaving Bangladesh as
-            notified in office memorandum File No.Zarabo/Kar-7/A:A:B:/16/2005/38
-            dated 18/03/2002 of the NBR.
-          </li>
-          <li>
-            The date of departure of the expatriate(s) Must be intimated to BEZA
-            within 7(seven) days from the date of expiry of the work permit. The
-            company will also be held responsible for the illegal
-            stay/employment of the foreign national, after expiry of the work
-            permit.
-          </li>
-          <li>
-            Ministry of Home Affairs will issue security clearance of the
-            expatriate after verification.
-          </li>
-          <li>
-            The foreign national shall have to be enlisted with Bangladesh Bank
-            under section 18(A)(in case of branch/liaison/representative office)
-            of the Foreign Exchange Act,1947.
-          </li>
-        </ol>
-
-        <footer>
-          <div>
-            <p style="font-size: 7px; font-weight: bold">
-              Cc to (Not According to Seniority) <br />
-              For kind information and necessary action :
-            </p>
-
-            <ol style="list-style-type: decimal-leading-zero">
-              <li>
-                Senior Secretary/ Secretary, Ministry of Foreign Affairs,
-                Segunbagicha, Dhaka
-              </li>
-              <li>
-                Senior Secretary/ Secretary, Public Security Division, Ministry
-                of Home Affairs, Bangladesh Secretariat, Dhaka
-              </li>
-              <li>
-                Senior Secretary/ Secretary, Security Service Division, Ministry
-                of Home Affairs, Bangladesh Secretariat, Dhaka
-              </li>
-              <li>
-                Director General, Department of Immigration and Passport,
-                Sher-e-Bangla Nagar, Agargaon, Dhaka
-              </li>
-            </ol>
-          </div>
-          <div class="signature">
-            <h6>Yours faithfully</h6>
-            <%-formValue.deskUserSignature %>
-            <div style="margin-top: 0.35rem; line-height: 2">
-              <p>
-                <%= formValue.utils.parseFormValue(formValue.deskUserFullName
-                )%>
-              </p>
-              <p>
-                <%= formValue.utils.parseFormValue(formValue.deskUserDesignation
-                )%>
-              </p>
-              <small>Bangladesh Economic Zones Authority (BEZA)</small>
-            </div>
-          </div>
-        </footer>
+      <div class="subject">
+        <b>Managing Director,</b>
+        <b>
+          <%=
+          formValue.utils.parseFormValue(formValue.proposedProjectCompanyName
+          )%>
+        </b>
+        <%- formValue.utils.parseFormValue(formValue.plotAddress )%>
+        <b></b>
+        <b>
+          <%= formValue.utils.parseFormValue(formValue.economicZoneAddress )%>
+        </b>
+        <b class="sub">Subject: Work Permit for Foreign National.</b>
       </div>
+      <div style="margin: 0.45rem 0rem">
+        <p>Dear Sir,</p>
+      </div>
+
+      <div class="application-text">
+        <p>
+          With reference to your application received on the above subject, this
+          is to inform you that Bangladesh Economic Zone Authority (BEZA) has
+          been pleased to issue work permit for the following foreign national
+          employed in your company / office for the period shown against his
+          name on the terms, conditions and remuneration as shown below :
+        </p>
+      </div>
+      <div class="remuneration-box" style="margin-top: 0.75rem">
+        <table class="GeneratedTable">
+          <thead>
+            <tr>
+              <th class="first-th">
+                Name, Designation <br />
+                Nationality and Passport No
+              </th>
+              <th class="second-th">Period of Work Permit</th>
+              <th class="third-th">Remuneration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first-td">
+                <%=
+                formValue.utils.parseFormValue(formValue.nameOfTheForeignNational
+                )%> <br />
+                <%=
+                formValue.utils.parseFormValue(formValue.nameOfThePostEmployedOfDesignation
+                )%>
+                <br />
+                <%=
+                formValue.utils.parseFormValue(formValue.particularsNationality
+                )%><br />
+                <%= formValue.utils.parseFormValue(formValue.passport1 )%>
+              </td>
+              <td>
+                <%=
+                formValue.utils.parseFormValue(formValue.desiredDurationWithDetails
+                )%> (with effect from: <%=
+                formValue.utils.parseFormValue(formValue.startDateBeza )%>)
+              </td>
+              <td class="child-td">
+                <table class="GeneratedTable">
+                  <thead>
+                    <tr>
+                      <th>Payment</th>
+                      <th>Payable Locally</th>
+                      <th>Payable Abroad</th>
+                    </tr>
+                  </thead>
+                  <tbody class="child-tbody">
+                    <tr>
+                      <td>
+                        <% if (formValue.utils.isAddNAText(formValue.type_visa))
+                        { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.payment )%> <%
+                        } %>
+                      </td>
+                      <td>
+                        Basic Salary: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountLocally
+                        )%> <% } %>
+                      </td>
+                      <td>
+                        Basic Salary: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally7
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountAbroad
+                        )%> <% } %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <% if (formValue.utils.isAddNAText(formValue.type_visa))
+                        { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.payment3 )%> <%
+                        } %>
+                      </td>
+                      <td>
+                        Conveyance: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally3
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountLocally3
+                        )%> <% } %>
+                      </td>
+                      <td>
+                        Conveyance: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally11
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountAbroad3
+                        )%> <% } %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <% if (formValue.utils.isAddNAText(formValue.type_visa))
+                        { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.payment1 )%> <%
+                        } %>
+                      </td>
+                      <td>
+                        Overseas Allowance: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally1
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountLocally1
+                        )%> <% } %>
+                      </td>
+                      <td>
+                        Overseas Allowance: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally8
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountAbroad1
+                        )%> <% } %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <% if (formValue.utils.isAddNAText(formValue.type_visa))
+                        { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.payment2 )%> <%
+                        } %>
+                      </td>
+                      <td>
+                        House Rent: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally2
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountLocally2
+                        )%> <% } %>
+                      </td>
+                      <td>
+                        House Rent: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally9
+                        )%> <%= formValue.utils.parseFormValue(formValue.
+                        amountAbroad2 )%> <% } %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <% if (formValue.utils.isAddNAText(formValue.type_visa))
+                        { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.payment4 )%> <%
+                        } %>
+                      </td>
+                      <td>
+                        Medical Allowance: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally4
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountLocally4
+                        )%> <% } %>
+                      </td>
+                      <td>
+                        Medical Allowance: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally12
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountAbroad4
+                        )%> <% } %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <% if (formValue.utils.isAddNAText(formValue.type_visa))
+                        { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.payment5 )%> <%
+                        } %>
+                      </td>
+                      <td>
+                        Entertain. Allowance: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally5
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountLocally5
+                        )%> <% } %>
+                      </td>
+                      <td>
+                        Entertain. Allowance: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally13
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountAbroad5
+                        )%> <% } %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <% if (formValue.utils.isAddNAText(formValue.type_visa))
+                        { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.payment6 )%> <%
+                        } %>
+                      </td>
+                      <td>
+                        Annual Bonus: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally6
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountLocally6
+                        )%> <% } %>
+                      </td>
+                      <td>
+                        Annual Bonus: <% if
+                        (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                        <span>N/A</span>
+                        <% } else { %> <%=
+                        formValue.utils.parseFormValue(formValue.currencyLocally14
+                        )%> <%=
+                        formValue.utils.parseFormValue(formValue.amountAbroad6
+                        )%> <% } %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="3">
+                Others: <% if (formValue.utils.isAddNAText(formValue.type_visa))
+                { %>
+                <span>N/A</span>
+                <% } else { %> <%=
+                formValue.utils.parseFormValue(formValue.hOtherFringeBenefitsIfAny
+                )%> <% } %>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                Remarks: <% if
+                (formValue.utils.isAddNAText(formValue.type_visa)) { %>
+                <span>N/A</span>
+                <% } else { %> <%=
+                formValue.utils.parseFormValue(formValue.anyParticularComments
+                )%> <% } %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ol class="un-order">
+        <li>
+          The expenditure in this connection would be borne out of foreign
+          exchange remittance received from abroad. This condition in not
+          applicable in case of appointment of foreign nationals in Foreign
+          Bank, insurance, Airlines, Bangladeshi Company etc.
+        </li>
+        <li>
+          If your Company earns profit locally and wants to meet the necessary
+          expenditure of the company in Bangladesh with that profit, they can
+          apply to the Board with proper justification and sufficient supporting
+          documents for exemption of condition-1
+        </li>
+        <li>
+          Appointment of Bangladeshi national as per ratio i.e. One Foreign
+          national : Five Bangladeshi national [1:5] with suitable and
+          appropriate pay structure shall have to be ensured.
+        </li>
+        <li>
+          Income tax payable to the Government shall have to be deducted at
+          source and to be paid as per provisions of Bangladesh Government I.T
+          Ordinance 1984.
+        </li>
+        <li>
+          The Foreign national(s) is / are required to submit Income Tex
+          Certificate/Income Tax Exemption certificate according to the
+          provision of section 107 of Income Tex Ordinance, 1984 before the
+          concerned Income Tax office at the time of leaving Bangladesh as
+          notified in office memorandum File No.Zarabo/Kar-7/A:A:B:/16/2005/38
+          dated 18/03/2002 of the NBR.
+        </li>
+        <li>
+          The date of departure of the expatriate(s) Must be intimated to BEZA
+          within 7(seven) days from the date of expiry of the work permit. The
+          company will also be held responsible for the illegal stay/employment
+          of the foreign national, after expiry of the work permit.
+        </li>
+        <li>
+          Ministry of Home Affairs will issue security clearance of the
+          expatriate after verification.
+        </li>
+        <li>
+          The foreign national shall have to be enlisted with Bangladesh Bank
+          under section 18(A)(in case of branch/liaison/representative office)
+          of the Foreign Exchange Act,1947.
+        </li>
+      </ol>
+
+      <footer>
+        <div class="cc-item">
+          <p style="font-size: 11.5px; font-weight: bold">
+            Cc to (Not According to Seniority) <br />
+            For kind information and necessary action :
+          </p>
+
+          <ol style="list-style-type: decimal-leading-zero">
+            <li>
+              Senior Secretary/ Secretary, Ministry of Foreign Affairs,
+              Segunbagicha, Dhaka
+            </li>
+            <li>
+              Senior Secretary/ Secretary, Public Security Division, Ministry of
+              Home Affairs, Bangladesh Secretariat, Dhaka
+            </li>
+            <li>
+              Senior Secretary/ Secretary, Security Service Division, Ministry
+              of Home Affairs, Bangladesh Secretariat, Dhaka
+            </li>
+            <li>
+              Director General, Department of Immigration and Passport,
+              Sher-e-Bangla Nagar, Agargaon, Dhaka
+            </li>
+          </ol>
+        </div>
+        <div class="signature">
+          <h3>Yours faithfully</h3>
+          <%-formValue.deskUserSignature %>
+          <div style="margin-top: 0.35rem; line-height: 1.6">
+            <p>
+              <%= formValue.utils.parseFormValue(formValue.deskUserFullName )%>
+            </p>
+            <p>
+              <%= formValue.utils.parseFormValue(formValue.deskUserDesignation
+              )%>
+            </p>
+            <small>Bangladesh Economic Zones Authority (BEZA)</small>
+          </div>
+        </div>
+      </footer>
     </div>
   </body>
 </html>
