@@ -4,7 +4,6 @@ const cors = require("cors");
 var getRepoInfo = require("git-repo-info");
 const axios = require("axios");
 
-// Constants
 const PORT = 5010;
 const HOST = "0.0.0.0";
 const VehicleRegistration = require("./pdf_generators/VehicleRegistration");
