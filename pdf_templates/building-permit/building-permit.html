@@ -150,6 +150,9 @@
 
       .condition-right {
         width: 60%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
       }
 
       .inspections-left {
@@ -252,6 +255,10 @@
         margin-left: 28px;
       }
 
+      .ml-4 {
+        margin-left: 4px;
+      }
+
       .pl-10 {
         padding-left: 10px;
       }
@@ -303,7 +310,7 @@
         </div>
 
         <div class="cert-details fw-normal">
-          <p>
+          <p style="text-align: justify">
             With reference to the above-mentioned application, Building
             Committee reviewed and examined all the documents and drawings
             submitted by
@@ -334,52 +341,56 @@
                           Name of the Economic Zone
                         </div>
                         <div class="condition-right">
-                          :<span class="fw-bold">{{economicZone}}</span>
+                          <p>:</p>
+                          <p class="fw-bold ml-4">{{economicZone}}</p>
                         </div>
                       </div>
 
                       <div class="condition pl-10">
                         <div class="condition-left">Plot Number</div>
                         <div class="condition-right">
-                          :<span class="fw-bold">{{plotAddress}}</span>
+                          <p>:</p>
+                          <p class="fw-bold ml-4">{{plotAddress}}</p>
                         </div>
                       </div>
                       <div class="condition pl-10">
                         <div class="condition-left">Land Area(sqm)</div>
                         <div class="condition-right">
-                          :<span class="fw-bold"
-                            >{{agreedLandByDevelopersSqm}} sqm</span
-                          >
+                          <p>:</p>
+                          <p class="fw-bold ml-4">
+                            {{agreedLandByDevelopersSqm}} sqm
+                          </p>
                         </div>
                       </div>
 
                       <div class="condition pl-10">
                         <div class="condition-left">No. of Building</div>
                         <div class="condition-right">
-                          :<span class="fw-bold">{{numberOfBuildingInfo}}</span>
+                          <p>:</p>
+                          <p class="fw-bold ml-4">{{numberOfBuildingInfo}}</p>
                         </div>
                       </div>
 
                       <div class="condition pl-10">
                         <div class="condition-left">Building Area(sqm)</div>
                         <div class="condition-right">
-                          :<span class="fw-bold"
-                            >{{totalBuildingArea}} sqm</span
-                          >
+                          <p>:</p>
+                          <p class="fw-bold ml-4">{{totalBuildingArea}} sqm</p>
                         </div>
                       </div>
 
                       <div class="condition pl-10">
                         <div class="condition-left">Total Floor Area(sqm)</div>
                         <div class="condition-right">
-                          :<span class="fw-bold"
-                            >{{hiddenTotalFloorArea}} sqm</span
-                          >
+                          <p>:</p>
+                          <p class="fw-bold ml-4">
+                            {{hiddenTotalFloorArea}} sqm
+                          </p>
                         </div>
                       </div>
                     </div>
                   </li>
-                  <li>
+                  <li style="text-align: justify">
                     In case you make any modification by
                     adding/extending/deducing or in any other form to the
                     construction design or plan approved under this Building
@@ -389,7 +400,7 @@
                     >), you shall be required to apply for a new Building Permit
                     to BEZA-OSS Center.
                   </li>
-                  <li>
+                  <li style="text-align: justify">
                     This Building Permit shall become invalid unless the
                     construction work on the permitted site commences within one
                     (1) year from the date of issuance, or if the construction

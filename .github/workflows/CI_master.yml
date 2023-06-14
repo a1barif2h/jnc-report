@@ -44,10 +44,10 @@ jobs:
           path: deploy/
                   
       - name: "docker tag"
-        run: "docker tag beza-certificate-service  ${{ secrets.DOCKER_USER }}/beza-certificate-service-prod:${{ steps.chart.outputs.appVersion }}"        
+        run: "docker tag beza-certificate-service  ${{ secrets.DOCKER_USER }}/beza-certificate-service-prod-v2:${{ steps.chart.outputs.appVersion }}"        
 
       - name: "docker push"
-        run: "docker push  ${{ secrets.DOCKER_USER }}/beza-certificate-service-prod:${{ steps.chart.outputs.appVersion }}" 
+        run: "docker push  ${{ secrets.DOCKER_USER }}/beza-certificate-service-prod-v2:${{ steps.chart.outputs.appVersion }}" 
         
   
 

@@ -40,7 +40,11 @@ const getFormatDateWithTime = (givenDate) => {
 }
 
 const getValidTillDate = (givenDate) => {
-    return moment(givenDate).local().add(1, 'y').format('DD MMM, YYYY');
+    const formatString = 'DD MMM, YYYY';
+    const dateObj = moment(givenDate, formatString);
+    const nextYearDateObj = dateObj.clone().add(365, 'days');
+    return nextYearDateObj.format(formatString);
+    
 }
 
 const changeDateFormat = (formValue, key) => {
