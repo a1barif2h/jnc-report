@@ -45,6 +45,22 @@ RUN wget -qO- "https://github.com/dustinblackman/phantomized/releases/download/2
     
 # If you are building your code for production
 # RUN npm ci --only=production
+# Install Puppeteer, html-pdf, and PhantomJS
+RUN npm i puppeteer html-pdf phantomjs-prebuilt
+
+# Set Puppeteer environment variables
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable \
+    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_NO_SANDBOX=true \
+    PUPPETEER_ARGS=--no-sandbox,--disable-setuid-sandbox
+
+# Download and install Chrome
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable
+
+
 ENV NODE_OPTIONS=--max_old_space_size=4000
 EXPOSE 5010
 CMD [ "node", "server.js" ]
