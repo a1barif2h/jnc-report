@@ -28,7 +28,7 @@ app.use(express.urlencoded({ limit: "50mb" }));
 
 app.use(cors(corsOptions));
 
-app.use('/certificate-service',authenticate, bezaCertificateRoutes);
+app.use('/certificate-service', bezaCertificateRoutes);
 
 app.get("/", (req, res) => {
 
