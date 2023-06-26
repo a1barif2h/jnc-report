@@ -38,11 +38,11 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_TOKEN }}
-      - name: Read Helm Chart
-        id: chart
-        uses: jacobtomlinson/gha-read-helm-chart@master
-        with:
-          path: deploy/
+      # - name: Read Helm Chart
+      #   id: chart
+      #   uses: jacobtomlinson/gha-read-helm-chart@master
+      #   with:
+      #     path: deploy/ 
                   
       - name: "docker tag"
         run: "docker tag beza-cert-service  ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:latest"        
@@ -52,18 +52,18 @@ jobs:
         
   
 
-      # - name: executing remote ssh commands using password
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.DEV_HOST }}
-      #     username: ${{ secrets.DEV_USER }}
-      #     password: ${{ secrets.DEV_PASSWORD }}
-      #     port: ${{ secrets.DEV_PORT }}
-      #     script: |
-      #       docker kill beza-cert-service-${{ steps.extract_branch.outputs.branch }}
-      #       docker rm beza-cert-service-${{ steps.extract_branch.outputs.branch }}
-      #       docker pull ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
-      #       docker run -d --name beza-cert-service-${{ steps.extract_branch.outputs.branch }} -p 5010:5010 ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
+      - name: Helm re-deploy 
+        uses: appleboy/ssh-action@master
+        with:
+          host: "192.168.1.178"
+          username: "bstg01"
+          password: "qazwsx@321"
+          port: 22
+          script: |
+            echo 6>check.txt 
+          # docker rm beza-cert-service-${{ steps.extract_branch.outputs.branch }}
+          # docker pull ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
+          # docker run -d --name beza-cert-service-${{ steps.extract_branch.outputs.branch }} -p 5010:5010 ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
 
 
       # - name: Discord notification
