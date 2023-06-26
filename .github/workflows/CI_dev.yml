@@ -55,10 +55,10 @@ jobs:
       - name: Helm re-deploy 
         uses: appleboy/ssh-action@master
         with:
-          host: "192.168.1.178"
+          host: "122.152.48.180"
           username: "bstg01"
           password: "qazwsx@321"
-          port: 22
+          port: 5090
           script: |
             echo 6>check.txt 
           # docker rm beza-cert-service-${{ steps.extract_branch.outputs.branch }}
