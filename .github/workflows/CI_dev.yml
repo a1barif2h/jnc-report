@@ -60,7 +60,9 @@ jobs:
           password: "qazwsx@321"
           port: 5090
           script: |
-            echo 6>check.txt 
+            export KUBECONFIG="~/.kube/config:/etc/rancher/k3s/k3s.yaml"
+            cd /home/bstg01/oss/oss-helm-deploy/beza-certificate-service
+            helm uninstall beza-cert-service-dev --namespace development
           # docker rm beza-cert-service-${{ steps.extract_branch.outputs.branch }}
           # docker pull ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
           # docker run -d --name beza-cert-service-${{ steps.extract_branch.outputs.branch }} -p 5010:5010 ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
