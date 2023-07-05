@@ -1,7 +1,7 @@
 const PaymentVoucher = require("../pdf_generators/paymentVoucher");
 const logger = require("../util/logger");
 const bezaServiceGateway = require("./gateway_services/bezaServiceGateway");
-const { amountInWords } = require("../../util/amountToWordUtil.js");
+const { amountInWords } = require("../util/amountToWordUtil.js");
 
 class PaymentVoucherService {
     constructor(){}
