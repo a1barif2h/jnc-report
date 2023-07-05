@@ -16,7 +16,7 @@ class PaymentVoucherService {
     async generateInvestorVoucher(req) {
       const paymentVoucher = new PaymentVoucher();
       const paymentInfo = req;
-      paymentInfo.amountInWords = amountInWords(data?.totalAmount)
+      paymentInfo.amountInWords = amountInWords(paymentInfo?.totalAmount)
       const response = await paymentVoucher.generateInvestorVoucher(paymentInfo).then(res=>{return res}).catch(err=>{logger.error(err)})
       return response;
     }
