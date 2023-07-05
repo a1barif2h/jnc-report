@@ -11,6 +11,13 @@ class PaymentVoucherService {
         const response = await paymentVoucher.generate(paymentInfo).then(res=>{return res}).catch(err=>{logger.error(err)})
         return response;
       }
+
+    async generateInvestorVoucher(req) {
+      const paymentVoucher = new PaymentVoucher();
+      const paymentInfo = req;
+      const response = await paymentVoucher.generateInvestorVoucher(paymentInfo).then(res=>{return res}).catch(err=>{logger.error(err)})
+      return response;
+    }
 }
 
 module.exports = PaymentVoucherService;
