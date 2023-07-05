@@ -90,6 +90,16 @@ async (req, res) => {
   .catch(err => res.send({message: 'ERROR'}))
 });
 
+app.post("/beza-certificate/api/v1/internal/generate/payment-voucher/investor/pdf",
+async (req, res) => {
+  const paymentVoucherService = new PaymentVoucherService();
+  await paymentVoucherService.generateInvestorVoucher(req.body)
+  .then(data => {
+    res.setHeader('content-type', 'application/pdf');
+    res.send(data)
+  })
+  .catch(err => res.send({message: 'ERROR'}))
+});
 
 app.post(
   "/certificate-service/api/v1/private/generate/pr-cert/pdf",
