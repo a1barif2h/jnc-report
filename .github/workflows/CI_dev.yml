@@ -7,8 +7,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ dev ]
-  pull_request:
-    branches: [ dev ]
+  # pull_request:
+  #   branches: [ dev ]
 
   # Allows you to run this workflow manually from the Actions tab
   # workflow_dispatch:
@@ -57,10 +57,13 @@ jobs:
         with:
           host: "122.152.48.180"
           username: "bstg01"
-          password: "qazwsx@321"
+          password: "qazwsx@321"  
           port: 5090
           script: |
-            echo 6>check.txt 
+            export KUBECONFIG="~/.kube/config:/etc/rancher/k3s/k3s.yaml"
+            cd /home/bstg01/oss/oss-helm-deploy/beza-certificate-service
+            helm uninstall beza-cert-service-dev --namespace development
+            helm install beza-cert-service-dev --namespace development ./
           # docker rm beza-cert-service-${{ steps.extract_branch.outputs.branch }}
           # docker pull ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
           # docker run -d --name beza-cert-service-${{ steps.extract_branch.outputs.branch }} -p 5010:5010 ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
