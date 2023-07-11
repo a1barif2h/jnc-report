@@ -70,9 +70,12 @@ const generatePdfFromHtmlMultipleMaterialDescription = async function (htmlTempl
 };
 
 const ejsPuppeteerPdfGenerator = async (generateTemplate, options, pageStyle) => {
+  /**
+   *! need to add executablePath when up service using Docker. And remove this line when working in locally
+   */
   const browser = await puppeteer.launch(
     {
-      executablePath: '/usr/bin/chromium-browser'
+      executablePath: "/usr/bin/chromium"
     }
   );
   const page = await browser.newPage();
