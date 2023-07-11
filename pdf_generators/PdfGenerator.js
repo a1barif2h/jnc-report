@@ -70,7 +70,11 @@ const generatePdfFromHtmlMultipleMaterialDescription = async function (htmlTempl
 };
 
 const ejsPuppeteerPdfGenerator = async (generateTemplate, options, pageStyle) => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch(
+    {
+      executablePath: '/usr/bin/chromium-browser'
+    }
+  );
   const page = await browser.newPage();
 
 
