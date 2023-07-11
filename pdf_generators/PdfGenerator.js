@@ -75,7 +75,7 @@ const ejsPuppeteerPdfGenerator = async (generateTemplate, options, pageStyle) =>
    */
   const browser = await puppeteer.launch(
     {
-      executablePath: "/usr/bin/chromium"
+      executablePath: "/usr/bin/google-chrome-stable"
     }
   );
   const page = await browser.newPage();
