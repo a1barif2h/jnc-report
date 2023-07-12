@@ -1,5 +1,5 @@
 # Base image
-FROM node:14
+FROM node:16
 RUN apt-get -y install fontconfig
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -45,7 +45,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Install Puppeteer, html-pdf, and PhantomJS
-RUN npm i puppeteer html-pdf phantomjs-prebuilt
+# RUN npm i puppeteer html-pdf phantomjs-prebuilt
 
 # Set Puppeteer environment variables
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable \
@@ -83,7 +83,7 @@ RUN npm install
 ENV OPENSSL_CONF /etc/ssl
 
 # Install Puppeteer, html-pdf, and PhantomJS
-RUN npm i puppeteer html-pdf phantomjs-prebuilt --save
+RUN npm i puppeteer@19.9.0 html-pdf phantomjs-prebuilt --save
 EXPOSE 5010
 # Start your app
 CMD [ "node", "--max-old-space-size=4096", "server.js" ]
