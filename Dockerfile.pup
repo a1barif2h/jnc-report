@@ -1,6 +1,6 @@
 # Base image
 FROM node:14
-
+RUN apt-get -y install fontconfig
 # Install dependencies
 RUN apt-get update && apt-get install -y \
   gconf-service \
@@ -63,6 +63,18 @@ RUN rm -f /etc/localtime \
 && ln -sv /usr/share/zoneinfo/Asia/Dhaka /etc/localtime \
 && echo "Asia/Dhaka" > /etc/timezone
 
+
+RUN mkdir -p /usr/share/fonts/truetype/SolaimanLipi_bengali
+COPY /fonts/SolaimanLipi_22-02-2012.ttf  /usr/share/fonts/truetype/SolaimanLipi_bengali
+COPY ./dejavu/*.ttf /usr/share/fonts/
+COPY ./dejavu/*.ttf /usr/local/share/fonts/
+# COPY ./fonts/*.ttf /usr/share/fonts/
+# COPY ./fonts/*.ttf /usr/local/share/fonts/
+# RUN apk add ttf-freefont
+
+# Rebuild the font cache.
+RUN fc-cache -fv
+RUN fc-list
 
 # Copy your app files into the container
 COPY . .
