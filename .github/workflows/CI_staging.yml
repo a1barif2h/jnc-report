@@ -1,14 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI_dev
+name: CI_staging
 
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ dev ]
+    branches: [ staging ]
   # pull_request:
-  #   branches: [ dev ]
+  #   branches: [ staging ]
 
   # Allows you to run this workflow manually from the Actions tab
   # workflow_dispatch:
@@ -30,8 +30,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: "docker build"
-        # run: "docker build -t beza-cert-service ."
-        run: "docker build -t beza-cert-service -f Dockerfile.dev ."
+        run: "docker build -t beza-certificate-service ."
     
       - name: Login to Docker Hub
         uses: docker/login-action@v1
@@ -42,16 +41,14 @@ jobs:
       #   id: chart
       #   uses: jacobtomlinson/gha-read-helm-chart@master
       #   with:
-      #     path: deploy/ 
+      #     path: deploy/
                   
       - name: "docker tag"
-        run: "docker tag beza-cert-service  ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:latest"        
+        run: "docker tag beza-certificate-service  ${{ secrets.DOCKER_USER }}/beza-certificate-service-staging:latest"        
 
       - name: "docker push"
-        run: "docker push  ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:latest" 
+        run: "docker push  ${{ secrets.DOCKER_USER }}/beza-certificate-service-staging:latest" 
         
-  
-
       - name: Helm re-deploy 
         uses: appleboy/ssh-action@master
         with:
@@ -61,12 +58,22 @@ jobs:
           port: 5090
           script: |
             export KUBECONFIG="~/.kube/config:/etc/rancher/k3s/k3s.yaml"
-            cd /home/bstg01/oss/oss-helm-deploy/beza-certificate-service
-            helm uninstall beza-cert-service-dev --namespace development
-            helm install beza-cert-service-dev --namespace development ./
-          # docker rm beza-cert-service-${{ steps.extract_branch.outputs.branch }}
-          # docker pull ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
-          # docker run -d --name beza-cert-service-${{ steps.extract_branch.outputs.branch }} -p 5010:5010 ${{ secrets.DOCKER_USER }}/beza-cert-service-${{ steps.extract_branch.outputs.branch }}:${{ steps.chart.outputs.appVersion }}
+            cd /home/bstg01/oss/oss-helm-deploy-staging/beza-certificate-service
+            helm uninstall beza-certificate-service-staging --namespace staging
+            helm install beza-certificate-service-staging --namespace staging ./
+
+      # - name: executing remote ssh commands using password
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.DEV_HOST }}
+      #     username: ${{ secrets.DEV_USER }}
+      #     password: ${{ secrets.DEV_PASSWORD }}
+      #     port: ${{ secrets.DEV_PORT }}
+      #     script: |
+      #       docker kill beza-service-staging-uat
+      #       docker rm beza-service-staging-uat
+      #       docker pull ${{ secrets.DOCKER_USER }}/beza-service-staging-uat:${{ steps.chart.outputs.appVersion }}
+      #       docker run -d --name beza-service-staging-uat -p 8585:8585 ${{ secrets.DOCKER_USER }}/beza-service-staging-uat:${{ steps.chart.outputs.appVersion }}
 
 
       # - name: Discord notification
