@@ -79,7 +79,9 @@ const ejsPuppeteerPdfGenerator = async (generateTemplate, options, pageStyle) =>
     }
   
    */
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ["--no-sandbox"],
+  });
   const page = await browser.newPage();
 
 
