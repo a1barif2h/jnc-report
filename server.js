@@ -19,12 +19,16 @@ const corsOptions = {
   exposedHeaders: ["pdfFileName", "Content-disposition"],
 };
 
+const bezaCertificateRoutes = require('./routes/bezaCertificateRoutes')
+
 // App
 const app = express();
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb" }));
 
 app.use(cors(corsOptions));
+
+app.use('/certificate-service', bezaCertificateRoutes);
 
 app.get("/", (req, res) => {
 

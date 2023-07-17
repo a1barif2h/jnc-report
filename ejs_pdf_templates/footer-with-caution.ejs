@@ -1,0 +1,114 @@
+<style>
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .footer_container {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .watermark {
+    width: 100%;
+    height: 450px;
+    box-sizing: border-box;
+    position: absolute;
+    top: -600px;
+    opacity: 0.1;
+    left: 0px;
+    background-image: url("<%= formValue.backgroundImg %>");
+    background-position: center center;
+    background-size: 440px;
+    background-repeat: no-repeat;
+  }
+
+  .pagination {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: right;
+    padding: 0px;
+    padding-right: 10px;
+    font-size: 8px;
+    color: black;
+  }
+
+  .caution-container {
+    text-align: center;
+  }
+
+  .first-caution {
+    background: #dfbdcd;
+    padding: 0.1rem 1.2rem;
+    width: 90%;
+    margin: 0 auto;
+    line-height: 1.35;
+    font-weight: 500;
+    text-align: center;
+    font-size: 8px;
+    color: #d02f67;
+    margin-bottom: 2rem;
+  }
+
+  .first-caution p {
+    font-weight: bolder;
+  }
+
+  .second-caution {
+    background: #dad7b0;
+    padding: 0.3rem 1.4rem;
+    width: 90%;
+    margin: 0.4rem auto;
+    line-height: 1.7;
+    font-weight: 300;
+    font-size: 8px;
+  }
+
+  .second-caution .headlines {
+    text-align: center;
+  }
+
+  .second-caution ul li {
+    margin-top: 0.1rem;
+    font-size: 7.4px;
+    font-weight: bold;
+    text-align: start;
+  }
+</style>
+<div class="footer_container">
+  <div class="watermark"></div>
+  <div class="pagination">
+    <div class="caution-container">
+      <div class="first-caution">
+        <p>THIS PERMIT IS VALID FOR 30 (THIRTY) DAYS FROM THE DATE OF ISSUE</p>
+      </div>
+      <div class="second-caution">
+        <div class="headlines">
+          <b style="font-size: 9px; color: #706b12"
+            >THIS IS COMPUTER GENERATED PERMIT. SO SIGNATURE IS NOT REQUIRED</b
+          >
+        </div>
+        <div>
+          <ul>
+            <li>
+              The assessment of this consignment including value, HS code and
+              SRO benefits, if any, will be determined by the appropriate
+              Customs Authority as per their rules and regulations.
+            </li>
+            <li>
+              This Import permit is issued as per the declaration of the unit
+              Investor in Economic Zone or the developer of Economic Zone.
+            </li>
+            <li>
+              Bangladesh Economic Zones Authority doesn’t bear any
+              responsibility regarding the veracity of the declaration of the
+              goods.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <span class="pageNumber"></span> of <span class="totalPages"></span>
+  </div>
+</div>

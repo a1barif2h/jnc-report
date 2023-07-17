@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        padding: 20px 45px;
+        font-size: 13.5px;
+      }
+
+      .main-title p {
+        margin: 0px;
+      }
+
+      .main-title {
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+        color: #1b1818a9;
+      }
+
+      .main-title .child-2 {
+        margin: 8px 0;
+      }
+
+      .main-title hr {
+        border: 0;
+        border-bottom: 2.5px solid black;
+        margin-top: 5px;
+      }
+
+      .content-container {
+        margin-top: 8px;
+        font-weight: 600;
+        line-height: 1.7em;
+      }
+
+      .content-info {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+
+      .content-value {
+        max-width: 83%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+        font-weight: 500;
+        margin-left: 5px;
+      }
+
+      .owner-info-container {
+        margin-left: 25px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+      }
+
+      .owner-info-container .content-label {
+        font-weight: 500;
+      }
+
+      .owner-info-container .content-value {
+        max-width: 45%;
+        margin-left: 5px;
+      }
+
+      .beneficiary-info-container,
+      .repatriation-info-container {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        text-align: left;
+        width: 100%;
+        font-weight: 500;
+      }
+
+      .beneficiary-info-container .left {
+        width: 49%;
+      }
+
+      .beneficiary-info-container .left .content-value,
+      .beneficiary-info-container .right .content-value {
+        max-width: 50%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+      }
+
+      .beneficiary-info-container .right {
+        width: 49%;
+      }
+
+      .repatriation-info-container .left {
+        width: 45%;
+      }
+
+      .repatriation-info-container .right {
+        width: 53%;
+      }
+
+      .repatriation-info-container .left .content-value,
+      .repatriation-info-container .right .content-value {
+        max-width: 50%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+      }
+
+      .repatriation-info-container .right .content-value {
+        max-width: 45%;
+      }
+
+      .terms-conditions-container {
+        font-weight: 400;
+        font-family: "DejaVuSansCondensed-Bold", serif;
+      }
+
+      .terms-conditions-container ol {
+        margin-left: 15px;
+      }
+
+      .terms-conditions-container li {
+        line-height: 1.7em;
+      }
+
+      .footer-content {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        text-align: left;
+        width: 100%;
+        margin-top: 15px;
+      }
+      .footer-content .copy-container {
+        width: 50%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+      }
+
+      .footer-content .copy-container ol {
+        margin-left: 15px;
+        line-height: 2em;
+      }
+
+      .signature-container {
+        text-align: center;
+        width: 48%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+        line-height: 2em;
+      }
+
+      .annula-text {
+        line-height: 0em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-title">
+        <p>Letter of Approval</p>
+        <p class="child-2">Repatriation of Royalty</p>
+        <p>
+          (in case of the amount exceeding 6% of the annual sales as reported in
+          Income Tax Return of the previous year)
+        </p>
+        <hr />
+      </div>
+
+      <div class="content-container">
+        <div class="content-info">
+          <p class="content-label">Ref. no:</p>
+          <p class="content-value">
+            <%= formValue.utils.parseFormValue(formValue.trackingId) %>
+          </p>
+        </div>
+        <div class="content-info">
+          <p class="content-label">Issue Date:</p>
+          <p class="content-value"><%= formValue.certificateGenerateDate %></p>
+        </div>
+        <%= formValue.lastAmendmentDate %>
+        <div class="content-info">
+          <p class="content-label">Name of Company:</p>
+          <p class="content-value">
+            <%=
+            formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)
+            %>
+          </p>
+        </div>
+        <div class="content-info">
+          <p class="content-label">Name of the Economic Zone:</p>
+          <p class="content-value">
+            <%= formValue.utils.parseFormValue(formValue.hiddenEconomicAddress)
+            %>
+          </p>
+        </div>
+        <p>Owner/Managing Director/Chairman's Information</p>
+        <div class="owner-info-container">
+          <div class="content-info">
+            <p class="content-label">
+              Name of the Owner/Managing Director/Chairman:
+            </p>
+            <p class="content-value">
+              <%=
+              formValue.utils.parseFormValue(formValue.nameoftheOwnerInformation)
+              %>
+            </p>
+          </div>
+          <div class="content-info">
+            <p class="content-label">
+              National Identity Card No./Passport Number:
+            </p>
+            <p class="content-value">
+              <%= formValue.utils.parseFormValue(formValue.nidNo) %>
+            </p>
+          </div>
+          <div class="content-info">
+            <p class="content-label">Nationality:</p>
+            <p class="content-value">
+              <%=
+              formValue.utils.parseFormValue(formValue.authorizedNationality) %>
+            </p>
+          </div>
+        </div>
+        <div class="content-info">
+          <p class="content-label">Office Address:</p>
+          <p class="content-value">
+            <%= formValue.utils.parseFormValue(formValue.officeAddress) %>
+          </p>
+        </div>
+        <div class="content-info">
+          <p class="content-label">Nature of Business:</p>
+          <p class="content-value">
+            <%= formValue.utils.parseFormValue(formValue.natureOfBusiness) %>
+          </p>
+        </div>
+        <p>Information of Beneficiary:</p>
+        <div class="beneficiary-info-container">
+          <div class="left">
+            <div class="content-info">
+              <p class="content-label" style="line-height: 1.5em">
+                Name of the Beneficiary:
+              </p>
+              <p class="content-value" style="line-height: 1.5em">
+                <%= formValue.utils.parseFormValue(formValue.beneficiaryName) %>
+              </p>
+            </div>
+            <div class="content-info">
+              <p class="content-label">Invoice no:</p>
+              <p class="content-value">
+                <%= formValue.utils.parseFormValue(formValue.invoiceNo) %>
+              </p>
+            </div>
+          </div>
+          <div class="right">
+            <div class="content-info">
+              <p class="content-label" style="line-height: 1.5em">
+                Name of the Country:
+              </p>
+              <p class="content-value" style="line-height: 1.5em">
+                <%= formValue.utils.parseFormValue(formValue.conutryName) %>
+              </p>
+            </div>
+            <div class="content-info">
+              <p class="content-label">Date:</p>
+              <p class="content-value"><%= formValue.date %></p>
+            </div>
+          </div>
+        </div>
+        <p style="margin-bottom: 9px">Repatriation of Royalty:</p>
+        <div class="repatriation-info-container">
+          <div class="left">
+            <div class="content-info annula-text">
+              <p class="content-label">Amount to be remitted:</p>
+              <p class="content-value">
+                <span
+                  ><%= formValue.utils.parseFormValue(formValue.currency)
+                  %></span
+                ><span
+                  ><%= formValue.utils.parseFormValue(formValue.currencyValue)
+                  %></span
+                >
+              </p>
+            </div>
+            <div class="content-info">
+              <p class="content-label" style="visibility: hidden">rfsd</p>
+            </div>
+            <div class="content-info">
+              <p class="content-label" style="line-height: 1.5em">
+                Name of the AD Bank:
+              </p>
+              <p class="content-value" style="line-height: 1.5em">
+                <%= formValue.utils.parseFormValue(formValue.nameOfTheADBank) %>
+              </p>
+            </div>
+          </div>
+          <div class="right">
+            <div class="content-info annula-text">
+              <p class="content-label">Annual Sales reported in Income</p>
+            </div>
+            <div class="content-info">
+              <p class="content-label">Tax Return of the previous year:</p>
+              <p class="content-value">
+                <%=
+                formValue.utils.parseFormValue(formValue.salesOnIncomeTaxReturnOnTheLastYear)
+                %>
+              </p>
+            </div>
+            <div class="content-info">
+              <p class="content-label" style="line-height: 1.5em">FCA No:</p>
+              <p class="content-value" style="line-height: 1.5em">
+                <%= formValue.utils.parseFormValue(formValue.fcaNo) %>
+              </p>
+            </div>
+          </div>
+        </div>
+        <p>Terms and Conditions:</p>
+        <div class="terms-conditions-container">
+          <ol>
+            <li>
+              The stated amount of Royalty Fee shall be remitted only after
+              being confirmed of all liabilities which are to be paid locally
+              such as Tax, VAT, Tax deducted at source etc. (if applicable);
+            </li>
+            <li>
+              The necessary documents and the Certificate of receiving Services
+              shall be submitted to the bank (Authorized Dealer);
+            </li>
+            <li>
+              The stated approval shall remain effective 45 (forty-five) days
+              from the date of issuance
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="footer-content">
+        <div class="copy-container">
+          <p>Copy for Information to:</p>
+          <ol type="a">
+            <li>
+              Managing Director, <%=
+              formValue.utils.parseFormValue(formValue.hiddenEconomicZoneName)
+              %>
+            </li>
+            <li>........................................</li>
+            <li>........................................</li>
+            <li>........................................</li>
+          </ol>
+        </div>
+        <div class="signature-container">
+          <p>Yours faithfully</p>
+          <div class="signature-img"><%- formValue.deskUserSignature %></div>
+          <p>
+            <%= formValue.utils.parseFormValue(formValue.deskUserFullName) %>
+          </p>
+          <p>
+            <%= formValue.utils.parseFormValue(formValue.deskUserDesignation) %>
+          </p>
+          <p>Bangladesh Economic Zones Authority (BEZA)</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

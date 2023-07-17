@@ -1,0 +1,255 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Certificate</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        padding: 35px 45px;
+        font-size: 14px;
+        text-align: justify;
+      }
+
+      .trade-licence {
+        font-size: 8.5px;
+        background: #55bd46;
+        color: white;
+        height: 2.2rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin-top: 1rem;
+      }
+
+      .application-list {
+        width: 55%;
+        line-height: 2;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        margin-top: 1rem;
+      }
+
+      .application-list b {
+        display: block;
+      }
+
+      .secondPageContainer {
+        margin: 0rem auto;
+      }
+
+      .footer-container {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .footer-container .qr-code {
+        width: 30%;
+        text-align: center;
+      }
+
+      .footer-container .qr-code img {
+        width: 50%;
+      }
+
+      .footer-container .signature {
+        width: 50%;
+        text-align: center;
+      }
+
+      .footer-container .signature img {
+        width: 30%;
+      }
+
+      .footer-container .signature hr {
+        border: 0;
+        border-bottom: 1.5px solid rgb(46, 45, 45);
+        width: 50%;
+        margin: 5px auto;
+      }
+
+      .footer-container .signature .desk-user {
+        font-weight: 700;
+      }
+
+      .refrence-land {
+        margin: 1rem 0rem;
+        font-size: 15px;
+      }
+
+      .left {
+        width: 95%;
+        padding: 0.5rem 0.8rem;
+        line-height: 2;
+      }
+      .left div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+      }
+      .left small {
+        margin-right: 5px;
+        font-weight: 800;
+      }
+      .left p {
+        font-size: 11px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <main>
+        <div class="trade-licence">
+          <h1>Land Use Plan Permit</h1>
+        </div>
+
+        <div class="application-list">
+          <div style="font-weight: bold">
+            <b
+              >Tracking No: <%=
+              formValue.utils.parseFormValue(formValue.trackingId) %></b
+            >
+            <b
+              >Date: <%=
+              formValue.utils.parseFormValue(formValue.certificateGenerateDate)
+              %></b
+            >
+            <b
+              ><%= formValue.utils.parseFormValue(formValue.lastAmendmentDate)
+              %></b
+            >
+          </div>
+        </div>
+
+        <div class="refrence-land">
+          <h4>
+            Reference: Land use Plan Permit <%=
+            formValue.utils.parseFormValue(formValue.trackingId) %> submitted by
+            <%=
+            formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)
+            %> on <%= formValue.utils.parseFormValue(formValue.applicationDate)
+            %>
+          </h4>
+        </div>
+
+        <div style="margin: 2rem 0rem 1rem 0rem">
+          <h4>
+            Attention: <%=
+            formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)
+            %>
+          </h4>
+        </div>
+
+        <div style="line-height: 1.7">
+          <p>
+            In reference to the above-mentioned application, BEZA-OSS Center
+            reviewed and examined all the documents and drawings submitted by
+            <%=
+            formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)
+            %> and checked the conformity. Consequently, BEZA-OSS Center hereby
+            approves the Land use Plan to <%=
+            formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)
+            %> for constructing the factory in <%=
+            formValue.utils.parseFormValue(formValue.economicZone) %>;
+          </p>
+          <p style="margin-top: 1.2rem">
+            (i) This Land use Plan Permit shall be valid only for the factory
+            construction as under;
+          </p>
+        </div>
+        <div class="left">
+          <div>
+            <small>Name of the Economic Zone:</small>
+            <p><%= formValue.utils.parseFormValue(formValue.economicZone) %></p>
+          </div>
+          <div>
+            <small>Plot Number:</small>
+            <p><%= formValue.utils.parseFormValue(formValue.plotAddress) %></p>
+          </div>
+          <div>
+            <small>Land Area(sqm):</small>
+            <p>
+              <%=
+              formValue.utils.parseFormValue(formValue.agreedLandByDevelopersSqm)
+              %>
+            </p>
+          </div>
+          <div>
+            <small>Building Area(sqm):</small>
+            <p>
+              <%= formValue.utils.parseFormValue(formValue.hiddenBuildingArea)
+              %>
+            </p>
+          </div>
+          <div>
+            <small>Total Floor Area(sqm):</small>
+            <p>
+              <%= formValue.utils.parseFormValue(formValue.hiddenTotalFloorArea)
+              %>
+            </p>
+          </div>
+        </div>
+        <div class="secondPageContainer">
+          <footer>
+            <div class="footer-container">
+              <div class="qr-code">
+                <img src="<%= formValue.qrcode %>" alt="" />
+              </div>
+
+              <div class="signature">
+                <h3>Yours faithfully</h3>
+                <%- formValue.deskUserSignature %>
+                <hr />
+                <div class="desk-user">
+                  <p>
+                    <%=
+                    formValue.utils.parseFormValue(formValue.deskUserFullName)
+                    %>
+                  </p>
+                  <p>
+                    <%=
+                    formValue.utils.parseFormValue(formValue.deskUserDesignation)
+                    %>
+                  </p>
+                </div>
+
+                <div>Bangladesh Economic Zones Authority</div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

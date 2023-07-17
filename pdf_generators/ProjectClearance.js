@@ -199,6 +199,8 @@ class ProjectClearance {
       logger.error(exceptionVar);
     }
     const response = await pdf.generatePdfFromHtml(htmlTemplate, body, options);
+    // log a message
+    logger.info("PDF generated successfully");
     return response;
   }
 }

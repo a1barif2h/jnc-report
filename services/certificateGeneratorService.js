@@ -193,4 +193,6 @@ const generateCertificate = async (req) => {
 
 module.exports = {
     generateCertificate,
+    generateBarcode,
+    generateQR,
 }

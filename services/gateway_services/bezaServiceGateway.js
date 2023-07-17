@@ -213,7 +213,7 @@ const getPaymentVoucherInfo = async ({applicationId}) => {
   const generateBarcode = async text => {
       JsBarcode(svgNode, text, {
           xmlDocument: document,
-          width: 0.75,
+          width: 1.75,
           height: 25,
           displayValue: false
       });
