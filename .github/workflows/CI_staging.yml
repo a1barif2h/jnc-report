@@ -62,23 +62,4 @@ jobs:
             helm uninstall beza-certificate-service-staging --namespace staging
             helm install beza-certificate-service-staging --namespace staging ./
 
-      # - name: executing remote ssh commands using password
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.DEV_HOST }}
-      #     username: ${{ secrets.DEV_USER }}
-      #     password: ${{ secrets.DEV_PASSWORD }}
-      #     port: ${{ secrets.DEV_PORT }}
-      #     script: |
-      #       docker kill beza-service-staging-uat
-      #       docker rm beza-service-staging-uat
-      #       docker pull ${{ secrets.DOCKER_USER }}/beza-service-staging-uat:${{ steps.chart.outputs.appVersion }}
-      #       docker run -d --name beza-service-staging-uat -p 8585:8585 ${{ secrets.DOCKER_USER }}/beza-service-staging-uat:${{ steps.chart.outputs.appVersion }}
-
-
-      # - name: Discord notification
-      #   env:
-      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      #   uses: Ilshidur/action-discord@master
-      #   with:
-      #     args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'            
+            
