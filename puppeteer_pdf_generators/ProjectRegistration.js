@@ -14,23 +14,23 @@ class ImportPermit {
     handleDateTimeFormat(formValue) {
         //DATE TIME FORMAT: 13 August 2022
         changeDateFormat(formValue, "applicationDate");
-      }
-    
-      handleAmountThousandsSeparator(formValue) {
+    }
+
+    handleAmountThousandsSeparator(formValue) {
         logger.info("Start converting normal to thousands separator for sop: %s", formValue.sopCode)
         formValue["dCostOfTheProjectInUs"] = numberWithCommas(
-          formValue["dCostOfTheProjectInUs"]
+            formValue["dCostOfTheProjectInUs"]
         );
-    
+
         logger.info("Converting done")
-      }
+    }
 
     async generate(body) {
         this.handleDateTimeFormat(body.formValue);
-    this.handleAmountThousandsSeparator(body.formValue)
+        this.handleAmountThousandsSeparator(body.formValue)
 
-    body.formValue.industryCategory =
-    body.formValue?.industryCategory.name || "";
+        body.formValue.industryCategory =
+            body.formValue?.industryCategory.name || "";
 
         body.formValue.utils = ejsUtils;
 
