@@ -1,9 +1,9 @@
 {
   "backendApi": {
-    "bezaServiceBaseUrl": "http://beza-service-staging",
+    "bezaServiceBaseUrl": "http://202.181.14.20",
     "bezaServicePort": "8585",
-    "bezaServiceFrontEndBaseUrl": "http://192.168.1.195:82",
-    "bezaServiceFrontEndPort": "",
+    "bezaServiceFrontEndBaseUrl": "http://202.181.14.20",
+    "bezaServiceFrontEndPort": "7891",
     
     "mayanCertificateUploadPath": "/beza-service/api/v1/internal/mayan/upload-document/",
 
@@ -16,8 +16,8 @@
     "convertCurrency": "/beza-service/api/v1/internal/currency/exchange/convert",
     "getMachineriesPath": "/beza-service/api/v1/internal/user-sops/machineries/",
 
-    "keycloakBaseUrl": "http://192.168.1.180",
-    "keycloakPort": "8082",
+    "keycloakBaseUrl": "http://202.181.14.20",
+    "keycloakPort": "8081",
     "keycloakUserInfoPath": "/auth/realms/OSS/protocol/openid-connect/userinfo"
   }
 }
