@@ -13,7 +13,7 @@
       }
 
       .container {
-        padding: 0 30px;
+        padding: 5px 55px 0 55px;
         font-size: 12px;
         text-align: justify;
       }
@@ -103,26 +103,33 @@
         -webkit-box-align: end;
         -ms-flex-align: end;
         align-items: flex-end;
-        line-height: 1.9;
+        line-height: 1.5;
+      }
+
+      .application-ambassador .signature-container {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
       }
 
       .application-ambassador .signature {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        margin-top: 2.5rem;
-        width: 40%;
+        text-align: center;
       }
 
-      .application-ambassador img {
-        margin-left: 3.2rem;
+      .application-ambassador .signature img {
+        width: 50%;
+      }
+
+      .application-ambassador .signature hr {
+        border: 0;
+        border-bottom: 1.5px solid rgb(46, 45, 45);
+        width: 60%;
+        margin: 5px auto;
+      }
+
+      .application-ambassador .signature .desk-user {
+        font-weight: 700;
       }
 
       .cc {
@@ -215,17 +222,24 @@
               <%=formValue.utils.parseFormValue(formValue.embassyHighCommission)%>
             </p>
           </div>
-          <div class="signature">
-            <p>Yours faithfully</p>
-            <p><%- formValue.deskUserSignature%></p>
-            <p style="font-weight: bolder; border-top: 1px solid black">
-              <%=formValue.utils.parseFormValue(formValue.deskUserFullName)%>
-            </p>
-            <p style="font-weight: bold">
-              <%=formValue.utils.parseFormValue(formValue.deskUserDesignation)%>
-            </p>
-
-            <p>Bangladesh Economic Zones Authority (formValue.BEZA)</p>
+          <div class="signature-container">
+            <div class="signature">
+              <h3>Yours faithfully</h3>
+              <%- formValue.deskUserSignature %>
+              <hr />
+              <div class="desk-user">
+                <p>
+                  <%= formValue.utils.parseFormValue(formValue.deskUserFullName)
+                  %>
+                </p>
+                <p>
+                  <%=
+                  formValue.utils.parseFormValue(formValue.deskUserDesignation)
+                  %>
+                </p>
+              </div>
+              <div>Bangladesh Economic Zones Authority</div>
+            </div>
           </div>
         </div>
         <div class="cc">

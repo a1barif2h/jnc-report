@@ -38,8 +38,8 @@ class SampleExportPermit {
 
     const pageStyle = `
             @page {
-                margin-top: 150px;
-                margin-bottom: 180px;
+                margin-top: 160px;
+                margin-bottom: 220px;
             }
         `;
 

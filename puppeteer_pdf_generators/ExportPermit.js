@@ -55,7 +55,7 @@ class ExportPermit {
         const pageStyle = `
             @page {
                 margin-top: 150px;
-                margin-bottom: 200px;
+                margin-bottom: 240px;
             }
         `;
 

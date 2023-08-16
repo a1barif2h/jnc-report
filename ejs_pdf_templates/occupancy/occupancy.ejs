@@ -15,7 +15,7 @@
 
     .container {
       margin: 0rem auto;
-      padding: 0 30px;
+      padding: 0 55px;
       font-size: 13.5px;
       text-align: justify;
     }
@@ -94,52 +94,49 @@
       line-height: 1.64;
     }
 
-    .secondPageContainer {
-      margin: 0rem auto;
-      margin-top: 15px;
-    }
-
     .footer-container {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-      justify-content: space-between;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      width: 100%;
-    }
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-items: center;
+        width: 100%;
+        padding: 0 55px;
+        margin-top: 10px;
+      }
 
-    .footer-container .qr-code {
-      width: 30%;
-      text-align: center;
-    }
+      .footer-container .qr-code {
+        width: 40%;
+      }
 
-    .footer-container .qr-code img {
-      width: 50%;
-    }
+      .footer-container .qr-code img {
+        width: 50%;
+      }
 
-    .footer-container .signature {
-      width: 50%;
-      text-align: center;
-    }
+      .footer-container .signature-container {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
 
-    .footer-container .signature img {
-      width: 30%;
-    }
+      .footer-container .signature {
+        text-align: center;
+      }
 
-    .footer-container .signature hr {
-      border: 0;
-      border-bottom: 1.5px solid rgb(46, 45, 45);
-      width: 50%;
-      margin: 5px auto;
-    }
+      .footer-container .signature img {
+        width: 50%;
+      }
 
-    .footer-container .signature .desk-user {
-      font-weight: 700;
-    }
+      .footer-container .signature hr {
+        border: 0;
+        border-bottom: 1.5px solid rgb(46, 45, 45);
+        width: 60%;
+        margin: 5px auto;
+      }
+
+      .footer-container .signature .desk-user {
+        font-weight: 700;
+      }
 
     .application-list {
       list-style: none;
@@ -245,29 +242,36 @@
       </div>
     </main>
   </div>
-  <div class="secondPageContainer">
+  <!-- <div class="secondPageContainer"> -->
     <footer>
       <div class="footer-container">
         <div class="qr-code">
-          <img src="<%= formValue.qrcode%>" alt="" />
+          <img src="<%= formValue.qrcode %>" alt="" />
         </div>
 
-        <div class="signature">
-          <h3> Yours faithfully</h3>
-          <%-formValue.deskUserSignature%>
-          <hr />
-          <div class="desk-user">
-            <p><%= formValue.utils.parseFormValue(formValue.deskUserFullName)%></p>
-            <p><%= formValue.utils.parseFormValue(formValue.deskUserDesignation)%></p>
-          </div>
-          
-          <div>
-            Bangladesh Economic Zones Authority
+        <div class="signature-container">
+          <div class="signature">
+            <h3>Yours faithfully</h3>
+            <%- formValue.deskUserSignature %>
+            <hr />
+            <div class="desk-user">
+              <p>
+                <%=
+                formValue.utils.parseFormValue(formValue.deskUserFullName)
+                %>
+              </p>
+              <p>
+                <%=
+                formValue.utils.parseFormValue(formValue.deskUserDesignation)
+                %>
+              </p>
+            </div>
+            <div>Bangladesh Economic Zones Authority</div>
           </div>
         </div>
       </div>
     </footer>
-  </div>
+  <!-- </div> -->
 
 </body>
 

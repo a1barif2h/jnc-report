@@ -13,16 +13,13 @@
       }
 
       .container {
-        padding: 35px;
-        font-size: 13px;
+        padding: 50px;
+        font-size: 14px;
+        text-align: justify;
       }
 
       .application-date {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
         justify-content: space-between;
         margin: 1.4rem 0rem;
         line-height: 1.9;
@@ -33,15 +30,9 @@
         background: red;
         color: white;
         height: 2.6rem;
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
         align-items: center;
+        justify-content: center;
         margin-top: 1rem;
         opacity: 0.8;
       }
@@ -53,28 +44,19 @@
         margin-top: 0.3rem;
       }
       .left div {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-
         overflow-wrap: break-word;
-        word-wrap: break-word;
-        -ms-word-break: break-all;
-        word-break: break-all;
         word-break: break-word;
       }
       .left small {
         margin-right: 5px;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 900;
       }
       .left p {
-        font-size: 11.5px;
+        font-size: 12.5px;
         overflow-wrap: break-word;
         word-wrap: break-word;
-        -ms-word-break: break-all;
-        word-break: break-all;
-        word-break: break-word;
       }
 
       .factory {
@@ -93,40 +75,40 @@
       }
 
       .footer-container {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
         justify-content: space-between;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
+        align-items: center;
         align-items: center;
         width: 100%;
       }
 
       .footer-container .qr-code {
         width: 30%;
-        text-align: center;
       }
 
       .footer-container .qr-code img {
         width: 50%;
       }
 
+      .footer-container .signature-container {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
       .footer-container .signature {
-        width: 50%;
         text-align: center;
       }
 
       .footer-container .signature img {
-        width: 30%;
+        width: 50%;
       }
 
       .footer-container .signature hr {
         border: 0;
         border-bottom: 1.5px solid rgb(46, 45, 45);
-        width: 50%;
+        width: 60%;
         margin: 5px auto;
       }
 
@@ -266,22 +248,25 @@
               <img src="<%= formValue.qrcode %>" alt="" />
             </div>
 
-            <div class="signature">
-              <h3>Yours faithfully</h3>
-              <%- formValue.deskUserSignature %>
-              <hr />
-              <div class="desk-user">
-                <p>
-                  <%= formValue.utils.parseFormValue(formValue.deskUserFullName)
-                  %>
-                </p>
-                <p>
-                  <%=
-                  formValue.utils.parseFormValue(formValue.deskUserDesignation)
-                  %>
-                </p>
+            <div class="signature-container">
+              <div class="signature">
+                <h3>Yours faithfully</h3>
+                <%- formValue.deskUserSignature %>
+                <hr />
+                <div class="desk-user">
+                  <p>
+                    <%=
+                    formValue.utils.parseFormValue(formValue.deskUserFullName)
+                    %>
+                  </p>
+                  <p>
+                    <%=
+                    formValue.utils.parseFormValue(formValue.deskUserDesignation)
+                    %>
+                  </p>
+                </div>
+                <div>Bangladesh Economic Zones Authority</div>
               </div>
-              <div>Bangladesh Economic Zones Authority</div>
             </div>
           </div>
         </footer>

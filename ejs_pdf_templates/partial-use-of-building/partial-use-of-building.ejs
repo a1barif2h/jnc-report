@@ -15,7 +15,7 @@
 
         .container {
             margin: 1.5rem auto;
-            padding: 25px 45px;
+            padding: 10px 55px;
             font-size: 14px;
             text-align: justify;
         }
@@ -84,14 +84,14 @@
             margin-top: 15px;
         }
 
-        .modification-description > .modification-description-title {
+        .modification-description>.modification-description-title {
             font-size: 18px;
             text-decoration: underline;
             font-weight: 700;
             line-height: 1.5;
         }
 
-        .modification-description > .modification-description-details {
+        .modification-description>.modification-description-details {
             display: -webkit-box;
             display: -ms-flexbox;
             display: flex;
@@ -106,15 +106,15 @@
             font-weight: 600;
         }
 
-        .modification-description > .modification-description-details > .details-left {
+        .modification-description>.modification-description-details>.details-left {
             width: 70%;
         }
 
-        .modification-description > .modification-description-details > .details-right {
+        .modification-description>.modification-description-details>.details-right {
             width: 30%;
         }
 
-        .modification-description > .modification-description-details .detail {
+        .modification-description>.modification-description-details .detail {
             font-weight: 500;
         }
 
@@ -123,7 +123,7 @@
             line-height: 1.8;
         }
 
-        .permission-container > .permission-container-title {
+        .permission-container>.permission-container-title {
             text-align: center;
             color: #348a5b;
             font-size: 22px;
@@ -140,7 +140,7 @@
             margin-bottom: 25px;
         }
 
-        .permission-container > .permission-declaration {
+        .permission-container>.permission-declaration {
             line-height: 1.6;
             font-weight: 400;
         }
@@ -150,41 +150,41 @@
         }
 
         .footer-container {
-            display: -webkit-box;
-            display: -ms-flexbox;
             display: flex;
-            -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
             justify-content: space-between;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
+            align-items: center;
             align-items: center;
             width: 100%;
-            margin-top: 40px;
+            margin-top: 45px;
         }
 
         .footer-container .qr-code {
-            width: 30%;
-            text-align: center;
+            width: 40%;
         }
 
         .footer-container .qr-code img {
             width: 50%;
         }
 
+        .footer-container .signature-container {
+            width: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
         .footer-container .signature {
-            width: 50%;
             text-align: center;
         }
 
         .footer-container .signature img {
-            width: 30%;
+            width: 50%;
         }
 
         .footer-container .signature hr {
             border: 0;
             border-bottom: 1.5px solid rgb(46, 45, 45);
-            width: 50%;
+            width: 60%;
             margin: 5px auto;
         }
 
@@ -214,22 +214,37 @@
             </div>
             <div class="application-date">
                 <div>
-                    <p>Tracking no: <span class="application-date-title"><%= formValue.utils.parseFormValue(formValue.trackingId)%></span></p>
-                    <p>Company Name: <span class="application-date-title"><%= formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)%></span></p>
-                    <p>Economic Zone: <span class="application-date-title"><%= formValue.utils.parseFormValue(formValue.economicZoneAddress)%></span></p>
+                    <p>Tracking no: <span class="application-date-title">
+                            <%= formValue.utils.parseFormValue(formValue.trackingId)%>
+                        </span></p>
+                    <p>Company Name: <span class="application-date-title">
+                            <%= formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)%>
+                        </span></p>
+                    <p>Economic Zone: <span class="application-date-title">
+                            <%= formValue.utils.parseFormValue(formValue.economicZoneAddress)%>
+                        </span></p>
                 </div>
                 <div>
-                    <p>Issue Date: <%= formValue.utils.parseFormValue(formValue.certificateGenerateDate)%></p>
-                    <p><%= formValue.utils.parseFormValue(formValue.lastAmendmentDate)%></p>
+                    <p>Issue Date: <%= formValue.utils.parseFormValue(formValue.certificateGenerateDate)%>
+                    </p>
+                    <p>
+                        <%= formValue.utils.parseFormValue(formValue.lastAmendmentDate)%>
+                    </p>
                 </div>
             </div>
             <div class="modification-description">
                 <p class="modification-description-title">Content of the Partial use of the building: </p>
                 <div class="modification-description-details">
                     <div class="details-left">
-                        <p>Building Permit no: <span class="detail"><%= formValue.utils.parseFormValue(formValue.buildingPermitNo)%></span></p>
-                        <p>Period of Partial Use: <span class="detail">From <%= formValue.utils.parseFormValue(formValue.prriodOfPartialUseForm)%> to <%= formValue.utils.parseFormValue(formValue.periodOfPartialUseTo)%></span></p>
-                        <p>Reason of Partial Use: <span class="detail"><%= formValue.utils.parseFormValue(formValue.reasonOfPartialUse)%></span></p>
+                        <p>Building Permit no: <span class="detail">
+                                <%= formValue.utils.parseFormValue(formValue.buildingPermitNo)%>
+                            </span></p>
+                        <p>Period of Partial Use: <span class="detail">From <%=
+                                    formValue.utils.parseFormValue(formValue.prriodOfPartialUseForm)%> to <%=
+                                        formValue.utils.parseFormValue(formValue.periodOfPartialUseTo)%></span></p>
+                        <p>Reason of Partial Use: <span class="detail">
+                                <%= formValue.utils.parseFormValue(formValue.reasonOfPartialUse)%>
+                            </span></p>
                     </div>
                     <div class="details-right"></div>
                 </div>
@@ -240,33 +255,44 @@
                 <p class="permission-container-title">Permission for Partial use of Building</p>
                 <hr />
                 <p class="permission-declaration">
-                    With reference to the above-mentioned application, Building Committee reviewed and examined all the documents and drawings submitted by <span class="declaration-bold"><%= formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)%></span> . The Committee found the conformity of all the drawings with the Bangladesh Economic Zones (construction of Building) Rules, 2017 and the Bangladesh National Building Code 2020. Consequently, BEZA-OSS Center hereby grants the partial use of  building to <span class="declaration-bold"><%= formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)%></span> situated at <span class="declaration-bold"><%= formValue.utils.parseFormValue(formValue.economicZoneAddress)%></span> From <%= formValue.utils.parseFormValue(formValue.prriodOfPartialUseForm)%> to <%= formValue.utils.parseFormValue(formValue.periodOfPartialUseTo)%>
+                    With reference to the above-mentioned application, Building Committee reviewed and examined all the
+                    documents and drawings submitted by <span class="declaration-bold">
+                        <%= formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)%>
+                    </span> . The Committee found the conformity of all the drawings with the Bangladesh Economic Zones
+                    (construction of Building) Rules, 2017 and the Bangladesh National Building Code 2020. Consequently,
+                    BEZA-OSS Center hereby grants the partial use of building to <span class="declaration-bold">
+                        <%= formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)%>
+                    </span> situated at <span class="declaration-bold">
+                        <%= formValue.utils.parseFormValue(formValue.economicZoneAddress)%>
+                    </span> From <%= formValue.utils.parseFormValue(formValue.prriodOfPartialUseForm)%> to <%=
+                            formValue.utils.parseFormValue(formValue.periodOfPartialUseTo)%>
                 </p>
             </div>
         </main>
-        <div class="secondPageContainer">
-            <footer>
-                <div class="footer-container">
-                    <div class="qr-code">
-                        <img src="<%= formValue.qrcode%>" alt="" />
-                    </div>
-    
+        <footer>
+            <div class="footer-container">
+                <div class="qr-code">
+                    <img src="<%= formValue.qrcode %>" alt="" />
+                </div>
+
+                <div class="signature-container">
                     <div class="signature">
-                        <h3> Yours faithfully</h3>
-                        <%-formValue.deskUserSignature%>
-                        <hr />
-                        <div class="desk-user">
-                            <p><%= formValue.utils.parseFormValue(formValue.deskUserFullName)%></p>
-                            <p><%= formValue.utils.parseFormValue(formValue.deskUserDesignation)%></p>
-                        </div>
-    
-                        <div>
-                            Bangladesh Economic Zones Authority
-                        </div>
+                        <h3>Yours faithfully</h3>
+                        <%- formValue.deskUserSignature %>
+                            <hr />
+                            <div class="desk-user">
+                                <p>
+                                    <%= formValue.utils.parseFormValue(formValue.deskUserFullName) %>
+                                </p>
+                                <p>
+                                    <%= formValue.utils.parseFormValue(formValue.deskUserDesignation) %>
+                                </p>
+                            </div>
+                            <div>Bangladesh Economic Zones Authority</div>
                     </div>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </footer>
     </div>
 </body>
 

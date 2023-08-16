@@ -13,7 +13,8 @@
       }
 
       .container {
-        padding: 35px;
+        margin: 1.5rem auto;
+        padding: 10px 55px;
         font-size: 12px;
         text-align: justify;
       }
@@ -45,6 +46,7 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+        border: 1px solid red;
       }
 
       .center-div {
@@ -63,40 +65,41 @@
       }
 
       .footer-container {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
         justify-content: space-between;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
+        align-items: center;
         align-items: center;
         width: 100%;
+        margin-top: 45px;
       }
 
       .footer-container .qr-code {
-        width: 30%;
-        text-align: center;
+        width: 40%;
       }
 
       .footer-container .qr-code img {
         width: 50%;
       }
 
+      .footer-container .signature-container {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
       .footer-container .signature {
-        width: 50%;
         text-align: center;
       }
 
       .footer-container .signature img {
-        width: 30%;
+        width: 50%;
       }
 
       .footer-container .signature hr {
         border: 0;
         border-bottom: 1.5px solid rgb(46, 45, 45);
-        width: 50%;
+        width: 60%;
         margin: 5px auto;
       }
 
@@ -165,13 +168,13 @@
           </p>
         </div>
 
-        <div class="secondPageContainer">
-          <footer>
-            <div class="footer-container">
-              <div class="qr-code">
-                <img src="<%= formValue.qrcode%>" alt="" />
-              </div>
+        <footer>
+          <div class="footer-container">
+            <div class="qr-code">
+              <img src="<%= formValue.qrcode %>" alt="" />
+            </div>
 
+            <div class="signature-container">
               <div class="signature">
                 <h3>Yours faithfully</h3>
                 <%- formValue.deskUserSignature %>
@@ -179,21 +182,20 @@
                 <div class="desk-user">
                   <p>
                     <%=
-                    formValue.utils.parseFormValue(formValue.deskUserFullName
-                    )%>
+                    formValue.utils.parseFormValue(formValue.deskUserFullName)
+                    %>
                   </p>
                   <p>
                     <%=
-                    formValue.utils.parseFormValue(formValue.deskUserDesignation
-                    )%>
+                    formValue.utils.parseFormValue(formValue.deskUserDesignation)
+                    %>
                   </p>
                 </div>
-
                 <div>Bangladesh Economic Zones Authority</div>
               </div>
             </div>
-          </footer>
-        </div>
+          </div>
+        </footer>
       </main>
     </div>
   </body>
