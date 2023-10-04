@@ -481,14 +481,27 @@
         <div class="footer-items2">
           <p><%- formValue.barcode %></p>
         </div>
-        <div class="footer-items3">
+        <!-- <div class="footer-items3">
           <h3>Yours faithfully</h3>
           <%- formValue.deskUserSignature %>
           <p style="font-weight: bold"><%= formValue.deskUserFullName %></p>
           <p style="font-weight: bold"><%= formValue.deskUserDesignation %></p>
           <p>Bangladesh Economic Zones Authority (BEZA)</p>
-        </div>
+        </div> -->
       </footer>
+      <div
+        style="
+          text-align: center;
+          background: #dfbdcd;
+          padding: 24px 0 24px 0;
+          font-weight: 600;
+          color: rgb(171, 34, 34);
+          margin-top: 12px;
+          opacity: 0.8;
+        "
+      >
+        <p>THIS IS COMPUTER GENERATED PERMIT. SO SIGNATURE IS NOT REQUIRED.</p>
+      </div>
       <section class="table-section">
         <div class="annexure-table-headers">Annexure - 1</div>
         <div class="annexure-1-margin">
@@ -503,15 +516,6 @@
               </tr>
             </thead>
             <tbody>
-              <!-- <tr>
-                <td>Land (in M2)</td>
-                <td>
-                  <%= formValue.utils.parseFormValue(formValue.textField )%>
-                </td>
-                <td>
-                  <%= formValue.utils.parseFormValue(formValue.textField1) %>
-                </td>
-              </tr> -->
               <tr>
                 <td>Power (in KW/H)</td>
                 <td>

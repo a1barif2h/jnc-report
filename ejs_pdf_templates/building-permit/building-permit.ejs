@@ -41,17 +41,17 @@
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
-        margin: 1rem 0rem;
-        line-height: 1.6;
+        margin: 0.8rem 0rem;
+        line-height: 1.5;
       }
 
       .reference-area p {
         margin: 0;
-        line-height: 1.6;
+        line-height: 1.5;
       }
 
       .attention {
-        margin: 8px 0;
+        margin: 6px 0;
       }
 
       .attention p {
@@ -395,7 +395,7 @@
                 <img src="<%= formValue.qrcode %>" alt="" />
               </div>
 
-              <div class="signature-container">
+              <!-- <div class="signature-container">
                 <div class="signature">
                   <h3>Yours faithfully</h3>
                   <%- formValue.deskUserSignature %>
@@ -414,7 +414,22 @@
                   </div>
                   <div>Bangladesh Economic Zones Authority</div>
                 </div>
-              </div>
+              </div> -->
+            </div>
+            <div
+              style="
+                text-align: center;
+                background: #dfbdcd;
+                padding: 24px 0 24px 0;
+                font-weight: 600;
+                color: rgb(171, 34, 34);
+                margin-top: 12px;
+                opacity: 0.8;
+              "
+            >
+              <p>
+                THIS IS COMPUTER GENERATED PERMIT. SO SIGNATURE IS NOT REQUIRED.
+              </p>
             </div>
           </footer>
         </div>

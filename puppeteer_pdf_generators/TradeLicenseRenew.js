@@ -59,7 +59,7 @@ class TradeLicenseRenew {
     const pageStyle = `
           @page {
             margin-top: 130px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
           }
         `;
 

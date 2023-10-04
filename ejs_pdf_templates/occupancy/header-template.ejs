@@ -16,7 +16,7 @@
       }
 
       header .header-item {
-        width: 45%;
+        width: 30%;
         height: 90px;
         display: flex;
         justify-content: space-between;
@@ -31,6 +31,14 @@
       .beza-logo img {
         width: 100%;
       }
+
+      .qr-code {
+        width: 60%;
+      }
+
+      .qr-code img {
+        width: 85%;
+      }
     </style>
   </head>
   <body>
@@ -43,8 +51,13 @@
           />
         </div>
       </div>
-      <div class="header-item" style="display: flex; justify-content: end">
+      <div class="header-item">
         <div class="barCode"><%- formValue.barcode %></div>
+      </div>
+      <div class="header-item" style="display: flex; justify-content: flex-end">
+        <div class="qr-code">
+          <img src="<%= formValue.qrcode %>" alt="" />
+        </div>
       </div>
     </header>
   </body>
