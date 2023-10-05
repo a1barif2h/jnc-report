@@ -42,7 +42,7 @@ class LocalSalesPermit {
     const pageStyle = `
             @page {
                 margin-top: 150px;
-                margin-bottom: 180px;
+                margin-bottom: 190px;
             }
         `;
 
