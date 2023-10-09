@@ -96,7 +96,8 @@ const ejsPuppeteerPdfGenerator = async (generateTemplate, options, pageStyle) =>
   await page.emulateMediaType("screen");
 
   const generatedPdf = await page.pdf({
-    ...options
+    ...options,
+    timeout: 300000,
   });
 
   await browser.close();
