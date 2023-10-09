@@ -1,6 +1,7 @@
 const express = require('express');
 const generatePdf = require('./generatePdf');
 const generatePaymentVoucherPdf = require('./generatePaymentVoucherPdf');
+const generatePcApplicationPdf = require('./generatePcApplicationPdf');
 const AppError = require('../../../util/appError');
 
 const router = express.Router();
@@ -8,6 +9,7 @@ const router = express.Router();
 router.use("/generate/pdf", generatePdf);
 router.use("/generate/pr-cert/pdf", generatePdf);
 router.use("/generate/payment-voucher/pdf", generatePaymentVoucherPdf);
+router.use("/generate/pc-application/pdf", generatePcApplicationPdf);
 
 router.all("*", (req, res, next) => {
     const err = new AppError(`${req.path} not available`, 405);

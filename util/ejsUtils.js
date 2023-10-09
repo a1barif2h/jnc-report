@@ -27,8 +27,30 @@ const numberWithCommas = (x) => {
   return parts.join(".");
 }
 
+const formatDate = (dateString, format) => {
+  const months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  // Replace format placeholders
+  const formattedDate = format
+    .replace('dd', day < 10 ? `0${day}` : day)
+    .replace('MMM', month)
+    .replace('yyyy', year);
+
+  return formattedDate;
+}
+
+
 module.exports = {
   parseFormValue,
   numberWithCommas,
-  isAddNAText
+  isAddNAText,
+  formatDate
 }

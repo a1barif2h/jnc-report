@@ -1,0 +1,57 @@
+const fs = require("fs");
+const logger = require("../util/logger");
+const { ejsRender } = require("../util/templateEngine");
+const { ejsPuppeteerPdfGenerator } = require("../pdf_generators/PdfGenerator");
+const { getFormatDateWithTime } = require("../util/dateTimeFormattor");
+const ejsUtils = require("../util/ejsUtils");
+const { json } = require("express");
+
+const options = {
+  orientation: "portrait",
+  printBackground: true,
+  format: "A4",
+  displayHeaderFooter: true,
+  childProcessOptions: {
+      env: {
+          OPENSSL_CONF: '/dev/null',
+      },
+  }
+};
+
+class PcApplication {
+  constructor() {}
+
+  async generate(body) {
+    body.utils = ejsUtils;
+
+    // logger.info("Project Clearance request body = %o", JSON.stringify(body));
+
+    const pcApplicationTemplate = fs.readFileSync(
+      "./ejs_pdf_templates/pc-application/pc-application.ejs",
+      "utf8"
+    );
+    
+    const generateTemplate = ejsRender(pcApplicationTemplate, body);
+
+    const pageStyle = `
+      @page {
+          margin-bottom: 40px;
+      }
+    `;
+
+    options.footerTemplate = `<div  style="width: 100%;box-sizing: border-box;padding: 0px;display: flex;justify-content: space-between;padding:0 10px;font-size: 8px;color: black;">
+    <p>Download time: ${body.downloadTime}</p>
+    <p>Help line: 0178787878</p>
+  </div>`
+
+    const generatedPdf = ejsPuppeteerPdfGenerator(
+      generateTemplate,
+      options,
+      pageStyle
+    );
+
+    return generatedPdf;
+  }
+}
+
+module.exports = PcApplication;
