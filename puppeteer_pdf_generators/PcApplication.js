@@ -35,14 +35,18 @@ class PcApplication {
 
     const pageStyle = `
       @page {
-          margin-bottom: 40px;
+          margin-top: 80px;
+          margin-bottom: 80px;
       }
     `;
 
-    options.footerTemplate = `<div  style="width: 100%;box-sizing: border-box;padding: 0px;display: flex;justify-content: space-between;padding:0 10px;font-size: 8px;color: black;">
-    <p>Download time: ${body.downloadTime}</p>
-    <p>Help line: 0178787878</p>
-  </div>`
+    options.headerTemplate = '<span></span>';
+
+    options.footerTemplate = fs.readFileSync(
+      "./ejs_pdf_templates/pc-application/footer.ejs",
+      "utf8"
+    );
+    
 
     const generatedPdf = ejsPuppeteerPdfGenerator(
       generateTemplate,

@@ -4,14 +4,6 @@ const PcApplication = require("../../../puppeteer_pdf_generators/PcApplication")
 
 const router  = express.Router();
 
-// const generatePcApplicationPdf = async (req, res) => {
-//     const pcApplication = new PcApplication();
-//     const paymentInfo = req.body;
-//     const response = await pcApplication.generate(paymentInfo).then(res=>{return res}).catch(err=>{logger.error(err)})
-//     res.setHeader('content-type', 'application/pdf');
-//     res.status(200).send(response);
-// }
-
 const generatePcApplicationPdf = async (req, res) => {
     const pcApplication = new PcApplication();
     const paymentInfo = req.body;
