@@ -35,7 +35,7 @@ class PcApplication {
 
     const pageStyle = `
       @page {
-          margin-top: 80px;
+          margin-top: 40px;
           margin-bottom: 80px;
       }
     `;

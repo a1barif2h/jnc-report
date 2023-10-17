@@ -6,10 +6,10 @@ const router  = express.Router();
 
 const generatePcApplicationPdf = async (req, res) => {
     const pcApplication = new PcApplication();
-    const paymentInfo = req.body;
+    const machineryInfo = req.body;
 
     try {
-        const pdfBuffer = await pcApplication.generate(paymentInfo);
+        const pdfBuffer = await pcApplication.generate(machineryInfo);
 
         res.setHeader('content-type', 'application/pdf');
         res.status(200).send(pdfBuffer);
