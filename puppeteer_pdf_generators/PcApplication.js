@@ -25,6 +25,7 @@ class PcApplication {
     body.utils = ejsUtils;
 
     // logger.info("Project Clearance request body = %o", JSON.stringify(body));
+    logger.info(`Generating PC Application PDF for total machinery = ${body.formValue.additionOfMachinery.length}`)
 
     const pcApplicationTemplate = fs.readFileSync(
       "./ejs_pdf_templates/pc-application/pc-application.ejs",
