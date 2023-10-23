@@ -94,7 +94,6 @@
 
       footer .footer-items1 {
         width: 30%;
-        text-align: center;
       }
       footer .footer-items1 img {
         width: 50%;
@@ -115,6 +114,127 @@
 
       footer .footer-items3 img {
         width: 40%;
+      }
+
+      .table-section {
+        margin-top: 2rem;
+      }
+
+      table.GeneratedTable {
+        width: 100%;
+        background-color: transparent;
+        border-collapse: collapse;
+        margin: 0 auto !important;
+        border: 1px solid rgba(53, 62, 108, 0.1) !important;
+        border-radius: 4px !important;
+        font-size: 12px;
+      }
+
+      table.GeneratedTable td,
+      table.GeneratedTable th {
+        border: 1px solid rgba(53, 62, 108, 0.1) !important;
+      }
+
+      table.GeneratedTable thead {
+        background-color: transparent;
+      }
+
+      /* customize table */
+
+      .second-page {
+        margin-top: 2.5rem;
+      }
+
+      .child-td {
+        padding: 0rem !important;
+        border: none !important;
+      }
+
+      .child-td tr {
+        text-align: center;
+      }
+
+      .child-tbody td {
+        padding: 1rem 0rem !important;
+      }
+
+      th {
+        padding: 1px 2px;
+        text-align: left;
+        background-color: #353e6c0d !important;
+        color: #353e6c !important;
+        font-weight: 700 !important;
+      }
+
+      td {
+        padding: 1px 2px;
+        font-weight: 500 !important;
+        color: #353e6c !important;
+        page-break-inside: avoid !important;
+      }
+
+      .first-th {
+        width: 30% !important;
+      }
+
+      .second-th {
+        width: 15% !important;
+      }
+
+      .third-th {
+        width: 20% !important;
+      }
+
+      .fourth-th {
+        width: 10% !important;
+      }
+
+      .fifth-th {
+        width: 5% !important;
+      }
+
+      .sixth-th {
+        width: 5% !important;
+      }
+
+      .first-td {
+        text-align: center;
+        line-height: 2;
+      }
+
+      .first-th-an1 {
+        width: 34% !important;
+      }
+
+      .second-th-an2 {
+        width: 33% !important;
+      }
+
+      .third-th-an3 {
+        width: 33% !important;
+      }
+
+      .annexure-table-headers {
+        height: 30px;
+        background-color: #353e6c;
+        color: #ffffff;
+        border-radius: 4px;
+        width: 100%;
+        line-height: 29px;
+        font-weight: 400;
+        padding-left: 8px;
+        margin-bottom: 8px;
+      }
+
+      .annexure-th {
+        background-color: #353e6c0d;
+        color: #353e6c;
+        font-weight: 700;
+        line-height: 16px;
+      }
+
+      .annexure-1-margin {
+        margin-bottom: 1rem !important;
       }
     </style>
   </head>
@@ -278,7 +398,7 @@
               <p>d. ..............................</p>
             </div>
           </div>
-          <div class="footer-items2"></div>
+          <!-- <div class="footer-items2"></div>
           <div class="footer-items3">
             <h3>Yours faithfully</h3>
             <%-formValue.deskUserSignature %>
@@ -291,8 +411,124 @@
             </p>
 
             <p>Bangladesh Economic Zones Authority (BEZA)</p>
-          </div>
+          </div> -->
         </footer>
+        <div
+          style="
+            text-align: center;
+            background: #dfbdcd;
+            padding: 24px 0 24px 0;
+            font-weight: 600;
+            color: rgb(171, 34, 34);
+            margin-top: 12px;
+            opacity: 0.8;
+          "
+        >
+          <p>
+            THIS IS A COMPUTER GENERATED PERMIT. SO SIGNATURE IS NOT REQUIRED.
+          </p>
+        </div>
+        <div style="page-break-after: always"></div>
+        <section class="table-section">
+          <div class="annexure-table-headers">Annexure - 1</div>
+          <div class="annexure-1-margin">
+            <table class="GeneratedTable">
+              <thead>
+                <tr>
+                  <th class="first-th-an1">Infrastucture</th>
+                  <th class="second-th-an1">Initial Period</th>
+                  <th class="third-th-an1">
+                    Regular Operation Period at maximum capacity
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Power (in KW/H)</td>
+                  <td>
+                    <%= formValue.utils.parseFormValue(formValue.textField2) %>
+                  </td>
+                  <td>
+                    <%= formValue.utils.parseFormValue(formValue.textField3) %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>GAS (in M3) Per day</td>
+                  <td>
+                    <%= formValue.utils.parseFormValue(formValue.textField4) %>
+                  </td>
+                  <td>
+                    <%= formValue.utils.parseFormValue(formValue.textField5) %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Water (in M3) Per day</td>
+                  <td>
+                    <%= formValue.utils.parseFormValue(formValue.textField6) %>
+                  </td>
+                  <td>
+                    <%= formValue.utils.parseFormValue(formValue.textField7) %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Central ETP (in M3) Per day</td>
+                  <td>
+                    <%= formValue.utils.parseFormValue(formValue.textField8) %>
+                  </td>
+                  <td>
+                    <%= formValue.utils.parseFormValue(formValue.textField9) %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="annexure-table-headers">Annexure - 2</div>
+          <div>
+            <table class="GeneratedTable">
+              <thead>
+                <tr>
+                  <th class="first-th">Details of Machinery</th>
+                  <th class="second-th">Country of Origin</th>
+                  <th class="third-th">Name of The vendor</th>
+                  <th class="fourth-th">Value</th>
+                  <th class="fifth-th">Value Currency</th>
+                  <th class="sixth-th">State</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% formValue.machineriesToCalculate.forEach((element, i) => {%>
+                <tr>
+                  <td>
+                    <%=
+                    formValue.utils.parseFormValue(element.detailsOfMachinery)
+                    %>
+                  </td>
+                  <td>
+                    <%= formValue.utils.parseFormValue(element.coountryOfOrigin)
+                    %>
+                  </td>
+                  <td>
+                    <%= formValue.utils.parseFormValue(element.nameOfTheVendor)
+                    %>
+                  </td>
+                  <td>
+                    <%=
+                    formValue.utils.parseFormValue(formValue.utils.numberWithCommas(element.valueInput))
+                    %>
+                  </td>
+                  <td>
+                    <%= formValue.utils.parseFormValue(element.valueCurrency) %>
+                  </td>
+                  <td>
+                    <%= formValue.utils.parseFormValue(element.materialState) %>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </section>
       </main>
     </div>
   </body>
