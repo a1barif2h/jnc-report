@@ -227,10 +227,16 @@
             Tracking No: <%=
             formValue.utils.parseFormValue(formValue.trackingId) %>
           </p>
-          <p>
-            Date: <%=
-            formValue.utils.parseFormValue(formValue.certificateGenerateDate) %>
-          </p>
+          <div>
+            <p>
+              Date: <%=
+              formValue.utils.parseFormValue(formValue.certificateGenerateDate)
+              %>
+            </p>
+            <p>
+              <%= formValue.utils.parseFormValue(formValue.lastAmendmentDate) %>
+            </p>
+          </div>
         </div>
       </header>
       <section class="applicant-info">
