@@ -74,19 +74,16 @@
         line-height: 1.8;
       }
 
-      .application-info {
-        margin-top: 2rem;
-      }
+      /* .application-info {
+        margin-top: 1rem;
+      } */
 
       .application-list {
-        width: 50%;
+        width: 100%;
         line-height: 1.9;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
       }
 
       .application-list b {
@@ -186,6 +183,7 @@
             <b>Passport No.</b>
             <b>Designation</b>
             <b>Type of Visa Required</b>
+            <b style="visibility: hidden">0000 0000 0000 0000 0000</b>
           </div>
           <div>
             <b
@@ -202,6 +200,7 @@
               >:
               <%=formValue.utils.parseFormValue(formValue.typeOfVisaRequiredForTheIncumbentForeignNationals)%></b
             >
+            <b style="visibility: hidden">0000 0000 0000 0000 0000 0000 000</b>
           </div>
         </div>
 
