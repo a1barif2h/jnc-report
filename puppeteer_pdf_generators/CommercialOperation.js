@@ -4,6 +4,7 @@ const { getCommonOptions } = require('../util/utils');
 const { ejsPuppeteerPdfGenerator } = require('../pdf_generators/PdfGenerator');
 const ejsUtils = require('../util/ejsUtils');
 const { changeDateFormat } = require('../util/dateTimeFormattor');
+const logger = require('../util/logger');
 
 class CommercialOperation {
   constructor() { };
@@ -16,6 +17,7 @@ class CommercialOperation {
   async generate(body) {
     body.formValue.utils = ejsUtils;
     this.handleDateTimeFormat(body.formValue);
+    // logger.info('%s', JSON.stringify(body.formValue))
 
     const m = new Date();
     const myDate = m.getUTCDate() + "/" + (m.getUTCMonth() + 1) + "/" + m.getUTCFullYear();

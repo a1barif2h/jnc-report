@@ -165,36 +165,15 @@
             from <%= formValue.utils.parseFormValue(formValue.proposedDateOfCo
             )%>
           </p>
-        </div>
 
-        <!-- <footer>
-          <div class="footer-container">
-            <div class="qr-code">
-              <img src="<%= formValue.qrcode %>" alt="" />
-            </div>
-
-            <div class="signature-container">
-              <div class="signature">
-                <h3>Yours faithfully</h3>
-                <%- formValue.deskUserSignature %>
-                <hr />
-                <div class="desk-user">
-                  <p>
-                    <%=
-                    formValue.utils.parseFormValue(formValue.deskUserFullName)
-                    %>
-                  </p>
-                  <p>
-                    <%=
-                    formValue.utils.parseFormValue(formValue.deskUserDesignation)
-                    %>
-                  </p>
-                </div>
-                <div>Bangladesh Economic Zones Authority</div>
-              </div>
-            </div>
+          <div style="display: flex">
+            <P style="margin-right: 12px">Comments:</P>
+            <P
+              ><%=
+              formValue.utils.parseFormValue(additionalInfo.commercialOperationComments)%></P
+            >
           </div>
-        </footer> -->
+        </div>
       </main>
       <div
         style="

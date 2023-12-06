@@ -30,6 +30,7 @@ const getFormValueByApplicationID = async (applicationId) => {
   try {
     logger.info("fromValueUrl: %s", formValueUrl);
     const { data } = await axios.get(formValueUrl);
+    // logger.info("%s", JSON.stringify(data))
     return data;
   } catch (error) {
     logger.error(error);
