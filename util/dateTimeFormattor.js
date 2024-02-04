@@ -39,13 +39,35 @@ const getFormatDateWithTime = (givenDate) => {
     return `${moment(givenDate).format('DD-MMM-YYYY')} ${strTime}`
 }
 
-const getValidTillDate = (givenDate) => {
-    const formatString = 'DD MMM, YYYY';
-    const dateObj = moment(givenDate, formatString);
-    const nextYearDateObj = dateObj.clone().add(365, 'days');
-    return nextYearDateObj.format(formatString);
+// const getValidTillDate = (givenDate) => {
+//     logger.warn("check is call for date %s", givenDate)
+//     const formatString = 'DD MMM, YYYY';
+//     const dateObj = moment(givenDate, formatString);
+//     logger.warn("check is call for dateObj %s", dateObj)
+//     const nextYearDateObj = dateObj.clone().add(365, 'days');
+//     return nextYearDateObj.format(formatString);
     
+// }
+
+const getValidTillDate = (givenDate) => {
+    logger.info("given Date for valid date %s", givenDate);
+
+    // Convert Unix timestamp to a moment object
+    const dateObj = moment(givenDate);
+
+    // Format the date using the specified format
+    const formatString = 'DD MMM, YYYY';
+    const formattedDate = dateObj.format(formatString);
+
+    logger.info("modify given date for dateObj %s", formattedDate);
+
+    // Assuming you want to add 365 days to the given date
+    const nextYearDateObj = dateObj.clone().add(365, 'days');
+    const nextYearFormattedDate = nextYearDateObj.format(formatString);
+
+    return nextYearFormattedDate;
 }
+
 
 const changeDateFormat = (formValue, key) => {
     logger.info(`Converting date for - ${key} = ${formValue[key]}`)
