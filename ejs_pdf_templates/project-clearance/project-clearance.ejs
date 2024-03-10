@@ -253,9 +253,14 @@
       </section>
       <article class="subject">
         <p>
-          Subject: Approval for setting up a(n) <%=
+          Subject: Approval for setting up a(n) <% if(formValue &&
+          formValue?.typeOfBusinessIndustryOrServices &&
+          Array.isArray(formValue?.typeOfBusinessIndustryOrServices)) {%> <%=
+          formValue?.typeOfBusinessIndustryOrServices?.join(', ') %> <%} else
+          {%> <%=
           formValue.utils.parseFormValue(formValue.typeOfBusinessIndustryOrServices)
-          %> in <%= formValue.utils.parseFormValue(formValue.economicZone) %>
+          %> <%}%> in <%= formValue.utils.parseFormValue(formValue.economicZone)
+          %>
         </p>
       </article>
       <main class="main-content">
