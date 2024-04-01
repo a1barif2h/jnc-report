@@ -5,6 +5,7 @@
     "bezaServiceFrontEndBaseUrl": "https://oss.beza.gov.bd",
     "bezaServiceFrontEndPort": "",
     "mayanCertificateUploadPath": "/beza-service/api/v1/internal/mayan/upload-document/",
+    "bezaApplicationPdfServiceBaseUrl": "https://oss.beza.gov.bd",
 
     "bezaServiceGetFormValuesByApplicationIdPath": "/beza-service/api/v1/internal/user-sops/",
     "bezaServiceGetCertificateInfoPath": "/beza-service/api/v1/internal/user-certificate/",

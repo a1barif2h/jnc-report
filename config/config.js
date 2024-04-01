@@ -19,7 +19,8 @@ const configProperties = {
     BEZA_SERVICE_GET_MACHENARIES_PATH: "",
     KEYCLOAK_BASE_URL: "",
     KEYCLOAK_PORT: "",
-    KEYCLOAK_USER_INFO_PATH: ""
+    KEYCLOAK_USER_INFO_PATH: "",
+    BEZA_APPLICATION_PDF_SERVICE: ""
 };
 
 const config = convict({
@@ -65,6 +66,7 @@ configProperties.BEZA_SERVICE_CONVERT_CURRENCY_PATH = conf.backendApi.convertCur
 configProperties.KEYCLOAK_BASE_URL = conf.backendApi.keycloakBaseUrl;
 configProperties.KEYCLOAK_PORT = conf.backendApi.keycloakPort;
 configProperties.KEYCLOAK_USER_INFO_PATH = conf.backendApi.keycloakUserInfoPath;
+configProperties.BEZA_APPLICATION_PDF_SERVICE = conf.backendApi.bezaApplicationPdfServiceBaseUrl;
 
 
 logger.info(`Loading configuration for profile: ${activeProfile}`)
