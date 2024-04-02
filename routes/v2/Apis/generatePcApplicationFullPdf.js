@@ -35,8 +35,11 @@ const generatePcApplicationFullPdf = async (req, res) => {
         const mergedPdf = await mergePDFs([pcPdf, machineryInfoPdf]);
         const mergedPdfBytes = await mergedPdf.save();
         const mergedPdfBuffer = Buffer.from(mergedPdfBytes)
+        const today = new Date().toDateString();
+        const filename =  `${machineryInfo?.trackingId}_${today}.pdf`
 
         res.setHeader('content-type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename=${filename}`);
         res.status(200).send(mergedPdfBuffer);
     } catch (err) {
         logger.error(err);
