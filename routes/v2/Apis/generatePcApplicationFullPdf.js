@@ -26,20 +26,39 @@ const generatePcApplicationFullPdf = async (req, res) => {
     const machineryInfo = req.body;
 
     try {
+      logger.info('start to get machinery info pdf')
         const machineryInfoPdfBuffer = await pcApplication.generate(machineryInfo);
+        logger.info('done machinery info pdf')
+        logger.info('start to get main pdf')
         const pcPdfBuffer = await getPcApplicationPdf(machineryInfo);
+        logger.info('done main pdf')
 
-        const pcPdf = await PDFDocument.load(pcPdfBuffer);
+        logger.info('start to load machinery info pdf')
         const machineryInfoPdf = await PDFDocument.load(machineryInfoPdfBuffer);
+        logger.info('done load machinery info pdf')
 
+        logger.info('start to load main pdf')
+        const pcPdf = await PDFDocument.load(pcPdfBuffer);
+        logger.info('done load main pdf')
+        
+
+        logger.info('start to merge pdfs')
         const mergedPdf = await mergePDFs([pcPdf, machineryInfoPdf]);
+        logger.info('done merging pdfs')
+        logger.info('start to save merged pdf')
         const mergedPdfBytes = await mergedPdf.save();
+        logger.info('done saving merged pdf')
+        logger.info('start to convert merged pdf to buffer')
         const mergedPdfBuffer = Buffer.from(mergedPdfBytes)
+        logger.info('done converting merged pdf to buffer')
+        logger.info('start to set headers')
         const today = new Date().toDateString();
         const filename =  `${machineryInfo?.trackingId}_${today}.pdf`
+        
 
         res.setHeader('content-type', 'application/pdf');
         res.setHeader('Content-Disposition', `attachment; filename=${filename}`);
+        logger.info('done setting headers')
         res.status(200).send(mergedPdfBuffer);
     } catch (err) {
         logger.error(err);

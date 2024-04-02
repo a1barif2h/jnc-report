@@ -4,7 +4,7 @@
     "bezaServicePort": "8585",
     "bezaServiceFrontEndBaseUrl": "http://122.152.48.180:30082",
     "bezaServiceFrontEndPort": "",
-    "bezaApplicationPdfServiceBaseUrl": "http://122.152.48.180:8201",
+    "bezaApplicationPdfServiceBaseUrl": "http://beza-pdf-service-staging:3050",
 
     "mayanCertificateUploadPath": "/beza-service/api/v1/internal/mayan/upload-document/",
 
