@@ -35,7 +35,7 @@ const generatePcApplicationFullPdf = async (req, res) => {
     const machineryData = await getMachenariesByApplicationID(applicationId);
     logger.info('done getting machinery info by application id %s', JSON.stringify(machineryData))
 
-    machineryInfo["additionOfMachinery"] = machineryData["additionOfMachinery"]
+    machineryInfo["formValue"]["additionOfMachinery"] = machineryData["additionOfMachinery"]
 
     logger.info('start to get machinery info pdf')
     const machineryInfoPdfBuffer = await pcApplication.generate(machineryInfo);
