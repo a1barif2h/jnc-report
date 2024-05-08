@@ -294,11 +294,11 @@ const getConvertedCurrencyValue = async (quantity, source, target) => {
 };
 
 const getPcApplicationPdf = async (reqData) => {
-  const applicationPdfServiceUrl = `${config.BEZA_APPLICATION_PDF_SERVICE}/application-pdf-service/api/v1/internal/generate-pdf`
+  const applicationPdfServiceUrl = `${config.BEZA_APPLICATION_PDF_SERVICE}/application-pdf-service/api/v1/internal/generate-${reqData?.isAmendmentHistory ? 'history' : 'pdf'}`
   logger.info(`applicationPdfServiceUrl: ${applicationPdfServiceUrl}`)
-  
+
   try {
-    const {data} = await axios.post(applicationPdfServiceUrl,reqData, {responseType: 'arraybuffer'})
+    const { data } = await axios.post(applicationPdfServiceUrl, reqData, { responseType: 'arraybuffer' })
     return data
   } catch (error) {
     logger.error(error)
