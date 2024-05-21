@@ -242,6 +242,8 @@ const getPaymentVoucherInfo = async ({ applicationId }) => {
     config.BEZA_SERVICE_PAYMENT_VOUCHER_PATH +
     applicationId;
 
+    logger.info(`URL to get payment voucher info: ${url}`);
+
   const generateBarcode = async (text) => {
     JsBarcode(svgNode, text, {
       xmlDocument: document,
