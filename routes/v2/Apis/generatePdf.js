@@ -50,7 +50,7 @@ const generatePdf = async (req, res, next) => {
         const response = await getFormValueByApplicationID(req.body.applicationId)
             .then(async (res) => {
                 logger.info(
-                    "Request success, application tracking id: %s, %o",
+                    "Request success, application tracking id: %s",
                     res.trackingId
                 );
                 const appId = encrypt("" + req.body.applicationId);

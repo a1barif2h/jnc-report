@@ -26,7 +26,7 @@ class PaymentVoucher {
     body.downloadTime = getFormatDateWithTime(new Date());
     body.utils = ejsUtils;
 
-    logger.info("paymentInfo %o", body);
+    logger.info("paymentInfo: %s", JSON.stringify(body));
 
     if (!body.applicationFee) {
       //This application fee comes from payment initiator info which is not present for legacy applications

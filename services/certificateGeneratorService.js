@@ -65,7 +65,7 @@ const generateCertificate = async (req) => {
     .getFormValueByApplicationID(req.body.applicationId)
     .then(async (res) => {
       logger.info(
-        "Request success, application tracking id: %s, %o",
+        "Request success, application tracking id: %s",
         res.trackingId
       );
       const appId = encryption.encrypt("" + req.body.applicationId);

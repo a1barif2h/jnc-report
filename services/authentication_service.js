@@ -4,10 +4,10 @@ const { config } = require('../config/config');
 const logger = require('../util/logger');
 
 async function authenticate(req, res, next) {
-    logger.info("Have access token? 🤔")
+    logger.info("Have access token?")
     const accessToken = req.headers.authorization;
     if(accessToken) {
-        logger.info("YES 😀")
+        logger.info("YES")
 
         const keyckloakUserInfoUrl = config.KEYCLOAK_BASE_URL + ":" + config.KEYCLOAK_PORT + config.KEYCLOAK_USER_INFO_PATH;
 
@@ -21,11 +21,11 @@ async function authenticate(req, res, next) {
             },
         };
 
-        logger.info("Access Token Checking...🫣")
+        logger.info("Access Token Checking...")
 
         const response = await axios(options)
                             .then(res => {
-                                logger.info("Token Accept 😀")
+                                logger.info("Token Accept")
                                 logger.info("User info: %o", {
                                     name: res.data.name,
                                     userId: res.data.sub,
@@ -34,7 +34,7 @@ async function authenticate(req, res, next) {
                                 return res;
                             })
                             .catch(err => {
-                                logger.error('Invalid token: 🤬');
+                                logger.error('Invalid token:');
                                 logger.error(err);
                                 return err.response;
                             });
@@ -43,7 +43,7 @@ async function authenticate(req, res, next) {
             next();
         } else {
             // there is no token, don't process request further
-            logger.error(`Unauthorized user 😡`)
+            logger.error(`Unauthorized user`)
             res.status(401).json({
                 message: `unauthorized user`,
             });
@@ -51,8 +51,8 @@ async function authenticate(req, res, next) {
     }
     else {
     // there is no token, don't process request further
-    logger.info("NO 😱")
-    logger.error("Unauthorized user 😡")
+    logger.info("NO")
+    logger.error("Unauthorized user")
     res.status(401).json({
         message: `Unauthorized user`,
       });
