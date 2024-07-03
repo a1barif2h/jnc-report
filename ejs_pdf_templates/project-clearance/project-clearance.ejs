@@ -1,262 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
 
-      .container {
-        margin: 0rem auto;
-        padding: 15px 55px 30px 55px;
-        font-size: 13px;
-      }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      .header-content {
-        font-weight: 600;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+    .container {
+      margin: 0rem auto;
+      padding: 15px 55px 30px 55px;
+      font-size: 13px;
+    }
 
-      .applicant-info {
-        padding: 0.8rem 0rem;
-        font-weight: 600;
-        line-height: 1.4;
-      }
+    .header-content {
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-      .subject {
-        font-weight: 600;
-        font-size: 13.5px;
-      }
+    .applicant-info {
+      padding: 0.8rem 0rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
 
-      .main-content {
-        margin: 1rem 0rem;
-        line-height: 1.4;
-        text-align: justify;
-      }
+    .subject {
+      font-weight: 600;
+      font-size: 13.5px;
+    }
 
-      .reciver {
-        margin: 1rem 0rem 0.5rem 0rem;
-      }
+    .main-content {
+      margin: 1rem 0rem;
+      line-height: 1.4;
+      text-align: justify;
+    }
 
-      .conditions-part-1 {
-        list-style-type: decimal-leading-zero;
-        line-height: 1.4;
-        margin: 1rem 0rem 0rem 1.5rem;
-      }
+    .reciver {
+      margin: 1rem 0rem 0.5rem 0rem;
+    }
 
-      .conditions-part-1 li {
-        margin-bottom: 0.5rem;
-      }
+    .conditions-part-1 {
+      list-style-type: decimal-leading-zero;
+      line-height: 1.4;
+      margin: 1rem 0rem 0rem 1.5rem;
+    }
 
-      footer {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        width: 100%;
-        margin-top: 1.55rem;
-        overflow: auto;
-      }
+    .conditions-part-1 li {
+      margin-bottom: 0.5rem;
+    }
 
-      footer .footer-items1 {
-        width: 30%;
-        text-align: center;
-      }
-      footer .footer-items1 img {
-        width: 50%;
-      }
+    footer {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 1.55rem;
+      overflow: auto;
+    }
 
-      footer .footer-items1 .copy-for {
-        text-align: left;
-        line-height: 1.8;
-      }
-      footer .footer-items2 {
-        width: 20%;
-        text-align: center;
-      }
-      footer .footer-items3 {
-        width: 40%;
-        text-align: center;
-      }
+    footer .footer-items1 {
+      width: 30%;
+      text-align: center;
+    }
 
-      footer .footer-items3 img {
-        width: 60%;
-      }
+    footer .footer-items1 img {
+      width: 50%;
+    }
 
-      .table-section {
-        margin-top: 2rem;
-      }
+    footer .footer-items1 .copy-for {
+      text-align: left;
+      line-height: 1.8;
+    }
 
-      table.GeneratedTable {
-        width: 100%;
-        background-color: transparent;
-        border-collapse: collapse;
-        margin: 0 auto !important;
-        border: 1px solid rgba(53, 62, 108, 0.1) !important;
-        border-radius: 4px !important;
-        font-size: 12px;
-      }
+    footer .footer-items2 {
+      width: 20%;
+      text-align: center;
+    }
 
-      table.GeneratedTable td,
-      table.GeneratedTable th {
-        border: 1px solid rgba(53, 62, 108, 0.1) !important;
-      }
+    footer .footer-items3 {
+      width: 40%;
+      text-align: center;
+    }
 
-      table.GeneratedTable thead {
-        background-color: transparent;
-      }
+    footer .footer-items3 img {
+      width: 60%;
+    }
 
-      /* customize table */
+    .table-section {
+      margin-top: 2rem;
+    }
 
-      .second-page {
-        margin-top: 2.5rem;
-      }
+    table.GeneratedTable {
+      width: 100%;
+      background-color: transparent;
+      border-collapse: collapse;
+      margin: 0 auto !important;
+      border: 1px solid rgba(53, 62, 108, 0.1) !important;
+      border-radius: 4px !important;
+      font-size: 12px;
+    }
 
-      .child-td {
-        padding: 0rem !important;
-        border: none !important;
-      }
+    table.GeneratedTable td,
+    table.GeneratedTable th {
+      border: 1px solid rgba(53, 62, 108, 0.1) !important;
+    }
 
-      .child-td tr {
-        text-align: center;
-      }
+    table.GeneratedTable thead {
+      background-color: transparent;
+    }
 
-      .child-tbody td {
-        padding: 1rem 0rem !important;
-      }
+    /* customize table */
 
-      th {
-        padding: 1px 2px;
-        text-align: left;
-        background-color: #353e6c0d !important;
-        color: #353e6c !important;
-        font-weight: 700 !important;
-      }
+    .second-page {
+      margin-top: 2.5rem;
+    }
 
-      td {
-        padding: 1px 2px;
-        font-weight: 500 !important;
-        color: #353e6c !important;
-        page-break-inside: avoid !important;
-      }
+    .child-td {
+      padding: 0rem !important;
+      border: none !important;
+    }
 
-      .first-th {
-        width: 30% !important;
-      }
+    .child-td tr {
+      text-align: center;
+    }
 
-      .second-th {
-        width: 15% !important;
-      }
+    .child-tbody td {
+      padding: 1rem 0rem !important;
+    }
 
-      .third-th {
-        width: 20% !important;
-      }
+    th {
+      padding: 1px 2px;
+      text-align: left;
+      background-color: #353e6c0d !important;
+      color: #353e6c !important;
+      font-weight: 700 !important;
+    }
 
-      .fourth-th {
-        width: 10% !important;
-      }
+    td {
+      padding: 1px 2px;
+      font-weight: 500 !important;
+      color: #353e6c !important;
+      page-break-inside: avoid !important;
+    }
 
-      .fifth-th {
-        width: 5% !important;
-      }
+    .first-th {
+      width: 30% !important;
+    }
 
-      .sixth-th {
-        width: 5% !important;
-      }
+    .second-th {
+      width: 15% !important;
+    }
 
-      .first-td {
-        text-align: center;
-        line-height: 2;
-      }
+    .third-th {
+      width: 20% !important;
+    }
 
-      .first-th-an1 {
-        width: 34% !important;
-      }
+    .fourth-th {
+      width: 10% !important;
+    }
 
-      .second-th-an2 {
-        width: 33% !important;
-      }
+    .fifth-th {
+      width: 5% !important;
+    }
 
-      .third-th-an3 {
-        width: 33% !important;
-      }
+    .sixth-th {
+      width: 5% !important;
+    }
 
-      .annexure-table-headers {
-        height: 30px;
-        background-color: #353e6c;
-        color: #ffffff;
-        border-radius: 4px;
-        width: 100%;
-        line-height: 29px;
-        font-weight: 400;
-        padding-left: 8px;
-        margin-bottom: 8px;
-      }
+    .first-td {
+      text-align: center;
+      line-height: 2;
+    }
 
-      .annexure-th {
-        background-color: #353e6c0d;
-        color: #353e6c;
-        font-weight: 700;
-        line-height: 16px;
-      }
+    .first-th-an1 {
+      width: 34% !important;
+    }
 
-      .annexure-1-margin {
-        margin-bottom: 1rem !important;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <div class="header-content">
+    .second-th-an2 {
+      width: 33% !important;
+    }
+
+    .third-th-an3 {
+      width: 33% !important;
+    }
+
+    .annexure-table-headers {
+      height: 30px;
+      background-color: #353e6c;
+      color: #ffffff;
+      border-radius: 4px;
+      width: 100%;
+      line-height: 29px;
+      font-weight: 400;
+      padding-left: 8px;
+      margin-bottom: 8px;
+    }
+
+    .annexure-th {
+      background-color: #353e6c0d;
+      color: #353e6c;
+      font-weight: 700;
+      line-height: 16px;
+    }
+
+    .annexure-1-margin {
+      margin-bottom: 1rem !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <p>
+          Tracking No: <%= formValue.utils.parseFormValue(formValue.trackingId) %>
+        </p>
+        <div>
           <p>
-            Tracking No: <%=
-            formValue.utils.parseFormValue(formValue.trackingId) %>
+            Date: <%= formValue.utils.parseFormValue(formValue.certificateGenerateDate) %>
           </p>
-          <div>
-            <p>
-              Date: <%=
-              formValue.utils.parseFormValue(formValue.certificateGenerateDate)
-              %>
-            </p>
-            <p>
-              <%= formValue.utils.parseFormValue(formValue.lastAmendmentDate) %>
-            </p>
-          </div>
+          <p>
+            <%= formValue.utils.parseFormValue(formValue.lastAmendmentDate) %>
+          </p>
         </div>
-      </header>
-      <section class="applicant-info">
-        <p>Managing Director/ CEO</p>
-        <p>
-          <%=
-          formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)
-          %>
-        </p>
-        <p><%= formValue.utils.parseFormValue(formValue.plotAddress) %></p>
-        <p>
-          <%= formValue.utils.parseFormValue(formValue.economicZoneAddress) %>
-        </p>
-      </section>
-      <article class="subject">
-        <p>
-          Subject: Approval for setting up a(n) <% if(formValue &&
-          formValue?.typeOfBusinessIndustryOrServices &&
-          Array.isArray(formValue?.typeOfBusinessIndustryOrServices)) {%> <%=
-          formValue?.typeOfBusinessIndustryOrServices?.join(', ') %> <%} else
+      </div>
+    </header>
+    <section class="applicant-info">
+      <p>Managing Director/ CEO</p>
+      <p>
+        <%= formValue.utils.parseFormValue(formValue.proposedProjectCompanyName) %>
+      </p>
+      <p>
+        <%= formValue.utils.parseFormValue(formValue.plotAddress) %>
+      </p>
+      <p>
+        <%= formValue.utils.parseFormValue(formValue.economicZoneAddress) %>
+      </p>
+    </section>
+    <article class="subject">
+      <p>
+        Subject: Approval for setting up a(n) <% if(formValue && formValue?.typeOfBusinessIndustryOrServices &&
+          Array.isArray(formValue?.typeOfBusinessIndustryOrServices)) {%>
+          <%= formValue?.typeOfBusinessIndustryOrServices?.join(', ') %> <%} else
           {%> <%=
           formValue.utils.parseFormValue(formValue.typeOfBusinessIndustryOrServices)
           %> <%}%> in <%= formValue.utils.parseFormValue(formValue.economicZone)
@@ -463,7 +464,7 @@
           <li>This permission is not transferable.</li>
           <li>
             This permission is valid until expiration of the License awarded by
-            Bangladesh Economic Zones Authority to .
+            Bangladesh Economic Zones Authority.
           </li>
           <li>
             If you agree with the terms and conditions contained in this letter
