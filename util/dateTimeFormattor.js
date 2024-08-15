@@ -83,7 +83,7 @@ const changeDateFormat = (formValue, key) => {
       formValue[key] =  formatDate !== "Invalid date" && !isNaN(new Date(formatDate)) ? formatDate : formValue[key]
     }
     logger.info(`after format: ${key} = ${formValue[key]}`);
-  }
+}
 
 module.exports = {
     getCurrentFormattedDateTime,
