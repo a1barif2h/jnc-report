@@ -14,6 +14,7 @@ class ImportPermit {
     //DATE TIME FORMAT: 13 August 2022
     changeDateFormat(formValue, "startDateBeza");
     changeDateFormat(formValue, "applicationDate");
+    changeDateFormat(formValue, "desireEffectiveDateOfCancelation");
   }
 
   checkIsNeedThousandsSeparator(formValue) {

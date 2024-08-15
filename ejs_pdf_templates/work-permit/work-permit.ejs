@@ -219,7 +219,7 @@
         </div>
         <div>
           <p>
-            Date: <%=
+            Approval Date: <%=
             formValue.utils.parseFormValue(formValue.certificateGenerateDate )%>
           </p>
           <p>
@@ -229,8 +229,9 @@
             <%= formValue.utils.parseFormValue(formValue.cancellationDate )%>
           </p>
           <p>
-            Work Permit Type: <%=
-            formValue.utils.parseFormValue(formValue.workPermitType )%>
+            Work Permit Type: Cancellation
+            <!-- <%=
+            formValue.utils.parseFormValue(formValue.workPermitType )%> -->
           </p>
         </div>
       </div>
@@ -270,7 +271,7 @@
                 Name, Designation <br />
                 Nationality and Passport No
               </th>
-              <th class="second-th">Period of Work Permit</th>
+              <th class="second-th">Effectiveness</th>
               <th class="third-th">Remuneration</th>
             </tr>
           </thead>
@@ -290,10 +291,10 @@
                 <%= formValue.utils.parseFormValue(formValue.passport1 )%>
               </td>
               <td>
+                Effective date of Cancellation is
                 <%=
-                formValue.utils.parseFormValue(formValue.desiredDurationWithDetails
-                )%> (with effect from: <%=
-                formValue.utils.parseFormValue(formValue.startDateBeza )%>)
+                formValue.utils.parseFormValue(formValue.desireEffectiveDateOfCancelation
+                )%>
               </td>
               <td class="child-td">
                 <table class="GeneratedTable">
