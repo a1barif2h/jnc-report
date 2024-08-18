@@ -6,14 +6,16 @@ const ejsUtils = require("../util/ejsUtils");
 const { CARRIER_TYPE } = require("../constants/const");
 const { changeDateFormat } = require("../util/dateTimeFormattor");
 const { numberWithCommas } = require("../util/amountToWordUtil");
+const logger = require("../util/logger");
 
-class ImportPermit {
+class WorkPermit {
   constructor() {}
 
   handleDateTimeFormat(formValue) {
     //DATE TIME FORMAT: 13 August 2022
     changeDateFormat(formValue, "startDateBeza");
     changeDateFormat(formValue, "applicationDate");
+    changeDateFormat(formValue, "desireEffectiveDateOfCancelation");
   }
 
   checkIsNeedThousandsSeparator(formValue) {
@@ -43,10 +45,13 @@ class ImportPermit {
   }
 
   async generate(body) {
+    logger.warn(body?.isCancellation)
     this.handleDateTimeFormat(body.formValue);
     if (this.checkIsNeedThousandsSeparator(body.formValue)) {
       this.handleAmountThousandsSeparator(body.formValue);
     }
+
+    body.formValue.isCancellation = body?.isCancellation || false;
 
     body.formValue.plotAddress = body.formValue?.plotAddress
       ? `<b>Plot# ${body.formValue?.plotAddress}</b>`
@@ -93,4 +98,4 @@ class ImportPermit {
   }
 }
 
-module.exports = ImportPermit;
+module.exports = WorkPermit;
