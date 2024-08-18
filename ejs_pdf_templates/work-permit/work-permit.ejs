@@ -230,10 +230,9 @@
         <p>
           Work Permit Type: <% if(formValue?.isCancellation){%>
             Cancellation
-          <%}else{%>
-            <%=
-            formValue.utils.parseFormValue(formValue.workPermitType )%>
-          <%}%>
+            <%}else{%>
+              <%= formValue.utils.parseFormValue(formValue.workPermitType )%>
+                <%}%>
         </p>
       </div>
     </div>
@@ -271,7 +270,9 @@
               Name, Designation <br />
               Nationality and Passport No
             </th>
-            <th class="second-th"><% if(formValue?.isCancellation){ %>Effectiveness <% }else{ %> Period of Work Permit <% } %></th>
+            <th class="second-th">
+              <% if(formValue?.isCancellation){ %>Effectiveness <% }else{ %> Period of Work Permit <% } %>
+            </th>
             <th class="third-th">Remuneration</th>
           </tr>
         </thead>
@@ -286,7 +287,11 @@
             </td>
             <td>
               <% if(formValue?.isCancellation){ %> Effective date of Cancellation is
-                <%= formValue.utils.parseFormValue(formValue.desireEffectiveDateOfCancelation )%> <% }else{ formValue.utils.parseFormValue(formValue.passport1 ) } %>
+                <%= formValue.utils.parseFormValue(formValue.desireEffectiveDateOfCancelation )%>
+                  <% }else{%>
+                    <%= formValue.utils.parseFormValue(formValue.desiredDurationWithDetails )%> (with effect from: <%=
+                        formValue.utils.parseFormValue(formValue.startDateBeza )%>)
+                        <%} %>
             </td>
             <td class="child-td">
               <table class="GeneratedTable">
