@@ -194,32 +194,37 @@
           </p>
         </div>
         <div class="left">
-          <div>
-            <small>Name of the Economic Zone:</small>
-            <p><%= formValue.utils.parseFormValue(formValue.economicZone) %></p>
+          <div style="width: 100%;">
+            <small style="width: 30%;">Name of the Economic Zone</small>
+            <div style="width: 5%;">:</div>
+            <p style="width: 65%;"><%= formValue.utils.parseFormValue(formValue.economicZone) %></p>
           </div>
-          <div>
-            <small>Plot Number:</small>
-            <p><%= formValue.utils.parseFormValue(formValue.plotAddress) %></p>
+          <div style="width: 100%;">
+            <small style="width: 30%;">Plot Number</small>
+            <div style="width: 5%;">:</div>
+            <p style="width: 65%;"><%= formValue.utils.parseFormValue(formValue.plotAddress) %></p>
           </div>
-          <div>
-            <small>Land Area(sqm):</small>
-            <p>
+          <div style="width: 100%;">
+            <small style="width: 30%;">Land Area(sqm)</small>
+            <div style="width: 5%;">:</div>
+            <p style="width: 65%;">
               <%=
               formValue.utils.parseFormValue(formValue.agreedLandByDevelopersSqm)
               %>
             </p>
           </div>
-          <div>
-            <small>Building Area(sqm):</small>
-            <p>
+          <div style="width: 100%;">
+            <small style="width: 30%;">Building Area(sqm)</small>
+            <div style="width: 5%;">:</div>
+            <p style="width: 65%;">
               <%= formValue.utils.parseFormValue(formValue.hiddenBuildingArea)
               %>
             </p>
           </div>
-          <div>
-            <small>Total Floor Area(sqm):</small>
-            <p>
+          <div style="width: 100%;">
+            <small style="width: 30%;">Total Floor Area(sqm)</small>
+            <div style="width: 5%;">:</div>
+            <p style="width: 65%;">
               <%= formValue.utils.parseFormValue(formValue.hiddenTotalFloorArea)
               %>
             </p>

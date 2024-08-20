@@ -282,65 +282,109 @@
         </p>
         <ol type="1" class="conditions-part-1">
           <li>
-            Name of the project:
-            <b
-              ><%=
-              formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)
-              %></b
-            >
+            <div style="display: flex;">
+              <div style="width: 30%;">Name of the project</div>
+              <div style="width: 5%;">:</div>
+              <b
+                ><%=
+                formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)
+                %></b
+              >
+            </div>
           </li>
           <li>
-            Products: <%=
-            formValue.utils.parseFormValue(formValue.aNameDescriptionOfTheProductS)
-            %>
+            <div style="display: flex;">
+              <div style="width: 30%;">Products</div>
+              <div style="width: 5%;">:</div>
+              <%=
+              formValue.utils.parseFormValue(formValue.aNameDescriptionOfTheProductS)
+              %>
+            </div>
           </li>
           <li>
-            Cost of the project:
-            <b
-              ><%=
-              formValue.utils.parseFormValue(formValue.dCostOfTheProjectInUs) %>
-              Million USD</b
-            >
+            <div style="display: flex;">
+              <div style="width: 30%;">Cost of the project</div>
+              <div style="width: 5%;">:</div>
+              <b
+                ><%=
+                formValue.utils.parseFormValue(formValue.dCostOfTheProjectInUs) %>
+                Million USD</b
+              >
+            </div>
           </li>
           <li>
-            Type of Investment: <%=
-            formValue.utils.parseFormValue(formValue.hiddenExportValue) %>%
-            Export Orient<br /><span style="margin-left: 108px"
-              ><%= formValue.utils.parseFormValue(formValue.hiddenDomesticValue)
-              %>% Domestic Orient</span
-            >
+            <div style="display: flex;">
+              <div style="width: 30%;">Type of Investment:</div>
+              <div style="width: 5%;">:</div>
+              <div style="width: 65%;"><%= formValue.utils.parseFormValue(formValue.hiddenExportValue
+                ) %>% Export Orient<br /><%=
+                formValue.utils.parseFormValue(formValue. hiddenDomesticValue
+                ) %>% Domestic Orient</div>
+            </div>
           </li>
           <li>
-            Type of Industry: <%=
-            formValue.utils.parseFormValue(formValue.typeOfIndustry) %>
+            <div style="display: flex; width: 100%;">
+              <div style="width: 30%;">Type of Industry</div>
+              <div style="width: 5%;">:</div>
+              <div style="width: 65%;">
+                <%=
+                formValue.utils.parseFormValue(formValue.typeOfIndustry) %>
+              </div>
+            </div>
           </li>
           <li>
-            Annual production capacity: <%=
-            formValue.utils.parseFormValue(formValue.productionCapacityHidden)
-            %>
+            <div style="display: flex; width: 100%;">
+              <div style="width: 30%;">Annual production capacity</div>
+              <div style="width: 5%;">:</div>
+              <div style="width: 65%;">
+                <%=
+                formValue.utils.parseFormValue(formValue.productionCapacityHidden)
+                %>
+              </div>  
+            </div>
           </li>
           <li>
-            Employment: <%=
-            formValue.utils.parseFormValue(formValue.grandTotalSummation) %>
-            persons including <%=
-            formValue.utils.parseFormValue(formValue.foreigenTotalSummation) %>
-            foreign nationals
+            <div style="display: flex; width: 100%;">
+              <div style="width: 30%;">Employment</div>
+              <div style="width: 5%;">:</div>
+              <div style="width: 65%;">
+                <%=
+                formValue.utils.parseFormValue(formValue.grandTotalSummation) %>
+                persons including <%=
+                formValue.utils.parseFormValue(formValue.foreigenTotalSummation) %>
+                foreign nationals
+              </div>
+            </div>
           </li>
           <li>
-            Status of the Company: <%=
-            formValue.utils.parseFormValue(formValue.typeOfOrganization) %>
+            <div style="display: flex; width: 100%;">
+              <div style="width: 30%;">Status of the Company</div>
+              <div style="width: 5%;">:</div>
+              <div style="width: 65%;">
+                <%=
+                formValue.utils.parseFormValue(formValue.typeOfOrganization) %>
+              </div>
+            </div>
           </li>
           <li>
-            Manufacturing Process: <%=
-            formValue.utils.parseFormValue(formValue.cManufacturingProcess) %>
+            <div style="display: flex; width: 100%;">
+              <div style="width: 30%;">Manufacturing Process</div>
+              <div style="width: 5%;">:</div>
+              <div style="width: 65%;"><%=
+                formValue.utils.parseFormValue(formValue.cManufacturingProcess) %></div>
+            </div>
           </li>
           <!-- textField52 is for area -->
           <li>
-            Area of land/SFB to be allotted: <%=
-            formValue.utils.parseFormValue(formValue.agreedLandByDevelopersSqm)
-            %> Square Meters plot in <%=
-            formValue.utils.parseFormValue(formValue.plotAddress) %> at <%=
-            formValue.utils.parseFormValue(formValue.specifyAreaOfMouza) %>
+            <div style="display: flex; width: 100%;">
+              <div style="width: 30%;">Area of land/SFB to be allotted</div>
+              <div style="width: 5%;">:</div>
+              <div style="width: 65%;"><%=
+                formValue.utils.parseFormValue(formValue.agreedLandByDevelopersSqm)
+                %> Square Meters plot in <%=
+                formValue.utils.parseFormValue(formValue.plotAddress) %> at <%=
+                formValue.utils.parseFormValue(formValue.specifyAreaOfMouza) %></div>
+            </div>
           </li>
           <!-- localTotal4 is for Local Machineries and Equipment -->
           <li>
