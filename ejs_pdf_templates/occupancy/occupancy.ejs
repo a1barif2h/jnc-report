@@ -55,13 +55,16 @@
 
     }
 
-    .application-info p {
+    .application-info div {
       font-size: 11.5px;
     }
 
     .application-info {
-      width: 50%;
+      width: 100%;
       line-height: 1.8;
+    }
+    .application-info div{
+      display: flex;
     }
 
     .application-info b {
@@ -171,21 +174,39 @@
         </div>
       </div>
       <div class="application-info">
-        <p>Building Permit No: <%= formValue.utils.parseFormValue(formValue.approvalNoBuildingPermit)%>
-        </p>
-        <p>Approval Building Permit Date: <%= formValue.utils.parseFormValue(formValue.approvalNoOfBuildingPermitDate)%>
-        </p>
-        <p>Effectiveness Certificate No: <%=
-            formValue.utils.parseFormValue(formValue.approvalNoOfFireFightingFloorPlanApprovalCertificate)%>
-        </p>
-        <p>Effectiveness Certificate Date: <%=
-            formValue.utils.parseFormValue(formValue.approvalNoOfFireFightingFloorPlanApprovalCertificateDate)%>
-        </p>
-        <p>Environmental Certificate No: <%= formValue.utils.parseFormValue(formValue.approvalNoOfTorForEia)%>
-        </p>
-        <p>Approval Environmental Certificate Date: <%=
-            formValue.utils.parseFormValue(formValue.approvalNoOfTorForEiaDate)%>
-        </p>
+        <div>
+          <div style="width: 30%;">Building Permit No</div>
+          <div style="width: 5%;">:</div> 
+          <div style="width: 65%;"><%= formValue.utils.parseFormValue(formValue.approvalNoBuildingPermit)%></div> 
+        </div>
+        <div>
+          <div style="width: 30%;">Approval Building Permit Date</div>
+          <div style="width: 5%;">:</div> 
+          <div style="width: 65%;"><%= formValue.utils.parseFormValue(formValue.approvalNoOfBuildingPermitDate)%></div> 
+        </div>
+        <div>
+          <div style="width: 30%;">Effectiveness Certificate No</div>
+          <div style="width: 5%;">:</div> 
+          <div style="width: 65%;"><%=
+            formValue.utils.parseFormValue(formValue.approvalNoOfFireFightingFloorPlanApprovalCertificate)%></div> 
+        </div>
+        <div>
+          <div style="width: 30%;">Effectiveness Certificate Date</div>
+          <div style="width: 5%;">:</div> 
+          <div style="width: 65%;"><%=
+            formValue.utils.parseFormValue(formValue.approvalNoOfFireFightingFloorPlanApprovalCertificateDate)%></div> 
+        </div>
+        <div>
+          <div style="width: 30%;">Environmental Certificate No</div>
+          <div style="width: 5%;">:</div> 
+          <div style="width: 65%;"><%= formValue.utils.parseFormValue(formValue.approvalNoOfTorForEia)%></div> 
+        </div>
+        <div>
+          <div style="width: 30%;">Approval Environmental Certificate Date</div>
+          <div style="width: 5%;">:</div> 
+          <div style="width: 65%;"><%=
+            formValue.utils.parseFormValue(formValue.approvalNoOfTorForEiaDate)%></div> 
+        </div>
       </div>
       <div class="application-subject">
         <b>Attention: <%= formValue.utils.parseFormValue(formValue.proposedProjectCompanyName)%></b>
@@ -210,31 +231,53 @@
         <b>1. Terms and conditions for approval:</b>
         <li>i. The certificate shall be valid only for the following building:</li>
         <div class="terms-condition">
-          <small> a) Name of Economic Zone : <%= formValue.utils.parseFormValue(formValue.economicZone)%></small>
-          <small> b) Plot Number : <%= formValue.utils.parseFormValue(formValue.plotAddress)%></small>
+          <div style="display: flex;">
+            <div style="width: 33%;"><small>a) Name of Economic Zone</small></div>
+            <div style="width: 5%;"><small>:</small></div>
+            <div style="width: 62%;"><small><%= formValue.utils.parseFormValue(formValue.economicZone)%></small></div>
+          </div>
+          <div style="display: flex;">
+            <div style="width: 33%;"><small>b) Plot Number</small></div>
+            <div style="width: 5%;"><small>:</small></div>
+            <div style="width: 62%;"><small><%= formValue.utils.parseFormValue(formValue.plotAddress)%></small></div>
+          </div>
           <small> c) Building Information:</small>
           <div class="building-information">
-            <small>
-              1) Land Area(sqm): <%= formValue.utils.parseFormValue(formValue.landArea)%>
-            </small>
-            <small>
-              2) Maximum Ground Clearance (M.G.C) : <%= formValue.utils.parseFormValue(formValue.buildingArea)%>
-            </small>
-            <small>
-              3) Total built Area(sqm) : <%= formValue.utils.parseFormValue(formValue.totalFloorArea)%>
-            </small>
-            <small>
-              4) Nature of Facility : <%= formValue.utils.parseFormValue(formValue.natureOfFacility)%>
-            </small>
-            <small>
-              5) Kind of Construction : <%= formValue.utils.parseFormValue(formValue.kindOfConstruction)%>
-            </small>
-            <small>
-              6) Major Structure /storey: <%= formValue.utils.parseFormValue(formValue.majorStructure)%>
-            </small>
-            <small>
-              7) Number of Building : <%= formValue.utils.parseFormValue(formValue.numberOfBuilding)%>
-            </small>
+            <div style="display: flex;">
+              <div style="width: 32%;"><small>1) Land Area(sqm)</small></div>
+              <div style="width: 5%;"><small>:</small></div>
+              <div style="width: 63%;"><small><%= formValue.utils.parseFormValue(formValue.landArea)%></small></div>
+            </div>
+            <div style="display: flex;">
+              <div style="width: 32%;"><small>2) Maximum Ground Clearance (M.G.C)</small></div>
+              <div style="width: 5%;"><small>:</small></div>
+              <div style="width: 63%;"><small><%= formValue.utils.parseFormValue(formValue.buildingArea)%></small></div>
+            </div>
+            <div style="display: flex;">
+              <div style="width: 32%;"><small>3) Total built Area(sqm)</small></div>
+              <div style="width: 5%;"><small>:</small></div>
+              <div style="width: 63%;"><small><%= formValue.utils.parseFormValue(formValue.totalFloorArea)%></small></div>
+            </div>
+            <div style="display: flex;">
+              <div style="width: 32%;"><small>4) Nature of Facility </small></div>
+              <div style="width: 5%;"><small>:</small></div>
+              <div style="width: 63%;"><small><%= formValue.utils.parseFormValue(formValue.natureOfFacility)%></small></div>
+            </div>
+            <div style="display: flex;">
+              <div style="width: 32%;"><small>5) Kind of Construction </small></div>
+              <div style="width: 5%;"><small>:</small></div>
+              <div style="width: 63%;"><small><%= formValue.utils.parseFormValue(formValue.kindOfConstruction)%></small></div>
+            </div>
+            <div style="display: flex;">
+              <div style="width: 32%;"><small>6) Major Structure /storey</small></div>
+              <div style="width: 5%;"><small>:</small></div>
+              <div style="width: 63%;"><small><%= formValue.utils.parseFormValue(formValue.majorStructure)%></small></div>
+            </div>
+            <div style="display: flex;">
+              <div style="width: 32%;"><small>7) Number of Building</small></div>
+              <div style="width: 5%;"><small>:</small></div>
+              <div style="width: 63%;"><small><%= formValue.utils.parseFormValue(formValue.numberOfBuilding)%></small></div>
+            </div>
           </div>
         </div>
         <li>ii. In case you make any modification by adding/extending/reducing or in any other form to the approved
