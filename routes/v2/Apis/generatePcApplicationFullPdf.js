@@ -22,9 +22,10 @@ const mergePDFs = async (pdfs) => {
 };
 
 const generatePcApplicationFullPdf = async (req, res) => {
-  const pcApplication = new PcApplication();
-  const machineryInfo = req.body;
-  const applicationId = machineryInfo?.applicationId;
+  const pcApplication       = new PcApplication();
+  const machineryInfo       = req.body;
+  const applicationId       = machineryInfo?.applicationId;
+  const parentApplicationId = machineryInfo?.parentApplicationId;
 
   if (!applicationId) {
     return res.status(400).send('Application ID is required');
@@ -37,8 +38,22 @@ const generatePcApplicationFullPdf = async (req, res) => {
 
     machineryInfo["formValue"]["additionOfMachinery"] = machineryData["additionOfMachinery"]
 
+    
+
+    logger.info('start to get machinery info by parent application id')
+    const parentMachineryData = await getMachenariesByApplicationID(parentApplicationId);
+    logger.info('done getting machinery info by parent application id %s', JSON.stringify(parentMachineryData))
+
+    machineryInfo["formValue"]["parentAditionOfMachinery"] = parentMachineryData["additionOfMachinery"]
+
+    machineryInfo["formValue"]["isParentGenerating"] = false
     logger.info('start to get machinery info pdf')
     const machineryInfoPdfBuffer = await pcApplication.generate(machineryInfo);
+    logger.info('done machinery info pdf')
+
+    machineryInfo["formValue"]["isParentGenerating"] = true
+    logger.info('start to get parent machinery info pdf')
+    const parentMachineryInfoPdfBuffer = await pcApplication.generate(machineryInfo);
     logger.info('done machinery info pdf')
 
     logger.info('start to get main pdf')
@@ -49,14 +64,19 @@ const generatePcApplicationFullPdf = async (req, res) => {
     const machineryInfoPdf = await PDFDocument.load(machineryInfoPdfBuffer);
     logger.info('done load machinery info pdf')
 
+    logger.info('start to load parent machinery info pdf')
+    const parentMachineryInfoPdf = await PDFDocument.load(parentMachineryInfoPdfBuffer);
+    logger.info('done load parent machinery info pdf')
+
     logger.info('start to load main pdf')
     const pcPdf = await PDFDocument.load(pcPdfBuffer);
     logger.info('done load main pdf')
 
 
     logger.info('start to merge pdfs')
-    const mergedPdf = await mergePDFs([pcPdf, machineryInfoPdf]);
+    const mergedPdf = await mergePDFs([pcPdf, machineryInfoPdf, parentMachineryInfoPdf]);
     logger.info('done merging pdfs')
+    
 
     logger.info('start to save merged pdf')
     const mergedPdfBytes = await mergedPdf.save();
