@@ -81,7 +81,7 @@
         <p>Addition Of Machinery List</p>
       </div> -->
       <div class="sub-title">
-        <p>Annexure - 1</p>
+        <p>Annexure - <% if(formValue?.isParentGenerating) {%> 2 Parent Machinery Info <%} else {%> 1 <%}%></p>
       </div>
       <div class="header">
         <div class="img-container">
@@ -206,7 +206,8 @@
         </div>
 
         <div class="table">
-          <% formValue.additionOfMachinery.forEach(function (machinery) { %>
+
+          <% formValue[formValue?.isParentGenerating ? "parentAditionOfMachinery" : "additionOfMachinery"].forEach(function (machinery) { %>
 
           <div class="table_row">
             <div class="table_row_cell_width">
@@ -250,6 +251,8 @@
             </div>
           </div>
           <% }) %>
+          
+
         </div>
       </div>
     </div>

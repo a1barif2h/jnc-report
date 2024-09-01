@@ -50,6 +50,7 @@ const getMachenariesByApplicationID = async (applicationId) => {
   }
 };
 
+
 const upload = async (buffer, data, isProjectRegistration) => {
   const uploadUrl = getBaseUrl() + config.BEZA_SERVICE_MAYAN_UPLOAD_PATH;
 
