@@ -145,16 +145,18 @@
         <h1>Trade License Renew</h1>
       </div>
 
-      <div class="left">
+      <div class="left" style="width: 100%;">
         <div style="font-weight: bold">
-          <small>Name of Company:</small>
-          <p>
+          <small style="width: 30%;">Name of Company</small>
+          <div style="width: 5%;">:</div>
+          <p style="width: 65%;">
             <%= formValue.utils.parseFormValue(formValue.proposedProjectCompanyName) %>
           </p>
         </div>
         <div style="font-weight: bold">
-          <small>Name of the Economic Zone:</small>
-          <p>
+          <small style="width: 30%;">Name of the Economic Zone</small>
+          <div style="width: 5%;">:</div>
+          <p style="width: 65%;">
             <%= formValue.utils.parseFormValue(formValue.economicZone) %>
           </p>
         </div>
@@ -165,93 +167,104 @@
       </div>
 
       <div style="display: flex; width: 100%; padding: 0.2rem 0.8rem; margin-top: 0.8rem;">
-        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;">Plot No.:/ Dag No.(if
-          applicable):</div>
-        <div style="font-size: 12.5px;">
+        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content; width: 30%;">Plot No.:/ Dag No.(if
+          applicable)</div>
+          <div style="width: 5%;">:</div>
+        <div style="font-size: 12.5px; width: 65%;">
           <%= formValue.utils.parseFormValue(formValue.plotAddress) %>
         </div>
       </div>
 
       <div style="display: flex; width: 100%; padding: 0.2rem 0.8rem;">
-        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;">Mouza:</div>
-        <div style="font-size: 12.5px;">
+        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content; width: 30%;">Mouza</div>
+        <div style="width: 5%;">:</div>
+        <div style="font-size: 12.5px; width: 65%;">
           <%= formValue.utils.parseFormValue(formValue.specifyAreaOfMouza) %>
         </div>
       </div>
 
       <div style="display: flex; width: 100%; padding: 0.2rem 0.8rem;">
-        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;">District:</div>
-        <div style="font-size: 12.5px;">
+        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content; width: 30%;">District</div>
+        <div style="width: 5%;">:</div>
+        <div style="font-size: 12.5px; width: 65%;">
           <%= formValue.utils.parseFormValue(formValue.district2) %>
         </div>
       </div>
 
       <div style="display: flex; width: 100%; padding: 0.2rem 0.8rem;">
-        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;">Upozila:</div>
-        <div style="font-size: 12.5px;">
+        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content; width: 30%;">Upozila</div>
+        <div style="width: 5%;">:</div>
+        <div style="font-size: 12.5px;width: 65%;">
           <%= formValue.utils.parseFormValue(formValue.upazilla) %>
         </div>
       </div>
 
       <div style="display: flex; width: 100%; padding: 0.2rem 0.8rem;">
-        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;">Union Porishad:</div>
-        <div style="font-size: 12.5px;">
+        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;width: 30%;">Union Porishad</div>
+        <div style="width: 5%;">:</div>
+        <div style="font-size: 12.5px; width: 65%;">
           <%= formValue.utils.parseFormValue(formValue.unionParishad) %>
         </div>
       </div>
 
       <div style="display: flex; width: 100%; padding: 0.2rem 0.8rem;">
-        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;">Name:</div>
-        <div style="font-size: 12.5px;">
+        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content; width: 30%;">Name</div>
+        <div style="width: 5%;">:</div>
+        <div style="font-size: 12.5px; width: 65%;">
           <%= formValue.utils.parseFormValue(formValue.authorizedName) %>
         </div>
       </div>
 
       <div style="display: flex; width: 100%; padding: 0.2rem 0.8rem;">
-        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;">Position:</div>
-        <div style="font-size: 12.5px;">
+        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content; width: 30%;">Position</div>
+        <div style="width: 5%;">:</div>
+        <div style="font-size: 12.5px; width: 65%;">
           <%= formValue.utils.parseFormValue(formValue.authorizePosition) %>
         </div>
       </div>
 
       <div style="display: flex; width: 100%; padding: 0.2rem 0.8rem;">
-        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;">Nationality:</div>
-        <div style="font-size: 12.5px;">
+        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;width: 30%;">Nationality</div>
+        <div style="width: 5%;">:</div>
+        <div style="font-size: 12.5px;width: 65%;">
           <%= formValue.utils.parseFormValue(formValue.nationality) %>
         </div>
       </div>
 
       <div style="display: flex; width: 100%; padding: 0.2rem 0.8rem;">
-        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;">NID/ Passport No.:
+        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;width: 30%;">NID/ Passport No.
         </div>
-        <div style="font-size: 12.5px;">
+        <div style="width: 5%;">:</div>
+        <div style="font-size: 12.5px;width: 65%;">
           <%= formValue.utils.parseFormValue(formValue.passportNumber) %>
         </div>
       </div>
 
       <div style="display: flex; width: 100%; padding: 0.2rem 0.8rem;">
-        <div style="font-size: 12px; font-weight: bold; margin-right: 8px; min-width: max-content;">
-          Office Address:</div>
-        <div style="font-size: 12.5px;">
+        <div style="font-size: 12px; font-weight: bold; margin-right: 8px; min-width: max-content;width: 30%;">
+          Office Address</div>
+          <div style="width: 5%;">:</div>
+          <div style="font-size: 12.5px;width: 65%;">
           <%= formValue.utils.parseFormValue(formValue.officeAddress) %>
         </div>
       </div>
 
       <div style="display: flex; width: 100%; padding: 0.2rem 0.8rem;">
-        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;">Nature of Business:
+        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;width: 30%;">Nature of Business
         </div>
-        <div style="font-size: 12.5px;">
+        <div style="width: 5%;">:</div>
+        <div style="font-size: 12.5px;width: 65%;">
           <%= formValue.utils.parseFormValue(formValue.typeOfBusinessIndustryOrServices) %>
         </div>
       </div>
 
       <div style="display: flex; width: 100%; padding: 0.2rem 0.8rem;">
-        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;">Date of Expiry:</div>
-        <div style="font-size: 12.5px;">
-          <%= formValue.utils.parseFormValue(formValue.validTill) %>
+        <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;width: 30%;">First Issue Date</div>
+        <div style="width: 5%;">:</div>
+        <div style="font-size: 12.5px;width: 65%;">
+          <%= formValue.utils.parseFormValue(formValue.certificateGenerateDate) %>
         </div>
       </div>
-
 
       <div class="application-terms">
         <h3>Terms and Conditions:</h3>
