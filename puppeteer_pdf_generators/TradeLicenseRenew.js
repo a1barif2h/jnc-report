@@ -6,6 +6,7 @@ const { downloadAndConvertImage } = require("../util/downloadImageAndConvertInBa
 const { ejsRender } = require("../util/templateEngine");
 const ejsUtils = require('../util/ejsUtils');
 const { getCommonOptions } = require('../util/utils');
+const logger = require('../util/logger');
 
 // const options = {
 //   orientation: "portrait",
