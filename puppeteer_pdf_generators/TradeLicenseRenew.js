@@ -49,9 +49,6 @@ class TradeLicenseRenew {
     await this.getOwnerPhoto(body.formValue);
     this.handlePassportAndNidNo(body.formValue);
 
-    logger.info("Identyfier")
-    logger.info(JSON.stringify(body))
-
     body.formValue.utils = ejsUtils;
 
     const initialTemplate = fs.readFileSync(
