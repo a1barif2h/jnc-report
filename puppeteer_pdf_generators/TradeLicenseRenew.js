@@ -6,6 +6,7 @@ const { downloadAndConvertImage } = require("../util/downloadImageAndConvertInBa
 const { ejsRender } = require("../util/templateEngine");
 const ejsUtils = require('../util/ejsUtils');
 const { getCommonOptions } = require('../util/utils');
+const logger = require('../util/logger');
 
 // const options = {
 //   orientation: "portrait",
@@ -47,6 +48,9 @@ class TradeLicenseRenew {
     this.handleDateTimeFormat(body.formValue);
     await this.getOwnerPhoto(body.formValue);
     this.handlePassportAndNidNo(body.formValue);
+
+    logger.info("Identyfier")
+    logger.info(JSON.stringify(body))
 
     body.formValue.utils = ejsUtils;
 
