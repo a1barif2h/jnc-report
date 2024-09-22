@@ -262,7 +262,16 @@
         <div style="font-size: 12px; font-weight: bold; margin-right: 8px;min-width: max-content;width: 30%;">First Issue Date</div>
         <div style="width: 5%;">:</div>
         <div style="font-size: 12.5px;width: 65%;">
-          <%= formValue.utils.parseFormValue(formValue.applicationDate) %>
+          <% 
+            let timestamp = formValue.utils.parseFormValue(formValue.firstIssueDateOfParentTL);
+            let date = new Date(timestamp);
+            let day = String(date.getDate()).padStart(2, '0'); 
+            let monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            let month = monthNames[date.getMonth()];
+            let year = date.getFullYear();
+            let firstIssueDate = `${day}-${month}-${year}`; 
+          %>
+          <%= firstIssueDate %>
         </div>
       </div>
 
