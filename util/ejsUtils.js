@@ -47,10 +47,19 @@ const formatDate = (dateString, format) => {
   return formattedDate;
 }
 
+const formatTimestamp = (timestamp) => {
+  let date = new Date(timestamp);
+  let day = String(date.getDate()).padStart(2, '0');
+  let monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  let month = monthNames[date.getMonth()]; 
+  let year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+}
 
 module.exports = {
   parseFormValue,
   numberWithCommas,
   isAddNAText,
-  formatDate
+  formatDate,
+  formatTimestamp
 }
