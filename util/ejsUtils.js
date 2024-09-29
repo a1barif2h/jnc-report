@@ -47,10 +47,9 @@ const formatDate = (dateString, format) => {
   return formattedDate;
 }
 
-
 module.exports = {
   parseFormValue,
   numberWithCommas,
   isAddNAText,
-  formatDate
+  formatDate,
 }
