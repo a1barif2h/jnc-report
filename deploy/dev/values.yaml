@@ -1,0 +1,23 @@
+variables:
+  imageAppVersion: "0.0.2"
+  replicaCount: 1
+
+  imageRepository: devpentabd/beza-certificate-service-dev
+  imagePullPolicy: Always
+
+  hostName: beza-certificate-service-dev.svc.cluster.ec
+  serviceType: ClusterIP
+  servicePort: 80
+  #servicePort: 443
+  serviceTargetPort: 5010
+  #nodePort: 30208
+
+  imagePullSecrets: regcred
+  
+resources:
+  requests:
+    memory: "300Mi"
+    cpu: "150m"
+  limits:
+    memory: "500Mi"
+    cpu: "300m"

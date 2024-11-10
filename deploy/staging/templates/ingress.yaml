@@ -1,0 +1,25 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: "{{ .Chart.Name }}-ingress"
+  annotations:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: istio
+    #kubernetes.io/tls-acme: 'true'
+    #nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
+spec:
+  tls:
+    - hosts:
+        - "{{ .Values.variables.hostName }}"
+      #secretName: "{{ .Chart.Name }}-secret"
+  rules:
+    - host: "{{ .Values.variables.hostName }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Chart.Name }}
+                port:
+                  number: {{ .Values.variables.serviceTargetPort }}

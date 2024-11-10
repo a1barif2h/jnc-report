@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  replicas: {{ .Values.variables.replicaCount }}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.variables.imageRepository }}:{{ .Values.variables.imageAppVersion }}"  
+          imagePullPolicy: {{ .Values.variables.imagePullPolicy }}
+          ports:
+            - containerPort: {{ .Values.variables.serviceTargetPort }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}  
+      imagePullSecrets:
+        - name: {{ .Values.variables.imagePullSecrets }}
