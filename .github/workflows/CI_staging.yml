@@ -10,6 +10,6 @@ jobs:
       branch: "${{ github.ref_name }}"                                     # Automatically takes the branch name
       environment: "${{ github.ref_name }}"                                                   # Pass the environment (e.g., dev, prod)
       docker_image: "${{ github.event.repository.name }}-${{ github.ref_name }}"  # Docker image name as repo_name-branch
-      dockerfile: "Dockerfile.${{ github.ref_name }}"                                         # Dockerfile to use
+      dockerfile: "Dockerfile.dev.${{ github.ref_name }}"                                         # Dockerfile.dev to use
       product_name: "${{ github.event.repository.name }}-${{ github.ref_name }}"                 # Product name for DefectDojo
       engagement_name: "${{ github.event.repository.name }}-${{ github.ref_name }}"

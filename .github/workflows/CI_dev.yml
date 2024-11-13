@@ -10,6 +10,6 @@ jobs:
       branch: "dev"                       # Pass the input branch
       environment: "dev"                  # Pass the environment (e.g., dev, prod)
       docker_image: "beza-certificate-service-dev"   # Docker image name
-      dockerfile: "Dockerfile.dev"        # Dockerfile to use
+      dockerfile: "Dockerfile.dev.dev"        # Dockerfile.dev to use
       product_name: "beza-certificate-service-dev"   # Product name for DefectDojo
       engagement_name: "beza-certificate-service-dev"
