@@ -1,9 +1,9 @@
 {
   "backendApi": {
-    "bezaServiceBaseUrl": "https://api.pentabd.com/beza-service-staging",
-    "bezaServicePort": "",
-    "bezaServiceFrontEndBaseUrl": "http://192.168.1.125:31111",
-    "bezaServiceFrontEndPort": "",
+    "bezaServiceBaseUrl": "http://beza-service-staging",
+    "bezaServicePort": "80",
+    "bezaServiceFrontEndBaseUrl": "http://192.168.1.125",
+    "bezaServiceFrontEndPort": "31111",
     "bezaApplicationPdfServiceBaseUrl": "https://api.pentabd.com/beza-application-pdf-service-staging",
 
     "mayanCertificateUploadPath": "/beza-service/api/v1/internal/mayan/upload-document/",
