@@ -3,7 +3,7 @@ variables:
   replicaCount: 1
 
   imageRepository: devpentabd/beza-certificate-service-staging
-  imagePullPolicy: Always
+  imagePullPolicy: IfNotPresent
 
   hostName: beza-certificate-service-staging.svc.cluster.beza
   serviceType: ClusterIP
