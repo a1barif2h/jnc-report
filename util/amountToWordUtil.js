@@ -37,7 +37,7 @@ function amountInWords(num) {
 }
 
 function numberWithCommas(x) {
-  if(!x) {
+  if(x !== 0 &&!x) {
     return ""
   }
   var parts = x.toString().split(".");
