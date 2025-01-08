@@ -1,5 +1,5 @@
 variables:
-  imageAppVersion: "0.0.4"
+  imageAppVersion: "0.0.5"
   replicaCount: 1
 
   imageRepository: devpentabd/beza-certificate-service-staging
