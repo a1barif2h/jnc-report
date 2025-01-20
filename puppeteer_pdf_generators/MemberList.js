@@ -5,6 +5,8 @@ const { ejsPuppeteerPdfGenerator } = require("../pdf_generators/PdfGenerator");
 const { getFormatDateWithTime } = require("../util/dateTimeFormattor");
 const ejsUtils = require("../util/ejsUtils");
 const { json } = require("express");
+const {getCommitteeData} = require("../services/jnc/committee-details");
+
 
 const options = {
   orientation: "portrait",
@@ -28,9 +30,14 @@ class MemberList {
       "./ejs_pdf_templates/member-list/member-list.ejs",
       "utf8"
     );
-    
-    const generateTemplate = ejsRender(template, {formValue: body});
 
+    const response = await getCommitteeData();
+
+    console.log('response:',response)
+    
+    const generateTemplate = ejsRender(template, {formValue: {...body, response}});
+
+    
     const pageStyle = `
       @page {
           margin-top: 40px;
@@ -38,16 +45,19 @@ class MemberList {
       }
     `;
 
-    options.headerTemplate = '<span></span>';
+    options.headerTemplate = '<span>hiii</span>';
 
     options.footerTemplate = '<span></span>';
     
 
-    const generatedPdf = ejsPuppeteerPdfGenerator(
+    const generatedPdf = await ejsPuppeteerPdfGenerator(
       generateTemplate,
       options,
       pageStyle
     );
+
+    console.log('============ generateTemplate:',generateTemplate)
+
 
     return generatedPdf;
   }

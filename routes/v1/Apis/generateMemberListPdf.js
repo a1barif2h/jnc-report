@@ -1,7 +1,5 @@
 const express = require("express");
 const logger = require("../../../util/logger");
-const PcApplication = require("../../../puppeteer_pdf_generators/PcApplication");
-const LmsPaymentSchedule = require("../../../puppeteer_pdf_generators/MemberList");
 const MemberList = require("../../../puppeteer_pdf_generators/MemberList");
 
 const router  = express.Router();
