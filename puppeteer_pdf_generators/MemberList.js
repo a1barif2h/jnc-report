@@ -33,7 +33,7 @@ class MemberList {
 
     const response = await getCommitteeData();
 
-    console.log('response:',response)
+    // console.log('response:',response)
     
     const generateTemplate = ejsRender(template, {formValue: {...body, response}});
 
@@ -55,9 +55,6 @@ class MemberList {
       options,
       pageStyle
     );
-
-    console.log('============ generateTemplate:',generateTemplate)
-
 
     return generatedPdf;
   }

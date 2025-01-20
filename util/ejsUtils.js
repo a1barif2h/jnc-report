@@ -129,6 +129,20 @@ const lmsFormatDate = (dateStr) => {
   return formattedDate;
 }
 
+const convertToBengali = (number) => {
+  if (!number && number !== 0) {
+    return '';
+  }
+  const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+  return String(number)
+    .split('')
+    .map((char) => {
+      const digitValue = parseInt(char, 10);
+      return Number.isNaN(digitValue) ? char : bengaliDigits[digitValue];
+    })
+    .join('');
+};
+
 module.exports = {
   parseFormValue,
   numberWithCommas,
@@ -137,4 +151,5 @@ module.exports = {
   getNumberWithSuffix,
   getPaymentDescription,
   lmsFormatDate,
+  convertToBengali,
 };
