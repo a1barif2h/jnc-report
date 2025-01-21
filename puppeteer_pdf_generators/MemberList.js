@@ -6,6 +6,7 @@ const { getFormatDateWithTime } = require("../util/dateTimeFormattor");
 const ejsUtils = require("../util/ejsUtils");
 const { json } = require("express");
 const {getCommitteeData} = require("../services/jnc/committee-details");
+const {downloadAndConvertImage} = require("../util/downloadImageAndConvertInBase64");
 
 
 const options = {
@@ -33,15 +34,36 @@ class MemberList {
 
     const response = await getCommitteeData();
 
-    // console.log('response:',response)
+
+    /** this code is required when we implement the 'signature' */
+    /*
+    for (let i = 0; i < response?.recommends?.length; i++) {
+      const element = response?.recommends[i];
+      const data = await downloadAndConvertImage(element?.signature);
+      element["signature64"] = data;
+    }
+
+    for (let i = 0; i < response?.approvers?.length; i++) {
+      const element = response?.approvers[i];
+      const data = await downloadAndConvertImage(element?.signature);
+      element["signature64"] = data;
+    }
+
+    */
+
+    // const {signature64, ...restRes} = response
+
+    
+    response.date = ejsUtils.convertDateInBangla(response.date) || response.date;
+    console.log('response:',response);
+
     
     const generateTemplate = ejsRender(template, {formValue: {...body, response}});
 
     
     const pageStyle = `
       @page {
-          margin-top: 40px;
-          margin-bottom: 80px;
+          margin-top: 10px;
       }
     `;
 

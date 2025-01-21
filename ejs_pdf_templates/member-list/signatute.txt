@@ -1,0 +1,77 @@
+ <!-- <div class="signature">
+                <div class="sec-1">
+                    <div class="sec-1-box">
+                        <% formValue.response.recommends.forEach((item)=>{ %> 
+                            <div class="sign">
+                                <img 
+                                    src= "<%= item?.signature64 %>" .
+                                    alt="test-1" width="120" height="60"
+                                >
+                            </div>
+                        <% }) %>
+                        
+                    </div>
+
+                    <h4>সুপারিশক্রমে</h4>
+                    
+                </div>
+
+                <div class="sec-2">
+                    <div class="sec-2-box">d
+                        <% formValue.response.approvers.forEach((item)=>{ %> 
+                            <div class="sign">
+                                <img 
+                                    src= "<%= item?.signature64 %>" .
+                                    alt="test-1" width="120" height="60"
+                                >
+                            </div>
+                        <% }) %>
+                    </div>
+                    <h4>অনুমোদনক্রমে</h4>
+                </div>
+
+            </div> -->
+
+
+==============================================
+
+CSS
+
+
+.signature{
+          margin: 10px 30px;
+
+          display: flex;
+          justify-content: space-between;
+          gap: 10px;
+      }
+
+      .signature h4 {
+          text-align: center;
+      }
+
+      .sec-1{
+          display: flex;
+          flex-direction: column;
+      }
+
+      .sec-1-box{
+          display: flex;
+          justify-content: center;
+      }
+      
+      .sec-2{
+          display: flex;
+          flex-direction: column;
+      }
+
+      .sec-2-box{
+          display: flex;
+          justify-content: center;
+      }
+
+      .sign{
+          height: 60px;
+          width: 120px;
+          margin: 5px;
+      } 

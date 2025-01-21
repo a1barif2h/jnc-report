@@ -104,6 +104,11 @@
             margin-top: 20px;
         }
 
+        .single-member {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
         .footer {
             background-color: #0033cc;
             color: white;
@@ -117,6 +122,7 @@
         .footer a {
             color: white;
             text-decoration: none;
+            padding: 5px 0;
         }
 
         .page-break {
@@ -134,17 +140,21 @@
 
     <% 
         const membersCount = formValue?.response?.members?.length || 0; 
-        const chunkSize=3;
+        const firstPageChunkSize=30;
+        const chunkSize=35;
         const memberArray2D=[];
         let count=0;
 
+        if(!membersCount) 
+            memberArray2D.push([]);
+
         for (let i = 0;
             i < membersCount; 
-            i +=(i===0 ? 2 :chunkSize)
+            i +=(i===0 ? firstPageChunkSize :chunkSize)
         )
         {
             if(i === 0) {
-                memberArray2D.push(formValue?.response?.members?.slice(i, i+2));
+                memberArray2D.push(formValue?.response?.members?.slice(i, i+firstPageChunkSize));
             } else {
                 memberArray2D.push(formValue?.response?.members?.slice(i, i+chunkSize));
             }
@@ -205,8 +215,8 @@
                 <div class="committee-list">
 
                     <!-- inner loop ta khali eikhane cholbe -->
-                    <% array1D.forEach((item, idx)=>{ %>
-                        <span>
+                    <% array1D?.forEach((item, idx)=>{ %>
+                        <span class="single-member">
                             <%= formValue?.utils?.convertToBengali(count+=1) %>.
                             <span><%= item?.name %> </span> 
                         </span> 

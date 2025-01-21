@@ -1,3 +1,5 @@
+const {getFormatDate} = require("./dateTimeFormattor");
+
 const parseFormValue = (value) => {
   if (value || value === 0) {
     return value;
@@ -143,6 +145,19 @@ const convertToBengali = (number) => {
     .join('');
 };
 
+const convertDateInBangla = (givenDate) => {
+  const arr = givenDate.split('-')
+
+  if (!arr?.length) return ''
+
+  const day = arr[2];
+  const month = arr[1];
+  const year = arr[0];
+
+  // console.log(`${convertToBengali(day)}-${convertToBengali(month)}-${convertToBengali(year)}`)
+  return `${convertToBengali(day)}-${convertToBengali(month)}-${convertToBengali(year)}`
+}
+
 module.exports = {
   parseFormValue,
   numberWithCommas,
@@ -152,4 +167,5 @@ module.exports = {
   getPaymentDescription,
   lmsFormatDate,
   convertToBengali,
+  convertDateInBangla
 };

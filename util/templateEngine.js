@@ -75,7 +75,7 @@ const NaDashTextRemover = (template) => {
 }
 
 const ejsRender = function (initialTemplate, reqBody) {
-    console.log('-------------reqBody:',reqBody)
+    // console.log('-------------reqBody:',reqBody)
     let generatedTemplate = ejs.render(initialTemplate, reqBody);
     return generatedTemplate;
 };
