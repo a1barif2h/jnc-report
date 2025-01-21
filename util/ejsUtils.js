@@ -1,3 +1,7 @@
+const akhterSealTrans = require("./base64-imgs/akhter-seal-trans");
+const logoSealTrans = require("./base64-imgs/logo-seal-trans");
+const nasirSealTrans = require("./base64-imgs/nasir-seal-trans");
+const signatureImg = require("./base64-imgs/sign");
 const {getFormatDate} = require("./dateTimeFormattor");
 
 const parseFormValue = (value) => {
@@ -159,6 +163,11 @@ const convertDateInBangla = (givenDate) => {
 }
 
 module.exports = {
+  
+  nasirSealTrans,
+  akhterSealTrans,
+  logoSealTrans,
+  signatureImg,
   parseFormValue,
   numberWithCommas,
   isAddNAText,
