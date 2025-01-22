@@ -30,9 +30,12 @@ class MemberList {
     const template = fs.readFileSync(
       "./ejs_pdf_templates/member-list/member-list.ejs",
       "utf8"
-    );
+    );body
 
-    const response = await getCommitteeData();
+    const { committeeId } = body;
+    console.log({committeeId})
+
+    const response = await getCommitteeData(committeeId);
 
 
     /** this code is required when we implement the 'signature' */
@@ -54,7 +57,7 @@ class MemberList {
     // const {signature64, ...restRes} = response
 
     
-    response.date = ejsUtils.convertDateInBangla(response.date) || response.date;
+    response.date = ejsUtils.convertDateInBangla(response.date) || response?.date;
     console.log('response:',response);
 
     
