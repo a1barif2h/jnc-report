@@ -30,7 +30,7 @@ class MemberList {
     const template = fs.readFileSync(
       "./ejs_pdf_templates/member-list/member-list.ejs",
       "utf8"
-    );body
+    );
 
     const { committeeId } = body;
     console.log({committeeId})
@@ -64,6 +64,38 @@ class MemberList {
     const generateTemplate = ejsRender(template, {formValue: {...body, response}});
 
     
+    const pageStyle = `
+      @page {
+          margin-top: 10px;
+      }
+    `;
+
+    options.headerTemplate = '<span>hiii</span>';
+
+    options.footerTemplate = '<span></span>';
+    
+
+    const generatedPdf = await ejsPuppeteerPdfGenerator(
+      generateTemplate,
+      options,
+      pageStyle
+    );
+
+    return generatedPdf;
+  }
+
+  async preview(body) {
+    body.utils = ejsUtils;
+
+    const template = fs.readFileSync(
+      "./ejs_pdf_templates/member-list/member-list-preview.ejs",
+      "utf8"
+    );
+
+    body.date = ejsUtils.convertDateInBangla(body.date) || body?.date;
+    
+    const generateTemplate = ejsRender(template, {formValue: {...body}});
+
     const pageStyle = `
       @page {
           margin-top: 10px;

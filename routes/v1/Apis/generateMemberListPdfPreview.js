@@ -1,0 +1,28 @@
+const express = require("express");
+const logger = require("../../../util/logger");
+const MemberList = require("../../../puppeteer_pdf_generators/MemberList");
+
+const router  = express.Router();
+
+const generateMemberListPdfPreview = async (req, res) => {
+    const memberList = new MemberList();
+
+    logger.info('start to generate member list pdf -- [[[PREVIEW]]]');
+
+    try {
+        const pdfBuffer = await memberList.preview(req.body);
+
+        res.setHeader('content-type', 'application/pdf');
+        res.status(200).send(pdfBuffer);
+    } catch (err) {
+        logger.error(err);
+        res.status(500).send('Error generating PDF');
+    }
+};
+
+
+
+
+router.post("/", generateMemberListPdfPreview);
+
+module.exports = router;
