@@ -1,3 +1,9 @@
+const akhterSealTrans = require("./base64-imgs/akhter-seal-trans");
+const logoSealTrans = require("./base64-imgs/logo-seal-trans");
+const nasirSealTrans = require("./base64-imgs/nasir-seal-trans");
+const signatureImg = require("./base64-imgs/sign");
+const {getFormatDate} = require("./dateTimeFormattor");
+
 const parseFormValue = (value) => {
   if (value || value === 0) {
     return value;
@@ -129,7 +135,39 @@ const lmsFormatDate = (dateStr) => {
   return formattedDate;
 }
 
+const convertToBengali = (number) => {
+  if (!number && number !== 0) {
+    return '';
+  }
+  const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+  return String(number)
+    .split('')
+    .map((char) => {
+      const digitValue = parseInt(char, 10);
+      return Number.isNaN(digitValue) ? char : bengaliDigits[digitValue];
+    })
+    .join('');
+};
+
+const convertDateInBangla = (givenDate) => {
+  const arr = givenDate.split('-')
+
+  if (!arr?.length) return ''
+
+  const day = arr[2];
+  const month = arr[1];
+  const year = arr[0];
+
+  // console.log(`${convertToBengali(day)}-${convertToBengali(month)}-${convertToBengali(year)}`)
+  return `${convertToBengali(day)}-${convertToBengali(month)}-${convertToBengali(year)}`
+}
+
 module.exports = {
+  
+  nasirSealTrans,
+  akhterSealTrans,
+  logoSealTrans,
+  signatureImg,
   parseFormValue,
   numberWithCommas,
   isAddNAText,
@@ -137,4 +175,6 @@ module.exports = {
   getNumberWithSuffix,
   getPaymentDescription,
   lmsFormatDate,
+  convertToBengali,
+  convertDateInBangla
 };

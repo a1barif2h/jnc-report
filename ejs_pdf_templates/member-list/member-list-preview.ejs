@@ -154,14 +154,8 @@
 </head>
 
 <body>
-
-    <!-- <h4 class="w-30 input-box">
-        <%= formValue.response.userId %>
-    </h4> -->
-
-
     <% 
-        const membersCount = formValue?.response?.members?.length || 0; 
+        const membersCount = formValue?.members?.length || 0; 
         const firstPageChunkSize=25;
         const chunkSize=30;
         const memberArray2D=[];
@@ -176,9 +170,9 @@
         )
         {
             if(i === 0) {
-                memberArray2D.push(formValue?.response?.members?.slice(i, i+firstPageChunkSize));
+                memberArray2D.push(formValue?.members?.slice(i, i+firstPageChunkSize));
             } else {
-                memberArray2D.push(formValue?.response?.members?.slice(i, i+chunkSize));
+                memberArray2D.push(formValue?.members?.slice(i, i+chunkSize));
             }
         }
 
@@ -197,20 +191,20 @@
                 <div class="content">
     
                     <div class="header">
-                        <div><span class="fw-600">স্মারক নং: </span><%= formValue.response.manuscript %></div>
-                        <div><span class="fw-600">তারিখ: </span><%= formValue.response.date %></div>
+                        <div><span class="fw-600">স্মারক নং: </span><%= formValue?.manuscript %></div>
+                        <div><span class="fw-600">তারিখ: </span><%= formValue?.date %></div>
                     </div>
             
                     <!-- kebol 1st page a thakbe nicher div ta -->
                     <% if(index2D===0) { %>
                         <div>
-                            <div class="title-1"><%= formValue.response.name %></div>
-                            <div class="title-2"><span><%= committee_map[formValue.response.committee_type] %></span> কমিটি</div>                        
+                            <div class="title-1"><%= formValue?.name %></div>
+                            <div class="title-2"><span><%= committee_map[formValue?.committee_type] %></span> কমিটি</div>                        
     
                             <!-- <div class="subtitle">জুলাই'২৪ ছাত্র জনতার উদ্যোগে শহীদ পরিবার, আইনতদন্তকারীর সমর্থনে গঠিত</div> -->
-                            <div class="subtitle"><%= formValue.response.description %></div>
+                            <div class="subtitle"><%= formValue?.description %></div>
                             
-                            <div class="description"><span class="fw-600"><span>'<%= committee_map[formValue.response.committee_type] %></span> কমিটির'</span>তালিকা :</div>
+                            <div class="description"><span class="fw-600"><span>'<%= committee_map[formValue.committee_type] %></span> কমিটির'</span>তালিকা :</div>
                         </div>
                     <%}%>
 
@@ -225,91 +219,6 @@
                             <% }) %>
                         </div>
 
-                        <% if(array1D?.length>0) { %>
-                            <div class="signature">
-
-                                <!-- jnc seal -->
-                                <div class="jnc-seal">
-                                    <img 
-                                        src= "<%= formValue?.utils?.logoSealTrans %>" 
-                                        alt="jnc-logo"
-                                        width="120" 
-                                        height="120"
-                                    />
-                                </div>
-
-                                <!-- suparish krome -->
-                                <div class="sub-sections">
-                                    <h4>সুপারিশক্রমে</h4>
-
-                                    <div class="sign-seal-wrapper">
-                                        <div class="sign-seal">
-                                            <img 
-                                                src= "<%= formValue?.utils?.signatureImg %>" 
-                                                alt="sign"
-                                                class="sign"
-                                            />
-
-                                            <img 
-                                                src= "<%= formValue?.utils?.nasirSealTrans %>" 
-                                                alt="seal"
-                                                class="seal"
-                                            />
-                                        </div>
-
-                                        <div class="sign-seal">
-                                            <img 
-                                                src= "<%= formValue?.utils?.signatureImg %>" 
-                                                alt="sign"
-                                                class="sign"
-                                            />
-
-                                            <img 
-                                                src= "<%= formValue?.utils?.nasirSealTrans %>" 
-                                                alt="seal"
-                                                class="seal"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- onumodon krome -->
-                                <div class="sub-sections">
-                                    <h4>অনুমোদনক্রমে</h4>
-
-                                    <div class="sign-seal-wrapper">
-                                        <div class="sign-seal">
-
-                                            <img 
-                                                src= "<%= formValue?.utils?.signatureImg %>" 
-                                                alt="sign"
-                                                class="sign"
-                                            />
-                                            
-                                            <img 
-                                                src= "<%= formValue?.utils?.nasirSealTrans %>" 
-                                                alt="seal"
-                                                class="seal"
-                                            />
-                                        </div>
-
-                                        <div class="sign-seal">
-                                            <img 
-                                                src= "<%= formValue?.utils?.signatureImg %>" 
-                                                alt="sign"
-                                                class="sign"
-                                            />
-
-                                            <img 
-                                                src= "<%= formValue?.utils?.akhterSealTrans %>" 
-                                                alt="jnc-logo"
-                                                class="seal"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <% } %>
                     </div>
                 </div>
 
