@@ -225,89 +225,91 @@
                             <% }) %>
                         </div>
 
-                        <div class="signature">
+                        <% if(array1D?.length>0) { %>
+                            <div class="signature">
 
-                            <!-- jnc seal -->
-                            <div class="jnc-seal">
-                                <img 
-                                    src= "<%= formValue?.utils?.logoSealTrans %>" 
-                                    alt="jnc-logo"
-                                    width="120" 
-                                    height="120"
-                                />
-                            </div>
+                                <!-- jnc seal -->
+                                <div class="jnc-seal">
+                                    <img 
+                                        src= "<%= formValue?.utils?.logoSealTrans %>" 
+                                        alt="jnc-logo"
+                                        width="120" 
+                                        height="120"
+                                    />
+                                </div>
 
-                            <!-- suparish krome -->
-                            <div class="sub-sections">
-                                <h4>সুপারিশক্রমে</h4>
+                                <!-- suparish krome -->
+                                <div class="sub-sections">
+                                    <h4>সুপারিশক্রমে</h4>
 
-                                <div class="sign-seal-wrapper">
-                                    <div class="sign-seal">
-                                        <img 
-                                            src= "<%= formValue?.utils?.signatureImg %>" 
-                                            alt="sign"
-                                            class="sign"
-                                        />
+                                    <div class="sign-seal-wrapper">
+                                        <div class="sign-seal">
+                                            <img 
+                                                src= "<%= formValue?.utils?.signatureImg %>" 
+                                                alt="sign"
+                                                class="sign"
+                                            />
 
-                                        <img 
-                                            src= "<%= formValue?.utils?.nasirSealTrans %>" 
-                                            alt="seal"
-                                            class="seal"
-                                        />
+                                            <img 
+                                                src= "<%= formValue?.utils?.nasirSealTrans %>" 
+                                                alt="seal"
+                                                class="seal"
+                                            />
+                                        </div>
+
+                                        <div class="sign-seal">
+                                            <img 
+                                                src= "<%= formValue?.utils?.signatureImg %>" 
+                                                alt="sign"
+                                                class="sign"
+                                            />
+
+                                            <img 
+                                                src= "<%= formValue?.utils?.nasirSealTrans %>" 
+                                                alt="seal"
+                                                class="seal"
+                                            />
+                                        </div>
                                     </div>
+                                </div>
 
-                                    <div class="sign-seal">
-                                        <img 
-                                            src= "<%= formValue?.utils?.signatureImg %>" 
-                                            alt="sign"
-                                            class="sign"
-                                        />
+                                <!-- onumodon krome -->
+                                <div class="sub-sections">
+                                    <h4>অনুমোদনক্রমে</h4>
 
-                                        <img 
-                                            src= "<%= formValue?.utils?.nasirSealTrans %>" 
-                                            alt="seal"
-                                            class="seal"
-                                        />
+                                    <div class="sign-seal-wrapper">
+                                        <div class="sign-seal">
+
+                                            <img 
+                                                src= "<%= formValue?.utils?.signatureImg %>" 
+                                                alt="sign"
+                                                class="sign"
+                                            />
+                                            
+                                            <img 
+                                                src= "<%= formValue?.utils?.nasirSealTrans %>" 
+                                                alt="seal"
+                                                class="seal"
+                                            />
+                                        </div>
+
+                                        <div class="sign-seal">
+                                            <img 
+                                                src= "<%= formValue?.utils?.signatureImg %>" 
+                                                alt="sign"
+                                                class="sign"
+                                            />
+
+                                            <img 
+                                                src= "<%= formValue?.utils?.akhterSealTrans %>" 
+                                                alt="jnc-logo"
+                                                class="seal"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- onumodon krome -->
-                            <div class="sub-sections">
-                                <h4>অনুমোদনক্রমে</h4>
-
-                                <div class="sign-seal-wrapper">
-                                    <div class="sign-seal">
-
-                                        <img 
-                                            src= "<%= formValue?.utils?.signatureImg %>" 
-                                            alt="sign"
-                                            class="sign"
-                                        />
-                                        
-                                        <img 
-                                            src= "<%= formValue?.utils?.nasirSealTrans %>" 
-                                            alt="seal"
-                                            class="seal"
-                                        />
-                                    </div>
-
-                                    <div class="sign-seal">
-                                        <img 
-                                            src= "<%= formValue?.utils?.signatureImg %>" 
-                                            alt="sign"
-                                            class="sign"
-                                        />
-
-                                        <img 
-                                            src= "<%= formValue?.utils?.akhterSealTrans %>" 
-                                            alt="jnc-logo"
-                                            class="seal"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
                     </div>
                 </div>
 
